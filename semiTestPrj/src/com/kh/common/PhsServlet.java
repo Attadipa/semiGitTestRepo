@@ -13,7 +13,7 @@ public class PhsServlet extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("¹ÚÇÑ¼Ö ¤»¤»");
+		System.out.println("ã…‹ã…‹ã…‹í…ŒìŠ¤íŠ¸");
 	}
 	
 }
