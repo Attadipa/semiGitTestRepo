@@ -15,7 +15,7 @@
     
     #cs-header p{
         text-align: center;
-        padding-top: 40px;
+        padding-top: 80px;
         font-size: 40px;
         font-weight: bolder;
     }
@@ -39,9 +39,12 @@
         align-items: center;
         width: 1400px;
     }
+
+    #cs-page {
+        margin-left: 100px;
+		width: 1500px;
+    }
 </style>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 </head>
 <body>
 	<div id="cs-header">

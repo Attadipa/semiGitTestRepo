@@ -32,6 +32,12 @@
         background-color: rgb(198, 255, 255);
         cursor: pointer;
     }
+
+    #footer-content {
+        font-size: 20px;
+        margin: 10px;
+        font-weight: bold;
+    }
 </style>
 </head>
 <body>
@@ -47,34 +53,34 @@
                 <tr>
                     <td>
                         <div id="cs-footer-box">
-                            <div id="freq-content">사기 관련</div>
+                            <div id="footer-content">거래 관련</div>
                         </div>
                     </td>
                     <td>
                         <div id="cs-footer-box">
-                            <div id="freq-content">결제 관련</div>
+                            <div id="footer-content">계정 관련</div>
                         </div>
                     </td>
                     <td>
                         <div id="cs-footer-box">
-                            <div id="freq-content">건의 제안</div>
+                            <div id="footer-content">행사 관련</div>
                         </div>
                     </td>
                     <td>
                         <div id="cs-footer-box">
-                            <div id="freq-content">FAQ_Type1</div>
+                            <div id="footer-content">광고 관련</div>
                         </div>
                     </td>
                     <td>
                         <div id="cs-footer-box">
-                            <div id="freq-content">FAQ_Type2</div>
+                            <div id="footer-content">건의 및 제안</div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
                         <div id="cs-footer-box">
-                            <div id="freq-content">FAQ_Type3</div>
+                            <div id="footer-content">기타</div>
                         </div>
                     </td>
                 </tr>
