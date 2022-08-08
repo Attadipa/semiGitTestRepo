@@ -6,17 +6,22 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-    #outer {
-    width: 65%;
-    margin: 0px auto;
-}
+
+   #outer{
+        width: 65%;
+        margin: 0px auto;
+        margin-bottom: 5%;
+        margin-top: 5%;
+    }
+    
 </style>
 </head>
 <body>
 
+    <%@ include file="/views/common/header.jsp"%>
+
     <div id="outer">
 
-        <%@ include file="/views/common/header.jsp"%>
 
         <hr>
 
@@ -45,20 +50,9 @@
         </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
     </div>
+
+    <%@include file="/views/common/footer.jsp" %>
 
 </body>
 </html>

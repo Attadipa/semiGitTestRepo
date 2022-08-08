@@ -7,23 +7,28 @@
 <title>Insert title here</title>
 </head>
 <style>
- #outer{
+    #outer{
         width: 65%;
-        
         margin: 0px auto;
+        margin-bottom: 5%;
+        margin-top: 5%;
     }
+
     #outer h1{
         padding-top: 50px;
         padding-bottom: 30px;
     }
+
     #section{
         width: 100%;
         height: 60%;
         
     }
+
     #section *{
         width: 100%;
     }
+
     #div-btn-area{
         width: 25%;
         margin: auto;
@@ -37,12 +42,36 @@
     .category-select, #title {
         height: 35px;
     }
+
+    .category{
+    position: relative;
+    width: 150px;
+    height: 40px;
+    border: 2px solid darkgray;
+    }
+
+    .category .category-select {
+    width: inherit;
+    height: inherit;
+    background: transparent;
+    border: 0 none;
+    outline: 0 none;
+    font-family: 'IBM Plex Sans KR', sans-serif;
+    font-weight: 400;
+    }
+    
+    .category .category-select option {
+    background: whitesmoke;
+    padding: 2px;
+    font-size: 13px;
+    }
 </style>
 <body>
+    
+    <%@ include file="/views/common/header.jsp"%>
 
-	 <div id="outer">
+	<div id="outer">
 
-        <%@ include file="/views/common/header.jsp"%>
 
         <h1>글쓰기(커뮤니티 글 작성하기)</h1>
 
@@ -53,7 +82,6 @@
             
 
             <div id="section">
-
                 <div class="category">
                     <select name="category-select" class="category-select">
                         <option value="free">자유게시판</option>
@@ -63,20 +91,26 @@
                     </select>
                 </div>
                 <br>
-                <input type="text" size="120" name="title" id="title" placeholder="제목을 입력해주세요." required>
+                <input type="text" size="120" name="title" id="title" placeholder=" 제목을 입력해주세요." required>
                 <br>
                 <br>
-                <textarea rows="15" cols="130" style="resize:none;" name="content" id="content" placeholder="내용을 입력하세요." required></textarea>
+                <textarea rows="15" cols="130" style="resize:none;" name="content" id="content" placeholder=" 내용을 입력하세요." required></textarea>
             </div>
 
             <div id="div-btn-area">
                 <input type="submit" value="등록하기">
                 <input type="reset" value="초기화">
-                <input type="button" value="뒤로가기" onclick="history.go(-1)">
+                <input type="button" value="목록" onclick="history.go(-1)">
+                <!--  form 태그 안에 만든 button은 제출 버튼이 된다. (즉, submit 역할이 된다)
+                이 문제를 수정해주려면 input type = "button"으로 해주면 된다.
+                -->
             </div>
 
         </form>
         
-       </div>
+    </div>
+
+    <%@include file="/views/common/footer.jsp" %>
+
 </body>
 </html>
