@@ -67,7 +67,8 @@
         text-decoration: underline 0.5px;
         
     }
-    #page-outer{
+    
+    .page-outer{
         background-color: whitesmoke;
         width: 100%;
         height: 180px;
@@ -139,8 +140,19 @@
         <%@include file="/views/common/header.jsp" %>
     
         
-        <h1>공지사항</h1>
+        <h1>커뮤니티</h1>
         
+        
+        <form action="semiTestPrj/community/selectBox" method="get">
+            <div class="category">
+                <select name="category-select" class="category-select">
+                    <option value="free">자유게시판</option>
+                    <option value="compliment">칭찬해요</option>
+                    <option value="caution">주의해요</option>
+                    <option value="chat">수다방</option>
+                </select>
+            </div>
+        </form>
 
         <br><br>
 
@@ -308,7 +320,7 @@
 
         <input type="button" name="writeBtn" id="writeBtn" value="글쓰기">
 
-        <div id="page-outer">
+        <div class="page-outer">
             <div id="next-page">
                 <span>1</span>
                 <span>2</span>
