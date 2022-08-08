@@ -16,11 +16,10 @@
     }
 
     #outer{
-        background-color: white; 
-		color: black;
         width: 65%;
         margin: 0px auto;
         margin-bottom: 5%;
+        margin-top: 5%;
     }
 
     table{
@@ -129,15 +128,19 @@
         margin-left: -10px;
     }
     
+    a {
+        text-decoration: none !important;
+        color: black !important;
+    }
 
 </style>
 </head>
 <body>
 
+    <%@include file="/views/common/header.jsp" %>
     
     <div id="outer">
         
-        <%@include file="/views/common/header.jsp" %>
     
         
         <h1>커뮤니티</h1>
@@ -171,8 +174,8 @@
             <tbody>
                 <tr>
                     <td>필독</td>
-                    <td class="title">아나바다</td>
-                    <td class="writer">남재현</td>
+                    <td class="title"><a href="comDetail.jsp">아나바다</a></td>
+                    <td class="writer"><a href="comDetail.jsp">남재현</a></td>
                     <td>2022/08/03</td>
                     <td>30</td>
                 </tr>
@@ -318,7 +321,7 @@
 
         <br>
 
-        <input type="button" name="writeBtn" id="writeBtn" value="글쓰기">
+        <button name="writeBtn" id="writeBtn" onclick="location.href='comInsertForm.jsp'">글쓰기</button>
 
         <div class="page-outer">
             <div id="next-page">
@@ -365,7 +368,7 @@
                         </select>
                     </span>
                     <span>
-                        <input type="text" id="search-condition" placeholder="검색어를 입력해주세요.">
+                        <input type="text" id="search-condition" placeholder=" 검색어를 입력해주세요.">
                         <button id="btn-condition">검색</button>
                     </span>
                 </div>
@@ -374,10 +377,10 @@
         </div>
         
 
-        <%@include file="/views/common/footer.jsp" %>
-
+        
     </div>
-  
+    
+    <%@include file="/views/common/footer.jsp" %>
     
 
 </body>
