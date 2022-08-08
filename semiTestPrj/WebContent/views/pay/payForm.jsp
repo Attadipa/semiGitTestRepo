@@ -90,8 +90,11 @@
         display: flex;
         align-items: center;
         justify-content: right;
-        padding-right: 30px;
+        padding-right: 20px;
         box-sizing: border-box;
+        font-size: 20px;
+        font-weight: bold;
+        color: rgb(56, 56, 56);
     }
     #delivery-container{
         width: 100%;
@@ -107,6 +110,9 @@
         text-align: center;
         font-size: 17px;
     }
+    #request-content-direct{
+        display:none;
+    }
     #title-container{
         width:100%;
         display: flex;
@@ -118,7 +124,6 @@
     <div id="container">
         <h1>결제</h1>
         <hr>
-        <br>
         <form action="/semiTestPrj/pay/addPay" method="post">
             <input type="hidden" name="memberNum" value="0">
             <input type="hidden" name="postNo" value="0">
@@ -143,11 +148,12 @@
                         <option value="2">직접 받고 부재 시 문앞</option>
                         <option value="3">경비실</option>
                         <option value="4">우편함</option>
-                        <option value="5">직접입력</option>
+                        <option value="direct">직접입력</option>
                     </select>
+                    <input type="text" name="request-content-direct" id="request-content-direct">
                 </div>
             <h2>결제금액</h2>
-                <div id="payAmount-container">30000</div>
+                <div id="payAmount-container">690,000원</div>
             <h2>결제수단</h2>
                 <table id="pay-method-container">
                     <tr>
@@ -210,6 +216,16 @@
                 }).open();
             });
         }
+        </script>
+        <script>
+        const requestContent = document.getElementById("request-content");
+        console.log(requestContent);
+        const direct = document.getElementById("request-content-direct");
+        console.log(direct)
+
+        requestContent.addEventListener(requestContent.value=="direct",function(){
+            direct.style.display = 'block';
+        })
         </script>
 
 </body>
