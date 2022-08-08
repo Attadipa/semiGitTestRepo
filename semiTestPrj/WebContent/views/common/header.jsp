@@ -19,7 +19,7 @@
     
     
     body{
-        padding-top: 100px;
+        padding-top: 150px;
     }
     .header{
         box-sizing: border-box;
@@ -98,8 +98,8 @@
             </div>
             <hr class="header-hr">
             <div id="header-inner2" class="header">
-                <a id="logo-anbd" href="">
-                    <img src="views/common/resources/anbdpng.png" alt="아나바다로고">
+                <a id="logo-anbd" href="/semiTestPrj">
+                    <img src="/semiTestPrj/views/common/resources/anbdpng.png" alt="아나바다로고">
                 </a>
                 <form id="search" action="" method="get">
                     <div class="input-group mb-3">
