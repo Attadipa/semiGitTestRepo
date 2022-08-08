@@ -2,11 +2,11 @@
     pageEncoding="UTF-8"%>
     
 
-<%
+<%-- <%
 request.setCharacterEncoding("UTF-8");
 String id = (String) session.getAttribute("id");
 ArrayList<Object> memberlist = (ArrayList)request.getAttribute("memberlist");
-%>
+%> --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +23,7 @@ ArrayList<Object> memberlist = (ArrayList)request.getAttribute("memberlist");
 <div class="card align-middle" style="width: 30rem; border-radius: 20px;">
 <div class="card-body">
 
-<%
+<%-- <%
 for(int i=0;i<memberlist.size();i++){
 	Member mb = (Member)memberlist.get(i);
 	if(!mb.getId().equals("admin")){
@@ -33,7 +33,7 @@ for(int i=0;i<memberlist.size();i++){
 	out.print("</div>");
 	}
 }
-%>
+%> --%>
 
 </div>
 </div>

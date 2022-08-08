@@ -3,10 +3,10 @@
 <%@ page import="java.util.*"%>
 
 
-<% //멤버 src쪽 파일이랑 연결 예정
+<%-- <% //멤버 src쪽 파일이랑 연결 예정
 	Member member = (Member)request.getAttribute("member");
 %>
-
+ --%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,7 +19,7 @@
 <div align ="center">
 <a href="./MemberList.me">뒤로가기</a><br>
 <table class = "table table-hover table-striped text-center">
-<%
+<%-- <%
 out.print("<tr><td>아이디</td>");
 out.print("<td>"+member.getId()+"</td></tr>");
 
@@ -46,7 +46,7 @@ out.print("<td>"+member.getHobbyarr2()+"</td></tr>");
 
 out.print("<tr><td>자기소개</td>");
 out.print("<td>"+member.getIntro()+"</td></tr>");
-%>
+%> --%>
 </table>
 </div>
 </div>
