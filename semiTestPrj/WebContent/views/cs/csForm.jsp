@@ -7,10 +7,6 @@
 <title>아나바다 고객센터</title>
 <style>
 
-    #cs-page {
-        margin-left: 100px;
-    }
-
     #cs-freq {
         margin-left: 40px;
         margin-top: 70px;
