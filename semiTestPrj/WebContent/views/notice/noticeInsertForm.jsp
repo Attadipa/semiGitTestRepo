@@ -39,6 +39,20 @@
         height: 35px;
     }
 
+    #list {
+        float: right;
+    }
+
+    #submit {
+        float: right;
+        margin-top: 60px;
+    }
+
+    h1 {
+        display: inline-block;
+        padding-bottom: 0px;
+    }
+
 </style>
 </head>
 <body>
@@ -49,7 +63,8 @@
 
 
         <h1>글쓰기(공지사항 작성하기)</h1>
-
+        <input type="submit" id="submit" class="btn btn-success" value="등록"> <!--<button value="등록하기"></button>-->
+        
         <hr>
 
         <form action="semiTestPrj/notice/insert" method="post">
@@ -62,14 +77,10 @@
                 <br>
                 <textarea rows="15" cols="130" style="resize:none;" name="content" id="content" placeholder=" 내용을 입력하세요." required></textarea>
             </div>
-
-            <div id="div-btn-area">
-                <input type="submit" value="등록하기"> <!--<button value="등록하기"></button>-->
-                <input type="reset" value="초기화">
-                <input type="button" value="목록" onclick="history.go(-1)">
-            </div>
+            
         </form>
-
+        
+        <input type="button" id="list" class="btn btn-success" value="목록" onclick="history.go(-1)">
 
     </div>
 

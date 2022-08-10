@@ -310,7 +310,7 @@
 
         <br>
 
-        <button name="writeBtn" id="writeBtn" onclick="location.href='noticeInsertForm.jsp'">글쓰기</button>
+        <button name="writeBtn" id="writeBtn" class="btn btn-success" onclick="location.href='noticeInsertForm.jsp'">글쓰기</button>
 
         <div id="page-outer">
             <div id="next-page">
@@ -371,6 +371,21 @@
     
     <%@include file="/views/common/footer.jsp" %>
     
+    <!-- 서블릿 만든 후 수정예정 -->
+    <!-- <script>
+        $(function(){
+			$('tbody>tr').click(function(){
+				//행 클릭되었을 때, 동작할 내용
+				
+				//글 번호 가져오기 (this -> tr태그)
+				const num = $(this).children().eq(0).text();
+				console.log(num);
+				//해당 번호로 요청 보내기
+				location.href='/semiTestPrj/notice/detail?num=' + num;
+				
+			});
+		})
+    </script> -->
 
 </body>
 </html>
