@@ -11,7 +11,7 @@
         padding-top: 40px;
         width: 1500px;
         height: 250px;
-        background-color: #a6ecf1;
+        background-image: linear-gradient(to right, rgb(0, 95, 0), white)
     }
 
     #cs-footer > table > thead > tr td {
@@ -29,7 +29,7 @@
     }
 
     #cs-footer-box:hover{
-        background-color: rgb(198, 255, 255);
+        background-color: rgb(198, 255, 203);
         cursor: pointer;
     }
 

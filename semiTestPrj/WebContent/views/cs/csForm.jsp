@@ -38,7 +38,7 @@
     }
 
     #box:hover, #top-box:hover{
-        background-color: rgb(198, 255, 255);
+        background-color: rgb(198, 255, 203);
         cursor: pointer;
     }
 

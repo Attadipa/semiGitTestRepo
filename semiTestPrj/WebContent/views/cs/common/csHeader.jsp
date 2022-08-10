@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style>
 	#cs-header {
-        background-color: rgb(144, 235, 241);
+        background-image: linear-gradient(to right, green, white);
         color: white;
         width: 1500px;
         height: 250px;
@@ -15,7 +15,7 @@
     
     #cs-header p{
         text-align: center;
-        padding-top: 80px;
+        padding-top: 60px;
         font-size: 40px;
         font-weight: bolder;
     }
@@ -54,7 +54,7 @@
             <div>도움말 검색</div>
             <form action="" id="search-form">
                 <input type="text" class="form-control" style="font-size: 15px;">
-                <input type="submit" value="검색" class="btn btn-info"  style="font-size: 13px;">
+                <input type="submit" value="검색" class="btn btn-success"  style="font-size: 13px;">
 
             </form>
         </div>
