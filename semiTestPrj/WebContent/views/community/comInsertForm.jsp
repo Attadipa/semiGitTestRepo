@@ -65,6 +65,15 @@
     padding: 2px;
     font-size: 13px;
     }
+
+    #list {
+        float: right;
+    }
+
+    #submit {
+        float: right;
+        margin-top: -70px;
+    }
 </style>
 <body>
     
@@ -74,6 +83,7 @@
 
 
         <h1>글쓰기(커뮤니티 글 작성하기)</h1>
+        <input type="submit" id="submit" class="btn btn-success" value="등록">
 
         <hr>
 
@@ -82,6 +92,7 @@
             
 
             <div id="section">
+
                 <div class="category">
                     <select name="category-select" class="category-select">
                         <option value="free">자유게시판</option>
@@ -90,6 +101,7 @@
                         <option value="chat">수다방</option>
                     </select>
                 </div>
+                
                 <br>
                 <input type="text" size="120" name="title" id="title" placeholder=" 제목을 입력해주세요." required>
                 <br>
@@ -97,17 +109,12 @@
                 <textarea rows="15" cols="130" style="resize:none;" name="content" id="content" placeholder=" 내용을 입력하세요." required></textarea>
             </div>
 
-            <div id="div-btn-area">
-                <input type="submit" value="등록하기">
-                <input type="reset" value="초기화">
-                <input type="button" value="목록" onclick="history.go(-1)">
-                <!--  form 태그 안에 만든 button은 제출 버튼이 된다. (즉, submit 역할이 된다)
-                이 문제를 수정해주려면 input type = "button"으로 해주면 된다.
-                -->
-            </div>
-
         </form>
         
+        <input type="button" id="list" class="btn btn-success" value="목록" onclick="history.go(-1)">
+            <!--  form 태그 안에 만든 button은 제출 버튼이 된다. (즉, submit 역할이 된다)
+            이 문제를 수정해주려면 input type = "button"으로 해주면 된다.
+            -->
     </div>
 
     <%@include file="/views/common/footer.jsp" %>

@@ -160,7 +160,6 @@
         <br><br>
 
         <table>
-
             <thead>
                 <tr>
                     <th></th>
@@ -313,15 +312,12 @@
                     <td>5</td>
                 </tr>
             </tbody>
-
             <br clear="both">
-
-
         </table>
 
         <br>
 
-        <button name="writeBtn" id="writeBtn" onclick="location.href='comInsertForm.jsp'">글쓰기</button>
+        <button name="writeBtn" id="writeBtn" class="btn btn-success" onclick="location.href='comInsertForm.jsp'">글쓰기</button>
 
         <div class="page-outer">
             <div id="next-page">
@@ -354,8 +350,6 @@
 
             <br><hr><br>
 
-           
-            
             <form action="">
                 <div class="bottom">
                     <span class="search">
@@ -373,10 +367,7 @@
                     </span>
                 </div>
             </form>
-            
         </div>
-        
-
         
     </div>
     

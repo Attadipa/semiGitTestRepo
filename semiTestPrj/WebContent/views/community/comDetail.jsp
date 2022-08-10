@@ -33,7 +33,6 @@
     #commerce {
         border: 1px solid black;
         width: 100%;
-        height: 130px;
         padding-left: 40px;
         padding-top: 40px;
     }
@@ -69,33 +68,63 @@
         margin-right: 20px;
     }
 
+    .btn-group {
+        margin-bottom: 10px;
+    }
+
+    th, td {
+        padding-left: 15px;
+    }
+
+  
    
 </style>
 </head>
 <body>
 
-    <%@ include file="/views/common/header.jsp"%>
+    
+        <%@ include file="/views/common/header.jsp"%>
+
 
     <div id="outer">
-
-
        
         <div class="detail-header">
-            <table>
+
+            <table id="table-main">
                 <tr>
-                    <td colspan="5" id="title">제목</td>
+                    <th>제목</th>
+                    <td colspan="3">ddd</td>
                 </tr>
                 <tr>
-                    <td id="writer_chat">작성자<button>1:1 채팅</button></td>
-                    <td></td>
-                    <td id="date">날짜</td>
-                    <td id="hit">조회</td>
-                    <td id="url"><button>URL 복사 | 공유하기</button></td>
+                    <th>작성자</th>
+                    <td>이아름</td>
+                    <th></th>
+                    <td>
+                        <button class="btn btn-dark">1:1 채팅</button>
+                        <th></th>
+                        <td>
+                            <th>작성일</th>
+                            <td>2022-08-10</td>
+                            <td colspan="2"></td>
+                            <th>조회수</th>
+                            <td>30</td>
+                            <td><button class="btn btn-success">URL 복사 | 공유하기</button></td>
+                        </td>
+                    </td>
                 </tr>
             </table>
+
         </div>
 
-        <div id="commerce">광고</div>
+        <div id="commerce">
+            📲 아나바다 앱이 있다는 걸 알고 계시나요? ▶ https://vvd.bz/bmbR <br>
+            🚨 아나바다 사기 통합 조회 → https://vvd.bz/PNt <br>
+            🎁 카페>앱 실시간 연동했을 뿐인데, 상품권이?! ▶ https://vvd.bz/bsVH <br>
+            ---------------------------------- <br>
+            필독! 아나바다 신고해 주세요!! <br>
+            💬 실시간 사기 제보 → https://vvd.bz/PS2 <br>
+            💬 이용제재/불법거래 신고 → https://vvd.bz/WZ9 <br><br>
+        </div>
         
         <div id="content-area">
             <textarea rows="20" cols="130" style="resize:none;" name="content" id="content" required></textarea>
@@ -103,7 +132,7 @@
 
         <div class="detail-footer">
             <span id="comment">댓글 10</span>
-            <span id="call"> <button>신고</button></span>
+            <span id="call"> <button class="btn btn-danger">신고</button></span>
 
             <hr>
 
@@ -150,15 +179,18 @@
                     <div><textarea rows="5" cols="105" style="resize:none;" name="comment" id="comment" required></textarea></div>
                     <br>
                     <span>사진 | 이모지</span>
-                    <span><button>등록</button></span>
+                    <span><button class="btn btn-success">등록</button></span>
                 </div>
 
                 <br><br><br><br><br><br><br><br><br><br>
 
             </div>
 
-            <input type="button" value="글목록" onclick="history.go(-1)">
-            <a href="">TOP</a>
+           <div class="btn-group btn-group-sm">
+            <input type="button" class="btn btn-success" value="글목록" onclick="history.go(-1)">
+            <!-- <a href="" class="btn btn-success">TOP</a> -->
+            <input type="button" class="btn btn-success" value="TOP" onclick="location.href='noticeDetail.jsp'">
+           </div>
         </div>
 
        
