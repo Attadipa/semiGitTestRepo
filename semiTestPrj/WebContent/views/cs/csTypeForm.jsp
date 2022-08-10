@@ -7,20 +7,21 @@
 <title>유형별 FAQ</title>
 <style>
     #table-main{
-		border: 1px solid black;
+		border: 2px solid darkgreen;
 		width: 95%;
 		margin-top: 50px;
         font-size: 20px;
 	}
 
 	#table-main>tbody tr:hover{
-		background-color: rgb(198, 255, 255);
+		background-color: rgb(198, 255, 203);
 		cursor: pointer;
 	}
 
     #faq-write{
-        background-color: skyblue;
-        border-color: skyblue;
+        background-color: darkgreen;
+        border-color: darkgreen;
+        color: white;
         border-radius: 10%;
         float: right;
         margin-right: 100px;
@@ -41,7 +42,7 @@
 
     <button id="faq-write">FAQ 작성</button>
 
-    <table id="table-main">
+    <table id="table-main" class="table">
         <tr>
             <td>거래 관련</td>
             <td>판매 금지 물품은 어떤 것이 있나요?</td>
