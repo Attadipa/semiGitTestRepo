@@ -41,7 +41,7 @@
 	
     <div id="faq-outer">
         <br><br>
-        <form action="/views/notice/insert" method="post">
+        <form action="/views/faq/insert" method="post">
             <input type="hidden" name="writerNo" value="1">
             <div id="section">
                 제목 <input type="text" size="120" name="title" required>
