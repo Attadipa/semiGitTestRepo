@@ -13,6 +13,8 @@ ArrayList<Object> memberlist = (ArrayList)request.getAttribute("memberlist");
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <!-- 부트스트랩 css 적용 -->
+<link rel="stylesheet" href="./bootst/css/bootstrap.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
 </head>
 <body>
 
