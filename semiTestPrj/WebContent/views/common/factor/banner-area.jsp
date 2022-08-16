@@ -4,75 +4,118 @@
 <html>
 <head>
 	<style>
-	/* 브라우저 마진과 패딩 리셋
-	* {margin:0;padding:0;} */
-
-	/* INPUT 가리기 */
-	.section [id*="slide"] {display:none;}
-	
-	/* 슬라이드 영역 - max-width 크기를 조절해주면 됩니다*/
-	.section .slidewrap {max-width:1200px;margin:0 auto;overflow:hidden;position:relative;}
-	.section .slidelist {white-space:nowrap;font-size:0;}
+	* {margin:0;padding:0;}
+	.section input[id*="slide"] {display:none;}
+	.section .slidewrap {max-width:1200px;margin:0 auto;}
+	.section .slidelist {white-space:nowrap;font-size:0;overflow:hidden;position:relative;}
 	.section .slidelist > li {display:inline-block;vertical-align:middle;width:100%;transition:all .5s;}
 	.section .slidelist > li > a {display:block;position:relative;}
-
-	/* 좌우로 넘기는 LABEL버튼에 대한 스타일 */
-	.section .slide-control {position:absolute;top:0;left:0;z-index:10;width:100%;height:100%;}
-	.section .slide-control label {position:absolute;z-index:1;top:50%;transform:translateY(-50%);padding:50px;cursor:pointer;}
-	.section .slide-control .left {left:30px;background:url('views/common/factor/img/left.png') center center / 100% no-repeat;}
-	.section .slide-control .right {right:30px;background:url('views/common/factor/img/right.png') center center / 100% no-repeat;}
-	.section .slide-control [class*="control"] {display:none;}
-
-	/* INPUT이 체크되면 변화값이 li까지 전달되는 스타일 */
-	.section [id="slide01"]:checked ~ .slidewrap .slidelist > li {transform:translateX(0%);}
-	.section [id="slide02"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-100%);}
-	.section [id="slide03"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-200%);}
+	.section .slidelist > li > a img {width:100%;}
+	.section .slidelist label {position:absolute;z-index:10;top:50%;transform:translateY(-50%);padding:50px;cursor:pointer;}
+	.section .slidelist .textbox {position:absolute;z-index:1;top:50%;left:50%;transform:translate(-50%,-50%);line-height:1.6;text-align:center;}
+	.section .slidelist .textbox h3 {font-size:36px;color:#fff;;transform:translateY(30px);transition:all .5s;}
+	.section .slidelist .textbox p {font-size:16px;color:#fff;opacity:0;transform:translateY(30px);transition:all .5s;}
 	
-	/*  INPUT이 체크되면 변화값이 좌우 슬라이드 버튼을 담고 있는 div 까지 전달되는 스타일 */
-	.section [id="slide01"]:checked ~ .slidewrap .control01 {display:block;}
-	.section [id="slide02"]:checked ~ .slidewrap .control02 {display:block;}
-	.section [id="slide03"]:checked ~ .slidewrap .control03 {display:block;}
+	/* input에 체크되면 슬라이드 효과 */
+	.section input[id="slide01"]:checked ~ .slidewrap .slidelist > li {transform:translateX(0%);}
+	.section input[id="slide02"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-100%);}
+	.section input[id="slide03"]:checked ~ .slidewrap .slidelist > li {transform:translateX(-200%);}
+
+	/* input에 체크되면 텍스트 효과 */
+	.section input[id="slide01"]:checked ~ .slidewrap li:nth-child(1) .textbox h3 {opacity:1;transform:translateY(0);transition-delay:.2s;}
+	.section input[id="slide01"]:checked ~ .slidewrap li:nth-child(1) .textbox p {opacity:1;transform:translateY(0);transition-delay:.4s;}
+	.section input[id="slide02"]:checked ~ .slidewrap li:nth-child(2) .textbox h3 {opacity:1;transform:translateY(0);transition-delay:.2s;}
+	.section input[id="slide02"]:checked ~ .slidewrap li:nth-child(2) .textbox p {opacity:1;transform:translateY(0);transition-delay:.4s;}
+	.section input[id="slide03"]:checked ~ .slidewrap li:nth-child(3) .textbox h3 {opacity:1;transform:translateY(0);transition-delay:.2s;}
+	.section input[id="slide03"]:checked ~ .slidewrap li:nth-child(3) .textbox p {opacity:1;transform:translateY(0);transition-delay:.4s;}
+
+	/* 좌,우 슬라이드 버튼 */
+	.slide-control > div {display:none;}
+	.section .left {left:30px;background:url('/semiTestPrj/views/common/factor/img/left.png') center center / 100% no-repeat;}
+	.section .right {right:30px;background:url('/semiTestPrj/views/common/factor/img/right.png') center center / 100% no-repeat;}
+	.section input[id="slide01"]:checked ~ .slidewrap .slide-control > div:nth-child(1) {display:block;}
+	.section input[id="slide02"]:checked ~ .slidewrap .slide-control > div:nth-child(2) {display:block;}
+	.section input[id="slide03"]:checked ~ .slidewrap .slide-control > div:nth-child(3) {display:block;}
+
+	/* 페이징 */
+	.slide-pagelist {text-align:center;padding:20px;}
+	.slide-pagelist > li {display:inline-block;vertical-align:middle;}
+	.slide-pagelist > li > label {display:block;padding:8px 30px;border-radius:30px;background:#ccc;margin:20px 10px;cursor:pointer;}
+	.section input[id="slide01"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(1) > label {background:#999;}
+	.section input[id="slide02"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(2) > label {background:#999;}
+	.section input[id="slide03"]:checked ~ .slidewrap .slide-pagelist > li:nth-child(3) > label {background:#999;}
+
+	.slidelist{padding-left: 0 !important;}
 	</style>
 </head>
 <body>
+
 <div class="section">
 	<input type="radio" name="slide" id="slide01" checked>
 	<input type="radio" name="slide" id="slide02">
 	<input type="radio" name="slide" id="slide03">
 	<div class="slidewrap">
+		
 		<ul class="slidelist">
-			<li>
+			<!-- 슬라이드 영역 -->
+			<li class="slideitem">
 				<a>
-					<img src="views/common/factor/img/slide01.jpg">
+					<div class="textbox">
+						<h3>첫번째 슬라이드</h3>
+						<p>첫번째 슬라이드 입니다.</p>
+					</div>
+					<img src="/semiTestPrj/views/common/factor/img/slide.jpg">
 				</a>
 			</li>
-			<li>
+			<li class="slideitem">
 				<a>
-					<img src="views/common/factor/img/slide02.jpg">
+					
+					<div class="textbox">
+						<h3>두번째 슬라이드</h3>
+						<p>두번째 슬라이드 입니다.</p>
+					</div>
+					<img src="/semiTestPrj/views/common/factor/img/slide.jpg">
 				</a>
 			</li>
-			<li>
+			<li class="slideitem">
 				<a>
-					<img src="views/common/factor/img/slide03.jpg">
+					
+					<div class="textbox">
+						<h3>세번째 슬라이드</h3>
+						<p>세번째 슬라이드 입니다.</p>
+					</div>
+					<img src="/semiTestPrj/views/common/factor/img/slide.jpg">
 				</a>
-			</li>
-		</ul>
+			</li class="slideitem">
 
-		<div class="slide-control">
-			<div class="control01">
-				<label for="slide03" class="left"></label>
-				<label for="slide02" class="right"></label>
+			<!-- 좌,우 슬라이드 버튼 -->
+			<div class="slide-control">
+				<div>
+					<label for="slide03" class="left"></label>
+					<label for="slide02" class="right"></label>
+				</div>
+				<div>
+					<label for="slide01" class="left"></label>
+					<label for="slide03" class="right"></label>
+				</div>
+				<div>
+					<label for="slide02" class="left"></label>
+					<label for="slide01" class="right"></label>
+				</div>
 			</div>
-			<div class="control02">
-				<label for="slide01" class="left"></label>
-				<label for="slide03" class="right"></label>
-			</div>
-			<div class="control03">
-				<label for="slide02" class="left"></label>
-				<label for="slide01" class="right"></label>
-			</div>
-		</div>
+
+		</ul>
+		<!-- 페이징 -->
+		<ul class="slide-pagelist">
+			<li><label for="slide01"></label></li>
+			<li><label for="slide02"></label></li>
+			<li><label for="slide03"></label></li>
+		</ul>
 	</div>
+
+	
 </div>
+
+
 </body>
 </html>
