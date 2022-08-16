@@ -132,6 +132,10 @@
         color: black !important;
     }
 
+    tbody tr:hover{
+        background-color: whitesmoke;
+    }
+
 </style>
 </head>
 <body>
@@ -311,6 +315,7 @@
         <br>
 
         <button name="writeBtn" id="writeBtn" class="btn btn-success" onclick="location.href='noticeInsertForm.jsp'">글쓰기</button>
+        <!-- <a href="noticeInsertForm.jsp" id="writeBtn" class="btn btn-success">글쓰기</a> -->
 
         <div id="page-outer">
             <div id="next-page">
@@ -358,7 +363,7 @@
                     </span>
                     <span>
                         <input type="text" id="search-condition" placeholder=" 검색어를 입력해주세요.">
-                        <button id="btn-condition">검색</button>
+                        <button id="btn-condition" onclick="location.href=''">검색</button>
                     </span>
                 </div>
             </form>
