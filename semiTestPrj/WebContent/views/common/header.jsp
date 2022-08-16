@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>r
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,6 +26,7 @@
         padding: 0;
         margin: 0;
         background-color: white;
+        z-index: 20;
     }
     .header-hr{
         box-sizing: border-box;
@@ -114,6 +115,7 @@
                 </div>
             </div>
             <hr class="header-hr">
+            <!-- 사이드바 --> <%@ include file="/views/common/sideBar.jsp" %>
     </header>
 
 </body>

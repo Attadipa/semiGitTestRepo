@@ -8,11 +8,6 @@
 
 <style>
 	
-	main div{
-		/* border: 1px dashed red; */
-	}
-/* 삭제 예정 */
-
 	main{
 		display: flex;
 		flex-direction: column;
@@ -42,12 +37,12 @@
 </head>
 <body>
 
-	
+	<%@ include file="/views/common/header.jsp" %>
 	
 	<main>
 
 		<div id="banner-area">
-			<!-- <%@ include file="/views/common/factor/banner-area.jsp" %> -->
+			<%@ include file="/views/common/factor/banner-area.jsp" %>
 		</div>
 		<div id="recommend-area">
 			<%@ include file="/views/common/factor/recommend-area.jsp" %>
@@ -58,7 +53,6 @@
 
 	</main>
 	
-	<%@ include file="/views/common/header.jsp" %>
 	<%@ include file="/views/common/footer.jsp" %>
 
 </body>
