@@ -5,9 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 <style>
 
     #outer{
@@ -75,6 +72,11 @@
 
     .images {
         background-image: url("http://image.dongascience.com/Photo/2022/06/6982fdc1054c503af88bdefeeb7c8fa8.jpg");
+   
+    }
+
+    .btn-success {
+        margin-left: 93.5%;
     }
 
    
@@ -210,7 +212,8 @@
             </ul>
         </div>
 
-        
+        <a href="tradeInsertForm.jsp" class="btn btn-success">등록</a>
+
         <div class="page-outer">
             <span>1</span>
             <span>2</span>

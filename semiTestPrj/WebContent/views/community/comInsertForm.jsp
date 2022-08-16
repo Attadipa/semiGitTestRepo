@@ -107,6 +107,7 @@
                 <br>
                 <br>
                 <textarea rows="15" cols="130" style="resize:none;" name="content" id="content" placeholder=" 내용을 입력하세요." required></textarea>
+                <input type="file">
             </div>
 
         </form>

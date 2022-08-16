@@ -133,6 +133,10 @@
         color: black !important;
     }
 
+    tbody tr:hover{
+        background-color: whitesmoke;
+    }
+
 </style>
 </head>
 <body>
@@ -156,10 +160,10 @@
                 </select>
             </div>
         </form>
-
         <br><br>
 
         <table>
+
             <thead>
                 <tr>
                     <th></th>
@@ -170,11 +174,12 @@
                 </tr>
             </thead>
 
+            <!-- 예시 -->
             <tbody>
                 <tr>
                     <td>필독</td>
                     <td class="title"><a href="comDetail.jsp">아나바다</a></td>
-                    <td class="writer"><a href="comDetail.jsp">남재현</a></td>
+                    <td class="writer"><a href="">남재현</a></td>
                     <td>2022/08/03</td>
                     <td>30</td>
                 </tr>
@@ -312,14 +317,18 @@
                     <td>5</td>
                 </tr>
             </tbody>
+
             <br clear="both">
+
+
         </table>
 
         <br>
 
         <button name="writeBtn" id="writeBtn" class="btn btn-success" onclick="location.href='comInsertForm.jsp'">글쓰기</button>
+        <!-- <a href="comInsertForm.jsp" id="writeBtn" class="btn btn-success">글쓰기</a> -->
 
-        <div class="page-outer">
+        <div id="page-outer">
             <div id="next-page">
                 <span>1</span>
                 <span>2</span>
@@ -350,6 +359,8 @@
 
             <br><hr><br>
 
+           
+            
             <form action="">
                 <div class="bottom">
                     <span class="search">
@@ -363,16 +374,34 @@
                     </span>
                     <span>
                         <input type="text" id="search-condition" placeholder=" 검색어를 입력해주세요.">
-                        <button id="btn-condition">검색</button>
+                        <button id="btn-condition" onclick="location.href=''">검색</button>
                     </span>
                 </div>
             </form>
+            
         </div>
+        
+
         
     </div>
     
     <%@include file="/views/common/footer.jsp" %>
     
+    <!-- 서블릿 만든 후 수정예정 -->
+    <!-- <script>
+        $(function(){
+			$('tbody>tr').click(function(){
+				//행 클릭되었을 때, 동작할 내용
+				
+				//글 번호 가져오기 (this -> tr태그)
+				const num = $(this).children().eq(0).text();
+				console.log(num);
+				//해당 번호로 요청 보내기
+				location.href='/semiTestPrj/notice/detail?num=' + num;
+				
+			});
+		})
+    </script> -->
 
 </body>
 </html>
