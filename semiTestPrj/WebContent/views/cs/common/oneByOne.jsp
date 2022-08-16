@@ -27,8 +27,32 @@
     }
 
     .modal-down {
-        vertical-align: text-bottom;
+        vertical-align: bottom;
         float: right;
+    }
+
+    #chat-me {
+      position: inline;
+      float: right;
+      width: 50%;
+      border: 1px solid white;
+      border-radius: 20px;
+      padding: 6px;
+      background-color: rgb(163, 255, 163);
+    }
+
+    #chat-oppo {
+      position: inline;
+      float: left;
+      width: 50%;
+      border: 1px solid white;
+      border-radius: 20px;
+      padding: 6px;
+      background-color: rgb(172, 255, 251);
+    }
+
+    #chat-new-line {
+      clear: both;
     }
 </style>
 </head>
@@ -44,7 +68,14 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                ...
+              <div id="chat-oppo">안녕하세요? 아나바다입니다. 무엇을 도와드릴까요?</div>
+              <div id="chat-new-line"></div><br>
+              <div id="chat-me">생각대로 잘 안되네요..</div>
+              <div id="chat-new-line"></div><br>
+              <div id="chat-oppo">아이고</div>
+              <div id="chat-new-line"></div><br>
+              <div id="chat-oppo">힘내십쇼..</div>
+              <div id="chat-new-line"></div><br>
             </div>
             <div class="modal-footer">
                 <textarea style="width: 100%; resize: none;"></textarea>

@@ -59,11 +59,11 @@
         <br><br>
 
         <div>
-            <a href="/views/notice/list" class="btn btn-sm btn-primary">목록이동</a>
+            <a href="/views/notice/list" class="btn btn-sm btn-success">목록이동</a>
 
-            <!-- 현재 로그인한 사용자가 해당 글을 쓴 본인일 경우 -->
-            <a href="" class="btn btn-sm btn-warning">수정하기</a>
-            <a href="/views/notice/delete?num=3" class="btn btn-sm btn-danger">삭제하기</a>
+            <!-- 현재 로그인한 사용자가 관리자일 경우 -->
+            <a href="" class="btn btn-sm btn-success">수정하기</a>
+            <a href="/views/notice/delete?num=3" class="btn btn-sm btn-success">삭제하기</a>
         </div>
 
         

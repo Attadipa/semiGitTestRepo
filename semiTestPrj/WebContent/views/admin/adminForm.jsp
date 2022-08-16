@@ -91,10 +91,17 @@
 				</table>
 			</div>
 			<div class="tab-pane fade" id="admin-cs" role="tabpanel" aria-labelledby="admin-cs-list">
+				<h3 id="bold-font" align="center";>FAQ 등록</h3>
 				<%@ include file="/views/admin/faqInsertForm.jsp"%>
 			</div>
-			<div class="tab-pane fade" id="admin-event" role="tabpanel" aria-labelledby="admin-event-list">...</div>
-			<div class="tab-pane fade" id="admin-ads" role="tabpanel" aria-labelledby="admin-ads-list">...</div>
+			<div class="tab-pane fade" id="admin-event" role="tabpanel" aria-labelledby="admin-event-list">
+				<br>
+				<h3 id="bold-font">메인배너 관리</h3>
+			</div>
+			<div class="tab-pane fade" id="admin-ads" role="tabpanel" aria-labelledby="admin-ads-list">
+				<br>
+				<h3 id="bold-font">판매자 광고 관리</h3>
+			</div>
 		  </div>
 		</div>
 	  </div>
