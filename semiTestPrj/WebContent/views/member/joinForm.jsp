@@ -1,178 +1,419 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%
-	request.setCharacterEncoding("UTF-8");
-%>
-
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
+<!-- <link rel="stylesheet" href="../css/join.css"> -->
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
 
-<link rel="stylesheet" href="./bootst/css/bootstrap.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script
+	src="https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/xmas/snow.js"></script>
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+<script src="../js/userjoin/userjoin.js"></script>
+
+<style>
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		font-family: 'Nanum Gothic', sans-serif;
+	}
+	
+	
+	/* 회원가입 영역 잡기 */
+	.div-container {
+		width: 800px;
+		margin: 100px auto 0 auto;
+		border: 1px solid #d2d6dc;
+		box-shadow: 0px 0px 10px 10px white;
+		background-color: white;
+		height: 1500px;
+	}
+	
+	.welcome-img {
+		text-align: center;
+	}
+	
+	.welcome-head {
+		text-align: center;
+		margin: 30px auto 0 auto;
+		font-size: 30px;
+	}
+	
+	.section-hr {
+		width: 600px;
+		margin: 15px auto 0 auto;
+	}
+	
+	/* 세션 2 */
+	.section-two {
+		width: 700px;
+		margin: 0px auto 15px auto;
+	}
+	
+	/* 아이디 */
+	.field-required {
+		display: inline-block;
+		width: 3px;
+		height: 3px;
+		background-color: red;
+		border-radius: 100%;
+		text-indent: -9999999999px;
+		position: relative;
+		top: -10px;
+	}
+	
+	.frm-label {
+		width: 500px;
+		font-size: 20px;
+		height: 30px;
+		margin-top: 20px;
+		margin: 30px auto 0 auto;
+	}
+	
+	.frm-input-id {
+		text-align: center;
+	}
+	
+	.frm-input-id>input:first-child {
+		width: 400px;
+		height: 50px;
+		text-indent: 15px;
+	}
+	
+	.frm-input-id>input:first-child:hover {
+		box-shadow: 0px 0px 2px 0px #202224;
+	}
+	
+	.frm-input-id>input:last-child {
+		width: 100px;
+		height: 50px;
+		border: white;
+		background-color: black;
+		color: white;
+	}
+	
+	/* 아이디 중복확인 */
+	.frm-input-id>input:last-child:hover {
+		background-color: white;
+		color: #2D9568;
+		border: 1px solid;
+		cursor: pointer;
+	}
+	
+	/* 비밀번호 */
+	.frm-input-password {
+		text-align: center;
+	}
+	
+	.frm-input-password>input:first-child {
+		width: 500px;
+		height: 50px;
+		text-indent: 15px;
+	}
+	
+	.frm-input-password>input:first-child:hover {
+		box-shadow: 0px 0px 2px 0px #202224;
+	}
+	
+	/* 이름 */
+	.frm-input-name {
+		text-align: center;
+	}
+	
+	.frm-input-name>input:first-child {
+		width: 500px;
+		height: 50px;
+		text-indent: 15px;
+	}
+	
+	.frm-input-name>input:first-child:hover {
+		box-shadow: 0px 0px 2px 0px #202224;
+	}
+	
+	/* 이메일 */
+	.frm-input-email {
+		text-align: center;
+	}
+	
+	.frm-input-email>input:first-child {
+		width: 500px;
+		height: 50px;
+		text-indent: 15px;
+	}
+	
+	.frm-input-email>input:first-child:hover {
+		box-shadow: 0px 0px 2px 0px #202224;
+	}
+	
+	
+	/* 전화번호 */
+	.frm-input-phone {
+		text-align: center;
+	}
+	
+	.frm-input-phone>select:nth-child(1) {
+		width: 165px;
+		height: 50px;
+		font-size: 15px;
+		text-indent: 15px;
+	}
+	
+	.frm-input-phone>select:nth-child(1):hover {
+		box-shadow: 0px 0px 2px 0px #202224;
+	}
+	
+	.frm-input-phone>input {
+		width: 330px;
+		height: 50px;
+		font-size: 15px;
+		text-indent: 15px;
+	}
+	
+	.frm-input-phone>input:hover {
+		box-shadow: 0px 0px 2px 0px #202224;
+	}
+	
+	/* 우편번호 */
+	.frm-input-zipcode {
+		text-align: center;
+	}
+	
+	.frm-input-zipcode>input:first-child {
+		width: 300px;
+		height: 50px;
+		text-indent: 15px;
+	}
+	
+	.frm-input-zipcode>input:first-child:hover {
+		box-shadow: 0px 0px 2px 0px #202224;
+	}
+	
+	.frm-input-zipcode>input:nth-child(2) {
+		width: 200px;
+		height: 50px;
+		border: white;
+		background-color: black;
+		color: white;
+		text-indent: 15px;
+		cursor: pointer;
+	}
+	
+	.frm-input-zipcode>input:nth-child(2):hover {
+		background-color: white;
+		color: #2D9568;
+		border: 1px solid;
+	}
+	
+	.frm-input-zipcode>input:nth-child(3) {
+		margin-top: 2px;
+		width: 505px;
+		height: 50px;
+		text-indent: 15px;
+	}
+	
+	.frm-input-zipcode>input:nth-child(3):hover {
+		box-shadow: 0px 0px 2px 0px #202224;
+	}
+	
+	/* 생년월일 */
+	.frm-input-birth {
+		text-align: center;
+	}
+	
+	.frm-input-birth>select:nth-child(1) {
+		width: 165px;
+		height: 50px;
+		font-size: 15px;
+		text-indent: 15px;
+	}
+	
+	.frm-input-birth>select:nth-child(1):hover {
+		box-shadow: 0px 0px 2px 0px #202224;
+	}
+	
+	.frm-input-birth>select:nth-child(2) {
+		width: 165px;
+		height: 50px;
+		font-size: 15px;
+		text-indent: 15px;
+	}
+	
+	.frm-input-birth>select:nth-child(2):hover {
+		box-shadow: 0px 0px 2px 0px #202224;
+	}
+	
+	.frm-input-birth>select:nth-child(3) {
+		width: 165px;
+		height: 50px;
+		font-size: 15px;
+		text-indent: 15px;
+	}
+	
+	.frm-input-birth>select:nth-child(3):hover {
+		box-shadow: 0px 0px 2px 0px #202224;
+	}
+	
+	/* 가입하기 */
+	.frm-submit {
+		width: 500px;
+		font-size: 20px;
+		height: 30px;
+		margin-top: 20px;
+		margin: 30px auto 0 auto;
+		
+	}
+	
+	.frm-submit>input:nth-child(1) {
+		width: 505px;
+		height: 80px;
+		background-color: black;
+		color: white;
+		margin-top: 50px;
+		font-size: 20px;
+		border: white;
+		cursor: pointer;
+	}
+	
+	.frm-submit>input:nth-child(1):hover {
+		background-color: white;
+		color: #2D9568;
+		border: 1px solid;
+	}
+</style>
 </head>
-<body>
+<body class="body">
+	<!-- header영역 -->
+	<jsp:include page="/views/common/header.jsp"/>
+<%
+String id = (String)session.getAttribute("member_mid");
+String member_pwd = (String)session.getAttribute("member_pwd");
 
-    <form id="sm" action="" name="pej" method="post" onsubmit="return allCheck()">
+%>
+	<div class="div-container">
 
-		<div class="row">
-			<div class="col-sm-6">
-				<table class="table table-bordered table-dark">
-
-					<tr bgcolor="blanchedalmond">
-						<!-- 1. 회원가입 기본 정보 -->
-						<td align="center" colspan="2" style="color: black">회원 기본 정보</td>
-					</tr>
-					
-					<tr>
-						<!-- 2. 아이디 -->
-					    <td>아이디:</td>
-					    <td><input type="text" id="" name="id" size=12 
-						    maxlength=12> 4~12자의 영문 대소문자와 숫자로만 입력</td>
-
-					</tr>
-					
-					<tr>
-						<!-- 3. 비밀번호 -->
-						<td>비밀번호:</td>
-						<td><input type="password" id="" name="pwd" size=12
-						maxlength=12> 4~12자의 영문 대소문자와 숫자로만 입력</td>
-					</tr>
-					
-					<tr>
-						<!-- 4. 비밀번호 확인 -->
-						<td>비밀번호 확인:</td>
-						<td><input type="password" id="" size=12 maxlength=12></td>
-					</tr>
-					
-					<tr>
-						<!-- 5. 이메일 -->
-						<td>이메일:</td>
-						<td><input type="text" id="" name="email" size=20>
-							ex) ID@email.com</td>
-					</tr>
-					
-					<tr>
-						<!-- 6. 닉네임 -->
-						<td>닉네임:</td>
-						<td><input type="text" id="" name="nickName" size=15 maxlength=3></td>
-					</tr>
-					
-					<tr bgcolor="blanchedalmond">
-						<!-- 6. 개인 신상 정보 -->
-						<td align="center" colspan="2" style="color: black">개인 신상 정보</td>
-					</tr>
-					
-					<tr>
-						<!-- 7. 주소 찾기 -->
-						<td>주소:</td>
-						<!-- zib코드 입력-->
-						<td><input type="text" id="tbox1" name="addr"
-							placeholder="우편번호" size=8> <input type="button"
-							onclick="addrFind()" value="우편번호 찾기"><br> 
-							<input type="text" id="tbox2" name="addr" placeholder="주소" size=28><br>
-							<input type="text" id="tbox4" name="addr" placeholder="참고항목" size=28>
-							<input type="text" id="tbox3" name="addr" placeholder="상세주소"></td>
-					</tr>
-					
-					<tr>
-						<!-- 8. 주민등록번호 -->
-						<td>주민등록번호:</td>
-						<td><input type="text" id="" name="pin" size=15 minlength=13 maxlength=13>
-						ex) 1234561234567</td>
-					</tr>
-					
-					<tr>
-						<!-- 9. 생일 -->
-                        <td>생일:</td>
-						<td><input type="text" id="birth" name="year" size=5 maxlength=12>년
-							<select id="month" name="month">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-							</select>월
-							
-						<select id="day" name="day">
-								<option value="1">1</option>
-								<option value="2">2</option>
-								<option value="3">3</option>
-								<option value="4">4</option>
-								<option value="5">5</option>
-								<option value="6">6</option>
-								<option value="7">7</option>
-								<option value="8">8</option>
-								<option value="9">9</option>
-								<option value="10">10</option>
-								<option value="11">11</option>
-								<option value="12">12</option>
-								<option value="13">13</option>
-								<option value="14">14</option>
-								<option value="15">15</option>
-								<option value="16">16</option>
-								<option value="17">17</option>
-								<option value="18">18</option>
-								<option value="19">19</option>
-								<option value="20">20</option>
-								<option value="21">21</option>
-								<option value="22">22</option>
-								<option value="23">23</option>
-								<option value="24">24</option>
-								<option value="25">25</option>
-								<option value="26">26</option>
-								<option value="27">27</option>
-								<option value="28">28</option>
-								<option value="29">29</option>
-								<option value="30">30</option>
-								<option value="31">31</option>
-						</select>일</td>
-					</tr>
-					
-					<tr>
-						<!-- 10. 관심분야 -->
-						<td>관심분야:</td>
-						<td><input type="checkbox" value="컴퓨터" name="hobby">컴퓨터
-							<input type="checkbox" value="인터넷" name="hobby">인터넷 
-							<input type="checkbox" value="여행" name="hobby">여행 
-							<input type="checkbox" value="영화감상" name="hobby">영화감상 
-							<input type="checkbox" value="음악감상" name="hobby">음악감상
-					</tr>
-					
-					<tr>
-						<!-- 11. 자기소개 -->
-						<td>자기소개:</td>
-						<td><textarea id="my_intro" name="intro" rows="5" cols="55" maxlength="700">
-						</textarea></td>
-					</tr>
-					
-					<tr>
-						<!-- 12. 회원가입 제출 -->
-						<td align="center" colspan="2">
-						<input type="submit" value="회원가입">
-						<input type="reset" value="다시입력">
-						</td>
-					</tr>
-					
-				</table>
+		<section class="section-one">
+			<div class="section-welcome">
+				<div class="welcome-img">
+					<img src="/semiTestPrj/views/common/resources/원형로고.png">
+				</div>
+				
+				
+				<h1 class="welcome-head">아나바다에 오신 것을 환영합니다!</h1>
+				<hr class="section-hr">
 			</div>
-		</div>
-	</form>	
-	
-		<!-- 부트스트랩과 jquery 적용 -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+		</section>
 
-	
+		<section class="section-two">
+			<form class="frm-member" id="frm_member" onsubmit="return joinCheck(this)" action="/semiTestPrj/UsersJoin/result"
+				name="userInfo" method="POST">
+				<div class="frm-label">
+					<label for="reg-id">아이디</label> <span class="field-required"></span><br>
+				</div>
+
+				<div class="frm-input-id">
+					<input type="text" name="frm_id" id="reg-id"
+						placeholder="영문자와 한글,숫자만을 입력(15자 이내)" maxlength="15" value="${param.frm_id }"> 
+					<input type="button" name="frm-check" id="id-Check" value="중복확인">
+				</div>
+				<div class="frm-label">
+					<label>비밀번호</label> 
+					<span class="field-required"></span>
+				</div>
+				<div class="frm-input-password">
+					<input type="password" name="frm_password" placeholder="숫자, 특문 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상">
+				</div>
+
+				<div class="frm-label">
+					<label>비밀번호 재입력</label> <span class="field-required"></span>
+				</div>
+				<div class="frm-input-password">
+					<input type="password" name="re_frm_password"
+						placeholder="비밀번호 재입력">
+				</div>
+
+				<div class="frm-label">
+					<label>이름</label> <span class="field-required"></span>
+				</div>
+				<div class="frm-input-name">
+					<input type="text" name="frm_name" placeholder="성명을 입력해주세요.">
+				</div>
+
+				<div class="frm-label">
+					<label>이메일</label> <span class="field-required"></span>
+				</div>
+				<div class="frm-input-email">
+					<input type="text" name="frm_email" placeholder="example@khanbd.com">
+				</div>
+
+
+				<div class="frm-label">
+					<label>전화번호</label>
+				</div>
+				<div class="frm-input-phone">
+					<select name="phone_first">
+						<option selected>010</option>
+						<option>011</option>
+						<option>016</option>
+						<option>017</option>
+						<option>018</option>
+					</select> 
+					<input type="text" name="frm_phone" id="phoneNum"
+						placeholder="0000-0000" maxlength="9">
+				</div>
+
+				<div class="frm-label">
+					<label>주소</label>
+				</div>
+				<div class="frm-input-zipcode">
+					<input type="text" name="zipcode" placeholder="우편번호"> <input
+						type="button" name="btnZipcode" id="btnFindZip" value="우편번호검색">
+					<input type="text" name="address" placeholder="상세주소">
+				</div>
+
+				<div class="frm-label">
+					<label>생년월일</label>
+				</div>
+				<div class="frm-input-birth">
+					<select>
+
+						<% for(int i = 1900; i < 2020; i++) {%>
+						<option selected><%= i+1%>년
+						</option>
+						<% } %>
+					</select> <select>
+						<% for(int i = 0; i < 31; i++) {%>
+						<option><%= i+1%>일
+						</option>
+						<% } %>
+					</select> <select>
+						<% for(int i = 0; i < 12; i++) {%>
+						<option><%= i+1%>월
+						</option>
+						<% } %>
+					</select>
+
+				</div>
+
+				<div class="frm-submit">
+					<input type="submit"  name="frmSubmit" value="가입하기">
+				</div>
+			</form>
+		</section>
+	</div>
+
+
+	<footer>
+		  	<%@include file="/views/common/footer.jsp" %>
+	</footer>
+
+
+	<script>
+	member();
+	phoneHypen();
+
+	</script>
 </body>
-
 </html>
