@@ -5,6 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+// jQuery
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
+
+// iamport
+<script src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js" type="text/javascript"></script>
 <style>
     #container{
         width: 600px;
@@ -217,15 +222,11 @@
             });
         }
         </script>
-        <script>
-        const requestContent = document.getElementById("request-content");
-        console.log(requestContent);
-        const direct = document.getElementById("request-content-direct");
-        console.log(direct)
 
-        requestContent.addEventListener(requestContent.value=="direct",function(){
-            direct.style.display = 'block';
-        })
+        <script>
+            var IMP = window.IMP; // 생략가능
+            IMP.init('imp16407085'); // <-- 본인 가맹점 식별코드 삽입
+
         </script>
 
 </body>
