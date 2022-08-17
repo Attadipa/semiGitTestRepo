@@ -37,12 +37,12 @@
     }
     #pay-method-container{
         width: 100%;
-        height: 300px;
+        height: 200px;
         margin: 0 auto;
     }
     #pay-method-container td{
         width: 30px;
-        height: 50px;
+        height: 30px;
     }
     input{
         cursor: pointer;
@@ -162,37 +162,30 @@
             <h2>결제수단</h2>
                 <table id="pay-method-container">
                     <tr>
-                        <td colspan="3">
-                            <input type="radio" id="method1" name="payMethod" value="anbdPay">
-                            <label for="method1">아나바다페이</label>
-                        </td>
-                    </tr>
-                    <tr>
                         <td>
                             <input type="radio" id="method2" name="payMethod" value="card">
                             <label for="method2">카드</label>
-                            
                         </td>
                         <td>
-                            <input type="radio" id="method3" name="payMethod" value="3">
+                            <input type="radio" id="method3" name="payMethod" value="trans">
                             <label for="method3">계좌이체<label>
                         </td>
                         <td>
-                            <input type="radio" id="method4" name="payMethod" value="4">
+                            <input type="radio" id="method4" name="payMethod" value="vbank">
                             <label for="method4">무통장입금</label>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="radio" id="method5" name="payMethod" value="5">
+                            <input type="radio" id="method5" name="payMethod" value="kakaopay">
                             <label for="method5">카카오페이</label>
                         </td>
                         <td>
-                            <input type="radio" id="method6" name="payMethod" value="6">
+                            <input type="radio" id="method6" name="payMethod" value="tosspay">
                             <label for="method6">토스</label>
                         </td>
                         <td>
-                            <input type="radio" id="method7" name="payMethod" value="7">
+                            <input type="radio" id="method7" name="payMethod" value="payco">
                             <label for="method7">페이코</label>
                         </td>
                     </tr>
