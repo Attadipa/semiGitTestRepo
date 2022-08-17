@@ -1,4 +1,4 @@
-package com.kh.member.service;
+package com.kh.member.vo;
 
 import java.sql.Date;
 
