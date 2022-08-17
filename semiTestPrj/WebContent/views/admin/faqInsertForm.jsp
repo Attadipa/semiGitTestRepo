@@ -52,9 +52,9 @@
             </div>
 
             <div id="div-btn-area">
-                <input type="submit" value="등록하기">
-                <input type="reset" value="초기화">
-                <input type="button" value="뒤로가기" onclick="history.go(-1)">
+                <input type="submit" value="등록하기" class="btn btn-sm btn-success">
+                <input type="reset" value="초기화" class="btn btn-sm btn-success">
+                <input type="button" value="뒤로가기" class="btn btn-sm btn-success" onclick="history.go(-1)">
             </div>
 
         </form>
