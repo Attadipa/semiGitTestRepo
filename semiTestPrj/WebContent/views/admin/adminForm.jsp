@@ -26,7 +26,7 @@
 	<br>
 	
 	<div class="row">
-		<div class="col-4" style="width: 15%;">
+		<div class="col-4" style="padding-top: 30px; width: 15%;">
 		  <div class="list-group" id="list-tab" role="tablist">
 			<a class="list-group-item list-group-item-action active" id="admin-member-list" data-bs-toggle="list" href="#admin-member" role="tab" aria-controls="admin-member">회원관리</a>
 			<a class="list-group-item list-group-item-action" id="admin-cs-list" data-bs-toggle="list" href="#admin-cs" role="tab" aria-controls="admin-cs">CS관리</a>
@@ -42,7 +42,7 @@
 				<br>
 				<div class="input-group mb-3">
 					<input type="text" class="form-control" placeholder="회원의 성함이나 닉네임을 입력하세요" aria-label="Recipient's username" aria-describedby="button-addon2">
-					<button class="btn btn-outline-secondary" type="button" id="button-addon2" onclick="showOn()">검색</button>
+					<button class="btn btn-success" type="button" id="button-addon2" onclick="showOn()">검색</button>
 				</div>
 				<br>
 				<hr>

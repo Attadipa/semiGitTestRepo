@@ -8,10 +8,8 @@
 <style>
 	#cs-footer {
         padding-left: 40px;
-        padding-top: 40px;
         width: 1500px;
         height: 250px;
-        background-image: linear-gradient(to right, rgb(0, 95, 0), white)
     }
 
     #cs-footer > table > thead > tr td {

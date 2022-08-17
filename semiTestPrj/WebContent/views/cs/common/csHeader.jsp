@@ -52,8 +52,8 @@
         
         <div id="cs-search">
             <div>도움말 검색</div>
-            <form action="" id="search-form">
-                <input type="text" class="form-control" style="font-size: 15px;">
+            <form action="/semiTestPrj/cs/search" id="search-form" method="post">
+                <input type="text" class="form-control" name="searchFaq" style="font-size: 15px;">
                 <input type="submit" value="검색" class="btn btn-success"  style="font-size: 13px;">
 
             </form>

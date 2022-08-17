@@ -142,6 +142,8 @@
 	            </tbody>
 	        </table>
 	    </div>
+
+		<hr>
 	    
 		<%@ include file="/views/cs/common/csFooter.jsp"%>
 		
