@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+
  
 <!DOCTYPE html>
 <html>
@@ -71,7 +72,9 @@
 	       		 <input type="submit" id="submit" class="btn btn-success" value="등록"><hr>
             
             <div id="section">
-	            <%-- <input type="hidden" name="no" value="<%=loginMember.getNo()%>"> --%>
+	            <%-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++(수정하기)--%> 
+	            <%-- <input type="hidden" name="writerNo" value="<%=loginMember.getNo()%>"--%> 
+	            <input type="hidden" name="writerNo" value="1">
                 <input type="text" size="120" name="title" id="title" placeholder=" 제목을 입력해주세요." required onkeyup="title_check();">
                 <br>
                 <br>

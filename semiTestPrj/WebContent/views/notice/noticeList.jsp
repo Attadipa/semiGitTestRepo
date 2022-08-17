@@ -248,12 +248,11 @@
     
     <%@include file="/views/common/footer.jsp" %>
     
-    <!-- 서블릿 만든 후 수정예정 -->
-    <!-- <script>
+   
+    <script>
+    //공지사항 리스트에서 해당 게시물 클릭시(tr) -> 공지사항 상세보기
         $(function(){
 			$('tbody>tr').click(function(){
-				//행 클릭되었을 때, 동작할 내용
-				
 				//글 번호 가져오기 (this -> tr태그)
 				const num = $(this).children().eq(0).text();
 				console.log(num);
@@ -262,7 +261,8 @@
 				
 			});
 		})
-    </script> -->
+    
+    </script>
 
 </body>
 </html>

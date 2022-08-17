@@ -29,18 +29,19 @@ public class NoticeInsertController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		
 		//데이터 꺼내기
-		String no = req.getParameter("no");
+		String no = req.getParameter("writerNo");
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
 		
 		//데이터 뭉치기
 		NoticeVo vo = new NoticeVo();
-		vo.setNo(no);
+		vo.setWriter(no);
 		vo.setTitle(title);
 		vo.setContent(content);
 		
 		//서비스 호출하기
 		int result = new NoticeService().insert(vo);
+		
 		
 		//화면 선택하기
 		if(result == 1) {
