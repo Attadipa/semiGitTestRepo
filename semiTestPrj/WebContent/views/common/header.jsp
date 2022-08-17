@@ -93,7 +93,7 @@
             <hr class="header-hr">
             <div id="header-inner1" class="header">
                 <a href="/semiTestPrj/views/cs/csForm.jsp">고객센터</a>
-                <a href="">관심상품</a>
+                <a href="">관심상품</a>se
                 <a href="/semiTestPrj/views/member/memberInfo.jsp">마이페이지</a>
                 <a href="/semiTestPrj/views/member/loginForm.jsp">로그인</a> <!-- 로그인시, 로그아웃으로 바뀌는 코드 작성 -->
             </div>
