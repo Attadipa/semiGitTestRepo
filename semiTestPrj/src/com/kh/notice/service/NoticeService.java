@@ -50,7 +50,7 @@ public class NoticeService {
 			return -1;
 		}
 		
-		if(vo.getContent().length() > 0) {
+		if(vo.getContent().length() > 500) {
 			System.out.println("내용이 500글자를 초과하였습니다.");
 			return -2;
 		}
