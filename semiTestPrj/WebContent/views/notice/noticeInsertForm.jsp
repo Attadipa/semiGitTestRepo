@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+ 
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,7 +47,7 @@
 
     #submit {
         float: right;
-        margin-top: 60px;
+        margin-top: -9%
     }
 
     h1 {
@@ -62,29 +64,50 @@
     <div id="outer">
 
 
-        <h1>글쓰기(공지사항 작성하기)</h1>
-        <input type="submit" id="submit" class="btn btn-success" value="등록"> <!--<button value="등록하기"></button>-->
-        
-        <hr>
 
-        <form action="semiTestPrj/notice/insert" method="post">
-            <input type="hidden" name="writerNo" value="<%-- <%=loginMember.getNo()%> --%>">
-            
+        <h1>글쓰기</h1>
+
+        <form action="/semiTestPrj/notice/insert" method="post">
+	       		 <input type="submit" id="submit" class="btn btn-success" value="등록"><hr>
             
             <div id="section">
-                <input type="text" size="120" name="title" id="title" placeholder=" 제목을 입력해주세요." required>
+	            <%-- <input type="hidden" name="no" value="<%=loginMember.getNo()%>"> --%>
+                <input type="text" size="120" name="title" id="title" placeholder=" 제목을 입력해주세요." required onkeyup="title_check();">
                 <br>
                 <br>
-                <textarea rows="15" cols="130" style="resize:none;" name="content" id="content" placeholder=" 내용을 입력하세요." required></textarea>
+                <textarea rows="15" cols="130" style="resize:none;" name="content" id="content" placeholder=" 내용을 입력하세요."  onkeyup="content_check();" required></textarea>
             </div>
             
         </form>
-        
-        <input type="button" id="list" class="btn btn-success" value="목록" onclick="history.go(-1)">
+                <input type="text" placeholder="(0/ 1000)" id="textLengthCheck">
+        		<input type="button" id="list" class="btn btn-success" value="목록" onclick="history.go(-1)">
 
     </div>
 
     <%@include file="/views/common/footer.jsp" %>
+
+    <script>
+        function title_check() {
+        var desc = $("#title").val();
+
+        if( desc.length > 20 ) {
+            alert("제목은 20자를 초과할 수 없습니다.");
+            $("#title").val(desc.substring(0, 20));
+        }
+    }
+    </script>
+
+    <script>
+        $("#content").keyup(function(e) {
+            var content = $(this).val();
+            $("#textLengthCheck").val("(" + content.length + "/ 500)"); //실시간 글자수 카운팅
+            if (content.length > 500) {
+                alert("최대 500자까지 입력 가능합니다.");
+                $(this).val(content.substring(0, 500));
+                $('#textLengthCheck').html("(500 / 최대 500자)");
+            }
+        });
+</script>
 
 </body>
 </html>

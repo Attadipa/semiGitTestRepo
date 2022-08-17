@@ -1,5 +1,11 @@
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kh.notice.vo.NoticeVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    <%
+    	ArrayList<NoticeVo> voList = (ArrayList<NoticeVo>)request.getAttribute("voList");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -140,6 +146,8 @@
 </head>
 <body>
 
+<!-- 공지사항 리스트에서 클릭 시 , 글 번호 참조하여 서블릿으로 요청 보냄  -->
+
     <%@include file="/views/common/header.jsp" %>
     
     <div id="outer">
@@ -152,170 +160,34 @@
         <br><br>
 
         <table>
-
             <thead>
                 <tr>
-                    <th></th>
+                    <th>글번호</th>
                     <th>제목</th>
                     <th>작성자</th>
+                    <th>조회수</th>
                     <th>작성일</th>
-                    <th>조회</th>
                 </tr>
             </thead>
-
-            <!-- 예시 -->
             <tbody>
-                <tr>
-                    <td>필독</td>
-                    <td class="title"><a href="noticeDetail.jsp">아나바다</a></td>
-                    <td class="writer"><a href="">남재현</a></td>
-                    <td>2022/08/03</td>
-                    <td>30</td>
-                </tr>
-                <tr>
-                    <td>공지</td>
-                    <td class="title">중고거래 플랫폼 만들었습니다</td>
-                    <td class="writer">박한솔</td>
-                    <td>2022/07/11</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td>공지</td>
-                    <td class="title">ANBD</td>
-                    <td class="writer">이아름</td>
-                    <td>2022/11/11</td>
-                    <td>25</td>
-                </tr>
-                <tr>
-                    <td>2105</td>
-                    <td class="title">HI HELLO HOW ARE YOU</td>
-                    <td class="writer">서교상</td>
-                    <td>2022/08/09</td>
-                    <td>65</td>
-                </tr>
-                <tr>
-                    <td>4651</td>
-                    <td class="title">KK LOL HOHOHO</td>
-                    <td class="writer">박성현</td>
-                    <td>2015/08/09</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>공지</td>
-                    <td class="title">ANBD</td>
-                    <td class="writer">이아름</td>
-                    <td>2022/11/11</td>
-                    <td>25</td>
-                </tr>
-                <tr>
-                    <td>2105</td>
-                    <td class="title">HI HELLO HOW ARE YOU</td>
-                    <td class="writer">서교상</td>
-                    <td>2022/08/09</td>
-                    <td>65</td>
-                </tr>
-                <tr>
-                    <td>4651</td>
-                    <td class="title">KK LOL HOHOHO</td>
-                    <td class="writer">박성현</td>
-                    <td>2015/08/09</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>공지</td>
-                    <td class="title">ANBD</td>
-                    <td class="writer">이아름</td>
-                    <td>2022/11/11</td>
-                    <td>25</td>
-                </tr>
-                <tr>
-                    <td>2105</td>
-                    <td class="title">HI HELLO HOW ARE YOU</td>
-                    <td class="writer">서교상</td>
-                    <td>2022/08/09</td>
-                    <td>65</td>
-                </tr>
-                <tr>
-                    <td>3453</td>
-                    <td class="title">아나바다</td>
-                    <td class="writer">남재현</td>
-                    <td>2022/08/03</td>
-                    <td>30</td>
-                </tr>
-                <tr>
-                    <td>64536</td>
-                    <td class="title">중고거래 플랫폼 만들었습니다</td>
-                    <td class="writer"> 박한솔</td>
-                    <td>2022/07/11</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td>265</td>
-                    <td class="title">ANBD</td>
-                    <td class="writer">이아름</td>
-                    <td>2022/11/11</td>
-                    <td>25</td>
-                </tr>
-                <tr>
-                    <td>2105</td>
-                    <td class="title">HI HELLO HOW ARE YOU</td>
-                    <td class="writer">서교상</td>
-                    <td>2022/08/09</td>
-                    <td>65</td>
-                </tr>
-                <tr>
-                    <td>4651</td>
-                    <td class="title">KK LOL HOHOHO</td>
-                    <td class="writer">박성현</td>
-                    <td>2015/08/09</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>3453</td>
-                    <td class="title">아나바다</td>
-                    <td class="writer">남재현</td>
-                    <td>2022/08/03</td>
-                    <td>30</td>
-                </tr>
-                <tr>
-                    <td>64536</td>
-                    <td class="title">중고거래 플랫폼 만들었습니다</td>
-                    <td class="writer">박한솔</td>
-                    <td>2022/07/11</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td>265</td>
-                    <td class="title">ANBD</td>
-                    <td class="writer">이아름</td>
-                    <td>2022/11/11</td>
-                    <td>25</td>
-                </tr>
-                <tr>
-                    <td>2105</td>
-                    <td class="title">HI HELLO HOW ARE YOU</td>
-                    <td class="writer">서교상</td>
-                    <td>2022/08/09</td>
-                    <td>65</td>
-                </tr>
-                <tr>
-                    <td>4651</td>
-                    <td class="title">KK LOL HOHOHO</td>
-                    <td class="writer">박성현</td>
-                    <td>2015/08/09</td>
-                    <td>5</td>
-                </tr>
+	            <%for(int i = 0 ; i < voList.size(); i++){%>
+	                <tr>
+	                    <td><%=voList.get(i).getNo()%></td>
+	                    <td><%=voList.get(i).getTitle()%></td>
+	                    <td><%=voList.get(i).getWriter()%></td>
+	                    <td><%=voList.get(i).getCnt()%></td>
+	                    <td><%=voList.get(i).getEnrollDate()%></td>
+	                </tr>
+	            <%}%>
+                
             </tbody>
 
             <br clear="both">
-
-
         </table>
 
         <br>
 
-        <button name="writeBtn" id="writeBtn" class="btn btn-success" onclick="location.href='noticeInsertForm.jsp'">글쓰기</button>
-        <!-- <a href="noticeInsertForm.jsp" id="writeBtn" class="btn btn-success">글쓰기</a> -->
+        <button name="writeBtn" id="writeBtn" class="btn btn-success" onclick="location.href='/semiTestPrj/notice/insert'">글쓰기</button>
 
         <div id="page-outer">
             <div id="next-page">
