@@ -24,6 +24,7 @@
                 height: 400px;
                 box-sizing: border-box;
                 transition: 1s;
+                background-color: white;
             }
             .sidebar-list{
                 height: 50px;
@@ -63,7 +64,7 @@
 
             .change-sidebar{
                 margin-left: 0px !important;
-                transition: 1s;
+                transition: 0.5s;
             }
             
             .sidebar-list:hover{
