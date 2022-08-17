@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -10,7 +11,7 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         
         <style>
-
+			.sidebar-list>a{text-decoration: none; color: black;}
             #btn-sidebar{
                 width: 50px;
                 height: 50px;
@@ -73,6 +74,7 @@
                 transition: 0.2s;
                 cursor: pointer;
             }
+            .sidebar-list:hover>a{color: white; transition: 0.2s;}
 
             /*쇼핑하기 선택시 나올 리스트에 관한 CSS*/
             #shopping-list{
@@ -96,6 +98,7 @@
                 color: white;
                 transition: 0.2s;
             }
+            
 
             /*감추기*/
             #shopping-list{width: 0px; transition: 0.2s;}
@@ -103,7 +106,6 @@
             /*보여주기*/
             .show-list{width: 150px !important; transition: 0.2s;}
             .show-list li{font-size: 18px !important; transition: 0.2s;}
-
 
 
         </style>
@@ -118,10 +120,10 @@
         </div>
         <div id="sidebar">
             <div class="sidebar-list" id="shopping">쇼핑하기</div>
-            <div class="sidebar-list">공지사항</div>
+            <div class="sidebar-list"><a href="/semiTestPrj/notice/list">공지사항</a></div>
             <div class="sidebar-list">커뮤니티</div>
             <div class="sidebar-list">판매자센터</div>
-            <div class="sidebar-list">고객센터</div>
+            <div class="sidebar-list"><a href="/semiTestPrj/cs/search">고객센터</a></div>
             <div class="sidebar-list">666</div>
             <div class="sidebar-list">777</div>
             <div class="sidebar-list">888</div>

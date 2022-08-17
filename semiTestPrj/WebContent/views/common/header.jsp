@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kh.member.vo.MemberVo"%>
+<%
+	MemberVo loginMember = (MemberVo)session.getAttribute("loginMember"); 
+	String alertMsg = (String)session.getAttribute("alertMsg");
+	session.removeAttribute("alertMsg");
+	String contextPath = request.getContextPath();
+%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fm" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -92,10 +102,10 @@
     <header id="header" class="header">
             <hr class="header-hr">
             <div id="header-inner1" class="header">
-                <a href="/semiTestPrj/views/cs/csForm.jsp">고객센터</a>
-                <a href="">관심상품</a>se
-                <a href="/semiTestPrj/views/member/memberInfo.jsp">마이페이지</a>
-                <a href="/semiTestPrj/views/member/loginForm.jsp">로그인</a> <!-- 로그인시, 로그아웃으로 바뀌는 코드 작성 -->
+                <a href="/semiTestPrj/cs/search">고객센터</a>
+                <a href="">관심상품</a>
+                <a href="">마이페이지</a>
+                <a href="">로그인</a> <!-- 로그인시, 로그아웃으로 바뀌는 코드 작성 -->
             </div>
             <hr class="header-hr">
             <div id="header-inner2" class="header">
@@ -117,6 +127,12 @@
             <hr class="header-hr">
             <!-- 사이드바 --> <%@ include file="/views/common/sideBar.jsp" %>
     </header>
+    
+    <script>
+    	<%if(alertMsg != null){%>
+    		alert('<%= alertMsg %>')
+    	<%}%>
+    </script>
 
 </body>
 </html>
