@@ -163,13 +163,13 @@
                 <table id="pay-method-container">
                     <tr>
                         <td colspan="3">
-                            <input type="radio" id="method1" name="payMethod" value="1">
+                            <input type="radio" id="method1" name="payMethod" value="anbdPay">
                             <label for="method1">아나바다페이</label>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="radio" id="method2" name="payMethod" value="2">
+                            <input type="radio" id="method2" name="payMethod" value="card">
                             <label for="method2">카드</label>
                             
                         </td>
@@ -226,7 +226,29 @@
         <script>
             var IMP = window.IMP; // 생략가능
             IMP.init('imp16407085'); // <-- 본인 가맹점 식별코드 삽입
-
+            
+            function startPay(){
+            	IMP.request_pay({
+                    pg : 'kcp',
+                    pay_method : 'card',
+                    merchant_uid: "order_no_0001", //상점에서 생성한 고유 주문번호
+                    name : '주문명:결제테스트',
+                    amount : 14000,
+                    buyer_email : 'iamport@siot.do',
+                    buyer_name : '구매자이름',
+                    buyer_tel : '010-1234-5678',
+                    buyer_addr : '서울특별시 강남구 삼성동',
+                    buyer_postcode : '123-456',
+                    m_redirect_url : '{모바일에서 결제 완료 후 리디렉션 될 URL}' // 예: https://www.my-service.com/payments/complete/mobile
+                }, function(rsp) { // callback 로직
+                	if(rsp.success){
+                		alert("결제성공");
+                	}else{
+                		alert("결제취소됨");
+                	}
+                });
+            }
+            
         </script>
 
 </body>
