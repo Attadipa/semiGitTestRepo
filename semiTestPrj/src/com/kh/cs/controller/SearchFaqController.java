@@ -25,12 +25,20 @@ public class SearchFaqController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		req.setCharacterEncoding("UTF-8");
+		resp.setContentType("text/html; charset=UTF-8");
+		
 		//데이터 꺼내기
 		String searchContent = req.getParameter("searchFaq");
 		
 		//서비스 로직 실행
-		List<FaqVo> faqVoList = new FaqService().searchList(searchContent);
+		List<FaqVo> voList = new FaqService().searchList(searchContent);
+		
+		//결과에 따라 화면 선택
+		
+		req.setAttribute("voList", voList);
+		req.getRequestDispatcher("/views/cs/csTypeForm.jsp").forward(req, resp);
 		
 	}
 
-}
+}//class
