@@ -2,7 +2,7 @@
  * 
  */
 
-function check_Pwd() {
+function checkPwd() {
 	
 		var frm = document.frm_member;
 		var frmPwd = frm.frm_password.value;

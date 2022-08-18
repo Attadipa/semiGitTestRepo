@@ -1,28 +1,69 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입</title>
-<link rel="stylesheet" href="../member/css/join.css">
+<title>회원가입완료</title>
 
-<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+<link rel="stylesheet" href="../member/css/complete.css">
 
 <script src="https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/xmas/snow.js"></script>
-
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
 <script src="../member/js/userjoin.js"></script>
 
 <style type="text/css">
 	* {
-		margin: 0;
-		padding: 0;
-		box-sizing: border-box;
-		font-family: 'Nanum Gothic', sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Nanum Gothic', sans-serif;
 	}
 	
+	/* 버튼 */
+	.trk-header-align-btn {
+		margin-top: 30px;
+		height: 100px;
+		margin: 30px auto;
+		text-align:center;
+	}
+	
+	.trk-header-align-btn input{
+		
+		width: 500px;
+		height: 80px;
+		margin: 10px auto;
+		font-size: 25px;
+		background-color:black;
+		color:white;
+		cursor: pointer;
+		border-radius: 3px;
+		
+	}
+	
+	.trk-header-align-btn input:hover {
+		background-color: white;
+		color: black;
+		border: 1px solid;
+		box-shadow: 0px 0px 2px 0px #202224;
+	}
+	
+	
+	/* 님 */
+	.welcome-head-user {
+		text-align: center;
+		margin: 50px auto 50px auto;
+		font-size: 40px;
+	}
+		
+	.welcome-head-fine {
+		text-align: center;
+		margin: 50px auto 50px auto;
+		font-size: 20px;
+		color: grey;
+		border: 1px solid bo
+	}
 	
 	/* 회원가입 영역 잡기 */
 	.div-container {
@@ -31,16 +72,19 @@
 		border: 1px solid #d2d6dc;
 		box-shadow: 0px 0px 10px 10px white;
 		background-color: white;
-		height: 1500px;
 	}
 	
 	.welcome-img {
+		margin-top: 50px;
 		text-align: center;
 	}
 	
+	.welcome-img > img {
+		height: 150px;
+	}
 	.welcome-head {
 		text-align: center;
-		margin: 30px auto 0 auto;
+		margin: 50px auto 50px auto;
 		font-size: 30px;
 	}
 	
@@ -49,6 +93,8 @@
 		margin: 15px auto 0 auto;
 	}
 	
+	
+	
 	/* 세션 2 */
 	.section-two {
 		width: 700px;
@@ -56,6 +102,7 @@
 	}
 	
 	/* 아이디 */
+	
 	.field-required {
 		display: inline-block;
 		width: 3px;
@@ -100,7 +147,7 @@
 	/* 아이디 중복확인 */
 	.frm-input-id>input:last-child:hover {
 		background-color: white;
-		color: #2D9568;
+		color: black;
 		border: 1px solid;
 		cursor: pointer;
 	}
@@ -177,8 +224,8 @@
 	.frm-input-phone>input:hover {
 		box-shadow: 0px 0px 2px 0px #202224;
 	}
-	
 	/* 우편번호 */
+	
 	.frm-input-zipcode {
 		text-align: center;
 	}
@@ -205,7 +252,7 @@
 	
 	.frm-input-zipcode>input:nth-child(2):hover {
 		background-color: white;
-		color: #2D9568;
+		color: black;
 		border: 1px solid;
 	}
 	
@@ -281,141 +328,38 @@
 	
 	.frm-submit>input:nth-child(1):hover {
 		background-color: white;
-		color: #2D9568;
+		color: black;
 		border: 1px solid;
-	}
+	}	
 </style>
 </head>
 <body class="body">
-	<!-- header영역 -->
-	<jsp:include page="/views/common/header.jsp"/>
-<%
-String id = (String)session.getAttribute("member_mid");
-String member_pwd = (String)session.getAttribute("member_pwd");
+<!-- header영역 -->
+		<%@include file="/views/common/header.jsp" %>
 
-%>
-	<div class="div-container">
+		<div class="div-container">
 
-		<section class="section-one">
-			<div class="section-welcome">
-				<div class="welcome-img">
-					<img src="/semiTestPrj/views/common/resources/원형로고.png">
+			<section class="section-one">	
+				<div class="section-welcome">
+					<div class="welcome-img">
+						<img src="../member/img/complete.png">
+					</div>
+					<h1 class="welcome-head">회원가입이 완료되었습니다.</h1>
+					<div class="welcome-head-fine" > 중고거래는 아나바다<br>
+						더 나은 세상을 만들어갑니다.
+					</div>
+					
 				</div>
-				
-				
-				<h1 class="welcome-head">아나바다에 오신 것을 환영합니다!</h1>
-				<hr class="section-hr">
-			</div>
-		</section>
-
-		<section class="section-two">
-			<form class="frm-member" id="frm_member" onsubmit="return joinCheck(this)" action="/semiTestPrj/member/join"
-				name="userInfo" method="POST">
-				<div class="frm-label">
-					<label for="reg-id">아이디</label> <span class="field-required"></span><br>
+				<div class="trk-header-align-btn">
+					<form action="/semiTestPrj/views/member/loginForm.jsp" method="POST">
+					<input type="submit" value="로그인">
+					</form>
 				</div>
+			</section>
+		</div>
 
-				<div class="frm-input-id">
-					<input type="text" name="frm_id" id="reg-id"
-						placeholder="영문자와 한글,숫자만을 입력(15자 이내)" maxlength="15" value="${param.frm_id }"> 
-					<input type="button" name="frm-check" id="id-Check" value="중복확인">
-				</div>
-				<div class="frm-label">
-					<label>비밀번호</label> 
-					<span class="field-required"></span>
-				</div>
-				<div class="frm-input-password">
-					<input type="password" name="frm_password" placeholder="숫자, 특문 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상">
-				</div>
-
-				<div class="frm-label">
-					<label>비밀번호 재입력</label> <span class="field-required"></span>
-				</div>
-				<div class="frm-input-password">
-					<input type="password" name="re_frm_password"
-						placeholder="비밀번호 재입력">
-				</div>
-
-				<div class="frm-label">
-					<label>이름</label> <span class="field-required"></span>
-				</div>
-				<div class="frm-input-name">
-					<input type="text" name="frm_name" placeholder="성명을 입력해주세요.">
-				</div>
-
-				<div class="frm-label">
-					<label>이메일</label> <span class="field-required"></span>
-				</div>
-				<div class="frm-input-email">
-					<input type="text" name="frm_email" placeholder="example@khanbd.com">
-				</div>
-
-
-				<div class="frm-label">
-					<label>전화번호</label>
-				</div>
-				<div class="frm-input-phone">
-					<select name="phone_first">
-						<option selected>010</option>
-						<option>011</option>
-						<option>016</option>
-						<option>017</option>
-						<option>018</option>
-					</select> 
-					<input type="text" name="frm_phone" id="phoneNum"
-						placeholder="0000-0000" maxlength="9">
-				</div>
-
-				<div class="frm-label">
-					<label>주소</label>
-				</div>
-				<div class="frm-input-zipcode">
-					<input type="text" name="zipcode" placeholder="우편번호"> <input
-						type="button" name="btnZipcode" id="btnFindZip" value="우편번호검색">
-					<input type="text" name="address" placeholder="상세주소">
-				</div>
-
-				<div class="frm-label">
-					<label>생년월일</label>
-				</div>
-				<div class="frm-input-birth">
-					<select>
-
-						<% for(int i = 1900; i < 2020; i++) {%>
-						<option selected><%= i+1%>년
-						</option>
-						<% } %>
-					</select> <select>
-						<% for(int i = 0; i < 31; i++) {%>
-						<option><%= i+1%>일
-						</option>
-						<% } %>
-					</select> <select>
-						<% for(int i = 0; i < 12; i++) {%>
-						<option><%= i+1%>월
-						</option>
-						<% } %>
-					</select>
-
-				</div>
-
-				<div class="frm-submit">
-					<input type="submit"  name="frmSubmit" value="가입하기">
-				</div>
-			</form>
-		</section>
-	</div>
-
-
-	<footer>
-		  	<%@include file="/views/common/footer.jsp" %>
-	</footer>
-
-
-	<script>
-	member();
-	phoneHypen();
-
-	</script>
+   <!-- footer영역 -->
+   	<%@include file="/views/common/footer.jsp" %>
+	
 </body>
 </html>

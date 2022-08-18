@@ -6,12 +6,12 @@
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
   
-<script src ='../js/findinfo.js'></script>
+<script src ="../member/js/findinfo.js"></script>
 
  	<link rel="shortcut icon" href="/semiTestPrj/views/common/resources/favicon.ico">
     <link rel="icon" href="favicon.ico">
     
-<style>
+<style type="text/css">
 	* {
     margin: 0;
     padding: 0;
@@ -211,6 +211,7 @@
 	    width: 800px;
 	    margin: 0 auto;
 	}
+	
 </style>
 </head>
 <body>
@@ -227,18 +228,18 @@
 		<section class = "form-search">
 			<div class = "find-name">
 				<label>이름</label>
-				<input type="text" name="member_name" class = "btn-name" placeholder = "등록한 이름">
+				<input type="text" name="memberName" class = "btn-name" placeholder = "등록한 이름">
 			<br>
 			</div>
 			<div class = "find-phone">
 				<label>번호</label>
-				<input type="text" onKeyup = "addHypen(this);" name="member_phone" class = "btn-phone" placeholder = "휴대폰번호를 '-'없이 입력">
+				<input type="text" onKeyup = "addHypen(this);" name="memberPhone" class = "btn-phone" placeholder = "휴대폰번호를 '-'없이 입력">
 			</div>
 			<br>
 	</section>
 	<div class ="btnSearch">
-		<input type="button" name="enter" value="찾기"  onClick="id_search1()">
-		<input type="button" name="cancle" value="취소" onClick="history.back()">
+		<input type="button" name="enter" value="찾기"  onClick="idSearch1();">
+		<input type="button" name="cancle" value="취소" onClick="history.back();">
  	</div>
  </form>
 </div>

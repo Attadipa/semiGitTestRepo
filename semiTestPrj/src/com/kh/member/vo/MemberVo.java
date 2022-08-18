@@ -1,6 +1,6 @@
 package com.kh.member.vo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class MemberVo {
 
@@ -9,153 +9,178 @@ public class MemberVo {
 		
 	}
 	
+
+	public MemberVo(int memberNo, String memberMid, String memberPwd, String memberName, String memberEmail,
+			String memberPhone, String memberAddress, String memberZipcode, Timestamp memberEnrollDate,
+			Timestamp memberModifyDate, String status) {
 	
-	public MemberVo(int member_serial, String member_mid, String member_pwd, String member_name, String member_email,
-			String member_phone, String member_zipcode, String member_address, Date member_enroll_date,
-			Date member_modify_date, String status) {
-		super();
-		this.member_serial = member_serial;
-		this.member_mid = member_mid;
-		this.member_pwd = member_pwd;
-		this.member_name = member_name;
-		this.member_email = member_email;
-		this.member_phone = member_phone;
-		this.member_zipcode = member_zipcode;
-		this.member_address = member_address;
-		this.member_enroll_date = member_enroll_date;
-		this.member_modify_date = member_modify_date;
+		this.memberNo = memberNo;
+		this.memberMid = memberMid;
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
+		this.memberEmail = memberEmail;
+		this.memberPhone = memberPhone;
+		this.memberAddress = memberAddress;
+		this.memberZipcode = memberZipcode;
+		this.memberEnrollDate = memberEnrollDate;
+		this.memberModifyDate = memberModifyDate;
 		this.status = status;
 	}
 
+
+
+	//회원 가입시 사용하는 생성자
+	public MemberVo(
+			String memberMid,
+			String memberPwd,
+			String memberName,
+			String memberEmail,
+			String memberPhone,
+			String memberAddress,
+			String memberZipcode) {
+		this.memberMid = memberMid;
+		this.memberPwd = memberPwd;
+		this.memberName = memberName;
+		this.memberEmail = memberEmail;
+		this.memberPhone = memberPhone;
+		this.memberAddress = memberAddress;
+		this.memberZipcode = memberZipcode;
+	}
+
+
+
+
 	//field
-	private int member_serial;
-	private String member_mid;
-	private String member_pwd;
-	private String member_name;
-	private String member_email;
-	private String member_phone;
-	private String member_zipcode;
-	private String member_address;
-	private Date member_enroll_date;
-	private Date member_modify_date;
+	private int memberNo;
+	private String memberMid;
+	private String memberPwd;
+	private String memberName;
+	private String memberEmail;
+	private String memberPhone;
+	private String memberAddress;
+	private String memberZipcode;
+	private Timestamp memberEnrollDate;
+	private Timestamp memberModifyDate;
 	private String status;
 	
 	//getter / setter
-	public int getMember_serial() {
-		return member_serial;
-	}
-
-
-	public void setMember_serial(int member_serial) {
-		this.member_serial = member_serial;
+	public int getMemberNo() {
+		return memberNo;
 	}
 
 
 
-	public String getMember_mid() {
-		return member_mid;
+	public void setMemberNo(int memberNo) {
+		this.memberNo = memberNo;
 	}
 
 
 
-	public void setMember_mid(String member_mid) {
-		this.member_mid = member_mid;
+	public String getMemberMid() {
+		return memberMid;
 	}
 
 
 
-	public String getMember_pwd() {
-		return member_pwd;
+	public void setMemberMid(String memberMid) {
+		this.memberMid = memberMid;
 	}
 
 
 
-	public void setMember_pwd(String member_pwd) {
-		this.member_pwd = member_pwd;
+	public String getMemberPwd() {
+		return memberPwd;
 	}
 
 
 
-	public String getMember_name() {
-		return member_name;
+	public void setMemberPwd(String memberPwd) {
+		this.memberPwd = memberPwd;
 	}
 
 
 
-	public void setMember_name(String member_name) {
-		this.member_name = member_name;
+	public String getMemberName() {
+		return memberName;
 	}
 
 
 
-	public String getMember_email() {
-		return member_email;
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
 	}
 
 
 
-	public void setMember_email(String member_email) {
-		this.member_email = member_email;
+	public String getMemberEmail() {
+		return memberEmail;
 	}
 
 
 
-	public String getMember_phone() {
-		return member_phone;
+	public void setMemberEmail(String memberEmail) {
+		this.memberEmail = memberEmail;
 	}
 
 
 
-	public void setMember_phone(String member_phone) {
-		this.member_phone = member_phone;
+	public String getMemberPhone() {
+		return memberPhone;
 	}
 
 
 
-	public String getMember_zipcode() {
-		return member_zipcode;
+	public void setMemberPhone(String memberPhone) {
+		this.memberPhone = memberPhone;
 	}
 
 
 
-	public void setMember_zipcode(String member_zipcode) {
-		this.member_zipcode = member_zipcode;
+	public String getMemberAddress() {
+		return memberAddress;
 	}
 
 
 
-	public String getMember_address() {
-		return member_address;
+	public void setMemberAddress(String memberAddress) {
+		this.memberAddress = memberAddress;
 	}
 
 
 
-	public void setMember_address(String member_address) {
-		this.member_address = member_address;
+
+	public String getMemberZipcode() {
+		return memberZipcode;
 	}
 
 
 
-	public Date getMember_enroll_date() {
-		return member_enroll_date;
+	public void setMemberZipcode(String memberZipcode) {
+		this.memberZipcode = memberZipcode;
 	}
 
 
 
-	public void setMember_enroll_date(Date member_enroll_date) {
-		this.member_enroll_date = member_enroll_date;
+	public Timestamp getMemberEnrollDate() {
+		return memberEnrollDate;
 	}
 
 
 
-	public Date getMember_modify_date() {
-		return member_modify_date;
+	public void setMemberEnrollDate(Timestamp memberEnrollDate) {
+		this.memberEnrollDate = memberEnrollDate;
 	}
 
 
 
-	public void setMember_modify_date(Date member_modify_date) {
-		this.member_modify_date = member_modify_date;
+	public Timestamp getMemberModifyDate() {
+		return memberModifyDate;
+	}
+
+
+
+	public void setMemberModifyDate(Timestamp memberModifyDate) {
+		this.memberModifyDate = memberModifyDate;
 	}
 
 
@@ -171,16 +196,17 @@ public class MemberVo {
 	}
 
 
-
 	//toString
-	@Override
-	public String toString() {
-		return "MemberVo [member_serial=" + member_serial + ", member_mid=" + member_mid + ", member_pwd=" + member_pwd
-				+ ", member_name=" + member_name + ", member_email=" + member_email + ", member_phone=" + member_phone
-				+ ", member_zipcode=" + member_zipcode + ", member_address=" + member_address + ", member_enroll_date="
-				+ member_enroll_date + ", member_modify_date=" + member_modify_date + ", status=" + status + "]";
-	}
-	
+		@Override
+		public String toString() {
+			return "MemberVo [memberNo=" + memberNo + ", memberMid=" + memberMid + ", memberPwd=" + memberPwd
+					+ ", memberName=" + memberName + ", memberEmail=" + memberEmail + ", memberPhone=" + memberPhone
+					+ ", memberZipcode=" + memberZipcode + ", memberAddress=" + memberAddress + ", memberEnrollDate="
+					+ memberEnrollDate + ", memberModifyDate=" + memberModifyDate + ", status=" + status + "]";
+		}
+
+
+
 	
 	
 }

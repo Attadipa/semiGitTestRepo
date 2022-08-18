@@ -8,11 +8,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-	 <%
-			 
+<%		 
 	session.setAttribute("member_mid", "5235268");
 	response.sendRedirect("/semiTestPrj/index.jsp");
-	%>
+%>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src = "https://developers.kakao.com/sdk/js/kakao.min.js"></script>
