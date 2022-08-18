@@ -37,7 +37,7 @@
     }
     #pay-method-container{
         width: 100%;
-        height: 300px;
+        height: 200px;
         margin: 0 auto;
     }
     #pay-method-container td{
@@ -129,8 +129,8 @@
     <div id="container">
         <h1>결제</h1>
         <hr>
-        <form action="/semiTestPrj/pay/addPay" method="post">
-            <input type="hidden" name="memberNum" value="0">
+        <form action="/semiTestPrj/pay/insert" method="post">
+            <input type="hidden" name="memberNo" value="0">
             <input type="hidden" name="postNo" value="0">
             <input type="hidden" name="payAmount" value="0">
             <h2>직거래,안전결제로 구매합니다</h2>
@@ -162,38 +162,31 @@
             <h2>결제수단</h2>
                 <table id="pay-method-container">
                     <tr>
-                        <td colspan="3">
-                            <input type="radio" id="method1" name="payMethod" value="anbdPay">
-                            <label for="method1">아나바다페이</label>
+                        <td>
+                            <input type="radio" id="method1" name="payMethod" value="card">
+                            <label for="method1">카드</label>
+                        </td>
+                        <td>
+                            <input type="radio" id="method2" name="payMethod" value="trans">
+                            <label for="method2">계좌이체<label>
+                        </td>
+                        <td>
+                            <input type="radio" id="method3" name="payMethod" value="vbank">
+                            <label for="method3">무통장입금</label>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <input type="radio" id="method2" name="payMethod" value="card">
-                            <label for="method2">카드</label>
-                            
+                            <input type="radio" id="method4" name="payMethod" value="kakaopay">
+                            <label for="method4">카카오페이</label>
                         </td>
                         <td>
-                            <input type="radio" id="method3" name="payMethod" value="3">
-                            <label for="method3">계좌이체<label>
+                            <input type="radio" id="method5" name="payMethod" value="tosspay">
+                            <label for="method5">토스</label>
                         </td>
                         <td>
-                            <input type="radio" id="method4" name="payMethod" value="4">
-                            <label for="method4">무통장입금</label>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <input type="radio" id="method5" name="payMethod" value="5">
-                            <label for="method5">카카오페이</label>
-                        </td>
-                        <td>
-                            <input type="radio" id="method6" name="payMethod" value="6">
-                            <label for="method6">토스</label>
-                        </td>
-                        <td>
-                            <input type="radio" id="method7" name="payMethod" value="7">
-                            <label for="method7">페이코</label>
+                            <input type="radio" id="method6" name="payMethod" value="payco">
+                            <label for="method6">페이코</label>
                         </td>
                     </tr>
                 </table>
@@ -208,6 +201,9 @@
         </form>
         
     </div>
+    <br><br>
+    
+
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
         window.onload = function(){
@@ -221,13 +217,12 @@
                 }).open();
             });
         }
-        </script>
-
-        <script>
+     </script>
+     <script>
             var IMP = window.IMP; // 생략가능
             IMP.init('imp16407085'); // <-- 본인 가맹점 식별코드 삽입
             
-            function startPay(){
+           	function startPay(){
             	IMP.request_pay({
                     pg : 'kcp',
                     pay_method : 'card',
@@ -247,9 +242,9 @@
                 		alert("결제취소됨");
                 	}
                 });
-            }
-            
-        </script>
+            }   
+	</script>
+
 
 </body>
 </html>
