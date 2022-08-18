@@ -21,6 +21,8 @@
 <!-- Latest compiled JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
+<c:set value="<%= contextPath %>" var="contextPath"></c:set>
+
 <style>
     /* .header{
         border: 1px dashed red;
@@ -87,7 +89,7 @@
     }
     #search{
         height: 30px;
-        width: 500px;
+        width: 700px;
     }
     #logo-anbd{
         padding-left: 100px;
@@ -95,6 +97,9 @@
     #logo-anbd img{
         height: 60px;
     }
+
+    #form-select{width: 120px !important;}
+    .form-control{width: 500px !important;}
 </style>
 </head>
 <body>
@@ -112,8 +117,15 @@
                 <a id="logo-anbd" href="/semiTestPrj">
                     <img src="/semiTestPrj/views/common/resources/anbdpng.png" alt="아나바다로고">
                 </a>
-                <form id="search" action="" method="get">
+                <form id="search" action="<%= contextPath %>/search" method="get">
                     <div class="input-group mb-3">
+                        
+                        <select id="form-select" class="form-select" name="keyword-option">
+                            <option value="total" >전체</option>
+                            <option value="title">글제목</option>
+                            <option value="writer">작성자</option>
+                            <option value="content">내용</option>
+                        </select>
                         <input type="text" class="form-control" name="keyword" placeholder="포켓몬빵은 어때요?">
                         <button class="btn btn-success" type="submit">검색</button>
                     </div>
@@ -128,6 +140,9 @@
             <!-- 사이드바 --> <%@ include file="/views/common/sideBar.jsp" %>
     </header>
     
+    <%@ include file="/views/common/factor/adModal.jsp" %>
+
+
     <script>
     	<%if(alertMsg != null){%>
     		alert('<%= alertMsg %>')
