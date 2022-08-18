@@ -186,9 +186,13 @@
         </table>
 
         <br>
-
+        
+        <!-- 수정 예정 jstl로 -->
+		<%-- <% if(loginMember != null && "admin".equals(loginMember.getId()) {%> --%>
         <button name="writeBtn" id="writeBtn" class="btn btn-success" onclick="location.href='/semiTestPrj/notice/insert'">글쓰기</button>
-
+		<%-- <%} %> --%>
+		
+		
         <div id="page-outer">
             <div id="next-page">
                 <span>1</span>

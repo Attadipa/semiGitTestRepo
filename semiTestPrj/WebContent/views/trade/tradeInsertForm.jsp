@@ -109,11 +109,12 @@
     
             <h5 class="category">카테고리*</h5>
             <select name="category" id="category" required name="category">
-                <option value="0">여성의류</option>
-                <option value="1">남성의류</option>
-                <option value="2">신발</option>
-                <option value="3">가방</option>
-                <option value="4">디지털</option>
+                <option value="1">패션</option>
+                <option value="2">럭셔리</option>
+                <option value="3">신발</option>
+                <option value="4">도서/음반</option>
+                <option value="5">캠핑</option>
+                <option value="6">기타</option>
             </select>
             <br><br><hr><br>
     

@@ -1,5 +1,9 @@
+<%@page import="com.kh.notice.vo.NoticeVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+    	NoticeVo vo = (NoticeVo) request.getAttribute("vo");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,31 +22,31 @@
 
     
     #table-main {
-    
-        margin-top: 50px;
+        margin-top: 30px;
         width: 100%;
         height: 130px;
-        border: 1px solid black;
+        border: 1px solid grey;
        
     }
     
     td:not(#url) {
-        /* border: 1px solid black; */
         padding-left: 40px;
     }
 
     #commerce {
-        border: 1px solid black;
+        border: 2px solid grey;
         width: 100%;
-        padding-left: 40px;
+        height: max-content;
+        padding-left: 35px;
         padding-top: 40px;
     }
 
     .detail-footer {
-        border: 1px solid black;
+        border: 2px solid grey;
         padding-top: 40px;
         padding-left: 40px;
         padding-right: 40px;
+        margin-top: 10px;
     }
     
     #call {
@@ -56,11 +60,21 @@
     }
     
     #comment-write {
-        border: 1px solid black;
+        border: 1px solid grey;
         width: 99%;
         margin: auto;
         padding-top: 10px;
         padding-left: 40px;
+        margin-bottom: 10px;
+    }
+    
+    #content {
+        border: 2px solid grey;
+        width: 100%;
+        height: 100%;
+        padding: 35px;
+        padding-bottom: 100px;
+
     }
 
     #comment-write button {
@@ -68,13 +82,15 @@
         margin-top: -60px;
     }
 
-    .btn-group {
+    .list-top {
         margin-bottom: 10px;
-        padding-left: 75px;
+        margin-top: 10px;
+        padding-left: 60px;
     }
 
     th, td {
-        padding-left: 15px;
+        padding-left: 35px;
+        padding-top: 10px;
     }
 
     #user-comments button {
@@ -82,9 +98,12 @@
         outline: 0;
     }
 
-    .btn-danger {
-        margin-top: -10px;
+    #call .btn-light {
+        margin-top: -5px;
     }
+
+  
+
   
    
 </style>
@@ -99,35 +118,48 @@
        
         <div class="detail-header">
 
+            <div>
+                <button class="btn btn-success" onclick="location.href='/semiTestPrj/notice/insert'">✍글쓰기</button>
+                <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/edit'">수정</button>
+                <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/delete'">삭제</button>
+                <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/list'" >글목록</button>
+            </div>
+
+            	<!-- <%if(loginMember != null && vo.getWriter().equals(loginMember.getMember_name())){ %>
+                 현재 로그인한 사용자가 해당 글을 쓴 본인일 경우
+                <div>
+                    <button class="btn btn-success" onclick="location.href='/semiTestPrj/notice/insert'">✍글쓰기</button>
+                    <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/edit?num=<%=vo.getNo()%>'">수정</button>
+                    <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/delete?num=<%=vo.getNo()%>'">삭제</button>
+                    <button class="btn btn-light" onclick="history.go(-1)">글목록</button>
+                </div>
+                <%} else {%>
+                div>
+                    <button class="btn btn-light" onclick="history.go(-1)">글목록</button>
+                </div>
+                <%} %> -->
+
+
             <table id="table-main">
                 <tr>
                     <th>제목</th>
-                    <td colspan="3">ddd</td>
+                    <td colspan="3"><%=vo.getTitle() %></td>
                 </tr>
                 <tr>
                     <th>작성자</th>
-                    <td>(작성자)</td>
-                    <th></th>
-                    <td>
-                        <button class="btn btn-dark">1:1 채팅</button>
-                        <th></th>
-                        <td>
-                            <th>작성일</th>
-                            <td>(작성날짜)</td>
-                            <td colspan="2"></td>
-                            <th>조회수</th>
-                            <td>(조회수)</td>
-                            <!-- <td><button class="btn btn-success">URL 복사 | 공유하기</button></td> -->
-                            <td><button class="btn btn-success" onclick="clip(); return false;">URL 복사 | 공유</button><td>
-                        </td>
-                    </td>
+                    <td><%=vo.getWriter() %> <button class="btn btn-light">1:1 채팅</button></td>
+                    <th>작성일</th>
+                    <td><%=vo.getEnrollDate()%></td>
+                    <th>조회수</th>
+                    <td><%=vo.getCnt()%></td>
+                    <td><button class="btn btn-light" onclick="clip(); return false;">URL 복사 | 공유</button><td>
                 </tr>
             </table>
-
         </div>
 
+
         <div id="commerce">
-            (광고)
+            (광고)<br>
             📲 아나바다 앱이 있다는 걸 알고 계시나요? ▶ https://vvd.bz/bmbR <br>
             🚨 아나바다 사기 통합 조회 → https://vvd.bz/PNt <br>
             🎁 카페>앱 실시간 연동했을 뿐인데, 상품권이?! ▶ https://vvd.bz/bsVH <br>
@@ -137,18 +169,18 @@
             💬 이용제재/불법거래 신고 → https://vvd.bz/WZ9 <br><br>
         </div>
         
+
         <div id="content-area">
-            <textarea rows="20" cols="130" style="resize:none;" name="content" id="content" required>(내용)</textarea>
+            <div name="content" id="content"><pre><%=vo.getContent()%></pre></div>
         </div>
+
 
         <div class="detail-footer">
             <span id="comment">댓글 (댓글 개수)</span>
-            <span id="call"> <button class="btn btn-danger">신고</button></span>
+            <span id="call"> <button class="btn btn-light">신고</button></span><hr>
 
-            <hr>
 
             <div class="comment">
-    
                 <div id="user-comments"> 
                    <table>
                     <!-- 댓글 작성하면 자동으로 td추가 -->
@@ -169,8 +201,6 @@
                             <div id="reply-write2"></div>
                             <hr>
                         </td>
-
-                       
                    </table>
                 </div>
 
@@ -183,19 +213,15 @@
                     <!-- 사진 | 이모지 -->
                     <span><input type="file"> | 이모티콘</span>
                     <button class="btn btn-success">등록</button>
-                </div>
-
-                <br>
-
+                </div><br>
             </div>
 
-           <div class="btn-group btn-group-sm" style=" margin-left: 80%;">
-                <input type="button" class="btn btn-success" value="글목록" onclick="history.go(-1)">
-                <!-- <a href="" class="btn btn-success">TOP</a> -->
-                <input type="button" class="btn btn-success" value="TOP" onclick="location.href='noticeDetail.jsp'">
-           </div>
         </div>
-
+        
+        <div class="list-top" style=" margin-left: 80%;">
+             <input type="button" class="btn btn-light" value="글목록" onclick="location.href='/semiTestPrj/notice/list'">
+             <input type="button" class="btn btn-light" value="TOP" onclick="window.scrollTo(0,0);">
+        </div>
        
     </div>
 
@@ -209,7 +235,7 @@
             const reply = document.getElementById('reply-write');
             
             reply.innerHTML
-                ='<hr><div style=" border: 1px solid black; width: 95%; margin: 0px auto; padding-top: 10px; padding-left: 40px; padding-bottom: 15px;"><div>(작성자)</div><br><div><textarea rows="5" cols="100" style="resize:none;" name="comment" id="comment" required></textarea></div><br><span>사진 | 이모지</span><button class="btn btn-success" style="margin-left: 80%;">등록</button></div>'
+                ='<hr><div style=" border: 1px solid black; width: 95%; margin: 0px auto; padding-top: 10px;  margin-bottom: 10px; padding-left: 40px; padding-bottom: 15px;"><div>(작성자)</div><br><div><textarea rows="5" cols="100" style="resize:none;" name="comment" id="comment" required></textarea></div><br><span>사진 | 이모지</span><button class="btn btn-success" style="margin-left: 80%;">등록</button></div>'
                    
         }
 
@@ -217,7 +243,7 @@
             const reply = document.getElementById('reply-write2');
             
             reply.innerHTML
-                ='<hr><div style=" border: 1px solid black; width: 95%; margin: 0px auto; padding-top: 10px; padding-left: 40px; padding-bottom: 15px;"><div>(작성자)</div><br><div><textarea rows="5" cols="100" style="resize:none;" name="comment" id="comment" required></textarea></div><br><span>사진 | 이모지</span><button class="btn btn-success" style="margin-left: 80%;">등록</button></div>'
+                ='<hr><div style=" border: 1px solid black; width: 95%; margin: 0px auto; padding-top: 10px;  margin-bottom: 10px; padding-left: 40px; padding-bottom: 15px;"><div>(작성자)</div><br><div><textarea rows="5" cols="100" style="resize:none;" name="comment" id="comment" required></textarea></div><br><span>사진 | 이모지</span><button class="btn btn-success" style="margin-left: 80%;">등록</button></div>'
                    
         }
 

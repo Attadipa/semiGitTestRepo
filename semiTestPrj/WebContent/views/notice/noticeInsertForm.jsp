@@ -56,6 +56,10 @@
         padding-bottom: 0px;
     }
 
+    #textLengthCheck {
+        border: none;
+    }
+
 </style>
 </head>
 <body>
@@ -72,8 +76,11 @@
 	       		 <input type="submit" id="submit" class="btn btn-success" value="등록"><hr>
             
             <div id="section">
-	            <%-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++(수정하기)--%> 
-	            <%-- <input type="hidden" name="writerNo" value="<%=loginMember.getNo()%>"--%> 
+            	<!-- 수정예정*********************************************  -->
+            	
+            	
+            	
+	            <%-- <input type="hidden" name="writerNo" value="<%=loginMember.getMember_serial()%>"> --%>
 	            <input type="hidden" name="writerNo" value="1">
                 <input type="text" size="120" name="title" id="title" placeholder=" 제목을 입력해주세요." required onkeyup="title_check();">
                 <br>
@@ -93,9 +100,9 @@
         function title_check() {
         var desc = $("#title").val();
 
-        if( desc.length > 20 ) {
-            alert("제목은 20자를 초과할 수 없습니다.");
-            $("#title").val(desc.substring(0, 20));
+        if( desc.length > 30 ) {
+            alert("제목은 30자를 초과할 수 없습니다.");
+            $("#title").val(desc.substring(0, 30));
         }
     }
     </script>

@@ -46,13 +46,13 @@ public class NoticeInsertController extends HttpServlet {
 		//화면 선택하기
 		if(result == 1) {
 			//성공 -> 공지사항 리스트 
-			req.getSession().setAttribute("alertMsg", "공지사항 작성이 완료되었습니다.");
+			req.setAttribute("alertMsg", "공지사항 작성이 완료되었습니다.");
 			resp.sendRedirect("/semiTestPrj/notice/list");
 			
 		}else {
 			//실패 -> 에러페이지 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++(수정하기)
-			req.getSession().setAttribute("alertMsg", "공지사항 작성에 실패하였습니다.");
-			resp.sendRedirect("/semiTestPrj/notice/list");
+			req.getSession().setAttribute("errorMsg", "공지사항 작성에 실패하였습니다.");
+			req.getRequestDispatcher("/views/error/errorPage.jsp");
 			
 		}
 		
