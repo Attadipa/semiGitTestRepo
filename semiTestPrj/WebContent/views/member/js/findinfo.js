@@ -4,7 +4,7 @@
 
 
 //아이디찾기
-function id_search1() { 
+function idSearch1() { 
 	 	var frm = document.idfindscreen;
 
 	 	if (frm.member_name.value.length < 1) {
@@ -24,7 +24,7 @@ function id_search1() {
 
 
 //비밀번호찾기
- function pw_search(){
+ function pwSearch(){
 
   var frm=document.pwfindscreen;
 
@@ -79,7 +79,7 @@ function login() {
 	}
 	}
 }
-  function joinin() {
+  function joinIn() {
 		if(btnjoin != null){
 	btnjoin.onclick = function(){
 		location.href = '/semiTestPrj/index.jsp';

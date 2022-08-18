@@ -6,12 +6,12 @@
 <head>
     <title>로그인</title>
     
-    <script src='../js/login.js'></script>
+    <script src='..//member/css/login.css'></script>
     
     <link rel="shortcut icon" href="/semiTestPrj/views/common/resources/favicon.ico">
     <link rel="icon" href="favicon.ico">
     
-<style>
+<style type="text/css">
 	* {
 	    margin: 0;
 	    padding: 0;
@@ -105,6 +105,7 @@
 	.login-search {
 	   text-align : center;
 	   margin-bottom : 30px;
+	   
 	}
 	
 	.login-id {
@@ -204,12 +205,12 @@
         <section class="form-write">
 			<form name='form_log' method='post'>
                 <div class="align">
-                    <input type="text" id="mid" name = "member_mid" placeholder="아나바다 ID">
+                    <input type="text" id="mid" name = "memberMid" placeholder="아나바다 ID">
                      <div class="text-id">
                        
                     </div> 
                     <label></label>
-                    <input type="password" id="pwd" name = "member_pwd" placeholder="비밀번호">
+                    <input type="password" id="pwd" name = "memberPwd" placeholder="비밀번호">
                    <div class="text-id">
                         
                     </div> 
@@ -218,13 +219,13 @@
             </form>
             <section class="login-search">
                 <div class="login-id">
-                    <a href="/semiTestPrj/views/member/findId.jsp">아이디찾기</a>
+                    <a style="text-decoration: none; color: black;" href="/semiTestPrj/views/member/findId.jsp">아이디찾기</a>
                 </div>
                 <div class="login-pw">
-                    <a href="/semiTestPrj/views/member/findPw.jsp">비밀번호 찾기</a>
+                    <a style="text-decoration: none; color: black;" href="/semiTestPrj/views/member/findPw.jsp">비밀번호찾기</a>
                 </div>
                 <div class="login-join">
-                    <a href="/semiTestPrj/views/member/joinForm.jsp">회원가입</a>
+                    <a style="text-decoration: none; color: black;" href="/semiTestPrj/views/member/joinForm.jsp">회원가입</a>
                 </div>
             </section>
             <div class="item-center">
@@ -247,7 +248,7 @@
     <div class="footer-align">
         <hr>
         <div class="help-box">도움이 더 필요하신가요? <a href="chat.jsp">지금 채팅하기</a> 또는 000-000-0000 번호로 문의하세요.</div>
-        <   <!-- footer영역 -->
+           <!-- footer영역 -->
    	<%@include file="/views/common/footer.jsp" %>
     </div>
     <script>logInOut()</script>
@@ -274,7 +275,7 @@ $("#kakao-login-btn").on("click", function(){
 			alert('로그인성공');
               //var email = res.kakao_account.email;
 			  //var name = res.properties.nickname;
-			  location.href="http://localhost:8083/SemiTestPrj/member/kakaocallback.jsp";
+			  location.href="http://localhost:8083/semiTestPrj/member/kakaocallback.jsp";
 		
 
               

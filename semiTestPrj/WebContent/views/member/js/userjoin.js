@@ -36,7 +36,7 @@ var userInfo = getID('frm_member');
 			var userInfo = document.userInfo;
 			var user_id =  userInfo.frm_id.value;
 			console.log(user_id);
-			userInfo.action = "/Fineapple-final/UsersJoin/formCheck";
+			userInfo.action = "/semiTestPrj/UsersJoin/formCheck";
 			userInfo.method="POST";
 			userInfo.submit();
 		}

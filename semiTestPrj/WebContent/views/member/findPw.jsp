@@ -6,14 +6,13 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
     
-<script src ='../js/findinfo.js'></script>
+<script src="../member/js/findinfo.js"></script>
 
- 	<link rel="shortcut icon" href="/semiTestPrj/views/common/resources/favicon.ico">
-    <link rel="icon" href="favicon.ico">
+<link rel="stylesheet" href="../member/css/findinfo.css">
+<link rel="shortcut icon" href="/semiTestPrj/views/common/resources/favicon.ico">
+<link rel="icon" href="favicon.ico">
     
-</head>
-
-<style>
+<style type="text/css">
 	* {
     margin: 0;
     padding: 0;
@@ -213,6 +212,8 @@
 	    width: 800px;
 	    margin: 0 auto;
 	}
+</style>
+</head>	
 <body>
 
 			<!-- header영역 -->
@@ -228,18 +229,18 @@
 		<section class = "form-search">
 			<div class = "find-id">
 				<label>아이디</label>
-				<input type="text" name="member_mid" class = "btn-name" placeholder = "아나바다 ID">
+				<input type="text" name="memberMid" class = "btn-name" placeholder = "아나바다 ID">
 			<br>
 			</div>
 			
 		 <div class = "find-phone">
 				<label>번호</label>
-				<input type="text" onKeyup = "addHypen(this);" name="member_phone" class = "btn-phone" placeholder = "휴대폰번호를 '-'없이 입력">
+				<input type="text" onKeyup = "addHypen(this);" name="memberPhone" class = "btn-phone" placeholder = "휴대폰번호를 '-'없이 입력">
 			</div> 
 			<br>
 	</section>
 	<div class ="btnSearch">
-		<input type="button" name="enter" value="찾기"  onClick="pw_search()">
+		<input type="button" name="enter" value="찾기"  onClick="pwSearch()">
 		<input type="button" name="cancle" value="취소" onClick="history.back()">
  	</div>
  </form>
