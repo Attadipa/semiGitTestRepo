@@ -5,11 +5,11 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-// jQuery
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 
-// iamport
+<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js" type="text/javascript"></script>
+
 <style>
     #container{
         width: 600px;
@@ -47,15 +47,6 @@
     input{
         cursor: pointer;
     }
-    input[type=submit]{
-        width: 100%;
-        height: 50px;
-        border-radius: 10px;
-        border: none;
-        background-color: rgb(222, 0, 0);
-        color: white;
-        font-size: 20px;
-    }
     input[type=checkbox]{
         width: 30px;
         height:20px;
@@ -81,10 +72,29 @@
         border: 3px solid rgb(222, 0, 0);
         box-sizing: border-box;
     }
+    input[type=submit]{
+        width: 100%;
+        height: 50px;
+        border-radius: 10px;
+        border: none;
+        background-color: rgb(222, 0, 0);
+        color: white;
+        font-size: 20px;
+    }
     #agree-box{
         height: 50px;
         display: flex;
         align-items: center;
+    }
+
+    #fake-submit{
+        width: 100%;
+        height: 50px;
+        border-radius: 10px;
+        border: none;
+        background-color: rgb(222, 0, 0);
+        color: white;
+        font-size: 20px;
     }
     #payAmount-container{
         width: 100%;
@@ -196,13 +206,17 @@
                     개인정보 제 3자 제공동의와 결제대행 서비스 이용약관에 동의합니다.
                 </label>
             </div>
-
-            <input type="submit" value="결제하기">
+            <input type="submit" value="결제하기" onclick="startPay()">
+            
         </form>
         
     </div>
     <br><br>
     
+	<script>
+		const submitBtn = $('input[type=submit]');
+
+	</script>
 
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
@@ -222,7 +236,12 @@
             var IMP = window.IMP; // 생략가능
             IMP.init('imp16407085'); // <-- 본인 가맹점 식별코드 삽입
             
+
+
            	function startPay(){
+                const str = $("input:radio[name=method]:checked").val();
+                console.log(str);
+            	
             	IMP.request_pay({
                     pg : 'kcp',
                     pay_method : 'card',
@@ -238,8 +257,12 @@
                 }, function(rsp) { // callback 로직
                 	if(rsp.success){
                 		alert("결제성공");
+                		location
+                		console.log(rsp);
                 	}else{
                 		alert("결제취소됨");
+                		
+                		console.log(rsp);
                 	}
                 });
             }   
