@@ -109,8 +109,8 @@
             <div id="header-inner1" class="header">
                 <a href="/semiTestPrj/cs/search">고객센터</a>
                 <a href="">관심상품</a>
-                <a href="/semiTestPrj/member/mypage">마이페이지</a>
-                <a href="/semiTestPrj/member/login">로그인</a> <!-- 로그인시, 로그아웃으로 바뀌는 코드 작성 -->
+                <a href="">마이페이지</a>
+                <a href="">로그인</a> <!-- 로그인시, 로그아웃으로 바뀌는 코드 작성 -->
 
             </div>
             <hr class="header-hr">
