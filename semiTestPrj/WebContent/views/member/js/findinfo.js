@@ -7,12 +7,12 @@
 function idSearch1() { 
 	 	var frm = document.idfindscreen;
 
-	 	if (frm.member_name.value.length < 1) {
+	 	if (frm.memberName.value.length < 1) {
 		  alert("이름을 입력해주세요");
 		  return;
 		 }
 
-		 if (frm.member_phone.value.length != 13) {
+		 if (frm.memberPhone.value.length != 13) {
 			  alert("핸드폰번호를 정확하게 입력해주세요");
 			  return;
 		 }
@@ -28,12 +28,12 @@ function idSearch1() {
 
   var frm=document.pwfindscreen;
 
-  if(frm.member_mid.value.length<3){
+  if(frm.memberMid.value.length<3){
    alert("아이디를 올바르게 입력해주세요");
    return;
   }
 
-   if (frm.member_phone.value.length != 13) {
+   if (frm.memberPhone.value.length != 13) {
 			  alert("핸드폰번호를 정확하게 입력해주세요");
 			  return;
 		 }

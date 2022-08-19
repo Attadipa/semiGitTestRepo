@@ -9,8 +9,7 @@
 <script src="../member/js/findinfo.js"></script>
 
 <link rel="stylesheet" href="../member/css/findinfo.css">
-<link rel="shortcut icon" href="/semiTestPrj/views/common/resources/favicon.ico">
-<link rel="icon" href="favicon.ico">
+
     
 <style type="text/css">
 	* {
@@ -229,19 +228,19 @@
 		<section class = "form-search">
 			<div class = "find-id">
 				<label>아이디</label>
-				<input type="text" name="memberMid" class = "btn-name" placeholder = "아나바다 ID">
+				<input type="text" name="memberMid" class ="btn-name" placeholder ="아나바다 ID">
 			<br>
 			</div>
 			
 		 <div class = "find-phone">
 				<label>번호</label>
-				<input type="text" onKeyup = "addHypen(this);" name="memberPhone" class = "btn-phone" placeholder = "휴대폰번호를 '-'없이 입력">
+				<input type="text" onKeyup ="addHypen(this);" name="memberPhone" class ="btn-phone" placeholder = "휴대폰번호를 '-'없이 입력">
 			</div> 
 			<br>
 	</section>
 	<div class ="btnSearch">
-		<input type="button" name="enter" value="찾기"  onClick="pwSearch()">
-		<input type="button" name="cancle" value="취소" onClick="history.back()">
+		<input type="button" name="enter" value="찾기"  onclick="pwSearch()">
+		<input type="button" name="cancle" value="취소" onclick="history.back()">
  	</div>
  </form>
 </div>

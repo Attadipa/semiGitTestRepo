@@ -21,7 +21,7 @@ public class MemberDao {
 		try {
 			//SQL 준비
 			String sql = 
-					"INSERT INTO MEMBER(MEMBER_NO, MEMBER_ID, MEMBER_PWD, MEMBER_NAME, MEMBER_PHONE, MEMBER_EMAIL, MEMBER_ADDRESS, MEMBER_ZIPCODE) VALUES(SEQ_MEMBER_NO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
+					"INSERT INTO MEMBER(MEMBER_NO, MEMBER_MID, MEMBER_PWD, MEMBER_NAME, MEMBER_PHONE, MEMBER_EMAIL, MEMBER_ADDRESS, MEMBER_ZIPCODE) VALUES(SEQ_MEMBER_NO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?)";
 			
 			//SQL 객체에 담고, SQL 완성하기
 			pstmt = conn.prepareStatement(sql);
@@ -55,7 +55,7 @@ public class MemberDao {
 		ResultSet rs = null;
 		
 		//SQL준비
-		String sql = "SELECT * FROM MEMBER WHERE MEMBER_ID = ? AND MEMBER_PWD = ? AND STATUS = 'N'";
+		String sql = "SELECT * FROM MEMBER WHERE MEMBER_MID = ? AND MEMBER_PWD = ? AND STATUS = 'N'";
 		
 		try {
 			//SQL객체에 담고, SQL 물음표 채우기
@@ -68,26 +68,27 @@ public class MemberDao {
 			
 			//rs에서 데이터 거내서 객체로 만들기
 			if(rs.next()) {
-				int no = rs.getInt("MEMBER_NO");
-				String mid = rs.getString("MEMBER_MID");
-				String name = rs.getString("MEMBER_NAME");
-				String phone = rs.getString("MEMBER_PHONE");
-				String email = rs.getString("MEMBER_EMAIL");
-				String address = rs.getString("MEMBER_ADDRESS");
-				String zipcode = rs.getString("MEMBER_ZIPCODE");
-				Timestamp enrollDate = rs.getTimestamp("ENROLL_DATE");
-				Timestamp modifyDate = rs.getTimestamp("MODIFY_DATE");
+				int memberNo = rs.getInt("MEMBER_NO");
+				String memberMid = rs.getString("MEMBER_MID");
+				String memberName = rs.getString("MEMBER_NAME");
+				String memberPhone = rs.getString("MEMBER_PHONE");
+				String memberEmail = rs.getString("MEMBER_EMAIL");
+				String memberAddress = rs.getString("MEMBER_ADDRESS");
+				String memberZipcode = rs.getString("MEMBER_ZIPCODE");
+				Timestamp memberEnrollDate = rs.getTimestamp("MEMBER_ENROLL_DATE");
+				Timestamp memberModifyDate = rs.getTimestamp("MEMBER_MODIFY_DATE");
+				
 				
 				loginMember = new MemberVo();
-				loginMember.setMemberNo(no);
-				loginMember.setMemberMid(mid);
-				loginMember.setMemberName(name);
-				loginMember.setMemberPhone(phone);
-				loginMember.setMemberEmail(email);
-				loginMember.setMemberAddress(address);
-				loginMember.setMemberZipcode(zipcode);
-				loginMember.setMemberEnrollDate(enrollDate);
-				loginMember.setMemberModifyDate(modifyDate);
+				loginMember.setMemberNo(memberNo);
+				loginMember.setMemberMid(memberMid);
+				loginMember.setMemberName(memberName);
+				loginMember.setMemberPhone(memberPhone);
+				loginMember.setMemberEmail(memberEmail);
+				loginMember.setMemberAddress(memberAddress);
+				loginMember.setMemberZipcode(memberZipcode);
+				loginMember.setMemberEnrollDate(memberEnrollDate);
+				loginMember.setMemberModifyDate(memberModifyDate);
 				
 			}
 		}catch(Exception e){

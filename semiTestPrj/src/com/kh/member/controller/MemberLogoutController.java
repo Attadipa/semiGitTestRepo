@@ -16,6 +16,7 @@ public class MemberLogoutController extends HttpServlet{
 		
 		//로그아웃 == 세션만료
 		req.getSession().invalidate();
+		req.getSession().setAttribute("alertMsg", "로그아웃 완료");
 		
 		//메안화면 보여주기
 		resp.sendRedirect(req.getContextPath());

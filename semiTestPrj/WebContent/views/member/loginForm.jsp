@@ -6,11 +6,9 @@
 <head>
     <title>로그인</title>
     
-    <script src='..//member/css/login.css'></script>
+    <!-- <link rel="stylesheet" href="..//member/css/login.css"> -->
     
-    <link rel="shortcut icon" href="/semiTestPrj/views/common/resources/favicon.ico">
-    <link rel="icon" href="favicon.ico">
-    
+
 <style type="text/css">
 	* {
 	    margin: 0;
@@ -203,14 +201,14 @@
     <div class="container">
     <h3>로그인</h3>
         <section class="form-write">
-			<form name='form_log' method='post'>
+			<form action="/semiTestPrj/member/login" method="post">
                 <div class="align">
-                    <input type="text" id="mid" name = "memberMid" placeholder="아나바다 ID">
+                    <input type="text" id="mid" name ="memberMid" placeholder="아나바다 ID">
                      <div class="text-id">
                        
                     </div> 
                     <label></label>
-                    <input type="password" id="pwd" name = "memberPwd" placeholder="비밀번호">
+                    <input type="password" id="pwd" name ="memberPwd" placeholder="비밀번호">
                    <div class="text-id">
                         
                     </div> 
@@ -251,7 +249,7 @@
            <!-- footer영역 -->
    	<%@include file="/views/common/footer.jsp" %>
     </div>
-    <script>logInOut()</script>
+    <!-- <script>logInOut()</script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src = "https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type='text/javascript'>

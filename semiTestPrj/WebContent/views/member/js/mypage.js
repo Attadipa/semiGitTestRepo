@@ -4,27 +4,27 @@
 
 function checkPwd() {
 	
-		var frm = document.frm_member;
+		var frm = document.frmMember;
 		var frmPwd = frm.frm_password.value;
-		var frmRePwd = frm.re_frm_password.value;
+		var frmRePwd = frm.re_frmPassword.value;
 		
 		if(frmPwd.trim().length == 0)   {
-			document.frm_member.frm_password.focus();
+			document.frmMember.frmPassword.focus();
 			alert('비밀번호를 입력해주세요.')
 			return false;
 		}
 		
 		if(frmRePwd.trim().length == 0) {
 			alert('새로운 비밀번호를 입력해주세요.');
-			document.frm_member.re_frm_password.focus();
+			document.frmMember.re_frmPassword.focus();
 			return false;
 
 		}
 		
-		if(frm_member.frm_phone.value.trim().length == 0){
+		if(frmMember.frmPhone.value.trim().length == 0){
 			alert('전화번호를 입력해주세요.');
-			document.frm_member_frm_phone = "";
-			document.frm_member_frm_phone.focus();
+			document.frmMember.frmPhone = "";
+			document.frmMember.frmPhone.focus();
 			return false;
 		}
 
