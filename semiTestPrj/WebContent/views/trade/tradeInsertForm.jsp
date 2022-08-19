@@ -93,7 +93,10 @@
         <form action="/semiTestPrj/trade/insert" method="post">
             <!-- 글 번호, 작성자 번호 -->
             <input type="hidden" name="no"> 
-            <input type="hidden" name="writerNo">
+            <input type="hidden" name="writerNo" value="1">
+            
+            <!-- 수정 예정  -->
+            <%-- <input type="hidden" name="writerNo" value="<%=loginMember.getMemberNo()%>">  --%>
     
             <!-- 사진게시판 이후 수정 예정 -->
             <!-- 이미지 -->
@@ -131,25 +134,25 @@
                 <input type="button" class="btn btn-light" id="search-address" value="주소 검색">
                 <input type="button" class="btn btn-light" id ="none" value="지역설정안함">
             </div>
-            <div id="where" type="text" name="location"></div>
+            <div id="where" type="text" name="location" ></div>
             <br><hr><br>
     
             <!-- 상태 -->
             <h5 class="condition">상태*</h5>
-            <input type="radio" name="condition">중고상품  &nbsp; &nbsp; &nbsp;
-            <input type="radio" name="condition">새상품
+            <input type="radio" name="condition" value="중고상품">중고상품  &nbsp; &nbsp; &nbsp;
+            <input type="radio" name="condition" value="새상품">새상품
             <br><br><hr><br>
     
             <!-- 교환여부 -->
             <h5 class="exchange">교환*</h5>
-            <input type="radio" name="no">교환불가  &nbsp; &nbsp; &nbsp;
-            <input type="radio" name="yes">교환가능
+            <input type="radio" name="exchange" value="교환불가">교환불가  &nbsp; &nbsp; &nbsp;
+            <input type="radio" name="exchange" value="교환가능">교환가능
             <br><br><hr><br>
 
             <!-- 배송여부 -->
             <h5 class="ship">배송*</h5>
-            <input type="radio" name="include">배송비 포함  &nbsp; &nbsp; &nbsp;
-            <input type="radio" name="exclude">배송비 제외
+            <input type="radio" name="ship" value="배송비 포함">배송비 포함  &nbsp; &nbsp; &nbsp;
+            <input type="radio" name="ship" value="배송비 제외">배송비 제외
             <br><br><hr><br>
     
             <!-- 가격 -->
@@ -217,6 +220,12 @@
         }
     </script>
 
+    <!-- <script>
+        function printName() {  
+            const location = document.getElementById('location').value;  
+            document.getElementById("where").innerText = location;
+        }
+    </script> -->
 
 </script>
    

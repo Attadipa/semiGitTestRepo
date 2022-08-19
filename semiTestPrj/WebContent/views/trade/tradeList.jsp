@@ -104,139 +104,18 @@
 
     <div id="outer">
 
-
         <div id="content-area">
-          	<%-- <%for(int i = 0 ; i < voList.size(); i++){%>
+          	<%for(int i = 0 ; i < voList.size(); i++){%>
 	            <ul>
 	                <li class="images">게시글 사진</li>
 	                <li class="content-text-area"><%=voList.get(i).getTitle()%></li>
 	                <li class="content-text-area"><%=voList.get(i).getWriter()%></li>
 	                <li class="content-text-area"><%=voList.get(i).getEnrollDate()%></li>
 	            </ul>
-            <%}%>  --%>
-           <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul> 
-             <ul>
-                <li class="images">게시글 사진</li>
-                <li class="content-text-area">게시글 제목</li>
-                <li class="content-text-area">게시글 작성자</li>
-                <li class="content-text-area">게시 날짜</li>
-            </ul> 
+            <%}%>  
         </div>
 
-        <a href="tradeInsertForm.jsp" class="btn btn-success">등록</a>
+        <a href="/semiTestPrj/trade/insert" class="btn btn-success">등록</a>
 
         <div class="page-outer">
             <span>1</span>

@@ -26,13 +26,11 @@ public class TradeListController extends HttpServlet {
 		if(voList != null) {
 			//조회 성공 -> tradeList 화면 보여주기
 			req.setAttribute("voList", voList);
-			req.getRequestDispatcher("/views/trade/tradeList.jsp");
-			System.out.println(voList);
-			System.out.println(voList.size());
+			req.getRequestDispatcher("/views/trade/tradeList.jsp").forward(req, resp);
 		} else {
 			//실패
 			req.setAttribute("errorMsg", "조회에 실패하였습니다.");
-			req.getRequestDispatcher("/views/error/errorPage.jsp");
+			req.getRequestDispatcher("/views/error/errorPage.jsp").forward(req, resp);
 		}
 	
 		
