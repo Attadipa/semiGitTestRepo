@@ -23,6 +23,16 @@ public class ClickFaqTypeController extends HttpServlet{
 		
 		String type = req.getParameter("t");
 		
+		switch(type) {
+			case "trade": type = "거래 관련"; break;
+			case "id": type = "계정 관련"; break;
+			case "event": type = "행사 관련"; break;
+			case "ads": type = "광고 관련"; break;
+			case "suggest": type = "건의 및 제안"; break;
+			case "etc": type = "기타"; break;
+		}
+		
+		
 		List<FaqVo> voList = new FaqService().typeList(type);
 		
 		req.setAttribute("voList", voList);
