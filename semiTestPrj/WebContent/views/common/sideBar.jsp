@@ -120,13 +120,10 @@
         </div>
         <div id="sidebar">
             <div class="sidebar-list" id="shopping">쇼핑하기</div>
-            <div class="sidebar-list"><a href="/semiTestPrj/notice/list">공지사항</a></div>
-            <div class="sidebar-list">커뮤니티</div>
+            <div class="sidebar-list"><a href="${contextPath}/notice/list?p=1">공지사항</a></div>
+            <div class="sidebar-list"><a href="${contextPath}/community/list?p=1"></a></div>
             <div class="sidebar-list">판매자센터</div>
-            <div class="sidebar-list"><a href="/semiTestPrj/cs/search">고객센터</a></div>
-            <div class="sidebar-list">666</div>
-            <div class="sidebar-list">777</div>
-            <div class="sidebar-list">888</div>
+            <div class="sidebar-list"><a href="${contextPath}/cs/search">고객센터</a></div>
             <ul id="shopping-list">
                 <li>패션</li>
                 <li>럭셔리</li>
