@@ -28,7 +28,7 @@
         width: 500px;
     }
 
-    .title, .category, .condition, .exchange, .price, .count {
+    .title, .category, .condition, .exchange, .price, .count, .ship {
         display: inline-block;
     }
 
@@ -40,7 +40,7 @@
         margin-left: 125px
     }
 
-    .condition+input, .exchange+input, .price+input, .count+input {
+    .condition+input, .exchange+input, .price+input, .count+input,  .ship+input {
         margin-left: 18%;
     }
 
@@ -91,8 +91,12 @@
         <hr><br><br>
 
         <form action="/semiTestPrj/trade/insert" method="post">
+            <!-- 글 번호, 작성자 번호 -->
+            <input type="hidden" name="no"> 
+            <input type="hidden" name="writerNo">
     
             <!-- 사진게시판 이후 수정 예정 -->
+            <!-- 이미지 -->
             <h5 class="image">
                 상품이미지(보류) <br>
                 <input id="imageLengthCkeck" placeholder="(0/ 4)"></input>
@@ -102,11 +106,13 @@
             <input type="button" id="image" onclick="imagePlus();"></input>
             <br><br><hr><br>
     
+            <!-- 제목 -->
             <h5 class="title">제목*</h5>
             <input type="text" placeholder="상품 제목을 입력해주세요." id="product-title" name="title" required>
             <input type="text" placeholder="(0/ 20)" id="textLengthCheck">
             <br><br><hr><br>
     
+            <!-- 카테고리 -->
             <h5 class="category">카테고리*</h5>
             <select name="category" id="category" required name="category">
                 <option value="1">패션</option>
@@ -118,6 +124,7 @@
             </select>
             <br><br><hr><br>
     
+            <!-- 지역 -->
             <h5 class="location">거래지역*</h5>
             <div id="location">
                 <input type="button" class="btn btn-light" id="my-location" value="내 위치">
@@ -127,29 +134,39 @@
             <div id="where" type="text" name="location"></div>
             <br><hr><br>
     
+            <!-- 상태 -->
             <h5 class="condition">상태*</h5>
             <input type="radio" name="condition">중고상품  &nbsp; &nbsp; &nbsp;
             <input type="radio" name="condition">새상품
             <br><br><hr><br>
     
+            <!-- 교환여부 -->
             <h5 class="exchange">교환*</h5>
-            <input type="radio" name="exchange">교환불가  &nbsp; &nbsp; &nbsp;
-            <input type="radio" name="exchange">교환가능
+            <input type="radio" name="no">교환불가  &nbsp; &nbsp; &nbsp;
+            <input type="radio" name="yes">교환가능
+            <br><br><hr><br>
+
+            <!-- 배송여부 -->
+            <h5 class="ship">배송*</h5>
+            <input type="radio" name="include">배송비 포함  &nbsp; &nbsp; &nbsp;
+            <input type="radio" name="exclude">배송비 제외
             <br><br><hr><br>
     
+            <!-- 가격 -->
             <h5 class="price">가격*</h5>
             <input type="number" placeholder="숫자만 입력해주세요." name="price"> 원
             <br><br><hr><br>
     
-            <h5 class="explain">
-                설명* <br>
-                <input type="text" placeholder="(0/ 500)" id="textLengthCheck2">
+            <!-- 설명 -->
+            <h5 class="explain">설명*<br>
+            <input type="text" placeholder="(0/ 500)" id="textLengthCheck2">
             </h5>
             <!-- <input type="textarea" rows="10" cols="40" placeholder="상품 설명을 입력해주세요." id="product-explain" required></textarea> -->
             <textarea rows="15" cols="85" placeholder="상품 설명을 입력해주세요." id="product-explain" name="explain" required></textarea>
             
             <br><br><hr><br>
     
+            <!-- 수량 -->
             <h5 class="count">수량*</h5>
             <input type="number" placeholder="숫자만 입력해주세요." name="count"> 개
             <br><br><hr>

@@ -120,12 +120,12 @@
 
             <div>
                 <button class="btn btn-success" onclick="location.href='/semiTestPrj/notice/insert'">✍글쓰기</button>
-                <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/edit'">수정</button>
-                <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/delete'">삭제</button>
-                <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/list'" >글목록</button>
-            </div>
+                <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/edit?num=<%=vo.getNo()%>'">수정</button>
+                <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/delete?num=<%=vo.getNo()%>'">삭제</button>
+                <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/list?p=1'" >글목록</button>
+            </div> 
 
-            	<!-- <%if(loginMember != null && vo.getWriter().equals(loginMember.getMember_name())){ %>
+            	<%-- <%if(loginMember != null && vo.getWriter().equals(loginMember.getMemberNo())){ %>
                  현재 로그인한 사용자가 해당 글을 쓴 본인일 경우
                 <div>
                     <button class="btn btn-success" onclick="location.href='/semiTestPrj/notice/insert'">✍글쓰기</button>
@@ -134,10 +134,10 @@
                     <button class="btn btn-light" onclick="history.go(-1)">글목록</button>
                 </div>
                 <%} else {%>
-                div>
+                <div>
                     <button class="btn btn-light" onclick="history.go(-1)">글목록</button>
                 </div>
-                <%} %> -->
+                <%} %> --%> 
 
 
             <table id="table-main">

@@ -174,7 +174,7 @@
                 </tr>
             </thead>
 
-            <!-- 예시 -->
+
             <tbody>
                 <tr>
                     <td>필독</td>
@@ -183,143 +183,8 @@
                     <td>2022/08/03</td>
                     <td>30</td>
                 </tr>
-                <tr>
-                    <td>공지</td>
-                    <td class="title">중고거래 플랫폼 만들었습니다</td>
-                    <td class="writer">박한솔</td>
-                    <td>2022/07/11</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td>공지</td>
-                    <td class="title">ANBD</td>
-                    <td class="writer">이아름</td>
-                    <td>2022/11/11</td>
-                    <td>25</td>
-                </tr>
-                <tr>
-                    <td>2105</td>
-                    <td class="title">HI HELLO HOW ARE YOU</td>
-                    <td class="writer">서교상</td>
-                    <td>2022/08/09</td>
-                    <td>65</td>
-                </tr>
-                <tr>
-                    <td>4651</td>
-                    <td class="title">KK LOL HOHOHO</td>
-                    <td class="writer">박성현</td>
-                    <td>2015/08/09</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>공지</td>
-                    <td class="title">ANBD</td>
-                    <td class="writer">이아름</td>
-                    <td>2022/11/11</td>
-                    <td>25</td>
-                </tr>
-                <tr>
-                    <td>2105</td>
-                    <td class="title">HI HELLO HOW ARE YOU</td>
-                    <td class="writer">서교상</td>
-                    <td>2022/08/09</td>
-                    <td>65</td>
-                </tr>
-                <tr>
-                    <td>4651</td>
-                    <td class="title">KK LOL HOHOHO</td>
-                    <td class="writer">박성현</td>
-                    <td>2015/08/09</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>공지</td>
-                    <td class="title">ANBD</td>
-                    <td class="writer">이아름</td>
-                    <td>2022/11/11</td>
-                    <td>25</td>
-                </tr>
-                <tr>
-                    <td>2105</td>
-                    <td class="title">HI HELLO HOW ARE YOU</td>
-                    <td class="writer">서교상</td>
-                    <td>2022/08/09</td>
-                    <td>65</td>
-                </tr>
-                <tr>
-                    <td>3453</td>
-                    <td class="title">아나바다</td>
-                    <td class="writer">남재현</td>
-                    <td>2022/08/03</td>
-                    <td>30</td>
-                </tr>
-                <tr>
-                    <td>64536</td>
-                    <td class="title">중고거래 플랫폼 만들었습니다</td>
-                    <td class="writer"> 박한솔</td>
-                    <td>2022/07/11</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td>265</td>
-                    <td class="title">ANBD</td>
-                    <td class="writer">이아름</td>
-                    <td>2022/11/11</td>
-                    <td>25</td>
-                </tr>
-                <tr>
-                    <td>2105</td>
-                    <td class="title">HI HELLO HOW ARE YOU</td>
-                    <td class="writer">서교상</td>
-                    <td>2022/08/09</td>
-                    <td>65</td>
-                </tr>
-                <tr>
-                    <td>4651</td>
-                    <td class="title">KK LOL HOHOHO</td>
-                    <td class="writer">박성현</td>
-                    <td>2015/08/09</td>
-                    <td>5</td>
-                </tr>
-                <tr>
-                    <td>3453</td>
-                    <td class="title">아나바다</td>
-                    <td class="writer">남재현</td>
-                    <td>2022/08/03</td>
-                    <td>30</td>
-                </tr>
-                <tr>
-                    <td>64536</td>
-                    <td class="title">중고거래 플랫폼 만들었습니다</td>
-                    <td class="writer">박한솔</td>
-                    <td>2022/07/11</td>
-                    <td>20</td>
-                </tr>
-                <tr>
-                    <td>265</td>
-                    <td class="title">ANBD</td>
-                    <td class="writer">이아름</td>
-                    <td>2022/11/11</td>
-                    <td>25</td>
-                </tr>
-                <tr>
-                    <td>2105</td>
-                    <td class="title">HI HELLO HOW ARE YOU</td>
-                    <td class="writer">서교상</td>
-                    <td>2022/08/09</td>
-                    <td>65</td>
-                </tr>
-                <tr>
-                    <td>4651</td>
-                    <td class="title">KK LOL HOHOHO</td>
-                    <td class="writer">박성현</td>
-                    <td>2015/08/09</td>
-                    <td>5</td>
-                </tr>
             </tbody>
-
             <br clear="both">
-
 
         </table>
 

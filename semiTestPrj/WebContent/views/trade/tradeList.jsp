@@ -1,10 +1,26 @@
+<%@page import="java.util.List"%>
+<%@page import="com.kh.common.PageVo"%>
+<%@page import="com.kh.trade.vo.TradeVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+     <%
+    	List<TradeVo> voList = (List<TradeVo>)request.getAttribute("voList");
+	/* 	PageVo pv = (PageVo)request.getAttribute("pv");
+	
+		int currentPage = pv.getCurrentPage();
+		int startPage = pv.getStartPage();
+		int endPage = pv.getEndPage();
+		int maxPage = pv.getMaxPage(); */
+    %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@300;400&display=swap" rel="stylesheet">
 <style>
 
     #outer{
@@ -90,7 +106,15 @@
 
 
         <div id="content-area">
-            <ul>
+          	<%-- <%for(int i = 0 ; i < voList.size(); i++){%>
+	            <ul>
+	                <li class="images">게시글 사진</li>
+	                <li class="content-text-area"><%=voList.get(i).getTitle()%></li>
+	                <li class="content-text-area"><%=voList.get(i).getWriter()%></li>
+	                <li class="content-text-area"><%=voList.get(i).getEnrollDate()%></li>
+	            </ul>
+            <%}%>  --%>
+           <ul>
                 <li class="images">게시글 사진</li>
                 <li class="content-text-area">게시글 제목</li>
                 <li class="content-text-area">게시글 작성자</li>
@@ -203,13 +227,13 @@
                 <li class="content-text-area">게시글 제목</li>
                 <li class="content-text-area">게시글 작성자</li>
                 <li class="content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
+            </ul> 
+             <ul>
                 <li class="images">게시글 사진</li>
                 <li class="content-text-area">게시글 제목</li>
                 <li class="content-text-area">게시글 작성자</li>
                 <li class="content-text-area">게시 날짜</li>
-            </ul>
+            </ul> 
         </div>
 
         <a href="tradeInsertForm.jsp" class="btn btn-success">등록</a>
@@ -252,15 +276,27 @@
 
     <script>
 
-    var liArr = document.querySelectorAll("li");
+  /*   var liArr = document.querySelectorAll("li");
     for (var i = 0; i < liArr.length; i++) {
         var li =liArr[i]
 
         li.addEventListener('click', function() {
-        location.href='tradeDetail.jsp';
+        location.href='/semiTestPrj/trade/list?=li'+li;
     });
-    };
-
+    }; */
+    
+    
+   /*  $(function(){
+		$('ul').click(function(){
+			//글 번호 가져오기 (this -> tr태그)
+			const num = $(this).children().eq(0).text();
+			console.log(num);
+			//해당 번호로 요청 보내기
+			location.href='/semiTestPrj/detail/list?num=' + num;
+			
+		});
+	}) 
+ */
     </script>
 
 </body>

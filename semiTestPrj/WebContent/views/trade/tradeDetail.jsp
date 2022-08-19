@@ -55,7 +55,7 @@
         height: 500px;
     }
 
-    .btns a{
+    .btns input{
         width: 140px;
         height: 60px;
         float: left;
@@ -69,16 +69,16 @@
         color: whitesmoke;
     }
 
-    .btns a:first-child{
+    .btns input:first-child{
        margin-left: 25%;
     }
 
-    .btns a:hover{
+    .btns input:hover{
         color: white;
     }
     
     .btn-success {
-        margin-left: 60%;
+        margin-left: 69%;
     }
 
 
@@ -91,39 +91,43 @@
     <%@ include file="/views/common/header.jsp"%>
 
     <div id="outer">
-        <hr>
+            <hr>
 
-            
+            <form action="/semiTestPrj/pay/insert" method="get">
+
+                <!-- 글번호, 카테고리번호 -->
+                <input type="hidden" name="no">
+
                 <div id="wrap">
-                    <div class="product-images">
-             
-                    </div>
+                    <!-- 상품사진 -->
+                    <div class="product-images"></div>
 
                     <div class="product-info">
                         <div>
-                            범고래 나이키 판매 20(제목)
+                            (제목)
                             <br><br>
                         </div>
 
                         <div>
-                            200,000(가격)
+                            (가격)
                             <button class="btn btn-success" onclick="clip(); return false;">URL 복사 | 공유</button>
                             <hr>
                         </div>
 
                         <div> 
-                            조회 : 100
-                            작성일 : 2022-08-05
+                            (조회)
+                            (작성일)
                             <br><br>
                         </div>
 
                         <div>
-                            *상품상태 : (중고/새상품)
+                            *(상품상태)
                             <br>
-                            *교환여부 : (교환가능/교환불가능)
+                            *(교환여부)
                             <br>
-                            *배송비 : (배송비 미포함/배송비 포함)
-                            <button style="margin-left: 87%; border: none;" onclick="location.href=''">신고하기</button>
+                            *(배송비)
+                            <br>
+                            <input type="button" style="margin-left: 87%; border: none;" value="신고하기">
                             <br>
                         </div>
                         
@@ -131,12 +135,13 @@
 
 
                     <div class="others-info">
-                        판매자정보 : <br>
+                        (작성자) : <br>
                         아나바다 <br><br><br>
 
                         <hr>
 
-                        상품정보 : <br>
+                       <pre>
+                        (상품정보) : <br>
                         파손폰 안쓰는폰 오래된폰 고장폰 정상폰 최고가 매입 합니다^^<br>
                         모든문의는 언제든지 번톡으로 가능합니다!<br>
                         <br>
@@ -144,17 +149,18 @@
                         <br>
 
                         인천 지하철 1호선 작전역 1번출구 근처매장입니다!<br>
-                      
+                       </pre>
+                    
                     </div>
 
                     <span class="btns">
-                        <a href="" class="btn btn-secondary">찜</a>
-                        <a href="" class="btn btn-warning"> 채팅</a>
-                        <a href="" class="btn btn-danger">구매하기</a>
+                        <input type="button" class="btn btn-secondary" value="찜">
+                        <input type="button" class="btn btn-warning" value="채팅"> 
+                        <input type="submit" class="btn btn-danger" value="구매하기">
                     </span>
-                   
+                    
                 </div>
-
+            </form>
 
     </div>
 

@@ -3,8 +3,11 @@ package com.kh.notice.service;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.kh.common.JDBCTemplate.*;
+
+import com.kh.common.PageVo;
 import com.kh.notice.repository.NoticeDao;
 import com.kh.notice.vo.NoticeVo;
 
@@ -13,10 +16,10 @@ public class NoticeService {
 	private final NoticeDao dao = new NoticeDao();
 
 	//공지사항 리스트 조회하기
-	public ArrayList<NoticeVo> selectList() {
+	public List<NoticeVo> selectList(PageVo pageVo) {
 		
 		Connection conn = null;
-		ArrayList<NoticeVo> voList = null;
+		List<NoticeVo> voList = null;
 		
 		//서비스 로직 작성 ㄴㄴ
 		
@@ -24,7 +27,7 @@ public class NoticeService {
 		try {
 			//dao 호출하기
 			conn = getConnection();
-			voList = dao.selectList(conn);
+			voList = dao.selectList(conn, pageVo);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -203,5 +206,30 @@ public class NoticeService {
 		
 		return result;
 	}
+
+
+
+	public int getCount() {
+		
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = getConnection();
+			
+			result = dao.getCount(conn);	
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		
+		return result;
+		
+	}
+
+
+
 
 }

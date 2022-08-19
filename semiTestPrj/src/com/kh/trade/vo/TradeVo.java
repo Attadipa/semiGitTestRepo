@@ -2,40 +2,59 @@ package com.kh.trade.vo;
 
 public class TradeVo {
 	
-	private String image;
+	private String no;
+	private String writer;
 	private String title;
 	private String refCategoryNo; //1-패션, 2-럭셔리, 3-신발, 4-도서/음반, 5-캠핑, 6-기타 (REF_CATEGORY_NO)
 	private String location;
 	private String condition;
 	private String exchange;
+	private String ship;
 	private String price;
 	private String explain;
 	private String count;
+	private String cnt;
+	private String enrollDate;
+	private String status;
 	
 	public TradeVo () {
 		
 	}
 
-	public TradeVo(String image, String title, String refCategoryNo, String location, String condition, String exchange,
-			String price, String explain, String count) {
+	public TradeVo(String no, String writer, String title, String refCategoryNo, String location, String condition,
+			String exchange, String ship, String price, String explain, String count, String cnt, String enrollDate,
+			String status) {
 		super();
-		this.image = image;
+		this.no = no;
+		this.writer = writer;
 		this.title = title;
 		this.refCategoryNo = refCategoryNo;
 		this.location = location;
 		this.condition = condition;
 		this.exchange = exchange;
+		this.ship = ship;
 		this.price = price;
 		this.explain = explain;
 		this.count = count;
+		this.cnt = cnt;
+		this.enrollDate = enrollDate;
+		this.status = status;
 	}
 
-	public String getImage() {
-		return image;
+	public String getNo() {
+		return no;
 	}
 
-	public void setImage(String image) {
-		this.image = image;
+	public void setNo(String no) {
+		this.no = no;
+	}
+
+	public String getWriter() {
+		return writer;
+	}
+
+	public void setWriter(String writer) {
+		this.writer = writer;
 	}
 
 	public String getTitle() {
@@ -78,6 +97,14 @@ public class TradeVo {
 		this.exchange = exchange;
 	}
 
+	public String getShip() {
+		return ship;
+	}
+
+	public void setShip(String ship) {
+		this.ship = ship;
+	}
+
 	public String getPrice() {
 		return price;
 	}
@@ -102,12 +129,39 @@ public class TradeVo {
 		this.count = count;
 	}
 
+	public String getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(String cnt) {
+		this.cnt = cnt;
+	}
+
+	public String getEnrollDate() {
+		return enrollDate;
+	}
+
+	public void setEnrollDate(String enrollDate) {
+		this.enrollDate = enrollDate;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
 	@Override
 	public String toString() {
-		return "TradeVo [image=" + image + ", title=" + title + ", refCategoryNo=" + refCategoryNo + ", location="
-				+ location + ", condition=" + condition + ", exchange=" + exchange + ", price=" + price + ", explain="
-				+ explain + ", count=" + count + "]";
+		return "TradeVo [no=" + no + ", writer=" + writer + ", title=" + title + ", refCategoryNo=" + refCategoryNo
+				+ ", location=" + location + ", condition=" + condition + ", exchange=" + exchange + ", ship=" + ship
+				+ ", price=" + price + ", explain=" + explain + ", count=" + count + ", cnt=" + cnt + ", enrollDate="
+				+ enrollDate + ", status=" + status + "]";
 	}
+	
+	
 
 	
 	
