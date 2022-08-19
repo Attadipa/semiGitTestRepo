@@ -108,9 +108,14 @@
             <hr class="header-hr">
             <div id="header-inner1" class="header">
                 <a href="${contextPath}/cs/search">고객센터</a>
-                <a href="">관심상품</a>
-                <a href="${contextPath}/member/mypage">마이페이지</a>
-                <a href="${contextPath}/member/login">로그인</a> <!-- 로그인시, 로그아웃으로 바뀌는 코드 작성 -->
+                <c:if test="${empty loginMember}">
+   		            <a href="${contextPath}/member/login">로그인</a>
+                </c:if>
+                <c:if test="${not empty loginMember}">
+	                <a href="${contextPath}/member/wishlist">관심상품</a>
+	                <a href="${contextPath}/member/mypage">마이페이지</a>
+                	<a href="${contextPath}/member/logout">로그아웃</a>
+                </c:if>
             </div>
             <hr class="header-hr">
             <div id="header-inner2" class="header">
@@ -139,7 +144,8 @@
             <!-- 사이드바 --> <%@ include file="/views/common/sideBar.jsp" %>
     </header>
     
-    <%@ include file="/views/common/factor/adModal.jsp" %>
+	    <!-- 광고영역 -->
+    	<%@ include file="/views/common/factor/adModal.jsp" %>
 
 
     <script>
