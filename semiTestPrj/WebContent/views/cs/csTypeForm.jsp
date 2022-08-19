@@ -49,9 +49,7 @@
 	    
 	    <hr>
 	
-	<c:if test="loginMember.id eq "admin"">
 	    <button id="faq-write">FAQ 작성</button>	
-	</c:if>
 	
 	    <table id="table-main" class="table">
 	    	<c:forEach var="vo" items="${voList}">
