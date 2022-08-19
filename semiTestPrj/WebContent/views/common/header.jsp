@@ -111,7 +111,6 @@
                 <a href="">관심상품</a>
                 <a href="">마이페이지</a>
                 <a href="">로그인</a> <!-- 로그인시, 로그아웃으로 바뀌는 코드 작성 -->
-
             </div>
             <hr class="header-hr">
             <div id="header-inner2" class="header">
