@@ -29,4 +29,18 @@ public class FaqService {
 		return voList;
 	}
 
+	public List<FaqVo> typeList(String type) {
+		
+		Connection conn = null;
+		List<FaqVo> voList = null;
+		
+		conn = getConnection();
+		
+		voList = dao.typeList(type, conn);
+		
+		close(conn);
+		
+		return voList;
+	}
+
 }

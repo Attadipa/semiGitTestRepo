@@ -31,7 +31,7 @@
 			<a class="list-group-item list-group-item-action active" id="admin-member-list" data-bs-toggle="list" href="#admin-member" role="tab" aria-controls="admin-member">회원관리</a>
 			<a class="list-group-item list-group-item-action" id="admin-cs-list" data-bs-toggle="list" href="#admin-cs" role="tab" aria-controls="admin-cs">CS관리</a>
 			<a class="list-group-item list-group-item-action" id="admin-event-list" data-bs-toggle="list" href="#admin-event" role="tab" aria-controls="admin-event">이벤트관리</a>
-			<a class="list-group-item list-group-item-action" id="admin-ads-list" data-bs-toggle="list" href="#admin-ads" role="tab" aria-controls="admin-ads">광고관리</a>
+			<a class="list-group-item list-group-item-action" id="admin-graphs-list" data-bs-toggle="list" href="#admin-graph" role="tab" aria-controls="admin-graph">통계</a>
 		  </div>
 		</div>
 		<div class="col-8">
@@ -98,9 +98,9 @@
 				<br>
 				<h3 id="bold-font">메인배너 관리</h3>
 			</div>
-			<div class="tab-pane fade" id="admin-ads" role="tabpanel" aria-labelledby="admin-ads-list">
+			<div class="tab-pane fade" id="admin-graph" role="tabpanel" aria-labelledby="admin-graph-list">
 				<br>
-				<h3 id="bold-font">판매자 광고 관리</h3>
+				<h3 id="bold-font">통계</h3>
 			</div>
 		  </div>
 		</div>
