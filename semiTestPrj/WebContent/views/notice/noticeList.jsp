@@ -1,10 +1,17 @@
-<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kh.common.PageVo"%>
 <%@page import="com.kh.notice.vo.NoticeVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
     <%
-    	ArrayList<NoticeVo> voList = (ArrayList<NoticeVo>)request.getAttribute("voList");
+    	List<NoticeVo> voList = (List<NoticeVo>)request.getAttribute("voList");
+		PageVo pv = (PageVo)request.getAttribute("pv");
+	
+		int currentPage = pv.getCurrentPage();
+		int startPage = pv.getStartPage();
+		int endPage = pv.getEndPage();
+		int maxPage = pv.getMaxPage();
     %>
 <!DOCTYPE html>
 <html>
@@ -72,11 +79,13 @@
         text-decoration: underline 0.5px;
         
     }
+
     #page-outer{
         background-color: whitesmoke;
         width: 100%;
         height: 180px;
     }
+
 
     hr{
         height: 0.5px !important;
@@ -142,6 +151,7 @@
         background-color: whitesmoke;
     }
 
+
 </style>
 </head>
 <body>
@@ -194,32 +204,22 @@
 		
 		
         <div id="page-outer">
-            <div id="next-page">
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
-                <span>5</span>
-                <span>6</span>
-                <span>7</span>
-                <span>8</span>
-                <span>9</span>
-                <span>10</span>
-                <span>|</span>
-                <span>다음 ></span>
-    
-                <!-- <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>10</button>
-                <button>|</button>
-                <button>다음</button> -->
+	            <div id="next-page">
+	               <%if(currentPage != 1){ %>
+					<a class="btn btn-link" href="/semiTestPrj/notice/list?p=<%=currentPage-1%>"> &lt; </a>
+				<%} %>
+				
+				<% for(int i = startPage; i <= endPage; ++i) {%>
+					<%if(i == currentPage){%>
+						<a class="btn btn-link"><%=i%></a>
+					<%} else {%>
+						<a class="btn btn-link" href="/semiTestPrj/notice/list?p=<%=i%>"><%=i%></a>
+					<%} %>
+				<%} %>
+				
+				<%if(currentPage != maxPage){ %>
+					<a class="btn btn-link" href="/semiTestPrj/notice/list?p=<%=currentPage+1%>"> &gt; </a>
+				<%} %>
             </div>
 
             <br><hr><br>

@@ -47,7 +47,7 @@ public class NoticeInsertController extends HttpServlet {
 		if(result == 1) {
 			//성공 -> 공지사항 리스트 
 			req.setAttribute("alertMsg", "공지사항 작성이 완료되었습니다.");
-			resp.sendRedirect("/semiTestPrj/notice/list");
+			resp.sendRedirect("/semiTestPrj/notice/list?p=1");
 			
 		}else {
 			//실패 -> 에러페이지 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++(수정하기)

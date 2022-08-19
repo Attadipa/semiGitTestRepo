@@ -24,7 +24,7 @@ public class NoticeDeleteController extends HttpServlet {
 		if(result == 1) {
 			//공지사항 삭제 성공
 			req.getSession().setAttribute("alertMsg", "정말 삭제하시겠습니까?");
-			resp.sendRedirect("/semiTestPrj/notice/list");
+			resp.sendRedirect("/semiTestPrj/notice/list?p=1");
 			
 		} else {
 			req.setAttribute("errorMsg", "삭제 실패하였습니다. 다시 시도해주세요.");
