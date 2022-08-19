@@ -56,4 +56,43 @@ public class FaqDao {
 		return list;
 	}
 
+	public List<FaqVo> typeList(String type, Connection conn) {
+		
+		String sql = "SELECT FAQ_NO, TITLE, CONTENT, FAQ_TYPE FROM FAQ WHERE FAQ_TYPE = ? ORDER BY FAQ_NO";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<FaqVo> voList = new ArrayList<FaqVo>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, type);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String faqNo = rs.getString("FAQ_NO");
+				String title =  rs.getString("TITLE");
+				String content = rs.getString("CONTENT");
+				String faqType = rs.getString("FAQ_TYPE");
+				
+				FaqVo vo = new FaqVo();
+				vo.setNo(faqNo);
+				vo.setTitle(title);
+				vo.setContent(content);
+				vo.setFaqType(faqType);
+				
+				voList.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return voList;
+	}
+
 }

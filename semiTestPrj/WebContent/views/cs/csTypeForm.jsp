@@ -49,16 +49,18 @@
 	    
 	    <hr>
 	
-	    <button id="faq-write">FAQ 작성</button>
+	<c:if test="loginMember.id eq "admin"">
+	    <button id="faq-write">FAQ 작성</button>	
+	</c:if>
 	
 	    <table id="table-main" class="table">
-	    	<%for(int i = 0; i < voList.size(); i++) {%>
-	    		<tr>
-	    			<td id="hide-no"><%=voList.get(i).getNo()%></td>
-	    			<td><%=voList.get(i).getFaqType()%></td>
-	    			<td><%=voList.get(i).getTitle()%></td>
-	    		</tr>
-	    	<%}%>
+	    	<c:forEach var="vo" items="${voList}">
+		    	<tr>
+		    			<td id="hide-no">${vo.no}</td>
+		    			<td>${vo.faqType}</td>
+		    			<td>${vo.title}</td>
+		    	</tr>
+	    	</c:forEach>
 	    </table>
 
 

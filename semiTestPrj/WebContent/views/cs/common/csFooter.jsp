@@ -50,34 +50,34 @@
             <tbody>
                 <tr>
                     <td>
-                        <div id="cs-footer-box">
+                        <div id="cs-footer-box" onclick="location.href='/semiTestPrj/cs/type/t=거래&nbsp;관련'">
                             <div id="footer-content">거래 관련</div>
                         </div>
                     </td>
                     <td>
-                        <div id="cs-footer-box">
+                        <div id="cs-footer-box" onclick="location.href='/semiTestPrj/cs/type/t=계정&nbsp;관련'">
                             <div id="footer-content">계정 관련</div>
                         </div>
                     </td>
                     <td>
-                        <div id="cs-footer-box">
+                        <div id="cs-footer-box" onclick="location.href='/semiTestPrj/cs/type/t=행사&nbsp;관련'">
                             <div id="footer-content">행사 관련</div>
                         </div>
                     </td>
                     <td>
-                        <div id="cs-footer-box">
+                        <div id="cs-footer-box" onclick="location.href='/semiTestPrj/cs/type/t=광고&nbsp;관련'">
                             <div id="footer-content">광고 관련</div>
                         </div>
                     </td>
                     <td>
-                        <div id="cs-footer-box">
+                        <div id="cs-footer-box" onclick="location.href='/semiTestPrj/cs/type/t=건의&nbsp;및&nbsp;제안'">
                             <div id="footer-content">건의 및 제안</div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div id="cs-footer-box">
+                        <div id="cs-footer-box" onclick="location.href='/semiTestPrj/cs/type/t=기타'">
                             <div id="footer-content">기타</div>
                         </div>
                     </td>
