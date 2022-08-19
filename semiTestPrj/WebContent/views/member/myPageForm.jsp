@@ -4,7 +4,7 @@
 	pageEncoding="UTF-8"%>
 	
 <% 
-	String Mid = (String)session.getAttribute("memberMid");
+	String memberMid = (String)session.getAttribute("memberMid");
 	String memberPwd = (String)session.getAttribute("memberPwd");
 
 %>	

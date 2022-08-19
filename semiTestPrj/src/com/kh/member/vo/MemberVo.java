@@ -33,6 +33,7 @@ public class MemberVo {
 	public MemberVo(
 			String memberMid,
 			String memberPwd,
+			String memberPwd2,
 			String memberName,
 			String memberEmail,
 			String memberPhone,
@@ -40,6 +41,7 @@ public class MemberVo {
 			String memberZipcode) {
 		this.memberMid = memberMid;
 		this.memberPwd = memberPwd;
+		this.memberPwd = memberPwd2;
 		this.memberName = memberName;
 		this.memberEmail = memberEmail;
 		this.memberPhone = memberPhone;
@@ -54,6 +56,7 @@ public class MemberVo {
 	private int memberNo;
 	private String memberMid;
 	private String memberPwd;
+	private String memberPwd2;
 	private String memberName;
 	private String memberEmail;
 	private String memberPhone;
@@ -97,8 +100,17 @@ public class MemberVo {
 	public void setMemberPwd(String memberPwd) {
 		this.memberPwd = memberPwd;
 	}
+	
+
+	public String getMemberPwd2() {
+		return memberPwd2;
+	}
 
 
+	public void setMemberPwd2(String memberPwd2) {
+		this.memberPwd2 = memberPwd2;
+	}
+	
 
 	public String getMemberName() {
 		return memberName;
@@ -204,6 +216,9 @@ public class MemberVo {
 					+ ", memberZipcode=" + memberZipcode + ", memberAddress=" + memberAddress + ", memberEnrollDate="
 					+ memberEnrollDate + ", memberModifyDate=" + memberModifyDate + ", status=" + status + "]";
 		}
+
+
+
 
 
 

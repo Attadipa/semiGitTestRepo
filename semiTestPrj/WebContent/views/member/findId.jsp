@@ -8,8 +8,7 @@
   
 <script src ="../member/js/findinfo.js"></script>
 
- 	<link rel="shortcut icon" href="/semiTestPrj/views/common/resources/favicon.ico">
-    <link rel="icon" href="favicon.ico">
+
     
 <style type="text/css">
 	* {
@@ -238,8 +237,8 @@
 			<br>
 	</section>
 	<div class ="btnSearch">
-		<input type="button" name="enter" value="찾기"  onClick="idSearch1();">
-		<input type="button" name="cancle" value="취소" onClick="history.back();">
+		<input type="button" name="enter" value="찾기"  onclick="idSearch1();">
+		<input type="button" name="cancle" value="취소" onclick="history.back();">
  	</div>
  </form>
 </div>

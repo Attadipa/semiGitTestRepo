@@ -9,8 +9,8 @@
 </head>
 <body>
 <%		 
-	session.setAttribute("member_mid", "5235268");
-	response.sendRedirect("/semiTestPrj/index.jsp");
+	session.setAttribute("memberMid", "5235268");
+	response.sendRedirect("/semiTestPrj");
 %>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

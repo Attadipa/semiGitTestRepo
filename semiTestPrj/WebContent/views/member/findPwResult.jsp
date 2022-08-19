@@ -1,14 +1,14 @@
-<%@page import="com.kh.member.repository.MemberDao"%>
+<%-- <%@page import="com.kh.member.repository.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%
+<%
  	request.setCharacterEncoding("UTF-8");
     
     String memberMid = request.getParameter("MEMBER_MID");     
     String memberPhone = request.getParameter("MEMBER_PHONE");
      
 	MemberDao dao = new MemberDao();
- 	String memberPwd = dao.findPw(memberMid, memberPhone); //비밀번호를 디비에서 가져옴..실패시 널
+ 	String memberPwd = dao.findPw(memberMid, memberPhone);
  
 %>
 <!DOCTYPE html>
@@ -187,7 +187,7 @@
 
 	
 	
-  <form name="idsearch" method="post">
+  <form name="idSearch" method="post">
       
       <%if (memberPwd != null) {%>
       
@@ -226,4 +226,4 @@
    	<%@include file="/views/common/footer.jsp" %>
         </div>
 </body>
-</html>
+</html> --%>

@@ -1,4 +1,4 @@
-<%@page import="com.kh.member.repository.MemberDao"%>
+<%-- <%@page import="com.kh.member.repository.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%
@@ -179,7 +179,7 @@
 	<jsp:include page="/views/common/header.jsp"/>
 
 
-  <form name="idsearch" method="post">
+  <form name="idSearch" method="post">
       
       <% if (memberMid != null) {%>
       
@@ -191,7 +191,7 @@
 	      <h4>  입니다 </h4>
 	     </div>
 	     <div class = "found-login">
- 		    <input type="button" id="btnLogin" value="로그인" onClick = 'login()'/>
+ 		    <input type="button" id="btnLogin" value="로그인" onclick = "login();"/>
        	</div>
        </div>
       <%} else {%>
@@ -200,8 +200,8 @@
 	      <h4>  등록된 정보가 없습니다 </h4>  
 	     </div>
 	     <div class = "found-login">
- 		    <input type="button" id="btnback" value="다시 찾기" onClick="history.back()"/>
- 		    <input type="button" id="btnjoin" value="회원가입" onClick="joinIn()"/>
+ 		    <input type="button" id="btnback" value="다시 찾기" onclick="history.back()"/>
+ 		    <input type="button" id="btnjoin" value="회원가입" onclick="joinIn()"/>
        	</div>
        </div>
        
@@ -218,4 +218,4 @@
    	<%@include file="/views/common/footer.jsp" %>
         </div>
 </body>
-</html>
+</html> --%>

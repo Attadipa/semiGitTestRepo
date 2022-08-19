@@ -5,7 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>회원가입</title>
-<link rel="stylesheet" href="../member/css/join.css">
 
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 
@@ -289,11 +288,7 @@
 <body class="body">
 	<!-- header영역 -->
 	<jsp:include page="/views/common/header.jsp"/>
-<%
-String id = (String)session.getAttribute("member_mid");
-String member_pwd = (String)session.getAttribute("member_pwd");
 
-%>
 	<div class="div-container">
 
 		<section class="section-one">
@@ -309,30 +304,30 @@ String member_pwd = (String)session.getAttribute("member_pwd");
 		</section>
 
 		<section class="section-two">
-			<form class="frm-member" id="frm_member" onsubmit="return joinCheck(this)" action="/semiTestPrj/member/join"
-				name="userInfo" method="POST">
+			<form class="frm-member" id="frmMember" onsubmit="return joinCheck(this)" action="/semiTestPrj/member/join"
+				name="memberInfo" method="post">
 				<div class="frm-label">
-					<label for="reg-id">아이디</label> <span class="field-required"></span><br>
+					<label for="regId">아이디</label> <span class="field-required"></span><br>
 				</div>
 
 				<div class="frm-input-id">
-					<input type="text" name="frm_id" id="reg-id"
-						placeholder="영문자와 한글,숫자만을 입력(15자 이내)" maxlength="15" value="${param.frm_id }"> 
-					<input type="button" name="frm-check" id="id-Check" value="중복확인">
+					<input type="text" name="frmId" id="regId"
+						placeholder="영문자와 한글,숫자만을 입력(15자 이내)" maxlength="15" value="${param.frmId}"> 
+					<input type="button" name="frmCheck" id="idCheck" value="중복확인">
 				</div>
 				<div class="frm-label">
 					<label>비밀번호</label> 
 					<span class="field-required"></span>
 				</div>
 				<div class="frm-input-password">
-					<input type="password" name="frm_password" placeholder="숫자, 특문 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상">
+					<input type="password" name="frmPassword" placeholder="숫자, 특문 각 1회 이상, 영문은 2개 이상 사용하여 8자리 이상">
 				</div>
 
 				<div class="frm-label">
 					<label>비밀번호 재입력</label> <span class="field-required"></span>
 				</div>
 				<div class="frm-input-password">
-					<input type="password" name="re_frm_password"
+					<input type="password" name="re_frmPassword"
 						placeholder="비밀번호 재입력">
 				</div>
 
@@ -340,14 +335,14 @@ String member_pwd = (String)session.getAttribute("member_pwd");
 					<label>이름</label> <span class="field-required"></span>
 				</div>
 				<div class="frm-input-name">
-					<input type="text" name="frm_name" placeholder="성명을 입력해주세요.">
+					<input type="text" name="frmName" placeholder="성명을 입력해주세요.">
 				</div>
 
 				<div class="frm-label">
 					<label>이메일</label> <span class="field-required"></span>
 				</div>
 				<div class="frm-input-email">
-					<input type="text" name="frm_email" placeholder="example@khanbd.com">
+					<input type="text" name="frmEmail" placeholder="example@khanbd.com">
 				</div>
 
 
@@ -355,14 +350,11 @@ String member_pwd = (String)session.getAttribute("member_pwd");
 					<label>전화번호</label>
 				</div>
 				<div class="frm-input-phone">
-					<select name="phone_first">
+					<select name="phoneFirst">
 						<option selected>010</option>
-						<option>011</option>
-						<option>016</option>
 						<option>017</option>
-						<option>018</option>
 					</select> 
-					<input type="text" name="frm_phone" id="phoneNum"
+					<input type="text" name="frmPhone" id="phoneNum"
 						placeholder="0000-0000" maxlength="9">
 				</div>
 
@@ -400,7 +392,7 @@ String member_pwd = (String)session.getAttribute("member_pwd");
 				</div>
 
 				<div class="frm-submit">
-					<input type="submit"  name="frmSubmit" value="가입하기">
+					<input type="submit" name="frmSubmit" value="가입하기">
 				</div>
 			</form>
 		</section>
@@ -413,6 +405,7 @@ String member_pwd = (String)session.getAttribute("member_pwd");
 
 
 	<script>
+	
 	member();
 	phoneHypen();
 

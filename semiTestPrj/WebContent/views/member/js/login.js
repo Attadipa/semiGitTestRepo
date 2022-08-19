@@ -1,7 +1,3 @@
-/**
- * 
- */
-
 var logInOut = function(){
 
 	
@@ -10,8 +6,8 @@ var logInOut = function(){
 	
 	if(btnLogin != null){
 	btnLogin.onclick = function(){
-		var frm = document.form_log; //name가져옴
-		frm.action = '/SemiTestPrj/views/member/login.jsp';
+		var frm = document.formLog; //name가져옴
+		frm.action = '/semiTestPrj';
 		frm.submit();
 	}
 	}
