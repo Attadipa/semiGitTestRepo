@@ -74,7 +74,7 @@
                 transition: 0.2s;
                 cursor: pointer;
             }
-            .sidebar-list:hover>a{color: white; transition: 0.2s;}
+            .sidebar-list:hover>a{color: white !important; transition: 0.2s;}
 
             /*쇼핑하기 선택시 나올 리스트에 관한 CSS*/
             #shopping-list{

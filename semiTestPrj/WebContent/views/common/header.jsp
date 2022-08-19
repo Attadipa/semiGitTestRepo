@@ -107,10 +107,10 @@
     <header id="header" class="header">
             <hr class="header-hr">
             <div id="header-inner1" class="header">
-                <a href="/semiTestPrj/cs/search">고객센터</a>
+                <a href="${contextPath}/cs/search">고객센터</a>
                 <a href="">관심상품</a>
-                <a href="">마이페이지</a>
-                <a href="">로그인</a> <!-- 로그인시, 로그아웃으로 바뀌는 코드 작성 -->
+                <a href="${contextPath}/member/mypage">마이페이지</a>
+                <a href="${contextPath}/member/login">로그인</a> <!-- 로그인시, 로그아웃으로 바뀌는 코드 작성 -->
             </div>
             <hr class="header-hr">
             <div id="header-inner2" class="header">
@@ -121,10 +121,9 @@
                     <div class="input-group mb-3">
                         
                         <select id="form-select" class="form-select" name="keyword-option">
-                            <option value="total" >전체</option>
-                            <option value="title">글제목</option>
-                            <option value="writer">작성자</option>
-                            <option value="content">내용</option>
+                            <option value="TITLE">글제목</option>
+                            <option value="WRITER">작성자</option>
+                            <option value="EXPLAIN">내용</option>
                         </select>
                         <input type="text" class="form-control" name="keyword" placeholder="포켓몬빵은 어때요?">
                         <button class="btn btn-success" type="submit">검색</button>
