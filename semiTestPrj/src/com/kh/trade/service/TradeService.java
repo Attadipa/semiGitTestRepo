@@ -63,6 +63,23 @@ public class TradeService {
 		return result;
 	}
 
+	public int getCountForSearch(String keywords) {
+		int result = 0;
+		Connection conn = null;
+		
+		try {
+			conn = getConnection();
+			result = dao.getCountForSearch(conn, keywords);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+		}
+		
+		
+		return result;
+	}
+
 	
 
 }

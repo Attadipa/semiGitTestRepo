@@ -83,7 +83,7 @@
                 list-style: none;
                 padding-left: 0;
                 margin-left: 150px;
-                margin-top: -400px;
+                margin-top: -250px;
             }
             #shopping-list li{
                 height: 50px;
@@ -121,7 +121,7 @@
         <div id="sidebar">
             <div class="sidebar-list" id="shopping">쇼핑하기</div>
             <div class="sidebar-list"><a href="${contextPath}/notice/list?p=1">공지사항</a></div>
-            <div class="sidebar-list"><a href="${contextPath}/community/list?p=1"></a></div>
+            <div class="sidebar-list"><a href="${contextPath}/community/list?p=1">커뮤니티</a></div>
             <div class="sidebar-list">판매자센터</div>
             <div class="sidebar-list"><a href="${contextPath}/cs/search">고객센터</a></div>
             <ul id="shopping-list">

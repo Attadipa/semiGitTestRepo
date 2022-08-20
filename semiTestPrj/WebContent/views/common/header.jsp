@@ -123,8 +123,8 @@
                     <img src="/semiTestPrj/views/common/resources/anbdpng.png" alt="아나바다로고">
                 </a>
                 <form id="search" action="<%= contextPath %>/search" method="get">
+                	<input type="hidden" name="p" value="1">
                     <div class="input-group mb-3">
-                        
                         <select id="form-select" class="form-select" name="keyword-option">
                             <option value="TITLE">글제목</option>
                             <option value="WRITER">작성자</option>
