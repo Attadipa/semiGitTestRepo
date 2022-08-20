@@ -1,6 +1,8 @@
+<%@page import="com.kh.cs.vo.FaqVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+    
+<% FaqVo vo = (FaqVo)request.getAttribute("vo"); %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -8,17 +10,16 @@
     <title>FAQ 상세확인</title>
     <style>
         .cs-detail-outer{
-            color: darkgreen;
+            color: black;
             width: 90%;
-            height: 500px;
+            height: auto;
             margin: auto;
             padding-top: 50px;
         }
         
         #table-cs-detail{
         	font-size: 20px;
-            border: 1px solid green;
-            background-image: linear-gradient(to right, rgb(86, 228, 105), white);
+            border: 2px solid green;
         }
     </style>
 </head>
@@ -30,27 +31,23 @@
     <%@ include file="/views/cs/common/csHeader.jsp"%>
 
         
-        <br>
+        <br><br><br>
 
         <table id="table-cs-detail" class="table-bordered">
             <tr>
                 <th width="100px">제목</th>
-                <td colspan="3" width="1200px">판매 금지 물품은 어떤 것이 있나요?</td>
+                <td colspan="3" width="1200px">${vo.title}</td>
             </tr>
             <tr>
-                <th>작성자</th>
-                <td>admin</td>
+                <th>분류</th>
+                <td>${vo.faqType}</td>
                 <th>작성일</th>
-                <td>20220809</td>
+                <td>${vo.enrollDate}</td>
             </tr>
             <tr>
                 <th>내용</th>
                 <td colspan="3">
-                    <pre style="height: auto;">
-가품, 이미테이션
-주류
-경유 등
-                    </pre>
+                    <textarea rows="15" style="width: 100%; border: 0px; resize: none; background-color: white;" readonly disabled>${vo.content}</textarea>
                 </td>
             </tr>
 
@@ -59,15 +56,18 @@
         <br><br>
 
         <div>
-            <a href="/views/notice/list" class="btn btn-sm btn-success">목록이동</a>
+            <a href="javascript:history.back()" class="btn btn-sm btn-success">뒤로가기</a>
 
             <!-- 현재 로그인한 사용자가 관리자일 경우 -->
-            <a href="" class="btn btn-sm btn-success">수정하기</a>
-            <a href="/views/notice/delete?num=3" class="btn btn-sm btn-success">삭제하기</a>
+            <a href="${contextPath}/cs/edit?num=${vo.no}" class="btn btn-sm btn-success">수정하기</a>
+            <a href="${contextPath}/cs/delete?num=${vo.no}" class="btn btn-sm btn-success">삭제하기</a>
         </div>
+       	<br><br>
 
         
     </div>
+    
+    <%@ include file="/views/cs/common/oneByOne.jsp"%>
 
 
 </body>

@@ -28,7 +28,7 @@ public class ClickFaqTypeController extends HttpServlet{
 			case "id": type = "계정 관련"; break;
 			case "event": type = "행사 관련"; break;
 			case "ads": type = "광고 관련"; break;
-			case "suggest": type = "건의 및 제안"; break;
+			case "rule": type = "운영 정책"; break;
 			case "etc": type = "기타"; break;
 		}
 		

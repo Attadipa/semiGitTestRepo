@@ -49,8 +49,6 @@
 	    
 	    <hr>
 	
-	    <button id="faq-write">FAQ 작성</button>	
-	
 	    <table id="table-main" class="table">
 	    	<c:forEach var="vo" items="${voList}">
 		    	<tr>
@@ -76,7 +74,7 @@
 			});
 		})
 	</script>
-
+	
 	<%@ include file="/views/cs/common/oneByOne.jsp"%>
 
 </body>

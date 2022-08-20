@@ -50,34 +50,34 @@
             <tbody>
                 <tr>
                     <td>
-                        <div id="cs-footer-box" onclick="location.href='/semiTestPrj/cs/type?t=trade'">
+                        <div id="cs-footer-box" onclick="location.href='${contextPath}/cs/type?t=trade'">
                             <div id="footer-content">거래 관련</div>
                         </div>
                     </td>
                     <td>
-                        <div id="cs-footer-box" onclick="location.href='/semiTestPrj/cs/type?t=id'">
+                        <div id="cs-footer-box" onclick="location.href='${contextPath}/cs/type?t=id'">
                             <div id="footer-content">계정 관련</div>
                         </div>
                     </td>
                     <td>
-                        <div id="cs-footer-box" onclick="location.href='/semiTestPrj/cs/type?t=event'">
+                        <div id="cs-footer-box" onclick="location.href='${contextPath}/cs/type?t=event'">
                             <div id="footer-content">행사 관련</div>
                         </div>
                     </td>
                     <td>
-                        <div id="cs-footer-box" onclick="location.href='/semiTestPrj/cs/type?t=ads'">
+                        <div id="cs-footer-box" onclick="location.href='${contextPath}/cs/type?t=ads'">
                             <div id="footer-content">광고 관련</div>
                         </div>
                     </td>
                     <td>
-                        <div id="cs-footer-box" onclick="location.href='/semiTestPrj/cs/type?t=suggest'">
-                            <div id="footer-content">건의 및 제안</div>
+                        <div id="cs-footer-box" onclick="location.href='${contextPath}/cs/type?t=rule'">
+                            <div id="footer-content">운영 정책</div>
                         </div>
                     </td>
                 </tr>
                 <tr>
                     <td>
-                        <div id="cs-footer-box" onclick="location.href='/semiTestPrj/cs/type?t=etc'">
+                        <div id="cs-footer-box" onclick="location.href='${contextPath}/cs/type?t=etc'">
                             <div id="footer-content">기타</div>
                         </div>
                     </td>

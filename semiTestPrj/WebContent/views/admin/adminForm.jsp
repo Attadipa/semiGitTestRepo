@@ -91,7 +91,8 @@
 				</table>
 			</div>
 			<div class="tab-pane fade" id="admin-cs" role="tabpanel" aria-labelledby="admin-cs-list">
-				<h3 id="bold-font" align="center";>FAQ 등록</h3>
+				<br>
+				<h3 id="bold-font" align="center"; style="color:green;">FAQ 등록</h3>
 				<%@ include file="/views/admin/faqInsertForm.jsp"%>
 			</div>
 			<div class="tab-pane fade" id="admin-event" role="tabpanel" aria-labelledby="admin-event-list">
