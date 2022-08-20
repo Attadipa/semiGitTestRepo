@@ -118,17 +118,16 @@
        
         <div class="detail-header">
 
-            <div>
+           <%--  <div>
                 <button class="btn btn-success" onclick="location.href='/semiTestPrj/notice/insert'">✍글쓰기</button>
                 <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/edit?num=<%=vo.getNo()%>'">수정</button>
                 <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/delete?num=<%=vo.getNo()%>'">삭제</button>
                 <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/list?p=1'" >글목록</button>
-            </div> 
+            </div> --%> 
 
-            	<%-- <%if(loginMember != null && vo.getWriter().equals(loginMember.getMemberNo())){ %>
-                 현재 로그인한 사용자가 해당 글을 쓴 본인일 경우
+            	<%if(loginMember != null && vo.getWriter().equals(loginMember.getMemberName())){ %>
+                 
                 <div>
-                    <button class="btn btn-success" onclick="location.href='/semiTestPrj/notice/insert'">✍글쓰기</button>
                     <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/edit?num=<%=vo.getNo()%>'">수정</button>
                     <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/delete?num=<%=vo.getNo()%>'">삭제</button>
                     <button class="btn btn-light" onclick="history.go(-1)">글목록</button>
@@ -137,7 +136,7 @@
                 <div>
                     <button class="btn btn-light" onclick="history.go(-1)">글목록</button>
                 </div>
-                <%} %> --%> 
+                <%} %> 
 
 
             <table id="table-main">
@@ -219,7 +218,7 @@
         </div>
         
         <div class="list-top" style=" margin-left: 80%;">
-             <input type="button" class="btn btn-light" value="글목록" onclick="location.href='/semiTestPrj/notice/list'">
+             <input type="button" class="btn btn-light" value="글목록" onclick="location.href='/semiTestPrj/notice/list?p=1'">
              <input type="button" class="btn btn-light" value="TOP" onclick="window.scrollTo(0,0);">
         </div>
        
