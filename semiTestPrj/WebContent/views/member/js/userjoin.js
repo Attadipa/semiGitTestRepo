@@ -33,7 +33,7 @@
              var memberInfo = document.memberInfo;
              var userId =  memberInfo.frmId.value;
              console.log(userId);
-             memberInfo.action = "/semiTestPrj/views/member/idCheckForm";
+             memberInfo.action = "/semiTestPrj/member/idCheck";
              memberInfo.method="POST";
              memberInfo.submit();
          }

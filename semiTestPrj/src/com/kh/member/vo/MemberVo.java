@@ -10,9 +10,9 @@ public class MemberVo {
 	}
 	
 
-	public MemberVo(int memberNo, String memberMid, String memberPwd, String memberName, String memberEmail,
+	public MemberVo(String memberNo, String memberMid, String memberPwd, String memberName, String memberEmail,
 			String memberPhone, String memberAddress, String memberZipcode, Timestamp memberEnrollDate,
-			Timestamp memberModifyDate, String status) {
+			Timestamp memberModifyDate, String status, String memberGrade) {
 	
 		this.memberNo = memberNo;
 		this.memberMid = memberMid;
@@ -25,6 +25,7 @@ public class MemberVo {
 		this.memberEnrollDate = memberEnrollDate;
 		this.memberModifyDate = memberModifyDate;
 		this.status = status;
+		this.memberGrade = memberGrade;
 	}
 
 
@@ -53,7 +54,7 @@ public class MemberVo {
 
 
 	//field
-	private int memberNo;
+	private String memberNo;
 	private String memberMid;
 	private String memberPwd;
 	private String memberPwd2;
@@ -65,15 +66,16 @@ public class MemberVo {
 	private Timestamp memberEnrollDate;
 	private Timestamp memberModifyDate;
 	private String status;
+	private String memberGrade;
 	
 	//getter / setter
-	public int getMemberNo() {
+	public String getMemberNo() {
 		return memberNo;
 	}
 
 
 
-	public void setMemberNo(int memberNo) {
+	public void setMemberNo(String memberNo) {
 		this.memberNo = memberNo;
 	}
 
@@ -207,20 +209,28 @@ public class MemberVo {
 		this.status = status;
 	}
 
+	
+	
+	public String getMemberGrade() {
+		return memberGrade;
+	}
+
+
+	public void setMemberGrade(String memberGrade) {
+		this.memberGrade = memberGrade;
+	}
+
 
 	//toString
-		@Override
-		public String toString() {
-			return "MemberVo [memberNo=" + memberNo + ", memberMid=" + memberMid + ", memberPwd=" + memberPwd
-					+ ", memberName=" + memberName + ", memberEmail=" + memberEmail + ", memberPhone=" + memberPhone
-					+ ", memberZipcode=" + memberZipcode + ", memberAddress=" + memberAddress + ", memberEnrollDate="
-					+ memberEnrollDate + ", memberModifyDate=" + memberModifyDate + ", status=" + status + "]";
-		}
-
-
-
-
-
+	@Override
+	public String toString() {
+		return "MemberVo [memberNo=" + memberNo + ", memberMid=" + memberMid + ", memberPwd=" + memberPwd
+				+ ", memberPwd2=" + memberPwd2 + ", memberName=" + memberName + ", memberEmail=" + memberEmail
+				+ ", memberPhone=" + memberPhone + ", memberAddress=" + memberAddress + ", memberZipcode="
+				+ memberZipcode + ", memberEnrollDate=" + memberEnrollDate + ", memberModifyDate=" + memberModifyDate
+				+ ", status=" + status + ", memberGrade=" + memberGrade + "]";
+	}
+	
 
 	
 	

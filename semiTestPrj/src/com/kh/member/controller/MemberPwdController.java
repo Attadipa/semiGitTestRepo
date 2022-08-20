@@ -20,7 +20,7 @@ public class MemberPwdController extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		
 		//data 꺼내기 (클라이언트가 보낸)
-		String memberMid = req.getParameter("memberId");
+		String memberMid = req.getParameter("memberMId");
 		String memberPwd = req.getParameter("memberPwd");
 		String memberPwdNew = req.getParameter("memberPwdNew");
 		String memberPwdNew2 = req.getParameter("memberPwdNew2");
@@ -35,7 +35,7 @@ public class MemberPwdController extends HttpServlet{
 			//성공
 			//마이페이지
 			req.getSession().setAttribute("alertMsg", "비밀번호 변경 성공");
-			resp.sendRedirect("/semiTestPrj/member/myPage");
+			resp.sendRedirect("/semiTestPrj/member/mypage");
 		}else {
 			//실패
 			//에러메세지

@@ -68,7 +68,7 @@ public class MemberDao {
 			
 			//rs에서 데이터 거내서 객체로 만들기
 			if(rs.next()) {
-				int memberNo = rs.getInt("MEMBER_NO");
+				String memberNo = rs.getString("MEMBER_NO");
 				String memberMid = rs.getString("MEMBER_MID");
 				String memberName = rs.getString("MEMBER_NAME");
 				String memberPhone = rs.getString("MEMBER_PHONE");
@@ -124,7 +124,7 @@ public class MemberDao {
 			pstmt.setString(3, vo.getMemberPhone());
 			pstmt.setString(4, vo.getMemberAddress());
 			pstmt.setString(5, vo.getMemberZipcode());
-			pstmt.setInt(6, vo.getMemberNo());
+			pstmt.setString(6, vo.getMemberNo());
 			
 			//SQL 실행 및 결과 저장
 			result = pstmt.executeUpdate();
@@ -143,7 +143,7 @@ public class MemberDao {
 }//회원 정보 수정
 	
 	//회원 정보 조회 (회원번호)
-	public MemberVo selectOneByNo(Connection conn, int num) {
+	public MemberVo selectOneByNo(Connection conn, String num) {
 		//connection 준비
 		
 		//SQL 준비
@@ -156,33 +156,35 @@ public class MemberDao {
 		//SQL 객체에 담기 및 쿼리 완성
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, num);
+			pstmt.setString(1, num);
 			
 			//SQL 실행 및 결과 저장
 			rs = pstmt.executeQuery();
 			
 			//ResultSet -> 자바객체 (MemberVo)
 			if(rs.next()) {
-				int no = rs.getInt("MEMBER_NO");
-				String mid = rs.getString("MEMBER_MID");
-				String name = rs.getString("MEMBER_NAME");
-				String phone = rs.getString("MEMBER_PHONE");
-				String email = rs.getString("MEMBER_EMAIL");
-				String address = rs.getString("MEMBER_ADDRESS");
-				String zipcode = rs.getString("MEMBER_ZIPCODE");
-				Timestamp enrollDate = rs.getTimestamp("ENROLL_DATE");
-				Timestamp modifyDate = rs.getTimestamp("MODIFY_DATE");
+				String memberNo = rs.getString("MEMBER_NO");
+				String memberMid = rs.getString("MEMBER_MID");
+				String memberName = rs.getString("MEMBER_NAME");
+				String memberPhone = rs.getString("MEMBER_PHONE");
+				String memberEmail = rs.getString("MEMBER_EMAIL");
+				String memberAddress = rs.getString("MEMBER_ADDRESS");
+				String memberZipcode = rs.getString("MEMBER_ZIPCODE");
+				Timestamp memberEnrollDate = rs.getTimestamp("ENROLL_DATE");
+				Timestamp memberModifyDate = rs.getTimestamp("MODIFY_DATE");
+				String memberGrade = rs.getString("MEMBER_GRADE");
 				
 				vo = new MemberVo();
-				vo.setMemberNo(no);
-				vo.setMemberMid(mid);
-				vo.setMemberName(name);
-				vo.setMemberPhone(phone);
-				vo.setMemberEmail(email);
-				vo.setMemberAddress(address);
-				vo.setMemberZipcode(zipcode);
-				vo.setMemberEnrollDate(enrollDate);
-				vo.setMemberModifyDate(modifyDate);
+				vo.setMemberNo(memberNo);
+				vo.setMemberMid(memberMid);
+				vo.setMemberName(memberName);
+				vo.setMemberPhone(memberPhone);
+				vo.setMemberEmail(memberEmail);
+				vo.setMemberAddress(memberAddress);
+				vo.setMemberZipcode(memberZipcode);
+				vo.setMemberEnrollDate(memberEnrollDate);
+				vo.setMemberModifyDate(memberModifyDate);
+				vo.setMemberGrade(memberGrade);
 			}
 			
 		} catch (SQLException e) {
@@ -205,7 +207,7 @@ public class MemberDao {
 		//SQL 준비
 		String sql = "SELECT MEMBER_MID FROM MEMBER WHERE MEMBER_NAME=? AND MEMBER_PHONE? ";
 		
-		String mid = null;
+		String memberMid = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -217,7 +219,7 @@ public class MemberDao {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				mid = rs.getString("MEMBER_MID");
+				memberMid = rs.getString("MEMBER_MID");
 			}
 				
 		} catch (Exception e) {
@@ -229,7 +231,7 @@ public class MemberDao {
 		}
 		
 		//실행 결과 리턴
-		return mid;
+		return memberMid;
 
 }//아이디 찾기 (이름 + 폰번호)
 	
@@ -240,7 +242,7 @@ public class MemberDao {
 		//SQL 준비
 		String sql = "SELECT MEMBER_PWD FROM MEMBER WHERE MEMBER_MID=? AND MEMBER_PHONE=?";
 		
-		String pwd = null;
+		String MemberPwd = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -252,7 +254,7 @@ public class MemberDao {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				pwd = rs.getString("MEMBER_MID");
+				MemberPwd = rs.getString("MEMBER_MID");
 			}
 				
 		} catch (Exception e) {
@@ -264,9 +266,10 @@ public class MemberDao {
 		}
 		
 		//실행 결과 리턴
-		return pwd;
+		return MemberPwd;
 
 }//비밀번호 찾기 (아이디 + 폰번호)
+	
 	
 	//비밀번호 변경
 	public int changePw(Connection conn, String memberMid, String memberPwd, String memberPwdNew) {
@@ -297,6 +300,96 @@ public class MemberDao {
 		return result;
 	}
 	
-	
+	//회원 등급 불러오기
+	public MemberVo selectGrade(Connection conn, String memberGrade) {
+		//connection 준비
+		
+		//SQL 준비
+		String sql = "SELECT * FROM MEMBER WHERE MEMBER_GRADE = ? AND STATUS ='N'";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MemberVo vo = null;
+		
+		//SQL 객체에 담기 및 쿼리 완성
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberGrade);
+			
+			//SQL 실행 및 결과 저장
+			rs = pstmt.executeQuery();
+			
+			//ResultSet -> 자바객체 (MemberVo)
+			if(rs.next()) {
+				String memberNo = rs.getString("MEMBER_NO");
+				String memberMid = rs.getString("MEMBER_MID");
+				String memberName = rs.getString("MEMBER_NAME");
+				String memberPhone = rs.getString("MEMBER_PHONE");
+				String memberEmail = rs.getString("MEMBER_EMAIL");
+				String memberAddress = rs.getString("MEMBER_ADDRESS");
+				String memberZipcode = rs.getString("MEMBER_ZIPCODE");
+				Timestamp memberEnrollDate = rs.getTimestamp("ENROLL_DATE");
+				Timestamp memberModifyDate = rs.getTimestamp("MODIFY_DATE");
+				
+				vo = new MemberVo();
+				vo.setMemberNo(memberNo);
+				vo.setMemberMid(memberMid);
+				vo.setMemberName(memberName);
+				vo.setMemberPhone(memberPhone);
+				vo.setMemberEmail(memberEmail);
+				vo.setMemberAddress(memberAddress);
+				vo.setMemberZipcode(memberZipcode);
+				vo.setMemberEnrollDate(memberEnrollDate);
+				vo.setMemberModifyDate(memberModifyDate);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			//자원 반납
+			close(pstmt);
+			close(rs);
+		}
+		
+		//SQL 실행결과(자바객체) 리턴
+		return vo;
+		
+}//회원 정보 조회 (회원번호)
+
+	//아이디 중복체크
+	public int idCheck(Connection conn, String memberMid) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int result = -1; //오류발생
+		
+		//SQL 준비
+		String sql = "SELECT MEMBER_MID FROM MEMBER WHERE MEMBER_MID=?";
+		System.out.println("오류");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberMid);
+			
+			//SQL 결과 저장
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				//중복
+				result = 1;
+				System.out.println("중복된 아이디 입니다");
+			}else {
+				//존재하지 않을경우(사용가능)
+				result = 0;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 }//class
+

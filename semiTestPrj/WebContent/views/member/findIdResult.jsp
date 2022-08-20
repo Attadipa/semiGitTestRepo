@@ -176,7 +176,7 @@
 <body>
 
 		<!-- header영역 -->
-	<jsp:include page="/views/common/header.jsp"/>
+	<%@include file="/views/common/header.jsp" %>
 
 
   <form name="idSearch" method="post">
