@@ -1,12 +1,17 @@
+<%@page import="com.kh.member.vo.MemberVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	MemberVo loginMember = (MemberVo)session.getAttribute("loginMember"); 
+	
+%>
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<!-- <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script> -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js" type="text/javascript"></script>
 
@@ -31,18 +36,14 @@
         padding-left: 10px;
         height: 50px;
     }
-    input[type=radio]{
-        background-color: blue;
-
-    }
     #pay-method-container{
         width: 100%;
-        height: 200px;
+        height: 220px;
         margin: 0 auto;
     }
     #pay-method-container td{
         width: 30px;
-        height: 50px;
+        height: 50%;
     }
     input{
         cursor: pointer;
@@ -52,12 +53,12 @@
         height:20px;
     }
     input[type=radio]{
-        display: none;
+        display:none;
     }
     input[type=radio]+label{
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        display:flex;
+        justify-content: center ;
+        align-items: flex-end;
         cursor: pointer;
         width: 100%;
         height: 100%;
@@ -65,14 +66,16 @@
         line-height: 50px;
         border: 3px solid rgb(194, 194, 194);
         box-sizing: border-box;
-        color: grey;
+        color: rgb(77, 77, 77);
         font-size: 20px;
+        font-weight: bold;
     }
+
     input[type=radio]:checked+label{
         border: 3px solid rgb(222, 0, 0);
         box-sizing: border-box;
     }
-    input[type=submit]{
+    #submit-btn{
         width: 100%;
         height: 50px;
         border-radius: 10px;
@@ -80,6 +83,7 @@
         background-color: rgb(222, 0, 0);
         color: white;
         font-size: 20px;
+        text-align: center;
     }
     #agree-box{
         height: 50px;
@@ -132,21 +136,35 @@
         width:100%;
         display: flex;
     }
+    #method1 + label{background-image: url("/semiTestPrj/views/pay/resources/card.png");}
+    #method2 + label{ background-image: url("/semiTestPrj/views/pay/resources/transfer.png");}
+    #method3 + label{background-image: url("/semiTestPrj/views/pay/resources/virtual_account.jpg");}
+
+    #method1 + label,#method2 + label,#method3 + label{
+        background-size: 33% ;
+        background-repeat: no-repeat;
+        background-position: 50% 5%;
+    }
+
+    #method4 + label{background-image: url("/semiTestPrj/views/pay/resources/kakaopay.jpg");background-size:cover;}
+    #method5 + label{background-image: url("/semiTestPrj/views/pay/resources/tosspay.png");background-size: cover;}
+    #method6 + label{background-image: url("/semiTestPrj/views/pay/resources/payco.jpg");background-size: cover;}
+
+
 
 </style>
 </head>
 <body>
     <div id="container">
-        <h1>결제</h1>
-        <hr>
         <form action="/semiTestPrj/pay/insert" method="post">
             <input type="hidden" name="memberNo" value="0">
             <input type="hidden" name="postNo" value="0">
             <input type="hidden" name="payAmount" value="0">
             <h2>직거래,안전결제로 구매합니다</h2>
+            <hr>
                 <table id="title-container">
                     <tr>
-                        <td rowspan="4"><img src="../ad/resources/gundam1.jpg" alt="게시글 대표사진"></td>
+                        <td rowspan="4"><img src="/semiTestPrj/views/ad/resources/gundam1.jpg" alt="게시글 썸네일"></td>
                         <td id="price">690,000원(가격)</td>
                     </tr>
                     <tr>
@@ -158,12 +176,12 @@
                     <input type="text" name="delivery-address"  id="delivery-address" placeholder="배송주소를 입력해주세요">
                     <input type="text" name="delivery-address-detail"  id="delivery-address-detail" placeholder="상세주소를 입력해주세요">
                     <select name="request-content" id="request-content">
-                        <option value="0">배송시 요청사항</option>
-                        <option value="1">문앞</option>
-                        <option value="2">직접 받고 부재 시 문앞</option>
-                        <option value="3">경비실</option>
-                        <option value="4">우편함</option>
-                        <option value="direct">직접입력</option>
+                        <option value="배송시 요청사항">배송시 요청사항</option>
+                        <option value="문앞">문앞</option>
+                        <option value="직접 받고 부재 시 문앞">직접 받고 부재 시 문앞</option>
+                        <option value="경비실">경비실</option>
+                        <option value="우편함">우편함</option>
+                        <option value="직접입력">직접입력</option>
                     </select>
                     <input type="text" name="request-content-direct" id="request-content-direct">
                 </div>
@@ -173,7 +191,7 @@
                 <table id="pay-method-container">
                     <tr>
                         <td>
-                            <input type="radio" id="method1" name="payMethod" value="card">
+                            <input type="radio" id="method1" name="payMethod" value="card" checked>
                             <label for="method1">카드</label>
                         </td>
                         <td>
@@ -188,15 +206,15 @@
                     <tr>
                         <td>
                             <input type="radio" id="method4" name="payMethod" value="kakaopay">
-                            <label for="method4">카카오페이</label>
+                            <label for="method4"></label>
                         </td>
                         <td>
                             <input type="radio" id="method5" name="payMethod" value="tosspay">
-                            <label for="method5">토스</label>
+                            <label for="method5"></label>
                         </td>
                         <td>
                             <input type="radio" id="method6" name="payMethod" value="payco">
-                            <label for="method6">페이코</label>
+                            <label for="method6"></label>
                         </td>
                     </tr>
                 </table>
@@ -206,66 +224,145 @@
                     개인정보 제 3자 제공동의와 결제대행 서비스 이용약관에 동의합니다.
                 </label>
             </div>
-            <input type="submit" value="결제하기" onclick="startPay()">
+            <input id="submit-btn" type="button" value="결제하기" onclick="startPay()">
             
         </form>
         
     </div>
-    <br><br>
+    <br>
+
     
-	<script>
-		const submitBtn = $('input[type=submit]');
-
-	</script>
-
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script>
+        //지도api연결
+
+        let popWidth = 600;
+        let popHeight = 500;
         window.onload = function(){
-            document.getElementById("delivery-address").addEventListener("click", function(){ //주소입력칸을 클릭하면
-                //카카오 지도 발생
+            document.getElementById("delivery-address").addEventListener("click", function(){ 
                 new daum.Postcode({
                     oncomplete: function(data) { //선택시 입력값 세팅
                         document.getElementById("delivery-address").value = data.address; // 주소 넣기
                         document.querySelector("input[name=delivery-address-detail]").focus(); //상세입력 포커싱
-                    }
-                }).open();
+                    },width:popWidth, height:popHeight
+                }).open( 
+                        {left: (window.screen.width / 2 )-(popWidth/2),
+                        top: (window.screen.height / 2)-(popHeight/2)}
+                       );
             });
         }
      </script>
      <script>
+        //배송시 요청사항 직접입력 선택시 입력창 추가
+       $('#request-content').click(function(){
+        if($('#request-content').val()=='직접입력'){
+            $('#request-content-direct').css('display','block');
+        }else{
+            $('#request-content-direct').css('display','none');
+        }
+       })
+     </script>
+     <script>
             var IMP = window.IMP; // 생략가능
             IMP.init('imp16407085'); // <-- 본인 가맹점 식별코드 삽입
-            
-
 
            	function startPay(){
-                const str = $("input:radio[name=method]:checked").val();
-                console.log(str);
-            	
-            	IMP.request_pay({
-                    pg : 'kcp',
-                    pay_method : 'card',
-                    merchant_uid: "order_no_0001", //상점에서 생성한 고유 주문번호
-                    name : '주문명:결제테스트',
-                    amount : 14000,
-                    buyer_email : 'iamport@siot.do',
-                    buyer_name : '구매자이름',
-                    buyer_tel : '010-1234-5678',
-                    buyer_addr : '서울특별시 강남구 삼성동',
-                    buyer_postcode : '123-456',
-                    m_redirect_url : '{모바일에서 결제 완료 후 리디렉션 될 URL}' // 예: https://www.my-service.com/payments/complete/mobile
-                }, function(rsp) { // callback 로직
-                	if(rsp.success){
-                		alert("결제성공");
-                		location
-                		console.log(rsp);
-                	}else{
-                		alert("결제취소됨");
-                		
-                		console.log(rsp);
-                	}
-                });
+                //배송지 선택
+                deliveryAddrVal = $('#delivery-address').val()+$('#delivery-address-detail').val()
+
+                //배송요청 사항 선택
+                let requestContentVal = $('#request-content').val();
+                if(requestContentVal=='직접입력'){
+                    requestContentVal = $('#request-content-direct').val();
+                }
+
+
+                //결제수단 선택
+                let payMethod = $("input:radio[name=payMethod]:checked").val();
+                let payMethodNo = 0;
+                let pgName = "";
+                if(payMethod=='card'){pgName='kcp'; payMethodNo = 0;} 
+                else if(payMethod=='trans'){pgName='kcp'; payMethodNo = 1;}
+                else if(payMethod=='vbank'){pgName='kcp'; payMethodNo = 2;}
+                else if(payMethod=='kakaopay'){pgName='kakaopay';payMethodNo = 3;} 
+                else if(payMethod=='tosspay'){pgName='tosspay'; payMethodNo = 4; payMethod='trans'}
+                else if(payMethod=='payco'){pgName='payco'; payMethodNo = 5;}
+
+                //서비스 이용약관 동의
+                if($('#agree-check').is(":checked")==false){
+                    alert("서비스 이용약관에 동의해주십시오")
+                } else {
+
+                    console.log(payMethod);
+                    IMP.request_pay({
+                        pg : pgName,
+                        pay_method : payMethod,
+                        // merchant_uid: "order_no_0002", //상점에서 생성한 고유 주문번호
+                        name : '주문명:결제테스트', //필수 파라미터
+                        amount : 10000,
+                        // buyer_email : 'iamport@siot.do',
+                        // buyer_name : '구매자이름',
+                        // buyer_tel : '010-1234-5678',
+                        // buyer_addr : '서울특별시 강남구 삼성동',
+                        // buyer_postcode : '123-456',
+                        // m_redirect_url : '{결제 완료 후 리디렉션 될 URL}' // 예: https://www.my-service.com/payments/complete/mobile
+                    }, function(rsp) { // callback 로직
+                        if(rsp.success){
+                            alert("결제성공");
+                            console.log(rsp);
+                            $.ajax({
+                                url : "/semiTestPrj/pay/insert",
+                                method : "POST",
+                                data : { 
+                                        payAmount : 123,
+                                        memberNo : 123,
+                                        payMethodNo : payMethodNo,
+                                        postNo : 123,
+                                        deliveryAddr : deliveryAddrVal,
+                                        requestContent : requestContentVal
+                                       },
+                                success : function(){
+                                    console.log("통신성공");
+                                    // console.log(x);
+                                    // const result = JSON.parse(x);
+                                    // console.log(result);
+                                },
+                                error : function(e){
+                                    console.log("통신실패")
+                                    console.log(e)
+                                }
+                            })
+                        }else{
+                            alert("결제취소됨");
+                            console.log(rsp);
+                            $.ajax({
+                                url : "/semiTestPrj/pay/insert",
+                                method : "POST",
+                                data : { 
+                                        payAmount : 123,
+                                        memberNo : 123,
+                                        payMethodNo : payMethodNo,
+                                        postNo : 123,
+                                        deliveryAddr : deliveryAddrVal,
+                                        requestContent : requestContentVal
+                                       },
+                                success : function(){
+                                    console.log("통신성공");
+                                    // console.log(x);
+                                    // const result = JSON.parse(x);
+                                    // console.log(result);
+                                },
+                                error : function(e){
+                                    console.log("통신실패")
+                                    console.log(e)
+                                }
+                            })
+                            
+                        }
+                    });
+                }   
             }   
+
 	</script>
 
 
