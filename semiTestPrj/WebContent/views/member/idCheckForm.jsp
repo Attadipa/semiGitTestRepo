@@ -302,8 +302,8 @@
 </style>
 </head>
 <%
-	String memberId = request.getParameter("frmId");
-	MemberVo vo = (MemberVo)request.getAttribute("list");
+	String memberMid = request.getParameter("frmId");
+	MemberVo vo = (MemberVo)request.getAttribute("MemberMid");
 
 %>
 <body class="body">
@@ -317,18 +317,18 @@
 				<div class="welcome-img">
 					
 					
-					<% if(memberId.equals("admin")) {%>
+					<% if(memberMid.equals("admin")) {%>
 					<img src="../member/img/important.png">
-					<h1 class="welcome-head-id"><%=memberId %></h1>
+					<h1 class="welcome-head-id"><%=memberMid %></h1>
 					<h1 class="welcome-head">접근권한이 없습니다.</h1>
 					
 					<%} else if(vo.getMemberMid() != null) {%>
 						<img src="../member/img/important.png">
-					<h1 class="welcome-head-id"><%=memberId %></h1>
+					<h1 class="welcome-head-id"><%=memberMid %></h1>
 					<h1 class="welcome-head">아이디가 중복입니다.</h1>
 					<%} else{ %>					
 					<img src="../member/img/smile.png">
-					<h1 class="welcome-head-id"><%=memberId %></h1>
+					<h1 class="welcome-head-id"><%=memberMid %></h1>
 					<h1 class="welcome-head">사용 가능한 아이디 입니다.</h1>
 					<% } %>
 					

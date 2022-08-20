@@ -41,7 +41,7 @@ public class MemberJoinController extends HttpServlet{
 		String memberName = req.getParameter("frmName");
 		String memberEmail = req.getParameter("frmEmail");
 		String memberPhone = req.getParameter("frmPhone");
-		String memberZipzode = req.getParameter("zipcode");
+		String memberZipcode = req.getParameter("zipcode");
 		String memberAddress = req.getParameter("address");
 		String[] phoneFirst = req.getParameterValues("phoneFirst");
 		
@@ -53,7 +53,7 @@ public class MemberJoinController extends HttpServlet{
 		vo.setMemberName(memberName);
 		vo.setMemberEmail(memberEmail);
 		vo.setMemberPhone(memberPhone);
-		vo.setMemberZipcode(memberZipzode);
+		vo.setMemberZipcode(memberZipcode);
 		vo.setMemberAddress(memberAddress);
 		
 		// 010, 017 유효검사

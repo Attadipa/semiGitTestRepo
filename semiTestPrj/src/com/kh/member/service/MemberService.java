@@ -8,6 +8,8 @@ import com.kh.member.repository.MemberDao;
 import com.kh.member.vo.MemberVo;
 
 public class MemberService {
+	
+	private final MemberDao dao = new MemberDao();
 
 	//회원가입
 	public int join(MemberVo vo) {
@@ -34,7 +36,7 @@ public class MemberService {
 		try {
 			conn = getConnection();
 			
-			result = new MemberDao().join(vo, conn);
+			result = dao.join(vo, conn);
 			
 			if(result == 1) {
 				commit(conn);
@@ -44,6 +46,7 @@ public class MemberService {
 		} catch (Exception e) {
 			rollback(conn);
 			e.printStackTrace();
+			
 		}finally {
 			close(conn);
 		}
@@ -64,10 +67,11 @@ public class MemberService {
 			conn = getConnection();
 			
 			//SQL 실행결과 리턴
-			loginMember = new MemberDao().login(conn, vo);
+			loginMember = dao.login(conn, vo);
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 		}
 		
 		return loginMember;
@@ -90,7 +94,7 @@ public class MemberService {
 		
 		try {
 			conn = getConnection();
-			result = new MemberDao().edit(conn, vo);
+			result = dao.edit(conn, vo);
 			
 			//트랜잭션 처리(commit || rollback)
 			if(result ==1) {
@@ -103,6 +107,7 @@ public class MemberService {
 		} catch (Exception e) {
 			rollback(conn);
 			e.printStackTrace();
+			
 		}finally {
 			close(conn);
 		}
@@ -114,16 +119,17 @@ public class MemberService {
 	
 
 	//회원정보 조회 (회원번호)
-	private MemberVo selectOneByNo(int memberNo) {
+	private MemberVo selectOneByNo(String memberNo) {
 	
 		Connection conn = null;
 		MemberVo vo = null;
 		
 		try {
 			conn = getConnection();
-			vo = new MemberDao().selectOneByNo(conn, memberNo);
+			vo = dao.selectOneByNo(conn, memberNo);
 		} catch (Exception e) {
 			e.printStackTrace();
+			
 		}finally {
 			close(conn);
 		}
@@ -153,7 +159,7 @@ public class MemberService {
 		try {
 			conn = getConnection();
 			//DAO 호출 (SQL 실행)
-			result = new MemberDao().changePw(conn, memberMid, memberPwd, memberPwdNew);
+			result = dao.changePw(conn, memberMid, memberPwd, memberPwdNew);
 			
 			if(result == 1) {
 				commit(conn);
@@ -162,6 +168,7 @@ public class MemberService {
 			}
 		} catch (Exception e) {
 			rollback(conn);
+			
 		}finally {
 			close(conn);
 		}
@@ -188,5 +195,53 @@ public class MemberService {
 	}//비밀번호 찾기 (아이디 + 폰번호)
 	
 	
+	//회원등급 조회
+	public MemberVo selectGrade(String memberGrade) {
 	
+		Connection conn = null;
+		MemberVo vo = null;
+		
+		try {
+			conn = getConnection();
+			vo = dao.selectGrade(conn, memberGrade);
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}finally {
+			close(conn);
+		}
+		
+		return vo;
+		
+	}//회원등급 조회
+
+
+	public int idCheck(String memberMid) {
+				
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = getConnection();
+			//DAO 호출 (SQL 실행)
+			result = dao.idCheck(conn, memberMid);
+			
+			if(result == 1) {
+				
+			}else {
+				
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}finally {
+			close(conn);
+		}
+		
+		return result;
+	}
+
+
+
+
 }//class

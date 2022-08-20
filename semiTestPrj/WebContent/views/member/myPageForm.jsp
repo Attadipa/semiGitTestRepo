@@ -350,19 +350,19 @@
 				</div>
 			</section>
 			<section class="section-two">
-				<form class="frm-member" id="frm_member" name="frm_member" action="" method="post">
+				<form class="frm-member" id="frmMember" name="frmMember" action="/semiTestPrj/member/mypage" method="post">
 					<div class="frm-label">
 						<label>아이디</label>
 					</div>
 					<div class="frm-input-id">
-						<input style="font-weight:bold" type="text" name="frm-id" readonly="readonly" value="${userInfo.getMemberMid() }">
+						<input style="font-weight:bold" type="text" name="frmId" readonly="readonly" value="${loginMember.getMemberMid() }">
 					</div>
 
 					<div class="frm-label">
 						<label>현재 비밀번호</label>
 					</div>
 					<div class="frm-input-password">
-						<input type="password" name="frm_password" placeholder="비밀번호 자리 8~20자">
+						<input type="password" name="frmPassword" placeholder="현재 비밀번호">
 					</div>
 						
 					<div class="frm-label">
@@ -370,7 +370,7 @@
 						
 					</div>
 					<div class="frm-input-password">
-						<input type="password" name="re_frm_password" placeholder="변경할 비밀번호" value="">
+						<input type="password" name="re_frmPassword" placeholder="변경 할 비밀번호" value="">
 						
 					</div>
 						
@@ -378,14 +378,14 @@
 						<label>이름</label>
 					</div>
 					<div class="frm-input-name">
-						<input style="font-weight:bold" type="text" name="frm-name" placeholder="성명을 입력해주세요." value="${userInfo.getMember_name() }">
+						<input style="font-weight:bold" type="text" name="frmName" placeholder="성명을 입력해주세요." value="${loginMember.getMemberName() }">
 					</div>
 					
 					<div class="frm-label">
 						<label>이메일</label>
 					</div>
 					<div class="frm-input-email">
-						<input style="font-weight:bold" type="text" name="frm-email" placeholder="example@gmail.com" value="${userInfo.getMember_email() }">
+						<input style="font-weight:bold" type="text" name="frmEmail" placeholder="example@gmail.com" value="${loginMember.getMemberEmail() }">
 					</div>
 					
 
@@ -397,16 +397,16 @@
 							<option selected >010</option>
 							<option>017</option>
 						</select>
-						<input style="font-weight:bold" type="text"  id="phoneNum" name="frm_phone" placeholder="0000-0000" maxlength="9" value="${userInfo.getMember_phone() }">
+						<input style="font-weight:bold" type="text"  id="phoneNum" name="frmPhone" placeholder="0000-0000" maxlength="9" value="${loginMember.getMemberPhone() }">
 					</div>
 
 					<div class="frm-label">
 						<label>주소</label>
 					</div>
 					<div class="frm-input-zipcode">
-						<input style="font-weight:bold" type="text" name="zipcode" placeholder="우편번호" value="${userInfo.getMember_zipcode() }">
+						<input style="font-weight:bold" type="text" name="zipcode" placeholder="우편번호" value="${loginMember.getMemberZipcode() }">
 						<input style="font-weight:bold" type="button" name="btnZipcode" id="btnFindZip" value="우편번호검색">
-						<input style="font-weight:bold" type="text" name="address" placeholder="상세주소" value="${userInfo.getMember_address() }">
+						<input style="font-weight:bold" type="text" name="address" placeholder="상세주소" value="${loginMember.getMemberAddress() }">
 					</div>
 					
 					<div class="frm-label">
