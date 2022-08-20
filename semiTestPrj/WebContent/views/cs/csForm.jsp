@@ -1,5 +1,11 @@
+<%@page import="com.kh.cs.vo.FaqVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%
+	List<FaqVo> voList = (List<FaqVo>)request.getAttribute("voList");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -75,69 +81,25 @@
 	            <tbody>
 	                <tr>
 	                    <div style="top: 30px;">
-	                        <td>
-	                            <div id="top-box">
-	                                <div id="freq-num">01</div>
-	                                <div id="freq-content">계정 도용 당했어요.</div>
-	                            </div>
-	                        </td>
-	                        <td>
-	                            <div id="top-box">
-	                                <div id="freq-num">02</div>
-	                                <div id="freq-content">사기 당했어요.</div>
-	                            </div>
-	                        </td>
-	                        <td>
-	                            <div id="top-box">
-	                                <div id="freq-num">03</div>
-	                                <div id="freq-content">FAQ_03</div>
-	                            </div>
-	                        </td>
-	                        <td>
-	                            <div id="top-box">
-	                                <div id="freq-num">04</div>
-	                                <div id="freq-content">FAQ_04</div>
-	                            </div>
-	                        </td>
-	                        <td>
-	                            <div id="top-box">
-	                                <div id="freq-num">05</div>
-	                                <div id="freq-content">FAQ_05</div>
-	                            </div>
-	                        </td>
+	                    	<c:forEach items="${voList}" var="vl" end="4">
+	                    		<td>
+	                    			<div id="top-box" onclick="location.href='${contextPath}/cs/detail?num=${vl.no}'">
+	                    				<div id="freq-num">${vl.no}</div>
+	                    				<div id="freq-content">${vl.title}</div>
+	                    			</div>
+	                    		</td>
+	                    	</c:forEach>
 	                    </div>
 	                </tr>
 	                <tr>
-	                    <td>
-	                        <div id="box">
-	                            <div id="freq-num">06</div>
-	                            <div id="freq-content">FAQ_06</div>
-	                        </div>
-	                    </td>
-	                    <td>
-	                        <div id="box">
-	                            <div id="freq-num">07</div>
-	                            <div id="freq-content">FAQ_07</div>
-	                        </div>
-	                    </td>
-	                    <td>
-	                        <div id="box">
-	                            <div id="freq-num">08</div>
-	                            <div id="freq-content">FAQ_08</div>
-	                        </div>
-	                    </td>
-	                    <td>
-	                        <div id="box">
-	                            <div id="freq-num">09</div>
-	                            <div id="freq-content">FAQ_09</div>
-	                        </div>
-	                    </td>
-	                    <td>
-	                        <div id="box">
-	                            <div id="freq-num">10</div>
-	                            <div id="freq-content">FAQ_10</div>
-	                        </div>
-	                    </td>
+	                	<c:forEach items="${voList}" var="vl" begin="5">
+	                		<td>
+	                			<div id="box" onclick="location.href='${contextPath}/cs/detail?num=${vl.no}'">
+	                				<div id="freq-num">${vl.no}</div>
+	                				<div id="freq-content">${vl.title}</div>
+	                			</div>
+	                		</td>
+	                	</c:forEach>
 	                </tr>
 	            </tbody>
 	        </table>
@@ -150,6 +112,7 @@
 	</div>
 	
 	<%@ include file="/views/cs/common/oneByOne.jsp"%>
+	
 
 </body>
 </html>
