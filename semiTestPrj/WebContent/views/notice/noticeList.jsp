@@ -150,6 +150,7 @@
     tbody tr:hover{
         background-color: whitesmoke;
     }
+    
 
 
 </style>
@@ -198,9 +199,9 @@
         <br>
         
         <!-- 수정 예정 jstl로 -->
-		<%-- <% if(loginMember != null && "admin".equals(loginMember.getId()) {%> --%>
-        <button name="writeBtn" id="writeBtn" class="btn btn-success" onclick="location.href='/semiTestPrj/notice/insert'">글쓰기</button>
-		<%-- <%} %> --%>
+		<% if(loginMember != null && "asdfg".equals(loginMember.getMemberMid())) {%>
+        <button name="writeBtn" id="writeBtn" class="btn btn-success" onclick="location.href='/semiTestPrj/notice/insert'">✍글쓰기</button>
+		<%} %> 
 		
 		
         <div id="page-outer">
