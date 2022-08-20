@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.common.PageVo;
 import com.kh.trade.service.TradeService;
 import com.kh.trade.vo.TradeVo;
 
@@ -18,7 +19,6 @@ public class TradeListController extends HttpServlet {
 	//거래 게시판 목록 보여주기
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
 		
 		
 		List<TradeVo> voList = new TradeService().selectList();

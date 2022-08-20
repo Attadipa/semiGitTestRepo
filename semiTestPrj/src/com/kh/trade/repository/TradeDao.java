@@ -99,4 +99,32 @@ public class TradeDao {
 		System.out.println(result);
 			return result;
 	}
+
+	public int getCountForSearch(Connection conn, String keywords) {
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT COUNT(NO) AS COUNT FROM TRADE WHERE STATUS = 'N' AND " + keywords;
+		
+		try {
+			//SQL을 객체에 담기 및 SQL 완성
+			pstmt = conn.prepareStatement(sql);
+			
+			//SQL 실행 및 결과 저장
+			rs = pstmt.executeQuery();
+			
+			//실행결과 -> 자바 데이터
+			if(rs.next()) {
+				count = rs.getInt("COUNT");
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return count;
+	}
 }

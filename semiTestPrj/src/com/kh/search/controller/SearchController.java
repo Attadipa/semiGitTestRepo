@@ -10,7 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.common.PageVo;
 import com.kh.search.service.SearchService;
+import com.kh.trade.service.TradeService;
 import com.kh.trade.vo.TradeVo;
 
 @WebServlet(urlPatterns = "/search")
@@ -22,10 +24,12 @@ public class SearchController extends HttpServlet{
 		
 		String keyword = req.getParameter("keyword");
 		String keywordOption = req.getParameter("keyword-option"); 
+		System.out.println(keyword + keywordOption);
 		
 		String[] keywordsArr = keyword.split(" ");
 		ArrayList keywordsList = new ArrayList<String>();
-		String keywords = null;
+		String keywords = "";
+		String queryKeyword = "";
 
 		if(keyword != "") {
 			
@@ -34,12 +38,46 @@ public class SearchController extends HttpServlet{
 				a = keywordOption +  " LIKE '%" + a + "%'";
 				keywordsList.add(a);
 			}
-			
 			//keyword-option 에 따른 sql where 구문 작성
 			keywords = String.join(" OR ", keywordsList);
-			System.out.println(keywords);
-			List<TradeVo> searchList = new SearchService().searchToKeywords(keywords);
-			req.setAttribute("seartList", searchList);
+			
+			String p = req.getParameter("p");
+			//페이징 처리
+			int listCount;		//현재 총 게시글 갯수
+			int currentPage;	//현재 페이지(==사용자가 요청한 페이지)
+			int pageLimit;		//페이지 하단에 보여질 페이지 버튼의 최대 갯수
+			int boardLimit;		//한 페이지 내 보여질 게시글 최대 갯수
+			int maxPage;		//가장 마지막 페이지 (==총 페이지 수)
+			int startPage;		//페이징바의 시작
+			int endPage;		//페이징바의 끝
+			
+			//listCount 값 구하기
+			listCount = new TradeService().getCountForSearch(keywords);
+			
+			currentPage = Integer.parseInt(p);
+			pageLimit = 10;
+			boardLimit = 10;
+			maxPage = (int) Math.ceil((double)listCount / boardLimit);
+			startPage = (currentPage - 1) / pageLimit * pageLimit + 1 ;
+			endPage = startPage + pageLimit - 1;
+			if(endPage>maxPage) endPage = maxPage;
+			
+
+			PageVo pageVo = new PageVo();
+			pageVo.setBoardLimit(boardLimit);
+			pageVo.setCurrentPage(currentPage);
+			pageVo.setEndPage(endPage);
+			pageVo.setListCount(listCount);
+			pageVo.setMaxPage(maxPage);
+			pageVo.setPageLimit(pageLimit);
+			pageVo.setStartPage(startPage);
+			
+			
+
+			List<TradeVo> searchList = new SearchService().searchToKeywords(keywords, pageVo);
+			
+			req.setAttribute("pageVo", pageVo);
+			req.setAttribute("searchList", searchList);
 			req.getRequestDispatcher("/views/search/searchList.jsp").forward(req, resp);
 			
 		} else {
