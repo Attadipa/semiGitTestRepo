@@ -1,5 +1,21 @@
+<%@page import="java.util.List"%>
+<%@page import="com.kh.common.PageVo"%>
+<%@page import="com.kh.community.vo.CommunityVo"%>
+<%@page import="com.kh.community.vo.TypeVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+     <%
+    	List<CommunityVo> voList = (List<CommunityVo>)request.getAttribute("voList");
+     	List<TypeVo> list = (List<TypeVo>)request.getAttribute("list");
+		PageVo pv = (PageVo)request.getAttribute("pv");
+     	String type = (String)request.getAttribute("type");
+     	
+		int currentPage = pv.getCurrentPage();
+		int startPage = pv.getStartPage();
+		int endPage = pv.getEndPage();
+		int maxPage = pv.getMaxPage();
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,7 +49,7 @@
     }
 
     #next-page{
-        margin-left: 30%;
+        margin-left: 26%;
         margin-top: 5%;
         padding-top: 10px;
         font-family: 'IBM Plex Sans KR', sans-serif;
@@ -67,7 +83,7 @@
         
     }
     
-    .page-outer{
+    #page-outer{
         background-color: whitesmoke;
         width: 100%;
         height: 180px;
@@ -147,81 +163,107 @@
         
     
         
-        <h1>커뮤니티</h1>
+       <h1>커뮤니티</h1>
         
         
-        <form action="semiTestPrj/community/selectBox" method="get">
+       <form action=""  method="get">
             <div class="category">
-                <select name="category-select" class="category-select">
-                    <option value="free">자유게시판</option>
-                    <option value="compliment">칭찬해요</option>
-                    <option value="caution">주의해요</option>
-                    <option value="chat">수다방</option>
+                <select name="type" class="category-select" >
+                   <!-- <option value="0" >전체</option>
+                    <option value="1" >자유게시판</option>
+                    <option value="2" >칭찬해요</option>
+                    <option value="3" >주의해요</option>
+                    <option value="4" >수다방</option> -->
+                    
+                    
+					
+                    <% for(TypeVo v : list){ %>
+                    <option value="<%=v.getTypeNo()%>" <%if(v.getTypeNo().equals(type)){out.print("selected");} %>><%=v.getTypeName()%></option>
+	               <%-- <option value="<%=v.getTypeNo()%>"><%=v.getTypeName()%></option> --%>
+                    <%} %> 
                 </select>
             </div>
         </form>
         <br><br>
-
+     
         <table>
-
             <thead>
                 <tr>
-                    <th></th>
+                <!-- 추후 타입 삭제 예정 -->
+                    <th>글번호</th>
+                    <th>타입</th>
                     <th>제목</th>
                     <th>작성자</th>
+                    <th>조회수</th>
                     <th>작성일</th>
-                    <th>조회</th>
                 </tr>
             </thead>
-
-
             <tbody>
-                <tr>
-                    <td>필독</td>
-                    <td class="title"><a href="comDetail.jsp">아나바다</a></td>
-                    <td class="writer"><a href="">남재현</a></td>
-                    <td>2022/08/03</td>
-                    <td>30</td>
-                </tr>
+	            <%for(int i = 0 ; i < voList.size(); i++){%>
+	                <tr>
+	                    <td><%=voList.get(i).getNo()%></td>
+	                    <td><%=voList.get(i).getType()%></td>
+	                    <td><%=voList.get(i).getTitle()%></td>
+	                    <td><%=voList.get(i).getWriter()%></td>
+	                    <td><%=voList.get(i).getCnt()%></td>
+	                    <td><%=voList.get(i).getEnrollDate()%></td>
+	                </tr>
+	            <%}%>
+                
             </tbody>
-            <br clear="both">
 
+            <br clear="both">
         </table>
 
         <br>
-
-        <button name="writeBtn" id="writeBtn" class="btn btn-success" onclick="location.href='comInsertForm.jsp'">글쓰기</button>
-        <!-- <a href="comInsertForm.jsp" id="writeBtn" class="btn btn-success">글쓰기</a> -->
-
-        <div id="page-outer">
+        
+		<% if(loginMember != null && "asdfg".equals(loginMember.getMemberMid())) {%>
+        <button name="writeBtn" id="writeBtn" class="btn btn-success" onclick="location.href='/semiTestPrj/community/insert'">글쓰기</button>
+		<%} %>
+		
+		
+		
+		<% if (type == null) {%>
+		 <div id="page-outer">
             <div id="next-page">
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
-                <span>5</span>
-                <span>6</span>
-                <span>7</span>
-                <span>8</span>
-                <span>9</span>
-                <span>10</span>
-                <span>|</span>
-                <span>다음 ></span>
-    
-                <!-- <button>1</button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>7</button>
-                <button>8</button>
-                <button>9</button>
-                <button>10</button>
-                <button>|</button>
-                <button>다음</button> -->
-            </div>
-
+	               <%if(currentPage != 1){ %>
+					<a class="btn btn-link" href="/semiTestPrj/community/list?p=<%=currentPage-1%>"> &lt; </a>
+				<%} %>
+				
+				<% for(int i = startPage; i <= endPage; ++i) {%>
+					<%if(i == currentPage){%>
+						<a class="btn btn-link"><%=i%></a>
+					<%} else {%>
+						<a class="btn btn-link" href="/semiTestPrj/community/list?p=<%=i%>"><%=i%></a>
+					<%} %>
+				<%} %>
+				
+				<%if(currentPage != maxPage){ %>
+					<a class="btn btn-link" href="/semiTestPrj/community/list?p=<%=currentPage+1%>"> &gt; </a>
+				<%} %>
+        	</div>
+       
+		<%} else {%>
+		
+		 <div id="page-outer">
+            <div id="next-page">
+	               <%if(currentPage != 1){ %>
+					<a class="btn btn-link" href="/semiTestPrj/community/list?p=<%=currentPage-1%>&type=<%=type%>"> &lt; </a>
+				<%} %>
+				
+				<% for(int i = startPage; i <= endPage; ++i) {%>
+					<%if(i == currentPage){%>
+						<a class="btn btn-link"><%=i%></a>
+					<%} else {%>
+						<a class="btn btn-link" href="/semiTestPrj/community/list?p=<%=i%>&type=<%=type%>"><%=i%></a>
+					<%} %>
+				<%} %>
+				
+				<%if(currentPage != maxPage){ %>
+					<a class="btn btn-link" href="/semiTestPrj/community/list?p=<%=currentPage+1%>&type=<%=type%>"> &gt; </a>
+				<%} %>
+        	</div>
+		<%} %>
             <br><hr><br>
 
            
@@ -253,7 +295,7 @@
     <%@include file="/views/common/footer.jsp" %>
     
     <!-- 서블릿 만든 후 수정예정 -->
-    <!-- <script>
+    <script>
         $(function(){
 			$('tbody>tr').click(function(){
 				//행 클릭되었을 때, 동작할 내용
@@ -262,11 +304,27 @@
 				const num = $(this).children().eq(0).text();
 				console.log(num);
 				//해당 번호로 요청 보내기
-				location.href='/semiTestPrj/notice/detail?num=' + num;
+				location.href='/semiTestPrj/community/detail?num=' + num;
 				
 			});
 		})
-    </script> -->
+    </script>
+    
+    <script>
+        $(".category-select").change(function(){
+        	
+        	const typeNum = $(this).val();
+            console.log(typeNum);
 
+            location.href="/semiTestPrj/community/list?p=" + <%=currentPage%>+ "&type=" + typeNum;
+
+            if(typeNum == 0){
+                // location.href='/semiTestPrj/community/list?p=1';
+                location.href='/semiTestPrj/community/list?p=1';
+            }
+        
+        })
+    </script> 
+   
 </body>
 </html>

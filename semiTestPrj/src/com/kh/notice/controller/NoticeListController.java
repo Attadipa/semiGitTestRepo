@@ -33,7 +33,6 @@ public class NoticeListController extends HttpServlet {
 				
 				
 				currentPage = Integer.parseInt(req.getParameter("p"));
-				System.out.println(currentPage);
 			
 				
 				pageLimit = 10;

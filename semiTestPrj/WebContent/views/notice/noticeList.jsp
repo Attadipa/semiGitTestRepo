@@ -221,7 +221,7 @@
 				<%if(currentPage != maxPage){ %>
 					<a class="btn btn-link" href="/semiTestPrj/notice/list?p=<%=currentPage+1%>"> &gt; </a>
 				<%} %>
-            </div>
+        		</div>
 
             <br><hr><br>
 
