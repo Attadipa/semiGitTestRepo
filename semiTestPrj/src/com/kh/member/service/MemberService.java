@@ -79,12 +79,12 @@ public class MemberService {
 	}//로그인
 	
 	
-	//회원 정보 수정
+	//회원 정보 수정(마이페이지)
 	public MemberVo edit(MemberVo vo) {
 		//비지니스 로직 (자바 || SQL)
-		if(vo.getMemberName().length() > 20) {
+		if(vo.getMemberName().length() > 10) {
 			//문제발생. 다음단계 진행 X
-			System.out.println("한글은 10글자, 영어는 20글자까지가능");
+			System.out.println("한글은 5글자, 영어는 10글자까지가능");
 			return null;
 		}
 		
@@ -140,13 +140,13 @@ public class MemberService {
 	
 	
 	//비밀번호 변경
-	public int changePw(String memberMid, String memberPwd, String memberPwdNew, String meberPwdNew2) {
+	public int changePwd(String memberMid, String memberPwd, String memberPwdNew) {
 		
 		//비지니스 로직
-		if(memberPwdNew.equals(meberPwdNew2) == false) {
-			System.out.println("신규 비밀번호가 일치하지 않음");
-			return -1;
-		}
+//		if(memberPwdNew.equals(meberPwdNew2) == false) {
+//			System.out.println("신규 비밀번호가 일치하지 않음");
+//			return -1;
+//		}
 		
 		if(memberPwdNew.length() < 8) {
 			System.out.println("비밀번호가 8자리 미만임");
@@ -159,7 +159,7 @@ public class MemberService {
 		try {
 			conn = getConnection();
 			//DAO 호출 (SQL 실행)
-			result = dao.changePw(conn, memberMid, memberPwd, memberPwdNew);
+			result = dao.changePwd(conn, memberMid, memberPwd, memberPwdNew);
 			
 			if(result == 1) {
 				commit(conn);
@@ -181,7 +181,19 @@ public class MemberService {
 	//아이디 찾기 (이름 + 폰번호)
 	public String findId(Connection conn, String memberName, String memberPhone) {
 		
-		return null;
+//		Connection conn = null;
+		String memberMid = null;
+		
+		try {
+			conn = getConnection();
+			memberMid = dao.findId(conn, memberName, memberPhone);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		
+		return memberMid;
 			
 		
 	}//아이디 찾기 (이름 + 폰번호
@@ -190,8 +202,19 @@ public class MemberService {
 	//비밀번호 찾기 (아이디 + 폰번호)
 	public String findPw(Connection conn, String memberMid, String memberPhone) {
 			
-		return null;
+//		Connection conn = null;
+		String memberPwd = null;
 		
+		try {
+			conn = getConnection();
+			memberPwd = dao.findPw(conn, memberMid, memberPhone);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		
+		return memberPwd;
 	}//비밀번호 찾기 (아이디 + 폰번호)
 	
 	

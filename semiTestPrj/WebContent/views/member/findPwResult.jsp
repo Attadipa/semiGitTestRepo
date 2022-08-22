@@ -1,4 +1,4 @@
-<%-- <%@page import="com.kh.member.repository.MemberDao"%>
+<%@page import="com.kh.member.repository.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -8,7 +8,7 @@
     String memberPhone = request.getParameter("MEMBER_PHONE");
      
 	MemberDao dao = new MemberDao();
- 	String memberPwd = dao.findPw(memberMid, memberPhone);
+ 	String memberPwd = dao.fifindPw(conn, memberMid, memberPhone);
  
 %>
 <!DOCTYPE html>
@@ -226,4 +226,4 @@
    	<%@include file="/views/common/footer.jsp" %>
         </div>
 </body>
-</html> --%>
+</html>

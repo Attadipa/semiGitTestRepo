@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,6 @@
 <script src="https://s3.ap-northeast-2.amazonaws.com/materials.spartacodingclub.kr/xmas/snow.js"></script>
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
-<script src="../member/js/userjoin.js"></script>
 
 <style>
 		* {
@@ -301,11 +301,7 @@
 	}
 </style>
 </head>
-<%
-	String memberMid = request.getParameter("frmId");
-	MemberVo vo = (MemberVo)request.getAttribute("MemberMid");
 
-%>
 <body class="body">
 	<!-- header영역 -->
 		<%@include file="/views/common/header.jsp" %>
@@ -317,38 +313,56 @@
 				<div class="welcome-img">
 					
 					
-					<% if(memberMid.equals("admin")) {%>
-					<img src="../member/img/important.png">
-					<h1 class="welcome-head-id"><%=memberMid %></h1>
-					<h1 class="welcome-head">접근권한이 없습니다.</h1>
-					
-					<%} else if(vo.getMemberMid() != null) {%>
-						<img src="../member/img/important.png">
-					<h1 class="welcome-head-id"><%=memberMid %></h1>
-					<h1 class="welcome-head">아이디가 중복입니다.</h1>
-					<%} else{ %>					
-					<img src="../member/img/smile.png">
-					<h1 class="welcome-head-id"><%=memberMid %></h1>
-					<h1 class="welcome-head">사용 가능한 아이디 입니다.</h1>
-					<% } %>
+	<h3>아이디 중복 확인</h3>
+		<form method="get" action="semiTestPrj/member/idCheck" name="frm">
+			<table>
+				<tr>
+					<td><label for="id">아이디</label></td>
+					<td><input type="text" name="frmId" id="id" value="${frmId }"></td>
+					<td><input type="submit" value="중복 체크"></td>
+				</tr>
+				<tr>
+					<td colspan="3"><c:choose>
+							<c:when test="${result == 1 }">${frmId }는 사용중인 아이디입니다.</c:when>
+							<c:when test="${result == -1 }">${frmId }가 사용가능한 아이디입니다. &nbsp;<input type="button" value="사용" onclick="idOk()"></c:when>
+							<c:otherwise></c:otherwise>
+						</c:choose></td>
+				</tr>
+			</table>
+		</form>
 					
 					 
 				</div>
 			</div>
 		</section>
-		
-				<div class="frm-submit">
-					<form action="index.jsp">
-					<input type="submit" name="frmSubmit" value="돌아가기">
-					<input type="hidden" name="frmId" id="reg-id"  maxlength="15" value="${param.frmId }">
-					</form>
-				</div>
+
 	</div>
 
 
 	<!-- footer영역 -->
     	<%@include file="/views/common/footer.jsp" %>
 
+<script>
+	
+	function idCheck() {
+		// 사용자 아이디가 입력되었는지 확인 루틴 구현
+		if (document.joinForm.frmId.value == "") {
+			alert("사용자 아이디를 입력해주세요.");
+			document.joinForm.frmId.focus();
+			return false;
+		}
+		// 아이디 중복 체크를 위한 페이지는 새로운 창에 출력한다.(idcheckForm.jsp)
+		var url = "/member/idCheck?frmId=" + document.joinForm.FrmId.value;
+		window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=450, height=200");
+	}
+	
+	function idOk(){
+		opener.joinform.frmId.value = document.frm.frmId.value;
+		opener.joinform.reid.value = document.frm.frmId.value;
+		
+		self.close();
+	}
+</script>
 
 </body>
 </html>

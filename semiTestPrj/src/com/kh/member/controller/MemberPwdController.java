@@ -20,15 +20,15 @@ public class MemberPwdController extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		
 		//data 꺼내기 (클라이언트가 보낸)
-		String memberMid = req.getParameter("memberMId");
-		String memberPwd = req.getParameter("memberPwd");
-		String memberPwdNew = req.getParameter("memberPwdNew");
-		String memberPwdNew2 = req.getParameter("memberPwdNew2");
+		String memberMid = req.getParameter("frmId");
+		String memberPwd = req.getParameter("frmPwd");
+		String memberPwdNew = req.getParameter("frmRePwd");
+//		String memberPwdNew2 = req.getParameter("memberPwdNew2");
 		
 		//데이터 뭉치기
 		
 		//서비스 호출
-		int result = new MemberService().changePw(memberMid, memberPwd, memberPwdNew, memberPwdNew2);
+		int result = new MemberService().changePwd(memberMid, memberPwd, memberPwdNew);
 		
 		//실행 결과에 따라 화면 선택
 		if(result == 1) {

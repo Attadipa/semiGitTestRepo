@@ -334,10 +334,10 @@
 	<div class="cs_func_page_header">
 		<h1 style="font-size: 2em;">마이페이지</h1>
 		<div class="cs_category">
-			<a href="../member/mypage.jsp">정보수정</a>
-			<a href="/">장바구니</a>
+			<a href="/semiTestPrj/views/member/myPageForm.jsp">정보수정</a>
+			<a href="/">관심상품</a>
 			<a href="/">주문내역</a>
-			<a href="/">쿠폰함</a>
+			<a href="/">등급보기</a>
 		</div>
 	</div>
 	
@@ -362,7 +362,7 @@
 						<label>현재 비밀번호</label>
 					</div>
 					<div class="frm-input-password">
-						<input type="password" name="frmPassword" placeholder="현재 비밀번호">
+						<input type="password" name="frmPwd" placeholder="현재 비밀번호">
 					</div>
 						
 					<div class="frm-label">
@@ -370,7 +370,7 @@
 						
 					</div>
 					<div class="frm-input-password">
-						<input type="password" name="re_frmPassword" placeholder="변경 할 비밀번호" value="">
+						<input type="password" name="frmRePwd" placeholder="변경 할 비밀번호" value="">
 						
 					</div>
 						
@@ -404,9 +404,9 @@
 						<label>주소</label>
 					</div>
 					<div class="frm-input-zipcode">
-						<input style="font-weight:bold" type="text" name="zipcode" placeholder="우편번호" value="${loginMember.getMemberZipcode() }">
+						<input style="font-weight:bold" type="text" name="frmZipcode" placeholder="우편번호" value="${loginMember.getMemberZipcode() }">
 						<input style="font-weight:bold" type="button" name="btnZipcode" id="btnFindZip" value="우편번호검색">
-						<input style="font-weight:bold" type="text" name="address" placeholder="상세주소" value="${loginMember.getMemberAddress() }">
+						<input style="font-weight:bold" type="text" name="frmAddress" placeholder="상세주소" value="${loginMember.getMemberAddress() }">
 					</div>
 					
 					<div class="frm-label">
@@ -433,9 +433,16 @@
 						</select>
 
 					</div>
+					
+					<div class="frm-label">
+						<label>회원등급</label>
+					</div>
+					<div class="frm-label">
+						<input type="text" name="memberGrade" value="${loginMember.getMemberGrade()}" readonly>
+					</div>
 
 					<div class="frm-submit">
-						<input type="button" onclick="checkPwd()" name="frmSumbit" value="수정하기">
+						<input type="submit" onclick="checkPwd()" name="frmSumbit" value="수정하기">
 					</div>
 				</form>
 			</section>

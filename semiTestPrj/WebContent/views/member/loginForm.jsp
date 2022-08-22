@@ -249,7 +249,7 @@
            <!-- footer영역 -->
    	<%@include file="/views/common/footer.jsp" %>
     </div>
-    <!-- <script>logInOut()</script> -->
+     <script>logInOut()</script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src = "https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type='text/javascript'>
@@ -273,7 +273,7 @@ $("#kakao-login-btn").on("click", function(){
 			alert('로그인성공');
               //var email = res.kakao_account.email;
 			  //var name = res.properties.nickname;
-			  location.href="http://localhost:8083/semiTestPrj/member/kakaocallback.jsp";
+			  location.href="http://localhost:8083/semiTestPrj/views/member/kakaocallback.jsp";
 		
 
               

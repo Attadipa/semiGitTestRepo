@@ -29,6 +29,6 @@ function checkPwd() {
 		}
 
 			alert('회원정보가 수정되었습니다.');
-			frm.action = '/userProfileServlet';
+			frm.action = '/member/mypage';
 			frm.submit();
 		}
