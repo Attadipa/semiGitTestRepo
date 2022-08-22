@@ -2,8 +2,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	MemberVo loginMember = (MemberVo)session.getAttribute("loginMember"); 
-	
+	MemberVo loginMember = (MemberVo)session.getAttribute("loginMember");
 %>
     
 <!DOCTYPE html>
@@ -157,9 +156,6 @@
 <body>
     <div id="container">
         <form action="/semiTestPrj/pay/insert" method="post">
-            <input type="hidden" name="memberNo" value="0">
-            <input type="hidden" name="postNo" value="0">
-            <input type="hidden" name="payAmount" value="0">
             <h2>직거래,안전결제로 구매합니다</h2>
             <hr>
                 <table id="title-container">
@@ -276,85 +272,58 @@
                     requestContentVal = $('#request-content-direct').val();
                 }
 
-
                 //결제수단 선택
                 let payMethod = $("input:radio[name=payMethod]:checked").val();
                 let payMethodNo = 0;
                 let pgName = "";
-                if(payMethod=='card'){pgName='kcp'; payMethodNo = 0;} 
-                else if(payMethod=='trans'){pgName='kcp'; payMethodNo = 1;}
-                else if(payMethod=='vbank'){pgName='kcp'; payMethodNo = 2;}
-                else if(payMethod=='kakaopay'){pgName='kakaopay';payMethodNo = 3;} 
-                else if(payMethod=='tosspay'){pgName='tosspay'; payMethodNo = 4; payMethod='trans'}
-                else if(payMethod=='payco'){pgName='payco'; payMethodNo = 5;}
+                if(payMethod=='card'){pgName='kcp'; payMethodNo = 1;} 
+                else if(payMethod=='trans'){pgName='kcp'; payMethodNo = 2;}
+                else if(payMethod=='vbank'){pgName='kcp'; payMethodNo = 3;}
+                else if(payMethod=='kakaopay'){pgName='kakaopay';payMethodNo = 4;} 
+                else if(payMethod=='tosspay'){pgName='tosspay'; payMethodNo = 5; payMethod='trans'}
+                else if(payMethod=='payco'){pgName='payco'; payMethodNo = 6;}
 
                 //서비스 이용약관 동의
                 if($('#agree-check').is(":checked")==false){
                     alert("서비스 이용약관에 동의해주십시오")
                 } else {
 
-                    console.log(payMethod);
                     IMP.request_pay({
                         pg : pgName,
                         pay_method : payMethod,
-                        // merchant_uid: "order_no_0002", //상점에서 생성한 고유 주문번호
+                        // merchant_uid: tradeNo, //상점에서 생성한 고유 주문번호
                         name : '주문명:결제테스트', //필수 파라미터
-                        amount : 10000,
-                        // buyer_email : 'iamport@siot.do',
-                        // buyer_name : '구매자이름',
-                        // buyer_tel : '010-1234-5678',
-                        // buyer_addr : '서울특별시 강남구 삼성동',
-                        // buyer_postcode : '123-456',
-                        // m_redirect_url : '{결제 완료 후 리디렉션 될 URL}' // 예: https://www.my-service.com/payments/complete/mobile
+                        amount : 10000
+
                     }, function(rsp) { // callback 로직
                         if(rsp.success){
                             alert("결제성공");
                             console.log(rsp);
-                            $.ajax({
-                                url : "/semiTestPrj/pay/insert",
-                                method : "POST",
-                                data : { 
-                                        payAmount : 123,
-                                        memberNo : 123,
-                                        payMethodNo : payMethodNo,
-                                        postNo : 123,
-                                        deliveryAddr : deliveryAddrVal,
-                                        requestContent : requestContentVal
-                                       },
-                                success : function(){
-                                    console.log("통신성공");
-                                    // console.log(x);
-                                    // const result = JSON.parse(x);
-                                    // console.log(result);
-                                },
-                                error : function(e){
-                                    console.log("통신실패")
-                                    console.log(e)
-                                }
-                            })
+                            
                         }else{
                             alert("결제취소됨");
                             console.log(rsp);
                             $.ajax({
                                 url : "/semiTestPrj/pay/insert",
                                 method : "POST",
-                                data : { 
-                                        payAmount : 123,
-                                        memberNo : 123,
+                                // dataType : "JSON",
+                                data : {
+                                        payAmount : 3000,
+                                        memberNo : 3,
                                         payMethodNo : payMethodNo,
-                                        postNo : 123,
+                                        tradeNo : 5,
                                         deliveryAddr : deliveryAddrVal,
                                         requestContent : requestContentVal
                                        },
-                                success : function(){
+                                success : function(x){
                                     console.log("통신성공");
-                                    // console.log(x);
-                                    // const result = JSON.parse(x);
-                                    // console.log(result);
+                                    alert("반환값 : "+x);
+                                    location.replace("/semiTestPrj/index.jsp");
                                 },
                                 error : function(e){
-                                    console.log("통신실패")
-                                    console.log(e)
+                                    console.log("통신실패");
+                                    console.log("반환값 : "+x);
+                                    location.replace("/semiTestPrj/index.jsp");
                                 }
                             })
                             

@@ -1,13 +1,13 @@
 package com.kh.pay.vo;
 
 public class PayVo {
-	private int payNo;
-	private int payAmount;
+	private String payNo;
+	private String payAmount;
 	private String enrollDate;
 	private String deleteYn;
-	private int memberNo;
-	private int payMethodNo;
-	private int postNo;
+	private String memberNo;
+	private String payMethodNo;
+	private String tradeNo;
 	
 	
 	
@@ -16,8 +16,9 @@ public class PayVo {
 	}
 
 
-	public PayVo(int payNo, int payAmount, String enrollDate, String deleteYn, int memberNo, int payMethodNo,
-			int postNo) {
+
+	public PayVo(String payNo, String payAmount, String enrollDate, String deleteYn, String memberNo,
+			String payMethodNo, String tradeNo) {
 		super();
 		this.payNo = payNo;
 		this.payAmount = payAmount;
@@ -25,28 +26,33 @@ public class PayVo {
 		this.deleteYn = deleteYn;
 		this.memberNo = memberNo;
 		this.payMethodNo = payMethodNo;
-		this.postNo = postNo;
+		this.tradeNo = tradeNo;
 	}
 
 
-	public int getPayNo() {
+
+	public String getPayNo() {
 		return payNo;
 	}
 
 
-	public void setPayNo(int payNo) {
+
+	public void setPayNo(String payNo) {
 		this.payNo = payNo;
 	}
 
 
-	public int getPayAmount() {
+
+	public String getPayAmount() {
 		return payAmount;
 	}
 
 
-	public void setPayAmount(int payAmount) {
+
+	public void setPayAmount(String payAmount) {
 		this.payAmount = payAmount;
 	}
+
 
 
 	public String getEnrollDate() {
@@ -54,9 +60,11 @@ public class PayVo {
 	}
 
 
+
 	public void setEnrollDate(String enrollDate) {
 		this.enrollDate = enrollDate;
 	}
+
 
 
 	public String getDeleteYn() {
@@ -64,46 +72,63 @@ public class PayVo {
 	}
 
 
+
 	public void setDeleteYn(String deleteYn) {
 		this.deleteYn = deleteYn;
 	}
 
 
-	public int getMemberNo() {
+
+	public String getMemberNo() {
 		return memberNo;
 	}
 
 
-	public void setMemberNo(int memberNo) {
+
+	public void setMemberNo(String memberNo) {
 		this.memberNo = memberNo;
 	}
 
 
-	public int getPayMethodNo() {
+
+	public String getPayMethodNo() {
 		return payMethodNo;
 	}
 
 
-	public void setPayMethodNo(int payMethodNo) {
+
+	public void setPayMethodNo(String payMethodNo) {
 		this.payMethodNo = payMethodNo;
 	}
 
 
-	public int getPostNo() {
-		return postNo;
+
+	public String getTradeNo() {
+		return tradeNo;
 	}
 
 
-	public void setPostNo(int postNo) {
-		this.postNo = postNo;
+
+	public void setTradeNo(String tradeNo) {
+		this.tradeNo = tradeNo;
 	}
+
 
 
 	@Override
 	public String toString() {
 		return "PayVo [payNo=" + payNo + ", payAmount=" + payAmount + ", enrollDate=" + enrollDate + ", deleteYn="
-				+ deleteYn + ", memberNo=" + memberNo + ", payMethodNo=" + payMethodNo + ", postNo=" + postNo + "]";
+				+ deleteYn + ", memberNo=" + memberNo + ", payMethodNo=" + payMethodNo + ", tradeNo=" + tradeNo + "]";
 	}
+
+
+
+
+	
+	
+	
+	
+	
 	
 	
 	
