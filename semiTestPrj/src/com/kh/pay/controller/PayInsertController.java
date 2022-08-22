@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.pay.service.PayService;
+import com.kh.pay.vo.DeliveryVo;
 import com.kh.pay.vo.PayVo;
 
 @WebServlet(urlPatterns = "/pay/insert")
@@ -16,8 +18,8 @@ public class PayInsertController extends HttpServlet{
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String postNo = req.getParameter("no");
-//		TradeVo tradeVo = new TradeService().getTradeDetail(postNo);
+		String tradeNo = req.getParameter("no");
+//		TradeVo tradeVo = new TradeService().selectTrade(postNo);
 //		req.setAttribute("tradeVo",tradeVo);
 		req.getRequestDispatcher("/views/pay/payForm.jsp").forward(req, resp);
 	}
@@ -25,42 +27,41 @@ public class PayInsertController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		//일반결제
-		int payAmount = Integer.parseInt(req.getParameter("payAmount"));
-		int memberNo = Integer.parseInt(req.getParameter("memberNo"));
-		int payMethodNo = Integer.parseInt(req.getParameter("payMethodNo"));
-		int postNo = Integer.parseInt(req.getParameter("postNo"));
+		String payAmount = req.getParameter("payAmount");
+		String memberNo = req.getParameter("memberNo");
+		String payMethodNo = req.getParameter("payMethodNo");
+		String tradeNo = req.getParameter("tradeNo");
 		
 		PayVo payVo = new PayVo();
 		payVo.setPayAmount(payAmount);
 		payVo.setMemberNo(memberNo);
 		payVo.setPayMethodNo(payMethodNo);
-		payVo.setPostNo(postNo);
+		payVo.setTradeNo(tradeNo);
+		
+		int result1 = new PayService().insertPay(payVo);
 		
 		//배송결제시 추가
-		
 		String deliveryAddr = req.getParameter("deliveryAddr");
 		String requestContent = req.getParameter("requestContent");
 		
+		DeliveryVo deliveryVo = new DeliveryVo();
+		
+		
 		if(deliveryAddr!="") {
-			System.out.println("blank아님");
-		}else {
-			System.out.println("blank맞음");
+			int result2 = new PayService().insertDelivery();
 		}
 		
-		System.out.println(payAmount);
-		System.out.println(memberNo);
-		System.out.println(payMethodNo);
-		System.out.println(postNo);
-		System.out.println(deliveryAddr);
-		System.out.println(requestContent);
-
-//		int result = new PayService().insertPay();
-//		if(result==1) {
-//			req.getRequestDispatcher("/views/pay/payResult.jsp").forward(req, resp);
-//		} else {
-//			req.setAttribute("errorMsg", "결제결과 DB입력 실패..");
-//			req.getRequestDispatcher("/views/error/errorPage.jsp").forward(req, resp);
-//		}
+		Gson g = new Gson();
+		
+		if(result1!=1) {
+			System.out.println("성공");
+			String jsonStr = g.toJson("");
+			resp.getWriter().write(jsonStr);
+		} else {
+			System.out.println("실패");
+			String jsonStr = g.toJson(list);
+			resp.getWriter().write(jsonStr);
+		}
 		
 
 

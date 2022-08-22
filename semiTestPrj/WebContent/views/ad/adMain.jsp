@@ -56,6 +56,7 @@
 </style>
 </head>
 <body>
+
     <div id="container">
         <br>
         <h1>판매자센터</h1>
@@ -64,10 +65,10 @@
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="resources/tesla01.jpg" class="d-block w-100" alt="...">
+                <img src="/semiTestPrj/views/ad/resources/tesla01.jpg" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item">
-                <img src="resources/tesla02.jpg" class="d-block w-100" alt="...">
+                <img src="/semiTestPrj/views/ad/resources/tesla02.jpg" class="d-block w-100" alt="...">
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -80,9 +81,9 @@
             </button>
         </div>
         <div id="ad-button-container">
-            <button id="ad-request" onclick="loacation.href='/semiTestPrj/ad/adRequest'">광고신청</button>
-            <button id="ad-manager" onclick="loacation.href='/semiTestPrj/ad/adManager'">광고관리</button>
-            <button id="ad-guide" onclick="loacation.href='/semiTestPrj/ad/adGuide'">광고가이드</button>
+            <button id="ad-request" onclick="location.href='/semiTestPrj/ad/request'">광고신청</button>
+            <button id="ad-manager" onclick="location.href='/semiTestPrj/ad/manager'">광고관리</button>
+            <button id="ad-guide" onclick="location.href='https://www.naver.com'">광고가이드</button>
         </div>
         
     </div>
