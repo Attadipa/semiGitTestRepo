@@ -109,62 +109,59 @@
       				</div>
       				<div class="modal-footer">
         				<button id="adminDelete" class="btn btn-danger" data-bs-dismiss="modal">회원추방</button>
-        				<button class="btn btn-success" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#exampleModalToggle2">정보수정</button>
+        				<button class="btn btn-success" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#exampleModalToggle2" id="adminEdit">정보수정</button>
         				<button class="btn btn-dark">블랙리스트</button>
       				</div>
     			</div>
   			</div>
 		</div>
-		<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
+		<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" data-bs-backdrop="static" data-bs-keyboard="false" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
   			<div class="modal-dialog modal-dialog-centered">
     			<div class="modal-content">
       				<div class="modal-header">
         				<h5 class="modal-title" id="exampleModalToggleLabel2">회원정보 수정</h5>
-        				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" onclick="history.back();"></button>
       				</div>
       				<div class="modal-body">
         				<form action="${contextPath}/admin/edit" method="post">
-							<input type="hidden" value="${editMember.memberNo}" name="memberNo">
-							<table>
+							<input type="hidden" name="memberNo">
+							<table id="editTable">
 								<tr>
 									<td>아이디</td>
-									<td><input type="text" name="memberId" value="${editMember.memberMid}" maxlength="15" required></td>
+									<td><input type="text" name="memberId" maxlength="15" required></td>
 								</tr>
 								<tr>
 									<td>이름</td>
-									<td><input type="text" name="memberName" value="${editMember.memberName}" maxlength="5" required></td>
+									<td><input type="text" name="memberName" maxlength="5" required></td>
 								</tr>
 								<tr>
 									<td>비밀번호</td>
-									<td><input type="text" name="memberPwd" value="${editMember.memberPwd}" maxlength="20" required></td>
+									<td><input type="text" name="memberPwd" maxlength="20" required></td>
 								</tr>
 								<tr>
 									<td>전화번호</td>
-									<td><input type="tel" name="memberPhone" value="${editMember.memberPhone}" placeholder="- 없이 입력" required></td>
+									<td><input type="tel" name="memberPhone" placeholder="- 없이 입력" required></td>
 								</tr>
 								<tr>
 									<td>이메일</td>
-									<td><input type="email" name="memberEmail" value="${editMember.memberEmail}" required></td>
+									<td><input type="email" name="memberEmail" required></td>
 								</tr>
 								<tr>
 									<td>주소</td>
-									<td><input type="text" name="memberAddr" value="${editMember.memberAddress}" required></td>
+									<td><input type="text" name="memberAddr" required></td>
 								</tr>
 								<tr>
 									<td>우편번호</td>
-									<td><input type="text" name="memberZipCode" value="${editMember.memberZipcode}" required></td>
+									<td><input type="text" name="memberZipCode" required></td>
 								</tr>
 								<tr>
 									<td></td>
 									<td>
-										<input type="submit" id="" value="정보변경" class="btn btn-success">
+										<input type="submit" value="정보변경" class="btn btn-success">
 									</td>
 								</tr>
 							</table>
 						</form>
-      				</div>
-      				<div class="modal-footer">
-        				<button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">이전으로</button>
       				</div>
    				 </div>
   			</div>
@@ -180,10 +177,6 @@
 			$('#table-show').show();
 		}
 		
-		function showOn2(){
-			$('#editZone').show();
-		}
-		
 		$(function(){
 			$('#table-show>tbody>tr').click(function(){
 				const num = $(this).children().eq(0).text();
@@ -193,11 +186,36 @@
 				$('#memberStatus').html("탈퇴여부 : " + $(this).children().eq(3).text());
 				
 				$('#adminDelete').click(function(){
-					location.href = '/semiTestPrj/admin/delete?num=' + num;
+					 if(confirm("정말 회원을 추방하시겠습니까?")) {
+						location.href = '/semiTestPrj/admin/delete?num=' + num;
+					 }
 				})
 				
+				$('#adminEdit').click(function(){
+					$.ajax({
+						url : "/semiTestPrj/admin/edit?num=" + num,
+						method : "GET",
+						success : function(x){
+							console.log("통신성공 !");
+							console.log(x);
+							
+							const editVo = JSON.parse(x);
+							console.log(editVo);
+							console.log(editVo.memberMid);
+							
+							$('#editTable>tr>td>input').eq(0).val(editVo.memberMid);
+						},
+						error : function(request, status, error){
+							console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)
+						}
+					});	
+				})
 			});
 		})
+		
+		
+		
+		
 		
 	</script>
 

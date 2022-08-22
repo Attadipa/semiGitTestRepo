@@ -28,4 +28,22 @@ public class AdminService {
 		return voList;
 	}
 
+	public MemberVo selectOne(String num) {
+		
+		Connection conn = null;
+		MemberVo vo = null;
+				
+		try {
+			conn = getConnection();
+			
+			vo = dao.selectOne(conn, num);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+		}
+		
+		return vo;
+	}
+
 }
