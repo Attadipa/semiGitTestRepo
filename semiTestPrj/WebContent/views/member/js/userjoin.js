@@ -5,7 +5,7 @@
  var member = function() {
      
  var btnFindZip = getId('btnFindZip');
- var idCheck = getId('idCheck');
+/* var idCheck = getId('idCheck');*/
  var memberInfo = getId('frmMember');
  
      if(btnFindZip != null) {
@@ -22,7 +22,7 @@
      
      }
      
-     if(idCheck != null) {
+     /*if(idCheck != null) {
              
              idCheck.onclick = function() {
              if(document.memberInfo.frmId.value == "") {
@@ -37,7 +37,7 @@
              memberInfo.method="POST";
              memberInfo.submit();
          }
-     }
+     }*/
  }
  
  /* 전화번호 하이픈 자동 추가하기 */
@@ -150,7 +150,7 @@
      
      if(!obj.zipcode || obj.zipcode.value.trim().length == 0) {
          alert('우편번호를 입력해주세요.')
-         obj.zipcode = "";
+         obj.frmZipcode = "";
          obj.zipcode.focus();
          return false;
      }

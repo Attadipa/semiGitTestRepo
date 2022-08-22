@@ -106,12 +106,12 @@ public class MemberDao {
 }//로그인
 	
 	
-	//회원 정보 수정
-	public int edit(Connection conn, MemberVo vo) {
+	//회원 정보 수정(마이페이지)
+	public int edit(Connection conn, MemberVo vo) throws Exception {
 		//Connection 준비
 		
 		//SQL 준비
-		String sql = "UPDATE MEMBER SET MEMBER_NAME = ? , MEMBER_EMAIL, MEMBER_PHOME = ?, MEMBER_ADDR = ? , MEMBER_ZIPCODE = ? , MEMBER_MODIFY_DATE = SYSDATE WHERE MEMBER_NO =?";
+		String sql = "UPDATE MEMBER SET MEMBER_NAME = ? , MEMBER_EMAIL = ? , MEMBER_PHONE = ?, MEMBER_ADDRESS = ? , MEMBER_ZIPCODE = ? , MEMBER_MODIFY_DATE = SYSDATE , MEMBER_GRADE = ? WHERE MEMBER_NO =?";
 		
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -125,12 +125,14 @@ public class MemberDao {
 			pstmt.setString(4, vo.getMemberAddress());
 			pstmt.setString(5, vo.getMemberZipcode());
 			pstmt.setString(6, vo.getMemberNo());
+			pstmt.setString(7, vo.getMemberGrade());
 			
 			//SQL 실행 및 결과 저장
 			result = pstmt.executeUpdate();
 			
 		} catch (Exception e) {
 			e.printStackTrace();
+			throw e;
 		}
 		finally {
 			//자원 반납
@@ -141,6 +143,7 @@ public class MemberDao {
 		return result;
 		
 }//회원 정보 수정
+	
 	
 	//회원 정보 조회 (회원번호)
 	public MemberVo selectOneByNo(Connection conn, String num) {
@@ -170,8 +173,8 @@ public class MemberDao {
 				String memberEmail = rs.getString("MEMBER_EMAIL");
 				String memberAddress = rs.getString("MEMBER_ADDRESS");
 				String memberZipcode = rs.getString("MEMBER_ZIPCODE");
-				Timestamp memberEnrollDate = rs.getTimestamp("ENROLL_DATE");
-				Timestamp memberModifyDate = rs.getTimestamp("MODIFY_DATE");
+				Timestamp memberEnrollDate = rs.getTimestamp("MEMBER_ENROLL_DATE");
+				Timestamp memberModifyDate = rs.getTimestamp("MEMBER_MODIFY_DATE");
 				String memberGrade = rs.getString("MEMBER_GRADE");
 				
 				vo = new MemberVo();
@@ -242,7 +245,7 @@ public class MemberDao {
 		//SQL 준비
 		String sql = "SELECT MEMBER_PWD FROM MEMBER WHERE MEMBER_MID=? AND MEMBER_PHONE=?";
 		
-		String MemberPwd = null;
+		String memberPwd = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		
@@ -254,7 +257,7 @@ public class MemberDao {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				MemberPwd = rs.getString("MEMBER_MID");
+				memberPwd = rs.getString("MEMBER_MID");
 			}
 				
 		} catch (Exception e) {
@@ -266,13 +269,13 @@ public class MemberDao {
 		}
 		
 		//실행 결과 리턴
-		return MemberPwd;
+		return memberPwd;
 
 }//비밀번호 찾기 (아이디 + 폰번호)
 	
 	
 	//비밀번호 변경
-	public int changePw(Connection conn, String memberMid, String memberPwd, String memberPwdNew) {
+	public int changePwd(Connection conn, String memberMid, String memberPwd, String memberPwdNew) {
 		//connection 준비
 		
 		//sql 준비
@@ -364,8 +367,8 @@ public class MemberDao {
 		int result = -1; //오류발생
 		
 		//SQL 준비
-		String sql = "SELECT MEMBER_MID FROM MEMBER WHERE MEMBER_MID=?";
-		System.out.println("오류");
+		String sql = "SELECT MEMBER_PWD FROM MEMBER WHERE MEMBER_MID=?";
+		System.out.println("ID중복체크 DAO 오류");
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberMid);

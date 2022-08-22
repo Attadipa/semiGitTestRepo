@@ -312,8 +312,8 @@
 
 				<div class="frm-input-id">
 					<input type="text" name="frmId" id="regId"
-						placeholder="영문자와 한글,숫자만을 입력(15자 이내)" maxlength="15" value="${param.frmId}"> 
-					<input type="button" name="frmCheck" id="idCheck" value="중복확인">
+						placeholder="영문자와 한글,숫자만을 입력(15자 이내)" maxlength="15" value="${param.frmId}"><input type="hidden" name="reid"> 
+					<input type="button" name="frmCheck" id="idCheck" value="중복확인" onclick="return idCheck()">
 				</div>
 				<div class="frm-label">
 					<label>비밀번호</label> 
@@ -404,6 +404,10 @@
 	</footer>
 
 
+	<script>
+		
+	</script>
+	
 	<script>
 	
 	member();

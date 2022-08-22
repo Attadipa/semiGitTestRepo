@@ -1,4 +1,4 @@
-<%-- <%@page import="com.kh.member.repository.MemberDao"%>
+<%@page import="com.kh.member.repository.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
  <%
@@ -7,7 +7,7 @@
     String memberPhone = request.getParameter("MEMBER_PHONE");
      
 	MemberDao dao = new MemberDao();
- 	String memberMid = dao.findId(memberName, memberPhone); //아이디를 디비에서 가져옴..실패시 널
+ 	String memberMid = dao.findId(conn, memberName, memberPhone); //아이디를 디비에서 가져옴..실패시 널
  
 %>
 <!DOCTYPE html>
@@ -218,4 +218,4 @@
    	<%@include file="/views/common/footer.jsp" %>
         </div>
 </body>
-</html> --%>
+</html>

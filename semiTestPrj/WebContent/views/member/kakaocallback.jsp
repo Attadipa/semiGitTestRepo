@@ -9,7 +9,7 @@
 </head>
 <body>
 <%		 
-	session.setAttribute("memberMid", "5235268");
+	session.setAttribute("loginMember", "5235268");
 	response.sendRedirect("/semiTestPrj");
 %>
 

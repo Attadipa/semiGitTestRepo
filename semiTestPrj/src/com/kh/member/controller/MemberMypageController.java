@@ -33,11 +33,12 @@ public class MemberMypageController extends HttpServlet{
 		req.setCharacterEncoding("UTF-8");
 		
 		//데이터 받기 -> 객체
-		String memberName = req.getParameter("memberName");
-		String memberEmail = req.getParameter("memberEmail");
-		String memberPhone = req.getParameter("memberPhone");
-		String memberAddress = req.getParameter("memberAddress");
-		String memberZipcode = req.getParameter("memberZipcode");
+		String memberName = req.getParameter("frmName");
+		String memberEmail = req.getParameter("frmEmail");
+		String memberPhone = req.getParameter("frmPhone");
+		String memberAddress = req.getParameter("frmAddress");
+		String memberZipcode = req.getParameter("frmZipcode");
+		String memberGrade = req.getParameter("memberGrade");
 		
 		String memberNo = ((MemberVo)req.getSession().getAttribute("loginMember")).getMemberNo();
 		
@@ -48,6 +49,7 @@ public class MemberMypageController extends HttpServlet{
 		vo.setMemberPhone(memberPhone);
 		vo.setMemberAddress(memberAddress);
 		vo.setMemberZipcode(memberZipcode);
+		vo.setMemberGrade(memberGrade);
 		
 		//서비스 호출(객체)
 		MemberVo updateVo = new MemberService().edit(vo);
