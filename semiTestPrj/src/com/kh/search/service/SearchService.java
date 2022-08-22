@@ -23,4 +23,16 @@ public class SearchService {
 	
 	}
 
+	public List<TradeVo> searchToCategory(String category, PageVo pageVo) {
+
+		Connection conn = getConnection();
+		
+		List<TradeVo> list = new SearchDao().searchToCategory(conn, category, pageVo);
+		
+		close(conn);
+		
+		return list;
+	
+	}
+
 }

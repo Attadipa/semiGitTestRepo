@@ -112,8 +112,9 @@
    		            <a href="${contextPath}/member/login">로그인</a>
                 </c:if>
                 <c:if test="${not empty loginMember}">
-	                <a href="${contextPath}/member/wishlist">관심상품</a>
+	                <a href="${contextPath}/member/wishlist?p=1">관심상품</a>
 	                <a href="${contextPath}/member/mypage">마이페이지</a>
+	                <a href="${contextPath}/trade/myList?p=1">나의판매</a>
                 	<a href="${contextPath}/member/logout">로그아웃</a>
                 </c:if>
             </div>
@@ -124,7 +125,7 @@
                 </a>
                 <form id="search" action="<%= contextPath %>/search" method="get">
                 	<input type="hidden" name="p" value="1">
-                    <div class="input-group mb-3">
+                    <div class="input-group mb-3" id="search-div">
                         <select id="form-select" class="form-select" name="keyword-option">
                             <option value="TITLE">글제목</option>
                             <option value="WRITER">작성자</option>
@@ -135,7 +136,7 @@
                     </div>
                 </form>
                 <div id="header-inner2-category">
-                    <a href="">SALE</a>
+                    <a href="${contextPath}/trade/insert">SALE</a>
                     <a href="">SHOP</a>
                     <a href="">ABOUT</a>
                 </div>
@@ -144,8 +145,16 @@
             <!-- 사이드바 --> <%@ include file="/views/common/sideBar.jsp" %>
     </header>
     
-	    <!-- 광고영역 -->
-    	<%@ include file="/views/common/factor/adModal.jsp" %>
+    	<c:if test="${empty loginMember}">
+		    <!-- 광고영역 -->
+	    	<%@ include file="/views/common/factor/adModal.jsp" %>
+    	</c:if>
+    	<%-- <c:if test="${not empty loginMember}">
+    		<c:if test="${loginMember.getMemberGrade() eq "NORMAL"}">
+			    <!-- 광고영역 -->
+		    	<%@ include file="/views/common/factor/adModal.jsp" %>
+    		</c:if>
+    	</c:if> --%> <!-- 로그인 멤버의 등급이 NORMAL 일 때 광고창 출력 (일단 주석처리->memberdao에서 memberGrade 받아오면 그때 처리) -->
 
 
     <script>

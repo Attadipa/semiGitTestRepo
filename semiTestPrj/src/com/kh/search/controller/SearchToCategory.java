@@ -1,4 +1,4 @@
-package com.kh.trade.controller;
+package com.kh.search.controller;
 
 import java.io.IOException;
 import java.util.List;
@@ -10,20 +10,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.common.PageVo;
-import com.kh.member.vo.MemberVo;
+import com.kh.search.service.SearchService;
 import com.kh.trade.service.TradeService;
 import com.kh.trade.vo.TradeVo;
 
-@WebServlet(urlPatterns = "/trade/myList")
-public class TradeListController extends HttpServlet {
+@WebServlet(urlPatterns = "/search/category")
+public class SearchToCategory extends HttpServlet{
 
-	//거래 게시판 목록 보여주기
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+		String category = req.getParameter("c");
 		
-		String myNo = ((MemberVo)req.getSession().getAttribute("loginMember")).getMemberNo();
 		String p = req.getParameter("p");
-		
 		//페이징 처리
 		int listCount;		//현재 총 게시글 갯수
 		int currentPage;	//현재 페이지(==사용자가 요청한 페이지)
@@ -34,11 +33,11 @@ public class TradeListController extends HttpServlet {
 		int endPage;		//페이징바의 끝
 		
 		//listCount 값 구하기
-		listCount = new TradeService().getCountForMy(myNo);
+		listCount = new TradeService().getCountForCategory(category);
 		
 		currentPage = Integer.parseInt(p);
 		pageLimit = 10;
-		boardLimit = 10;
+		boardLimit = 12;
 		maxPage = (int) Math.ceil((double)listCount / boardLimit);
 		startPage = (currentPage - 1) / pageLimit * pageLimit + 1 ;
 		endPage = startPage + pageLimit - 1;
@@ -54,20 +53,17 @@ public class TradeListController extends HttpServlet {
 		pageVo.setPageLimit(pageLimit);
 		pageVo.setStartPage(startPage);
 		
-		List<TradeVo> voList = new TradeService().selectMyList(myNo, pageVo);
+		List<TradeVo> searchList = new SearchService().searchToCategory(category, pageVo);
 		
-		if(voList != null) {
-			//조회 성공 -> tradeList 화면 보여주기
+		if(searchList != null) {
 			req.setAttribute("pageVo", pageVo);
-			req.setAttribute("voList", voList);
-			req.getRequestDispatcher("/views/trade/MyTradeList.jsp").forward(req, resp);
+			req.setAttribute("searchList", searchList);
+			req.getRequestDispatcher("/views/search/searchToCategory.jsp").forward(req, resp);
 		} else {
-			//실패
-			req.setAttribute("errorMsg", "조회 결과가 없습니다. :(");
-			req.getRequestDispatcher("/views/error/errorPage.jsp").forward(req, resp);
+			req.setAttribute("searchErrorMsg", "카테고리 조회 실패 : )");
+			req.getRequestDispatcher("/views/search/ToCategory.jsp").forward(req, resp);
 		}
 	
-		
-		
 	}
+	
 }

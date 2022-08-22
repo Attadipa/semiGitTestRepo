@@ -39,9 +39,10 @@
         .today-content-text-area{
             padding-top: 7px;
         }
-        
-        
-        
+  		#today-content-area ul:hover{
+        	border: 10px solid black;
+        	transition: 0.3s;
+        }
        
     </style>
     

@@ -22,7 +22,7 @@
             #sidebar{
                 margin-left: -150px;
                 width: 150px;
-                height: 400px;
+                height: 250px;
                 box-sizing: border-box;
                 transition: 1s;
                 background-color: white;
@@ -97,6 +97,15 @@
                 background-color: black;
                 color: white;
                 transition: 0.2s;
+                cursor: pointer;
+            }
+            #shopping-list li>a{
+                text-decoration: none;
+                color: black;
+            }
+            #shopping-list li:hover>a{
+                color: white;
+                transition : 0.2s;
             }
             
 
@@ -125,12 +134,12 @@
             <div class="sidebar-list">판매자센터</div>
             <div class="sidebar-list"><a href="${contextPath}/cs/search">고객센터</a></div>
             <ul id="shopping-list">
-                <li>패션</li>
-                <li>럭셔리</li>
-                <li>신발</li>
-                <li>도서/음반</li>
-                <li>캠핑</li>
-                <li>기타</li>
+                <li class="search-category"><a href="${contextPath}/search/category?c=1&p=1">패션</a></li>
+                <li class="search-category"><a href="${contextPath}/search/category?c=2&p=1">럭셔리</a></li>
+                <li class="search-category"><a href="${contextPath}/search/category?c=3&p=1">신발</a></li>
+                <li class="search-category"><a href="${contextPath}/search/category?c=4&p=1">도서/음반</a></li>
+                <li class="search-category"><a href="${contextPath}/search/category?c=5&p=1">캠핑</a></li>
+                <li class="search-category"><a href="${contextPath}/search/category?c=6&p=1">기타</a></li>
             </ul>
         </div>
         
@@ -160,8 +169,6 @@
             // })
             
             
-            
-
         </script>
             
     

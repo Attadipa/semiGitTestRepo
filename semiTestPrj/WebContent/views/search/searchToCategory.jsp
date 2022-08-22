@@ -1,8 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% 
-	String keyword = request.getParameter("keyword"); 
-	String keywordOption = request.getParameter("keyword-option");
+	String c = (String)request.getParameter("c");
 %>
 <!DOCTYPE html>
 <html>
@@ -30,10 +29,6 @@
 	
 	<%-- 검색 결과 list 창 --%>
 	<div id="outer">
-		<c:if test="${'' ne param.keyword}">
-			<h2 id="search-result-msg">"${param.keyword}"에 대한 검색 결과입니다.</h2>		
-		</c:if>
-	
 		<div id="today-content-area">
 			<c:forEach items="${searchList}" var="sl">
 	    	    <ul>
@@ -45,30 +40,28 @@
 	        	</ul>
 	        </c:forEach>
 	    </div>
-    	<c:if test="${'' ne param.keyword}">
 		    <div id="page-area">
 				<c:set value="${pageVo.getCurrentPage()}" var="currentPage"/>
 				<c:set value="${pageVo.getStartPage()}" var="startPage"/>
 				<c:set value="${pageVo.getEndPage()}" var="endPage"/>
 				<c:set value="${pageVo.getMaxPage()}" var="maxPage"/>
 				<c:if test="${currentPage != 1}">
-					<a class="btn btn-outline-success page-btn" href="${contextPath}/search?p=1&keyword-option=<%= keywordOption %>&keyword=<%=keyword%>"><<</a>
-					<a class="btn btn-outline-success page-btn" href="${contextPath}/search?p=${currentPage-1}&keyword-option=<%= keywordOption %>&keyword=<%=keyword%>"><</a>
+					<a class="btn btn-outline-success page-btn" href="${contextPath}/search/category?c=<%=c%>&p=1"><<</a>
+					<a class="btn btn-outline-success page-btn" href="${contextPath}/search/category?c=<%=c%>&p=${currentPage-1}"><</a>
 				</c:if>
 				<c:forEach begin="${startPage}" end="${endPage}" varStatus="st">
 					<c:if test="${st.current == currentPage}">
 						<a class="btn btn-outline-success page-btn" style="color:darkgrey; font-weight: 900;">${st.current}</a>
 					</c:if>
 					<c:if test="${st.current != currentPage}">
-						<a class="btn btn-outline-success page-btn" href="${contextPath}/search?p=${st.current}&keyword-option=<%= keywordOption %>&keyword=<%=keyword%>">${st.current}</a>
+						<a class="btn btn-outline-success page-btn" href="${contextPath}/search/category?c=<%=c%>&p=${st.current}">${st.current}</a>
 					</c:if>
 				</c:forEach>
 				<c:if test="${currentPage != maxPage}">
-					<a class="btn btn-outline-success page-btn" href="${contextPath}/search?p=${currentPage+1}&keyword-option=<%= keywordOption %>&keyword=<%=keyword%>">></a>
-					<a class="btn btn-outline-success page-btn" href="${contextPath}/search?p=${maxPage}&keyword-option=<%= keywordOption %>&keyword=<%=keyword%>">>></a>
+					<a class="btn btn-outline-success page-btn" href="${contextPath}/search/category?c=<%=c%>&p=${currentPage+1}">></a>
+					<a class="btn btn-outline-success page-btn" href="${contextPath}/search/category?c=<%=c%>&p=${maxPage}">>></a>
 				</c:if>
 			</div>
-		</c:if>
 	</div>
 		
 	<script>
