@@ -118,7 +118,7 @@
         
     
         
-        <h1>관심상품 목록</h1>
+        <h1>나의 판매글</h1>
         
 
         <br><br>
@@ -128,8 +128,9 @@
 	            <thead>
 	                <tr>
 	                    <th>글번호</th>
-	                    <th>글제목</th>
-	                    <th>추가날짜</th>
+	                    <th>조회수</th>
+	                    <th>제목</th>
+	                    <th>게시날짜</th>
 	                </tr>
 	            </thead>
 	
@@ -137,7 +138,8 @@
 	            <tbody>
 					<c:forEach items="${voList}" var="l">
 	                	<tr>
-	                		<td>${l.getPostNo()}</td>
+	                    	<td>${l.getTradeNo()}</td>
+		                    <td>${l.getCnt()}</td>
 		                    <td>${l.getTitle()}</td>
 		                    <td>${l.getEnrollDate()}</td>
 	                	</tr>
@@ -157,20 +159,20 @@
 					<c:set value="${pageVo.getEndPage()}" var="endPage"/>
 					<c:set value="${pageVo.getMaxPage()}" var="maxPage"/>
 					<c:if test="${currentPage != 1}">
-						<a class="btn btn-outline-success page-btn" href="${contextPath}/member/wishlist?p=1"><<</a>
-						<a class="btn btn-outline-success page-btn" href="${contextPath}/member/wishlist?p=${currentPage-1}"><</a>
+						<a class="btn btn-outline-success page-btn" href="${contextPath}/trade/myList?p=1"><<</a>
+						<a class="btn btn-outline-success page-btn" href="${contextPath}/trade/myList?p=${currentPage-1}"><</a>
 					</c:if>
 					<c:forEach begin="${startPage}" end="${endPage}" varStatus="st">
 						<c:if test="${st.current == currentPage}">
 							<a class="btn btn-outline-success page-btn" style="color:darkgrey; font-weight: 900;">${st.current}</a>
 						</c:if>
 						<c:if test="${st.current != currentPage}">
-							<a class="btn btn-outline-success page-btn" href="${contextPath}/member/wishlist?p=${st.current}">${st.current}</a>
+							<a class="btn btn-outline-success page-btn" href="${contextPath}/trade/myList?p=${st.current}">${st.current}</a>
 						</c:if>
 					</c:forEach>
 					<c:if test="${currentPage != maxPage}">
-						<a class="btn btn-outline-success page-btn" href="${contextPath}/member/wishlist?p=${currentPage+1}">></a>
-						<a class="btn btn-outline-success page-btn" href="${contextPath}/member/wishlist?p=${maxPage}">>></a>
+						<a class="btn btn-outline-success page-btn" href="${contextPath}/trade/myList?p=${currentPage+1}">></a>
+						<a class="btn btn-outline-success page-btn" href="${contextPath}/trade/myList?p=${maxPage}">>></a>
 					</c:if>
 				</div>
             </div>

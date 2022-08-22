@@ -40,7 +40,7 @@ public class TradeInsertController extends HttpServlet {
 		String count = req.getParameter("count");
 		
 		TradeVo vo = new TradeVo();
-		vo.setNo(no);
+		vo.setTradeNo(no);
 		vo.setWriter(writerNo);
 		vo.setTitle(title);
 		vo.setRefCategoryNo(category);

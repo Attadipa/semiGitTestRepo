@@ -102,7 +102,7 @@
             <!-- 이미지 -->
             <h5 class="image">
                 상품이미지(보류) <br>
-                <input id="imageLengthCkeck" placeholder="(0/ 4)"></input>
+                <input id="imageLengthCkeck" type="file" name="f" placeholder="(0/ 4)"></input>
                 <br><br>
             </h5>
             <!-- 수정예정 -->

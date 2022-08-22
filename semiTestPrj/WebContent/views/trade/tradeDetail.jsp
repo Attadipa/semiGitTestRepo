@@ -81,6 +81,7 @@
         margin-left: 69%;
     }
 
+	
 
 
 
@@ -96,7 +97,7 @@
             <form action="/semiTestPrj/pay/insert" method="get">
 
                 <!-- 글번호, 카테고리번호 -->
-                <input type="hidden" name="no">
+                <input type="hidden" name="category-no">
 
                 <div id="wrap">
                     <!-- 상품사진 -->
@@ -104,28 +105,27 @@
 
                     <div class="product-info">
                         <div>
-                            (제목)
-                            <br><br>
+                            ${vo.getTitle()}
                         </div>
 
                         <div>
-                            (가격)
+                            ${vo.getPrice()}
                             <button class="btn btn-success" onclick="clip(); return false;">URL 복사 | 공유</button>
                             <hr>
                         </div>
 
                         <div> 
-                            (조회)
-                            (작성일)
+                            ${vo.getCnt()}
+                            ${vo.getEnrollDate()}
                             <br><br>
                         </div>
 
                         <div>
-                            *(상품상태)
+                            *상품상태 : ${vo.getCondition()}
                             <br>
-                            *(교환여부)
+                            *교환여부 : ${vo.getExchange()}
                             <br>
-                            *(배송비)
+                            *배송비 : ${vo.getShip()}
                             <br>
                             <input type="button" style="margin-left: 87%; border: none;" value="신고하기">
                             <br>
@@ -136,27 +136,28 @@
 
                     <div class="others-info">
                         (작성자) : <br>
-                        아나바다 <br><br><br>
+                        ${vo.getWriter()} <br><br><br>
 
                         <hr>
 
                        <pre>
                         (상품정보) : <br>
-                        파손폰 안쓰는폰 오래된폰 고장폰 정상폰 최고가 매입 합니다^^<br>
-                        모든문의는 언제든지 번톡으로 가능합니다!<br>
-                        <br>
-                        기종 / 용량 / 파손여부 / 기능이상 상태 알려주시면 빠른상담이 가능합니다 궁금하신점은 언제든지 문의주세요!!!<br>
-                        <br>
-
-                        인천 지하철 1호선 작전역 1번출구 근처매장입니다!<br>
+                        ${vo.getExplain()}
                        </pre>
                     
                     </div>
-
+					
                     <span class="btns">
-                        <input type="button" class="btn btn-secondary" value="찜">
-                        <input type="button" class="btn btn-warning" value="채팅"> 
-                        <input type="submit" class="btn btn-danger" value="구매하기">
+                    	<c:if test="${loginMember.getMemberMid() ne vo.getWriter()}">
+	                        <input type="button" class="btn btn-secondary wish" value="찜">
+	                        <input type="button" class="btn btn-warning chat" value="채팅"> 
+	                        <input type="submit" class="btn btn-danger" value="구매하기">
+                    	</c:if>
+                    	<c:if test="${loginMember.getMemberMid() eq vo.getWriter()}">
+                    		<input type="button" class="btn btn-secondary reqAd" value="광고신청">
+	                        <input type="button" class="btn btn-warning fix" value="수정하기"> 
+	                        <input type="button" class="btn btn-danger del" value="삭제하기">
+                    	</c:if>
                     </span>
                     
                 </div>
@@ -179,7 +180,32 @@
         document.body.removeChild(textarea);
 
         alert("URL이 복사되었습니다.");
-    }
+   		}
+        $('.reqAd').click(function(){
+        	location.href="/semiTestPrj/ad/insert?num="+${vo.getTradeNo()};
+        })
+        
+        $('.wish').click(function(){
+
+        	$.ajax({
+    			url : "/semiTestPrj/wishlist/insert"
+    			, method : "GET"
+    			, data : {
+    					postNo : ${vo.getTradeNo()}
+        				, memberNo : ${loginMember.getMemberNo()}
+        				, title : $('.product-info').children().eq(0).text()
+    				} 
+    			, success : function(x){
+    				console.log("통신성공");
+    	        	alert(x);
+    	        	$('.wish').prop("disabled", true);
+    			}
+    			, error : function(e){
+    				console.log("통신실패");
+    				console.log(e);
+    			}
+    		});
+        });
     </script>
 
     <%@include file="/views/common/footer.jsp" %>

@@ -2,7 +2,7 @@ package com.kh.trade.vo;
 
 public class TradeVo {
 	
-	private String no;
+	private String tradeNo;
 	private String writer;
 	private String title;
 	private String refCategoryNo; //1-패션, 2-럭셔리, 3-신발, 4-도서/음반, 5-캠핑, 6-기타 (REF_CATEGORY_NO)
@@ -21,11 +21,11 @@ public class TradeVo {
 		
 	}
 
-	public TradeVo(String no, String writer, String title, String refCategoryNo, String location, String condition,
+	public TradeVo(String tradeNo, String writer, String title, String refCategoryNo, String location, String condition,
 			String exchange, String ship, String price, String explain, String count, String cnt, String enrollDate,
 			String status) {
 		super();
-		this.no = no;
+		this.tradeNo = tradeNo;
 		this.writer = writer;
 		this.title = title;
 		this.refCategoryNo = refCategoryNo;
@@ -41,12 +41,12 @@ public class TradeVo {
 		this.status = status;
 	}
 
-	public String getNo() {
-		return no;
+	public String getTradeNo() {
+		return tradeNo;
 	}
 
-	public void setNo(String no) {
-		this.no = no;
+	public void setTradeNo(String tradeNo) {
+		this.tradeNo = tradeNo;
 	}
 
 	public String getWriter() {
@@ -155,7 +155,7 @@ public class TradeVo {
 
 	@Override
 	public String toString() {
-		return "TradeVo [no=" + no + ", writer=" + writer + ", title=" + title + ", refCategoryNo=" + refCategoryNo
+		return "TradeVo [tradeNo=" + tradeNo + ", writer=" + writer + ", title=" + title + ", refCategoryNo=" + refCategoryNo
 				+ ", location=" + location + ", condition=" + condition + ", exchange=" + exchange + ", ship=" + ship
 				+ ", price=" + price + ", explain=" + explain + ", count=" + count + ", cnt=" + cnt + ", enrollDate="
 				+ enrollDate + ", status=" + status + "]";

@@ -8,54 +8,57 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.kh.common.JDBCTemplate.*;
+
+import com.kh.common.PageVo;
 import com.kh.trade.vo.TradeVo;
 
 public class TradeDao {
 
-	public List<TradeVo> selectList(Connection conn) {
-		
-		//conn 가져오기
-		
+	public List<TradeVo> selectMyList(Connection conn, String myNo, PageVo pageVo) {
 		
 		PreparedStatement pstmt = null;
-		List<TradeVo> voList = new ArrayList<TradeVo>();
+		List<TradeVo> list = new ArrayList<TradeVo>();
 		ResultSet rs = null;
 		
 		//sql 준비
-		String sql = "SELECT T.NO, T.TITLE, M.MEMBER_NAME AS WRITER, TO_CHAR(T.ENROLL_DATE, 'YY/MM/DD') AS ENROLL_DATE FROM TRADE T JOIN MEMBER M ON T.WRITER = M.MEMBER_NO WHERE T.STATUS = 'N' ORDER BY T.NO DESC";
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM (SELECT T.TRADE_NO, T.CNT, T.TITLE, TO_CHAR(T.ENROLL_DATE, 'YY/MM/DD HH:MI') ENROLL_DATE FROM TRADE T JOIN MEMBER M ON T.WRITER = M.MEMBER_NO WHERE WRITER = ? ORDER BY TRADE_NO DESC) T ) WHERE RNUM BETWEEN ? AND ?";
 		
 	
-			try {
-				//sql 담을 객체 준비 및 쿼리 채우기
-				pstmt = conn.prepareStatement(sql);
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			int start = (pageVo.getCurrentPage() - 1) * pageVo.getBoardLimit() + 1;
+			int end   = start + pageVo.getBoardLimit() - 1;
+			
+			pstmt.setString(1, myNo);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
 				
+				TradeVo vo = new TradeVo();
 				
-				//sql 실행 및 결과 저장
-				rs = pstmt.executeQuery();
+				vo.setTradeNo(rs.getString("TRADE_NO"));
+				vo.setTitle(rs.getString("TITLE"));
+				vo.setCnt(rs.getString("CNT"));
+				vo.setEnrollDate(rs.getString("ENROLL_DATE"));
 				
-				while(rs.next()) {
-					String no = rs.getString("NO");
-					String title = rs.getString("TITLE");
-					String writer = rs.getString("WRITER");
-					String enrollDate = rs.getString("ENROLL_DATE");
-					
-					TradeVo vo = new TradeVo();
-					vo.setNo(no);
-					vo.setTitle(title);
-					vo.setWriter(writer);
-					vo.setEnrollDate(enrollDate);
-					
-					voList.add(vo);
-				}
-			} catch (Exception e) {
-				e.printStackTrace();
-			} finally {
-				close(rs);
-				close(pstmt);
+				list.add(vo);
+				
 			}
-	
-			//결과 리턴
-			return voList;
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return list;
 	
 	}
 
@@ -100,11 +103,12 @@ public class TradeDao {
 			return result;
 	}
 
+	//키워드 검색을 위한 cnt 조회
 	public int getCountForSearch(Connection conn, String keywords) {
 		int count = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		String sql = "SELECT COUNT(NO) AS COUNT FROM TRADE WHERE STATUS = 'N' AND " + keywords;
+		String sql = "SELECT COUNT(TRADE_NO) AS COUNT FROM TRADE WHERE STATUS = 'N' AND " + keywords;
 		
 		try {
 			//SQL을 객체에 담기 및 SQL 완성
@@ -127,4 +131,139 @@ public class TradeDao {
 		
 		return count;
 	}
+	//카테고리 검색을 위한 cnt 조회
+	public int getCountForCategory(Connection conn, String category) {
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT COUNT(TRADE_NO) AS COUNT FROM TRADE WHERE STATUS = 'N' AND REF_CATEGORY_NO = ?";
+		
+		try {
+			//SQL을 객체에 담기 및 SQL 완성
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, category);
+			
+			//SQL 실행 및 결과 저장
+			rs = pstmt.executeQuery();
+			
+			//실행결과 -> 자바 데이터
+			if(rs.next()) {
+				count = rs.getInt("COUNT");
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return count;
+	}
+
+	public int increaseTrade(Connection conn, String num) {
+		//conn준비
+		//sql준비
+		String sql = "UPDATE TRADE SET CNT = CNT+1 WHERE TRADE_NO=? AND STATUS='N'";
+		//sql객체에 담기 -> 물음표 채우기
+		PreparedStatement pstmt = null;
+		int result = 0;
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			//sql 실행 및 결과 저장
+			result = pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		//결과 리턴
+		return result;
+	}
+
+	public TradeVo selectOne(Connection conn, String num) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		TradeVo vo = null;
+		
+		//sql 준비
+		String sql = "SELECT M.MEMBER_MID WRITER, T.TITLE, TO_CHAR(T.ENROLL_DATE, 'YY/MM/DD HH:MI') ENROLL_DATE, T.CNT, T.PRICE, T.EXPLAIN, T.CONDITION, T.SHIP, T.EXCHANGE FROM TRADE T JOIN MEMBER M ON T.WRITER = M.MEMBER_NO WHERE TRADE_NO = ?";
+		
+		try {
+			//sql 객체에 담기 -> 물음표 채욱
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			//sql 실행 및 결과 저장
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				String tradeNo = num;
+				String title = rs.getString("TITLE");
+				String writer = rs.getString("WRITER");
+				String enrollDate = rs.getString("ENROLL_DATE");
+				String content = rs.getString("EXPLAIN");
+				String cnt = rs.getString("CNT");
+				String price = rs.getString("PRICE");
+				String condition = rs.getString("CONDITION");
+				String ship = rs.getString("SHIP");
+				String exchange = rs.getString("EXCHANGE");
+				
+				vo = new TradeVo();
+				vo.setTradeNo(tradeNo);
+				vo.setTitle(title);
+				vo.setWriter(writer);
+				vo.setEnrollDate(enrollDate);
+				vo.setExplain(content);
+				vo.setCnt(cnt);
+				vo.setPrice(price);
+				vo.setCondition(condition);
+				vo.setShip(ship);
+				vo.setExchange(exchange);
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		//결과 리턴
+		return vo;
+	}
+
+	public int getCountForMy(Connection conn, String myNo) {
+		int count = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "SELECT COUNT(TRADE_NO) AS COUNT FROM TRADE WHERE STATUS = 'N' AND WRITER = ?";
+		
+		try {
+			//SQL을 객체에 담기 및 SQL 완성
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, myNo);
+			
+			//SQL 실행 및 결과 저장
+			rs = pstmt.executeQuery();
+			
+			//실행결과 -> 자바 데이터
+			if(rs.next()) {
+				count = rs.getInt("COUNT");
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return count;
+	}
+
+
+
 }
+
+
+

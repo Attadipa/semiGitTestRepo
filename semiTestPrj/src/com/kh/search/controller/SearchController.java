@@ -24,15 +24,13 @@ public class SearchController extends HttpServlet{
 		
 		String keyword = req.getParameter("keyword");
 		String keywordOption = req.getParameter("keyword-option"); 
-		System.out.println(keyword + keywordOption);
 		
 		String[] keywordsArr = keyword.split(" ");
 		ArrayList keywordsList = new ArrayList<String>();
 		String keywords = "";
 		String queryKeyword = "";
 
-		if(keyword != "") {
-			
+		if(!keyword.equals("")) {
 			//키워드에 ''붙여줘서 리스트로 만들어놓기
 			for(String a : keywordsArr) {
 				a = keywordOption +  " LIKE '%" + a + "%'";
@@ -56,7 +54,7 @@ public class SearchController extends HttpServlet{
 			
 			currentPage = Integer.parseInt(p);
 			pageLimit = 10;
-			boardLimit = 10;
+			boardLimit = 12;
 			maxPage = (int) Math.ceil((double)listCount / boardLimit);
 			startPage = (currentPage - 1) / pageLimit * pageLimit + 1 ;
 			endPage = startPage + pageLimit - 1;
