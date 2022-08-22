@@ -1,5 +1,10 @@
+<%@page import="com.kh.community.vo.TypeVo"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%
+   		 List<TypeVo> list = (List<TypeVo>)request.getAttribute("list");
+    %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,31 +88,32 @@
 
 
         <h1>글쓰기(커뮤니티 글 작성하기)</h1>
-        <input type="submit" id="submit" class="btn btn-success" value="등록">
 
         <hr>
 
-        <form action="semiTestPrj/notice/insert" method="post">
-            <input type="hidden" name="writerNo" value="<%-- <%=loginMember.getNo()%> --%>">
-            
-
+		<form id="enroll-form" action="<%=contextPath%>/community/insert" method="post" enctype="multipart/form-data">
+        
+	        <input type="submit" id="submit" class="btn btn-success" value="등록"> 
             <div id="section">
-
                 <div class="category">
-                    <select name="category-select" class="category-select">
-                        <option value="free">자유게시판</option>
-                        <option value="compliment">칭찬해요</option>
-                        <option value="caution">주의해요</option>
-                        <option value="chat">수다방</option>
+                    <select name="category" class="category-select">
+                        <!-- <option value="0">자유게시판</option>
+                        <option value="1">자유게시판</option>
+                        <option value="2">칭찬해요</option>
+                        <option value="3">주의해요</option>
+                        <option value="4">수다방</option> -->
+                        
+                        <% for(TypeVo v : list){ %>
+	                    <option value="<%=v.getTypeNo()%>"><%=v.getTypeName()%></option>
+                   		<%} %>
                     </select>
                 </div>
-                
                 <br>
                 <input type="text" size="120" name="title" id="title" placeholder=" 제목을 입력해주세요." required>
                 <br>
                 <br>
                 <textarea rows="15" cols="130" style="resize:none;" name="content" id="content" placeholder=" 내용을 입력하세요." required></textarea>
-                <input type="file">
+                <input type="file" name="f">
             </div>
 
         </form>

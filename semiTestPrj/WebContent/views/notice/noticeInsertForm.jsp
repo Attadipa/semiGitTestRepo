@@ -79,8 +79,8 @@
             	
             	
             	<!-- 수정 예정  -->
-	            <%-- <input type="hidden" name="writerNo" value="<%=loginMember.getMemberNo()%>">  --%>
-	            <input type="hidden" name="writerNo" value="2">
+	            <input type="hidden" name="writerNo" value="<%=loginMember.getMemberNo()%>">
+	            <!-- <input type="hidden" name="writerNo" value="2"> -->
                 <input type="text" size="120" name="title" id="title" placeholder=" 제목을 입력해주세요." required onkeyup="title_check();">
                 <br>
                 <br>

@@ -118,15 +118,7 @@
        
         <div class="detail-header">
 
-           <%--  <div>
-                <button class="btn btn-success" onclick="location.href='/semiTestPrj/notice/insert'">✍글쓰기</button>
-                <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/edit?num=<%=vo.getNo()%>'">수정</button>
-                <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/delete?num=<%=vo.getNo()%>'">삭제</button>
-                <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/list?p=1'" >글목록</button>
-            </div> --%> 
-
             	<%if(loginMember != null && vo.getWriter().equals(loginMember.getMemberName())){ %>
-                 
                 <div>
                     <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/edit?num=<%=vo.getNo()%>'">수정</button>
                     <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/delete?num=<%=vo.getNo()%>'">삭제</button>
