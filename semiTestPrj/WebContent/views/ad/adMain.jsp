@@ -83,7 +83,7 @@
         <div id="ad-button-container">
             <button id="ad-request" onclick="location.href='/semiTestPrj/ad/request'">광고신청</button>
             <button id="ad-manager" onclick="location.href='/semiTestPrj/ad/manager'">광고관리</button>
-            <button id="ad-guide" onclick="location.href='https://www.naver.com'">광고가이드</button>
+            <button id="ad-guide" onclick="location.href=''">광고가이드</button>
         </div>
         
     </div>

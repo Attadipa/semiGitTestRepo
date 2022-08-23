@@ -9,7 +9,8 @@ import com.kh.pay.vo.PayVo;
 public class PayDao {
 
 	public int insertPay(Connection conn, PayVo payVo) {
-		String sql = "INSERT INTO PAY (PAY_NO, PAY_METHOD_NO, TRADE_NO, MEMBER_NO, PAY_AMOUNT, ENROLL_DATE,DELETE_YN) VALUES (SEQ_PAY_NO.NEXTVAL, ?, ?, ?, ?,DEFAULT, DEFAULT)";
+		String sql = "INSERT INTO PAY (PAY_NO, PAY_METHOD_NO, TRADE_NO, MEMBER_NO, PAY_AMOUNT, ENROLL_DATE,DELETE_YN) "
+				   + "VALUES (SEQ_PAY_NO.NEXTVAL, ?, ?, ?, ?,DEFAULT, DEFAULT)";
 		PreparedStatement pstmt = null;
 		int result = 0;
 		try {

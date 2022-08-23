@@ -1,10 +1,12 @@
-package com.kh.pay.vo;
+package com.kh.delivery.vo;
 
 public class DeliveryVo {
 	private String deliveryNo;
 	private String deliveryAddr;
 	private String requestContent;
 	private String payNo;
+	private String enrollDate;
+	private String deleteYn;
 	
 	
 	public DeliveryVo() {
@@ -12,12 +14,15 @@ public class DeliveryVo {
 	}
 
 
-	public DeliveryVo(String deliveryNo, String deliveryAddr, String requestContent, String payNo) {
+	public DeliveryVo(String deliveryNo, String deliveryAddr, String requestContent, String payNo, String enrollDate,
+			String deleteYn) {
 		super();
 		this.deliveryNo = deliveryNo;
 		this.deliveryAddr = deliveryAddr;
 		this.requestContent = requestContent;
 		this.payNo = payNo;
+		this.enrollDate = enrollDate;
+		this.deleteYn = deleteYn;
 	}
 
 
@@ -61,16 +66,31 @@ public class DeliveryVo {
 	}
 
 
+	public String getEnrollDate() {
+		return enrollDate;
+	}
+
+
+	public void setEnrollDate(String enrollDate) {
+		this.enrollDate = enrollDate;
+	}
+
+
+	public String getDeleteYn() {
+		return deleteYn;
+	}
+
+
+	public void setDeleteYn(String deleteYn) {
+		this.deleteYn = deleteYn;
+	}
+
+
 	@Override
 	public String toString() {
 		return "DeliveryVo [deliveryNo=" + deliveryNo + ", deliveryAddr=" + deliveryAddr + ", requestContent="
-				+ requestContent + ", payNo=" + payNo + "]";
+				+ requestContent + ", payNo=" + payNo + ", enrollDate=" + enrollDate + ", deleteYn=" + deleteYn + "]";
 	}
-	
-	
-	
-	
-	
-	
-	
+
 }
+		

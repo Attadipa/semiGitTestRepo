@@ -95,18 +95,21 @@
 </head>
 <body>
     <div id="container">
-        <form action="/semiTestPrj/ad/adRequest" method="post">
-            <input type="hidden" name="">
+        <form action="/semiTestPrj/pay/insert" method="post">
+            <input type="hidden" name="tradeNo" value="${tradeVo.tradeNo}">
+            <input type="hidden" name="isAd" value="true">
+            <input type="hidden" id="pay-amount" name="payAmout">
+
             <h1>광고신청</h1>
             <hr>
             <br>
             <table id="title-container">
                 <tr>
                     <td rowspan="4"><img src="resources/gundam1.jpg" alt="게시글 대표사진"></td>
-                    <td id="price">690,000원(가격)</td>
+                    <td id="price">${tradeVo.price}원</td>
                 </tr>
                 <tr>
-                    <td id="post-title">대형건담 180cm(게시글제목)</td>
+                    <td id="post-title">${tradeVo.title}</td>
                 </tr>
             </table>
             <h2>키워드</h2>
@@ -139,10 +142,20 @@
     </div>
     <script>
         function addPayAmount(days){
-            const payAmount = document.querySelector("#pay-amount-container");
-            if(days==7) payAmount.innerHTML = "30,000원";
-            if(days==15) payAmount.innerHTML = "60,000원";
-            if(days==30) payAmount.innerHTML = "100,000원";
+            const payAmountContainer = document.querySelector("#pay-amount-container");
+            const payAmountValue = document.querySelector("#pay-amount");
+            if(days==7){
+                payAmountContainer.innerHTML = "30,000원";
+                payAmountValue.value = "30000";
+            } 
+            if(days==15){
+                payAmountContainer.innerHTML = "60,000원";
+                payAmountValue.value = "60000";
+            } 
+            if(days==30){
+                payAmountContainer.innerHTML = "100,000원";
+                payAmountValue.value = "100000";
+            } 
         }
     </script>
 
