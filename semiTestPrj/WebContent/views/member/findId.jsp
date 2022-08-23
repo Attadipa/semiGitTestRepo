@@ -6,7 +6,7 @@
 <meta charset="UTF-8">
 <title>아이디 찾기</title>
   
-<script src ="../member/js/findinfo.js"></script>
+<script src ="/semiTestPrj/views/member/js/findinfo.js"></script>
 
 
     
@@ -251,6 +251,25 @@
         </div>
  <script>
  
+	 //아이디찾기
+	 function idSearch1() { 
+		 	var frm = document.idfindscreen;
+	
+		 	if (frm.memberName.value.length < 1) {
+			  alert("이름을 입력해주세요");
+			  return;
+			 }
+	
+			 if (frm.memberPhone.value.length != 13) {
+				  alert("핸드폰번호를 정확하게 입력해주세요");
+				  return;
+			 }
+	
+		 frm.method = "post";
+		 frm.action = "findIdResult.jsp"; //넘어간화면
+		 frm.submit();  
+		 }
+	 
  </script>
 </body>
 </html>
