@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.kh.ad.repository.AdDao;
 import com.kh.ad.vo.AdVo;
+import com.kh.common.PageVo;
 
 public class AdService {
 	
@@ -18,7 +19,6 @@ public class AdService {
 	public int insertAd(AdVo adVo) {
 		
 		Connection conn = getConnection();
-		
 		int result = AdDao.insertAd(conn,adVo);
 		
 		if(result==1) commit(conn);
@@ -29,18 +29,24 @@ public class AdService {
 		return result;
 	}
 
-	public List<AdVo> selectList(String memberNo) {
+	public List<AdVo> selectList(String memberNo,PageVo pageVo) {
 		
 		Connection conn = getConnection();
-		
-		List<AdVo> list = AdDao.selectList(conn,memberNo);
-		
-		if(list != null) commit(conn);
-		else rollback(conn);
-		
+		List<AdVo> list = AdDao.selectList(conn,memberNo,pageVo);
 		close(conn);
 		
 		return list;
+	}
+
+	public int getCount(String memberNo) {
+		
+		Connection conn = getConnection();
+		
+		int count = AdDao.getCount(conn,memberNo);
+		
+		close(conn);
+		
+		return count;
 	}
 
 }
