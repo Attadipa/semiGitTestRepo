@@ -10,8 +10,10 @@ import com.kh.cs.vo.FaqVo;
 
 public class FaqService {
 	
+	
 	private final FaqDao dao = new FaqDao();
 
+	
 	public List<FaqVo> searchList(String searchContent) {
 		
 		Connection conn = null;
@@ -29,6 +31,8 @@ public class FaqService {
 		return voList;
 	}
 
+	
+	
 	public List<FaqVo> typeList(String type) {
 		
 		Connection conn = null;
@@ -43,6 +47,8 @@ public class FaqService {
 		return voList;
 	}
 
+	
+	
 	public FaqVo selectOne(String num) {
 
 		Connection conn = null;
@@ -61,6 +67,8 @@ public class FaqService {
 		return vo;
 	}
 
+	
+	
 	public int edit(FaqVo vo) {
 		
 		Connection conn = null;
@@ -79,6 +87,7 @@ public class FaqService {
 		
 	}
 
+	
 	public List<FaqVo> selectTen() {
 		
 		Connection conn = null;
@@ -93,6 +102,7 @@ public class FaqService {
 		return voList;
 	}
 
+	
 	public int delete(String num) {
 		
 		Connection conn = null;
@@ -118,9 +128,10 @@ public class FaqService {
 		return result;
 	}
 
+	
 	public int insert(FaqVo vo) {
 		
-Connection conn = null;
+		Connection conn = null;
 		
 		conn = getConnection();
 		
