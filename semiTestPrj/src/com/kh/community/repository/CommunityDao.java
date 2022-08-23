@@ -380,4 +380,35 @@ public class CommunityDao {
 		return result;
 	}
 
+	public AttachmentComVo selectAtt(Connection conn, String num) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		AttachmentComVo att = null;
+		
+		String sql = "SELECT FILE_PATH, CHANGE_NAME FROM ATTACHMENT_COM WHERE REF_CNO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				att = new AttachmentComVo();
+				att.setFilePath(rs.getString("FILE_PATH"));
+				att.setChangeName(rs.getString("CHANGE_NAME"));
+			}
+			
+		} catch (Exception e) {
+			
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		System.out.println(att);
+		return att;
+	}
+
 }

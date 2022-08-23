@@ -28,25 +28,29 @@ public class ComDetailController extends HttpServlet {
 		if(result == 1) {
 			//조회수 증가 성공 조건 통과 시에만 -> 디비에서 특정 게시글 정보 조회
 			CommunityVo vo =  new CommunityService().selectOne(num);
-			//질문 -> 커뮤니티 게시판에서 사진 insert 하는 것까지 성공 , 그런데 게시판과 게시판의 첨부파일 테이블을 따로 만들어서 잘 모르겠음 -> comInsertController 참고?
-//			AttachmentComVo att = new CommunityService().selectAtt(num);
-			
+			AttachmentComVo att = new CommunityService().selectAtt(num);
 			
 			if(vo != null) {
 				//조회 성공 -> 정보를 담아 포워딩
 				req.setAttribute("vo", vo);
+				
+				if(att != null) {
+					 att.setFilePath((att.getFilePath().substring(18, 31)+att.getFilePath().substring(42)+"\\"+att.getChangeName()).replace("\\", "/"));
+					 System.out.println(att.getFilePath());
+					 req.setAttribute("att", att);
+				}
 				req.getRequestDispatcher("/views/community/comDetail.jsp").forward(req, resp);
-				System.out.println(vo);
 				
 			} else {
 				//조회 실패 -> 에러페이지
 				req.setAttribute("errorMsg", "조회에 실패하셨습니다.");
-				req.getRequestDispatcher("/views/error/errorPage.jsp");
+				req.getRequestDispatcher("/views/error/errorPage.jsp").forward(req, resp);
 			}
+			
 		} else {
 			//조회수 증가 실패 -> 에러페이지
 			req.setAttribute("errorMsg", "조회에 실패하셨습니다.");
-			req.getRequestDispatcher("/views/error/errorPage.jsp");
+			req.getRequestDispatcher("/views/error/errorPage.jsp").forward(req, resp);
 		}
 		
 	}

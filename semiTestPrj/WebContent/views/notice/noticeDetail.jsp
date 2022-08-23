@@ -75,12 +75,13 @@
         min-height: 500px;
         padding: 35px;
         padding-bottom: 100px;
+        margin-top: -25px;
 
     }
 
     #comment-write button {
-        margin-left: 90%;
-        margin-top: -60px;
+        margin-left: 92%;
+        margin-top: -30px;
     }
 
     .list-top {
@@ -167,19 +168,20 @@
         
 
         <div id="content-area">
+        	<img alt="" src="">
             <div name="content" id="content"><pre><%=vo.getContent()%></pre></div>
         </div>
 
 
         <div class="detail-footer">
-            <span id="comment">댓글 (댓글 개수)</span>
+            <span id="comment" style="font-size: 20px;">댓글</span>
             <span id="call"> <button class="btn btn-light">신고</button></span><hr>
 
 
+            <!-- 댓글 작성시 반복문 -->
             <div class="comment">
                 <div id="user-comments"> 
-                   <table>
-                    <!-- 댓글 작성하면 자동으로 td추가 -->
+                   <!-- <table>
                         <td>
                             <tr>(작성자) <br><br></tr>
                             <tr>감사합니다. 좋은 거래였습니다.<br></tr>
@@ -188,35 +190,23 @@
                             <div id="reply-write"></div>
                             <hr>
                         </td>
-
-                        <td>
-                            <tr>(작성자) <br><br></tr>
-                            <tr>아나바다 안녕하세요<br></tr>
-                            <tr>2022/08/08 11:44 <br><br>
-                            <tr><button onclick="reply2()">답글쓰기</button><br><br></tr>
-                            <div id="reply-write2"></div>
-                            <hr>
-                        </td>
-                   </table>
+                   </table> -->
                 </div>
 
-                
                 <div id="comment-write">
-                    <div>(작성자)</div>
-                    <br>
-                    <div><textarea rows="5" cols="105" style="resize:none;" name="comment" id="comment" required></textarea></div>
-                    <br>
-                    <!-- 사진 | 이모지 -->
-                    <span><input type="file"> | 이모티콘</span>
-                    <button class="btn btn-success">등록</button>
-                </div><br>
+                    <div>(작성자)</div><br>
+                    <div><textarea rows="5" cols="105" style="resize:none;" name="comment" id="comment" required></textarea></div><br>
+                    <button class="btn btn-success">등록</button><br>
+                </div>
             </div>
+
+
 
         </div>
         
         <div class="list-top" style=" margin-left: 80%;">
-             <input type="button" class="btn btn-light" value="글목록" onclick="location.href='/semiTestPrj/notice/list?p=1'">
-             <input type="button" class="btn btn-light" value="TOP" onclick="window.scrollTo(0,0);">
+            <input type="button" class="btn btn-light" value="글목록" onclick="location.href='/semiTestPrj/notice/list?p=1'">
+            <input type="button" class="btn btn-light" value="TOP" onclick="window.scrollTo(0,0);">
         </div>
        
     </div>
@@ -231,7 +221,7 @@
             const reply = document.getElementById('reply-write');
             
             reply.innerHTML
-                ='<hr><div style=" border: 1px solid black; width: 95%; margin: 0px auto; padding-top: 10px;  margin-bottom: 10px; padding-left: 40px; padding-bottom: 15px;"><div>(작성자)</div><br><div><textarea rows="5" cols="100" style="resize:none;" name="comment" id="comment" required></textarea></div><br><span>사진 | 이모지</span><button class="btn btn-success" style="margin-left: 80%;">등록</button></div>'
+                ='<hr><div style=" border: 1px solid black; width: 95%; margin: 0px auto; padding-top: 10px;  margin-bottom: 10px; padding-left: 40px; padding-bottom: 15px;"><div>(작성자)</div><br><div><textarea rows="5" cols="100" style="resize:none;" name="comment" id="comment" required></textarea></div><br><button class="btn btn-success" style="margin-left: 80%;">등록</button></div>'
                    
         }
 
@@ -239,7 +229,7 @@
             const reply = document.getElementById('reply-write2');
             
             reply.innerHTML
-                ='<hr><div style=" border: 1px solid black; width: 95%; margin: 0px auto; padding-top: 10px;  margin-bottom: 10px; padding-left: 40px; padding-bottom: 15px;"><div>(작성자)</div><br><div><textarea rows="5" cols="100" style="resize:none;" name="comment" id="comment" required></textarea></div><br><span>사진 | 이모지</span><button class="btn btn-success" style="margin-left: 80%;">등록</button></div>'
+                ='<hr><div style=" border: 1px solid black; width: 95%; margin: 0px auto; padding-top: 10px;  margin-bottom: 10px; padding-left: 40px; padding-bottom: 15px;"><div>(작성자)</div><br><div><textarea rows="5" cols="100" style="resize:none;" name="comment" id="comment" required></textarea></div><br><button class="btn btn-success" style="margin-left: 80%;">등록</button></div>'
                    
         }
 
@@ -258,6 +248,27 @@
             alert("URL이 복사되었습니다.");
         }
        
+
+        $('.wish').click(function(){
+            $.ajax({
+                url : "/semiTestPrj/wishlist/insert"
+                , method : "GET"
+                , data : {
+                        postNo : ${tvo.getTradeNo()}
+                        , memberNo : ${loginMember.getMemberNo()}
+                        , title : $('.product-info').children().eq(0).text()
+                    } 
+                , success : function(x){
+                    console.log("통신성공");
+                    alert(x);
+                    $('.wish').prop("disabled", true);
+                }
+                , error : function(e){
+                    console.log("통신실패");
+                    console.log(e);
+                }
+            });
+        });
     </script>
 
     
