@@ -71,10 +71,10 @@
 				<a>
 					
 					<div class="textbox">
-						<h3>두번째 슬라이드</h3>
-						<p>두번째 슬라이드 입니다.</p>
+						<h3></h3>
+						<p></p>
 					</div>
-					<img src="/semiTestPrj/views/common/factor/img/slide.jpg">
+					<img src="/semiTestPrj/views/common/factor/img/musinsa.JPG">
 				</a>
 			</li>
 			<li class="slideitem">

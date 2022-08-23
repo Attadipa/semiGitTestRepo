@@ -9,6 +9,7 @@ import java.util.List;
 
 import static com.kh.common.JDBCTemplate.*;
 
+import com.kh.attachment.vo.AttachmentVo;
 import com.kh.common.PageVo;
 import com.kh.trade.vo.TradeVo;
 
@@ -70,7 +71,7 @@ public class TradeDao {
 		int result = 0;
 		
 		//sql 준비
-		String sql = "INSERT INTO TRADE(NO, WRITER, TITLE, REF_CATEGORY_NO, LOCATION, CONDITION, EXCHANGE, SHIP, PRICE, EXPLAIN, COUNT) VALUES (SEQ_TRADE_NO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO TRADE(TRADE_NO, WRITER, TITLE, REF_CATEGORY_NO, LOCATION, CONDITION, EXCHANGE, SHIP, PRICE, EXPLAIN, COUNT) VALUES (SEQ_TRADE_NO.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		
 		try {
@@ -231,6 +232,37 @@ public class TradeDao {
 		//결과 리턴
 		return vo;
 	}
+	
+	public AttachmentVo selectAtt(Connection conn, String num) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		AttachmentVo vo = null;
+		
+		//sql 준비
+		String sql = "SELECT FILE_PATH, CHANGE_NAME FROM ATTACHMENT WHERE REF_TNO = ?";
+		
+		try {
+			//sql 객체에 담기 -> 물음표 채욱
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			//sql 실행 및 결과 저장
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				vo = new AttachmentVo();
+				vo.setFilePath(rs.getString("FILE_PATH"));
+				vo.setChangeName(rs.getString("CHANGE_NAME"));
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		//결과 리턴
+		return vo;
+	}
 
 	public int getCountForMy(Connection conn, String myNo) {
 		int count = 0;
@@ -260,6 +292,35 @@ public class TradeDao {
 		
 		return count;
 	}
+
+	public int insertAttachment(Connection conn, AttachmentVo avo) {
+		//SQL 준비
+		String sql = "INSERT INTO ATTACHMENT ( NO ,REF_TNO ,ORIGIN_NAME ,CHANGE_NAME ,FILE_PATH ) VALUES ( SEQ_ATTACHMENT_NO.NEXTVAL , SEQ_TRADE_NO.CURRVAL , ? , ? , ? )";
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			//SQL 을 객체에 담기 및 완성하기
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, avo.getOriginName());
+			pstmt.setString(2, avo.getChangeName());
+			pstmt.setString(3, avo.getFilePath());
+			
+			//SQL 실행 및 결과저장
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		//실행결과 리턴
+		return result;
+	}
+
+
 
 
 

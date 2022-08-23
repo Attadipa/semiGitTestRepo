@@ -90,18 +90,14 @@
         <h6>필수항목*</h6>
         <hr><br><br>
 
-        <form action="/semiTestPrj/trade/insert" method="post">
-            <!-- 글 번호, 작성자 번호 -->
-            <input type="hidden" name="no"> 
-            <input type="hidden" name="writerNo" value="1">
-            
-            <!-- 수정 예정  -->
-            <%-- <input type="hidden" name="writerNo" value="<%=loginMember.getMemberNo()%>">  --%>
+        <form action="/semiTestPrj/trade/insert" method="post" enctype="multipart/form-data">
+            <!-- 작성자 회원번호  -->
+            <input type="hidden" name="writerNo" value="<%=loginMember.getMemberNo()%>">
     
             <!-- 사진게시판 이후 수정 예정 -->
             <!-- 이미지 -->
             <h5 class="image">
-                상품이미지(보류) <br>
+                상품이미지<br>
                 <input id="imageLengthCkeck" type="file" name="f" placeholder="(0/ 4)"></input>
                 <br><br>
             </h5>

@@ -2,9 +2,11 @@ package com.kh.trade.service;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.UUID;
 
 import static com.kh.common.JDBCTemplate.*;
 
+import com.kh.attachment.vo.AttachmentVo;
 import com.kh.common.PageVo;
 import com.kh.trade.repository.TradeDao;
 import com.kh.trade.vo.TradeVo;
@@ -27,42 +29,40 @@ public class TradeService {
 		return voList;
 	}
 
-	public int insert(TradeVo vo) {
+	public int insert(TradeVo tvo, AttachmentVo avo) {
 		
-		Connection conn = null;
+		Connection conn = getConnection();
 		int result = 0;
 		
 		//비지니스 로직
-		if(vo.getTitle().length() > 30) {
+		if(tvo.getTitle().length() > 30) {
 			System.out.println("제목이 30글자를 초과하였습니다");
 			return -1;
 		}
 		
-		if(vo.getExplain().length() > 500) {
+		if(tvo.getExplain().length() > 500) {
 			System.out.println("내용이 500글자를 초과하였습니다");
 			return -2;
 		}
 		
-		try {
-			conn = getConnection();
-			result = dao.insert(conn, vo);
-			
-			if(result == 1) {
-				commit(conn);
-			} else {
-				rollback(conn);
-			}
-			
-		} catch (Exception e) {
-			rollback(conn);
-			e.printStackTrace();
-			
-		} finally {
-			close(conn);
+		//DAO 호출
+		int result1 = dao.insert(conn, tvo);
+		
+		int result2 = 1;
+		if(avo != null) {
+			result2 = dao.insertAttachment(conn, avo);
 		}
 		
-//		System.out.println(result);
-		return result;
+		//트랜잭션 처리
+		if(result1 * result2 == 1) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result1 * result2;
 	}
 
 	//검색 키워드를 통한 페이지조회를 위한 cnt
@@ -143,7 +143,23 @@ public class TradeService {
 
 		return result;
 	}
+	public AttachmentVo selectAtt(String num) {
+		AttachmentVo result = null;
+		Connection conn = null;
+		
+		try{
+			conn = getConnection();
+			//dao 호출
+			result = dao.selectAtt(conn, num);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+		}
 
+		return result;
+	}
+	
 	//나의 게시글 총 개수 조회
 	public int getCountForMy(String myNo) {
 		int result = 0;
@@ -162,7 +178,20 @@ public class TradeService {
 		return result;
 	}
 
-
+	public String createChangeName(String originName) {
+		//확장자 가져오기
+		int dotIdx = originName.lastIndexOf(".");
+		String ext = originName.substring(dotIdx);
+		
+		//파일 이름 만들기
+		long now = System.currentTimeMillis();
+		String random = UUID.randomUUID().toString();
+		random = random.substring(0,8);
+		
+		String changeName = "KH_" + now + "_" + random + ext;
+		
+		return changeName;
+	}
 
 	
 
