@@ -18,7 +18,6 @@ public class AdInsertController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String tradeNo = req.getParameter("num");
-		
 		TradeVo tradeVo = new TradeService().selectOne(tradeNo);
 		int payCategory = 3;
 		

@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.ad.vo.AdVo;
+import com.kh.common.PageVo;
 
 public class AdDao {
 
@@ -34,35 +35,68 @@ public class AdDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			close(conn);
+			close(pstmt);
 		}
 		
 		return result;
 		
 	}
+	
+	public int getCount(Connection conn, String memberNo) {
+		String sql = "SELECT COUNT(*) AS COUNT FROM AD WHERE MEMBER_NO = ? AND DELETE_YN = 'N'";
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		try {
+			pstmt=conn.prepareStatement(sql);	
+			
+			pstmt.setInt(1, Integer.parseInt(memberNo));
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				count = rs.getInt("COUNT");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return count;
+	}
 
-	public List<AdVo> selectList(Connection conn, String memberNo) {
-		String sql = "SELECT A.AD_NO, A.TRADE_NO, T.TITLE, T.PRICE, A.PERIOD, TO_CHAR(A.ENROLL_DATE,'YY/MM/DD HH24:MI:SS') AS ENROLL_DATE, A.KEYWORD1, A.KEYWORD2, A.KEYWORD3, S.AD_STATUS FROM AD A JOIN TRADE T ON A.TRADE_NO = T.TRADE_NO JOIN AD_STATUS S ON A.AD_STATUS_NO = S.AD_STATUS_NO WHERE DELETE_YN = 'N' ORDER BY AD_NO";
+	public List<AdVo> selectList(Connection conn, String memberNo, PageVo pageVo) {
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM , T.* FROM (  SELECT A.AD_NO, A.TRADE_NO, T.TITLE, T.PRICE, A.PERIOD AS PERIOD, TO_CHAR(A.ENROLL_DATE,'YY/MM/DD HH24:MI:SS') AS ENROLL_DATE, A.KEYWORD1, A.KEYWORD2, A.KEYWORD3, S.AD_STATUS FROM AD A JOIN TRADE T ON A.TRADE_NO = T.TRADE_NO JOIN AD_STATUS S ON A.AD_STATUS_NO = S.AD_STATUS_NO WHERE DELETE_YN = 'N' ORDER BY AD_NO ) T ) WHERE RNUM BETWEEN ? AND ?";
 		ArrayList<AdVo> list = new ArrayList<AdVo>();
 		PreparedStatement pstmt = null;
-		ResultSet result = null;
+		ResultSet rs = null;
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
 			
-			result = pstmt.executeQuery();
+			int start = (pageVo.getCurrentPage()-1)*pageVo.getBoardLimit() + 1;
+			int end = start + pageVo.getBoardLimit() - 1;
+
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
 			
-			while(result.next()) {
-				String adNo = result.getString("AD_NO");
-				String tradeNo = result.getString("TRADE_NO");
-				String title = result.getString("TITLE");
-				String price = result.getString("PRICE");
-				String period = result.getString("PERIOD");
-				String enrollDate = result.getString("ENROLL_DATE");
-				String keyword1 = result.getString("KEYWORD1");
-				String keyword2 = result.getString("KEYWORD2");
-				String keyword3 = result.getString("KEYWORD3");
-				String adStatus = result.getString("AD_STATUS");
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String adNo = rs.getString("AD_NO");
+				String tradeNo = rs.getString("TRADE_NO");
+				String title = rs.getString("TITLE");
+				String price = rs.getString("PRICE");
+				String period = rs.getString("PERIOD");
+				String enrollDate = rs.getString("ENROLL_DATE");
+				String keyword1 = rs.getString("KEYWORD1");
+				String keyword2 = rs.getString("KEYWORD2");
+				String keyword3 = rs.getString("KEYWORD3");
+				String adStatus = rs.getString("AD_STATUS");
 
 				AdVo advo = new AdVo();
 				advo.setAdNo(adNo);
@@ -84,11 +118,14 @@ public class AdDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
-			close(conn);
+			close(pstmt);
+			close(rs);
 		}
 		
 		return list;
 	}
+
+
 
 
 
