@@ -79,7 +79,7 @@
 			</div>
 			<div class="tab-pane fade" id="admin-cs" role="tabpanel" aria-labelledby="admin-cs-list">
 				<br>
-				<h3 id="bold-font" align="center"; style="color:green;">FAQ 등록</h3>
+				<h3 id="bold-font" align="center">FAQ 등록</h3>
 				<%@ include file="/views/admin/faqInsertForm.jsp" %>
 			</div>
 			<div class="tab-pane fade" id="admin-event" role="tabpanel" aria-labelledby="admin-event-list">
@@ -110,7 +110,7 @@
       				<div class="modal-footer">
         				<button id="adminDelete" class="btn btn-danger" data-bs-dismiss="modal">회원추방</button>
         				<button class="btn btn-success" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#exampleModalToggle2" id="adminEdit">정보수정</button>
-        				<button class="btn btn-dark">블랙리스트</button>
+        				<button id="adminReturn" class="btn btn-primary">회원복구</button>
       				</div>
     			</div>
   			</div>
@@ -124,35 +124,45 @@
       				</div>
       				<div class="modal-body">
         				<form action="${contextPath}/admin/edit" method="post">
-							<input type="hidden" name="memberNo">
-							<table id="editTable">
+							<input type="hidden" id="editNo" name="num">
+							<table>
 								<tr>
 									<td>아이디</td>
-									<td><input type="text" name="memberId" maxlength="15" required></td>
+									<td><input type="text" id="editId" name="memberId" maxlength="15" required></td>
 								</tr>
 								<tr>
 									<td>이름</td>
-									<td><input type="text" name="memberName" maxlength="5" required></td>
+									<td><input type="text" id="editName" name="memberName" maxlength="5" required></td>
 								</tr>
 								<tr>
 									<td>비밀번호</td>
-									<td><input type="text" name="memberPwd" maxlength="20" required></td>
+									<td><input type="text" id="editPwd" name="memberPwd" maxlength="20" required></td>
 								</tr>
 								<tr>
 									<td>전화번호</td>
-									<td><input type="tel" name="memberPhone" placeholder="- 없이 입력" required></td>
+									<td><input type="tel" id="editPhone" name="memberPhone" placeholder="- 없이 입력" required></td>
 								</tr>
 								<tr>
 									<td>이메일</td>
-									<td><input type="email" name="memberEmail" required></td>
+									<td><input type="email" id="editEmail" name="memberEmail" required></td>
 								</tr>
 								<tr>
 									<td>주소</td>
-									<td><input type="text" name="memberAddr" required></td>
+									<td><input type="text" id="editAddress" name="memberAddress" required></td>
 								</tr>
 								<tr>
 									<td>우편번호</td>
-									<td><input type="text" name="memberZipCode" required></td>
+									<td><input type="text" id="editZipCode" name="memberZipcode" required></td>
+								</tr>
+								<tr>
+									<td>등급</td>
+									<td>
+										<select id="editGrade" name="memberGrade">
+											<option value="2">일반회원</option>
+											<option value="3">프리미엄</option>
+											<option value="1">관리자</option>
+										</select>
+									</td>
 								</tr>
 								<tr>
 									<td></td>
@@ -186,8 +196,14 @@
 				$('#memberStatus').html("탈퇴여부 : " + $(this).children().eq(3).text());
 				
 				$('#adminDelete').click(function(){
-					 if(confirm("정말 회원을 추방하시겠습니까?")) {
+					 if(confirm("회원을 추방하시겠습니까?")) {
 						location.href = '/semiTestPrj/admin/delete?num=' + num;
+					 }
+				})
+				
+				$('#adminReturn').click(function(){
+					 if(confirm("회원을 복구시키겠습니까?")) {
+						location.href = '/semiTestPrj/admin/return?num=' + num;
 					 }
 				})
 				
@@ -197,16 +213,21 @@
 						method : "GET",
 						success : function(x){
 							console.log("통신성공 !");
-							console.log(x);
 							
 							const editVo = JSON.parse(x);
-							console.log(editVo);
-							console.log(editVo.memberMid);
 							
-							$('#editTable>tr>td>input').eq(0).val(editVo.memberMid);
+							$('#editNo').val(editVo.memberNo);
+							$('#editId').val(editVo.memberMid);
+							$('#editName').val(editVo.memberName);
+							$('#editPwd').val(editVo.memberPwd);
+							$('#editPhone').val(editVo.memberPhone);
+							$('#editEmail').val(editVo.memberEmail);
+							$('#editAddress').val(editVo.memberAddress);
+							$('#editZipCode').val(editVo.memberZipcode);
+							$("#editGrade").val(editVo.memberGrade);
 						},
 						error : function(request, status, error){
-							console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error)
+							console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 						}
 					});	
 				})

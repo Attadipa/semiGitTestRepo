@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <style>
 	#cs-footer {
-        padding-left: 40px;
+        margin : 0 auto;
         width: 1500px;
         height: 250px;
     }

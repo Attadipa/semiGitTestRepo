@@ -46,4 +46,69 @@ public class AdminService {
 		return vo;
 	}
 
+	public int editMember(MemberVo vo) {
+				
+		Connection conn = getConnection();
+		
+		int result = dao.edit(conn, vo);
+		
+		if(result == 1) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
+
+	public int deleteMember(String num) {
+		
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = getConnection();
+			
+			result = new AdminDao().deleteMember(conn, num);
+			
+			if(result == 1) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+		} catch (Exception e) {
+			rollback(conn);
+			e.printStackTrace();
+		} finally {
+			close(conn);
+		}
+		
+		return result;
+	}
+
+	public int returnMember(String num) {
+		
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = getConnection();
+			
+			result = new AdminDao().returnMember(conn, num);
+			
+			if(result == 1) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+		} catch (Exception e) {
+			rollback(conn);
+			e.printStackTrace();
+		} finally {
+			close(conn);
+		}
+		
+		return result;
+	}
+
 }
