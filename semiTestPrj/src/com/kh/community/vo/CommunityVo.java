@@ -10,6 +10,7 @@ public class CommunityVo {
 	private String cnt;
 	private String enrollDate;
 	private String status;
+
 	
 	public CommunityVo() {
 		
@@ -92,11 +93,13 @@ public class CommunityVo {
 		this.status = status;
 	}
 
+
 	@Override
 	public String toString() {
 		return "CommunityVo [no=" + no + ", type=" + type + ", title=" + title + ", content=" + content + ", writer="
 				+ writer + ", cnt=" + cnt + ", enrollDate=" + enrollDate + ", status=" + status + "]";
 	}
+
 	
 	
 	

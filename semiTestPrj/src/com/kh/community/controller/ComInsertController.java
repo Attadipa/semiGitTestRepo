@@ -110,7 +110,7 @@ public class ComInsertController extends HttpServlet {
 		}
 		
 		
-		//Board 테이블 채우기(insert)
+		//테이블 채우기(insert)
 		int result = new CommunityService().insertCommunity(cvo, avo);
 		
 		//결과에 따라 작업

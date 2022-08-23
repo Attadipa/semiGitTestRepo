@@ -1,8 +1,10 @@
+<%@page import="com.kh.community.vo.AttachmentComVo"%>
 <%@page import="com.kh.community.vo.CommunityVo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%
     	CommunityVo vo = (CommunityVo) request.getAttribute("vo");
+    	/* AttachmentComVo att = (AttachmentComVo) request.getAttribute("att"); */
     %>
 <!DOCTYPE html>
 <html>
@@ -71,8 +73,10 @@
     #content {
         border: 2px solid grey;
         width: 100%;
-        height: 100%;
+        height: fit-content;
+        min-height: 500px;
         padding: 35px;
+        padding-left: -100px
         padding-bottom: 100px;
 
     }
@@ -102,7 +106,9 @@
         margin-top: -5px;
     }
 
-  
+  	pre {
+  		height: fit-content;
+  	}
 
   
    
@@ -122,7 +128,7 @@
                 <div>
                     <button class="btn btn-light" onclick="location.href='/semiTestPrj/community/edit?num=<%=vo.getNo()%>'">수정</button>
                     <button class="btn btn-light" onclick="location.href='/semiTestPrj/community/delete?num=<%=vo.getNo()%>'">삭제</button>
-                    <button class="btn btn-light" onclick="history.go(-1)">글목록</button>
+                    <button class="btn btn-light" onclick="location.href='/semiTestPrj/community/list?p=1'">글목록</button>
                 </div>
                 <%} else {%>
                 <div>
@@ -160,11 +166,23 @@
             💬 이용제재/불법거래 신고 → https://vvd.bz/WZ9 <br><br>
         </div>
         
+		
 
-        <div id="content-area">
-            <div name="content" id="content"><pre><%=vo.getContent()%></pre></div>
-        </div>
-
+ 			<%-- <%if(vo.getFileName() != null){ %>
+	            <div name="content" id="content">
+	                <div id="image">
+	                    <!-- <img src="/semiTestPrj/resources/upload/<%=vo.getFileName() %>"> -->
+	                </div>
+	                
+	                    <%=vo.getContent()%>
+	            </div>
+            <%} else {%> --%>
+            	<div name="content" id="content">
+	                
+	                    <%=vo.getContent()%>
+	                
+            	</div>
+            <%-- <%} %> --%> 
 
         <div class="detail-footer">
             <span id="comment">댓글 (댓글 개수)</span>
