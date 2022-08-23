@@ -48,4 +48,26 @@ public class ChatDao {
 		return list;
 	}
 
+	public int insert(Connection conn, ChatVo vo) {
+
+		PreparedStatement pstmt = null;
+		String sql = "INSERT INTO CHAT(NO, MEMBER_NO, MEMBER_GRADE, CONTENT) VALUES(SEQ_CHAT_NO.NEXTVAL, ?, ?, ?)";
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getNo());
+			pstmt.setString(2, vo.getGrade());
+			pstmt.setString(3, vo.getContent());
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }

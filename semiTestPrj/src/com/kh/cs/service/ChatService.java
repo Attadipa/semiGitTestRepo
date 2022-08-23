@@ -29,6 +29,23 @@ public class ChatService {
 		return list;
 		
 	}
+
+	public int insert(ChatVo vo) {
+		
+		Connection conn = null;
+		
+		conn = getConnection();
+		
+		int result = dao.insert(conn, vo);
+		
+		if(result == 1) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result;
+	}
 	
 	
 
