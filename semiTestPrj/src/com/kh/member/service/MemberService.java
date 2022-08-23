@@ -140,13 +140,13 @@ public class MemberService {
 	
 	
 	//비밀번호 변경
-	public int changePwd(String memberMid, String memberPwd, String memberPwdNew) {
+	public int changePwd(String memberMid, String memberPwd, String memberPwdNew, String memberPwdNew2) {
 		
 		//비지니스 로직
-//		if(memberPwdNew.equals(meberPwdNew2) == false) {
-//			System.out.println("신규 비밀번호가 일치하지 않음");
-//			return -1;
-//		}
+		if(memberPwdNew.equals(memberPwdNew2) == false) {
+			System.out.println("신규 비밀번호가 일치하지 않음");
+			return -1;
+		}
 		
 		if(memberPwdNew.length() < 8) {
 			System.out.println("비밀번호가 8자리 미만임");
@@ -179,9 +179,9 @@ public class MemberService {
 	
 	
 	//아이디 찾기 (이름 + 폰번호)
-	public String findId(Connection conn, String memberName, String memberPhone) {
+	public String findId(String memberName, String memberPhone) {
 		
-//		Connection conn = null;
+		Connection conn = null;
 		String memberMid = null;
 		
 		try {
@@ -200,14 +200,14 @@ public class MemberService {
 	
 	
 	//비밀번호 찾기 (아이디 + 폰번호)
-	public String findPw(Connection conn, String memberMid, String memberPhone) {
+	public String findPwd(String memberMid, String memberPhone) {
 			
-//		Connection conn = null;
+		Connection conn = null;
 		String memberPwd = null;
 		
 		try {
 			conn = getConnection();
-			memberPwd = dao.findPw(conn, memberMid, memberPhone);
+			memberPwd = dao.findPwd(conn, memberMid, memberPhone);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {

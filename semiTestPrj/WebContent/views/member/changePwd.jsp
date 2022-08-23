@@ -4,11 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-    
-<script src="../member/js/findinfo.js"></script>
-
-<link rel="stylesheet" href="../member/css/findinfo.css">
+	<title>비밀번호 변경</title>
 
     
 <style type="text/css">
@@ -211,48 +207,89 @@
 	    width: 800px;
 	    margin: 0 auto;
 	}
+	
 </style>
-</head>	
+</head>
 <body>
-
-			<!-- header영역 -->
+		<!-- header영역 -->
 	<%@include file="/views/common/header.jsp" %>
-
 	
 	
-<div class = "containers">
-	<form name="pwfindscreen" method = "POST">
-			<div class = "search-title">
-				<h3>등록한 정보로 인증</h3>
-			</div>
-		<section class = "form-search">
-			<div class = "find-id">
-				<label>아이디</label>
-				<input type="text" name="memberMid" class ="btn-name" placeholder ="아나바다 ID">
-			<br>
-			</div>
-			
-		 <div class = "find-phone">
-				<label>번호</label>
-				<input type="text" onKeyup ="addHypen(this);" name="memberPhone" class ="btn-phone" placeholder = "휴대폰번호를 '-'없이 입력">
-			</div> 
-			<br>
-	</section>
+	
+<div class = "containers" align="center">
+	<form name="idfindscreen" method ="post">
 	<div class ="btnSearch">
-		<input type="button" name="enter" value="찾기"  onclick="pwSearch()">
-		<input type="button" name="cancle" value="취소" onclick="history.back()">
+		<br><br><br><br><br>
+		<input type="button" id="" value="비밀번호변경" class="" data-bs-toggle="modal" data-bs-target="#pwdChange">
+        <input type="button" id="" value="뒤로돌아가기" class="" onclick="history.back();">
  	</div>
  </form>
 </div>
-
+   
+   <!-- The Modal -->
+   <div class="modal" id="pwdChange">
+     <div class="modal-dialog">
+       <div class="modal-content">
+   
+         <!-- Modal Header -->
+         <div class="modal-header">
+           <h4 class="modal-title">비밀번호 변경하기</h4>
+           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+         </div>
+   
+         <!-- Modal body -->
+         <div class="modal-body">
+           <div id="pwdFormOuter">
+              <form action="<%=contextPath%>/member/pwd" method="post">
+                 <input type="hidden" name="frmId" value="${loginMember.getMemberMid() }">
+                 <table>
+                    <tr>
+                       <td>기존 비밀번호</td>
+                       <td><input type="password" name="memberPwd"></td>
+                    </tr>
+                    <tr>
+                       <td>신규 비밀번호</td>
+                       <td><input type="password" name="memberPwdNew"></td>
+                    </tr>
+                    <tr>
+                       <td>신규 비밀번호 확인</td>
+                       <td><input type="password" name="memberPwdNew2"></td>
+                    </tr>
+                    <tr>
+                       <td colspan="2" align="center">
+                       <br>
+                         		<input type="submit" value="변경하기" class="btn btn-primary" onclick="return checkPwd();">
+                       </td>
+                    </tr>
+                 </table>
+              </form>
+           </div>
+         </div>
+   
+       </div>
+     </div>
+   </div>
+   
+   <script>
+      function checkPwd(){
+         isSame = $('input[name=memberPwdNew]').val() == $('input[name=memberPwdNew2]').val();
+         if(isSame){
+            return true;
+         }else{
+            alert("신규 비밀번호가 일치하지 않습니다.");
+            return false;
+         }
+         
+      }
+   </script>
     <div class="footer-align">
         <hr>
-        <div class="help-box">도움이 더 필요하신가요? <a href="chat.jsp">지금 채팅하기</a> 또는 000-000-0000 번호로 문의하세요.</div>
+        <div class="help-box">도움이 더 필요하신가요? <a href="chat.jsp">지금 채팅하기</a> 또는 000-000-000 번호로 문의하세요.</div>
+        
    <!-- footer영역 -->
-    	<%@include file="/views/common/footer.jsp" %>
+   	<%@include file="/views/common/footer.jsp" %>
+   	
         </div>
- <script>
- 
- </script>
+
 </body>
 </html>

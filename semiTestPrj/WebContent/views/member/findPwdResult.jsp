@@ -1,15 +1,8 @@
-<%@page import="com.kh.member.repository.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
- 	request.setCharacterEncoding("UTF-8");
-    
-    String memberMid = request.getParameter("MEMBER_MID");     
-    String memberPhone = request.getParameter("MEMBER_PHONE");
-     
-	MemberDao dao = new MemberDao();
- 	String memberPwd = dao.findPw(conn, memberMid, memberPhone);
- 
+	/* String memberPwd = (String)request.getAttribute("memberPwd");  */
+	MemberVo vo = (MemberVo)request.getAttribute("vo");
 %>
 <!DOCTYPE html>
 <html>
@@ -18,7 +11,7 @@
 <title>Insert title here</title>
     <link rel="stylesheet" href="../member/css/findinfo.css">
 	   
-	<script src="../member/js/findinfo.js"></script>
+	<script src="/semiTestPrj/views/member/js/findinfo.js"></script>
 
 <style type="text/css">
 
@@ -187,14 +180,14 @@
 
 	
 	
-  <form name="idSearch" method="post">
+  <form action="/semiTestPrj/member/findPwd" name="idSearch" method="post">
       
-      <%if (memberPwd != null) {%>
+      <%if (vo.getMemberPwd() != null) {%>
       
       <div class = "containers">
       	<div class = "found-success">
 	      <h4>회원님의 비밀번호는 </h4>  
-	      <div class ="found-id"> <%=memberPwd%></div>
+	      <div class ="found-id"> ${vo.getMemberPwd() }</div>
 	      <h4>  입니다 </h4>
 	     </div>
 	     <div class = "found-login">
@@ -207,8 +200,8 @@
 	      <h4>  등록된 정보가 없습니다 </h4>  
 	     </div>
 	     <div class = "found-login">
- 		    <input type="button" id="btnback" value="다시 찾기" onClick="history.back()"/>
- 		    <input type="button" id="btnjoin" value="회원가입" onClick="joinIn();"/>
+ 		    <input type="button" id="btnback" value="다시 찾기" onclick="history.back()"/>
+ 		    <input type="button" id="btnjoin" value="회원가입" onclick="joinIn();"/>
        	</div>
        </div>
        

@@ -113,7 +113,7 @@ public class MemberDao {
 		//Connection 준비
 		
 		//SQL 준비
-		String sql = "UPDATE MEMBER SET MEMBER_NAME = ? , MEMBER_EMAIL = ? , MEMBER_PHONE = ?, MEMBER_ADDRESS = ? , MEMBER_ZIPCODE = ? , MEMBER_MODIFY_DATE = SYSDATE , MEMBER_GRADE = ? WHERE MEMBER_NO =?";
+		String sql = "UPDATE MEMBER SET MEMBER_NAME = ? , MEMBER_EMAIL = ? , MEMBER_PHONE = ?, MEMBER_ADDRESS = ? , MEMBER_ZIPCODE = ? , MEMBER_MODIFY_DATE = SYSDATE , MEMBER_GRADE = DEFAULT WHERE MEMBER_NO =?";
 		
 		PreparedStatement pstmt = null;
 		int result = 0;
@@ -127,7 +127,7 @@ public class MemberDao {
 			pstmt.setString(4, vo.getMemberAddress());
 			pstmt.setString(5, vo.getMemberZipcode());
 			pstmt.setString(6, vo.getMemberNo());
-			pstmt.setString(7, vo.getMemberGrade());
+//			pstmt.setString(7, vo.getMemberGrade());
 			
 			//SQL 실행 및 결과 저장
 			result = pstmt.executeUpdate();
@@ -210,7 +210,7 @@ public class MemberDao {
 		//connection 준비
 
 		//SQL 준비
-		String sql = "SELECT MEMBER_MID FROM MEMBER WHERE MEMBER_NAME=? AND MEMBER_PHONE? ";
+		String sql = "SELECT MEMBER_MID FROM MEMBER WHERE MEMBER_NAME = ? AND MEMBER_PHONE = ? ";
 		
 		String memberMid = null;
 		PreparedStatement pstmt = null;
@@ -241,11 +241,11 @@ public class MemberDao {
 }//아이디 찾기 (이름 + 폰번호)
 	
 	//비밀번호 찾기 (아이디 + 폰번호)
-	public String findPw(Connection conn, String memberMid, String memberPhone) {
+	public String findPwd(Connection conn, String memberMid, String memberPhone) {
 		//connection 준비
 
 		//SQL 준비
-		String sql = "SELECT MEMBER_PWD FROM MEMBER WHERE MEMBER_MID=? AND MEMBER_PHONE=?";
+		String sql = "SELECT MEMBER_PWD FROM MEMBER WHERE MEMBER_MID = ? AND MEMBER_PHONE = ? ";
 		
 		String memberPwd = null;
 		PreparedStatement pstmt = null;

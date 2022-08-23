@@ -17,8 +17,8 @@
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 
-<script src="../member/js/userjoin.js"></script>
-<script src="../member/js/mypage.js"></script>
+<script src="/semiTestPrj/views/member/js/userjoin.js"></script>
+<!-- <script src="../member/js/mypage.js"></script> -->
 
 <style type="text/css">
 	.table{
@@ -335,10 +335,10 @@
 	<div class="cs_func_page_header">
 		<h1 style="font-size: 2em;">마이페이지</h1>
 		<div class="cs_category">
-			<a href="/semiTestPrj/views/member/myPageForm.jsp">정보수정</a>
-			<a href="/">관심상품</a>
-			<a href="/">주문내역</a>
-			<a href="/">등급보기</a>
+			<a href="/semiTestPrj/views/member/myPageForm.jsp">기본정보</a>
+			<a href="/">거래내역</a> <!-- 본인이 거래한 내역 -->
+			<a href="/semiTestPrj/views/member/changePwd.jsp">비밀번호</a>
+			<a href="/">커뮤니티</a> <!-- 본인이 쓴 커뮤니티 -->
 		</div>
 	</div>
 	
@@ -346,7 +346,7 @@
 
 			<section class="section-one">	
 				<div class="section-welcome">
-					<h1 class="welcome-head">회원정보 수정</h1>
+					<h1 class="welcome-head">기본정보 수정</h1>
 					<hr class="section-hr">
 				</div>
 			</section>
@@ -358,8 +358,7 @@
 					<div class="frm-input-id">
 						<input style="font-weight:bold" type="text" name="frmId" readonly="readonly" value="${loginMember.getMemberMid() }">
 					</div>
-
-					<div class="frm-label">
+<!-- 					<div class="frm-label">
 						<label>현재 비밀번호</label>
 					</div>
 					<div class="frm-input-password">
@@ -373,13 +372,12 @@
 					<div class="frm-input-password">
 						<input type="password" name="frmRePwd" placeholder="변경 할 비밀번호" value="">
 						
-					</div>
-						
+					</div> -->				
 					<div class="frm-label">
 						<label>이름</label>
 					</div>
 					<div class="frm-input-name">
-						<input style="font-weight:bold" type="text" name="frmName" placeholder="성명을 입력해주세요." value="${loginMember.getMemberName() }">
+						<input style="font-weight:bold" type="text" name="frmName" placeholder="성명을 입력해주세요." value="${loginMember.getMemberName() }" readonly>
 					</div>
 					
 					<div class="frm-label">
@@ -398,7 +396,7 @@
 							<option selected >010</option>
 							<option>017</option>
 						</select>
-						<input style="font-weight:bold" type="text"  id="phoneNum" name="frmPhone" placeholder="0000-0000" maxlength="9" value="${loginMember.getMemberPhone() }">
+						<input style="font-weight:bold" type="text" id="phoneNum" name="frmPhone" placeholder="000-0000-0000" maxlength="13" value="${loginMember.getMemberPhone() }">
 					</div>
 
 					<div class="frm-label">
@@ -442,7 +440,7 @@
 
 						<input style="text-align :center;" type="text" name="memberGrade" 
 						value="<c:choose>
-           <c:when test="${loginMember.memberGrade eq '1'}">관리자</c:when><c:when test="${loginMember.memberGrade eq '2'}">프리미엄</c:when><c:when test="${loginMember.memberGrade eq '3'}">일반</c:when></c:choose>" readonly/>
+<c:when test="${loginMember.memberGrade eq '1'}">관리자</c:when><c:when test="${loginMember.memberGrade eq '2'}">프리미엄</c:when><c:when test="${loginMember.memberGrade eq '3'}">일반</c:when></c:choose>" readonly/>
 					</div>
 
 					<div class="frm-submit">
@@ -454,9 +452,66 @@
 	
 	<!-- footer영역 -->
 	<%@include file="/views/common/footer.jsp" %>
+	
 	<script>
-	member();
-	phoneHypen();
+/* 	function checkPwd() {
+		
+		var frm = document.frmMember;
+		var frmPwd = frm.frmPwd.value;
+		var frmRePwd = frm.frmRePwd.value;
+		
+		if(frmPwd.trim().length == 0)   {
+			document.frmMember.frmPwd.focus();
+			alert('비밀번호를 입력해주세요.')
+			return false;
+		}
+		
+		if(frmRePwd.trim().length == 0) {
+			alert('새로운 비밀번호를 입력해주세요.');
+			document.frmMember.frmRePwd.focus();
+			return false;
+
+		}
+		
+		if(frmMember.frmPhone.value.trim().length == 0){
+			alert('전화번호를 입력해주세요.');
+			document.frmMember.frmPhone = "";
+			document.frmMember.frmPhone.focus();
+			return false;
+		}
+
+			alert('회원정보가 수정되었습니다.');
+			frm.action = '/member/mypage';
+			frm.submit();
+		} */
+	</script>
+	<script>
+	 /* 전화번호 하이픈 자동 추가하기 */
+	 var phoneHypen = function() {
+	     var autoHypenPhone = function(str){
+	           str = str.replace(/[^0-9]/g, '');
+	           var tmp = '';
+	           if( str.length < 5){
+	               return str;
+	           }else if(str.length <= 8){
+	               tmp += str.substr(0, 4);
+	               tmp += '-';
+	               tmp += str.substr(4);
+	               return tmp;
+	           }
+	       
+	           return str;
+	     }
+	 
+	 
+	     var phoneNum = document.getElementById('phoneNum');
+	 
+	     phoneNum.onkeyup = function(){
+	       this.value = autoHypenPhone( this.value ) ;  
+	     }
+	 }
+/* 	member(); */
+/* 	phoneHypen(); */
 	</script>
 </body>
 </html>
