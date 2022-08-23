@@ -1,36 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fm" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <style>
     #container{
         margin: 0 auto;
         width: 600px;
-    }
-    h1{
-        display: inline;
-    }
-    #back-button{
-        float: right;
-        width: 100px;
-        height: 30px;
-        font-size: 17px;
-        margin-top: 10px;
-    }
-    table{
-        width: 100%;
-        text-align: center;
-    }
-    table, tr, td{
-        border: 1px solid black;
-        border-collapse: collapse;
-    }
-    #tr1{
-        font-size: 17px;
-        font-weight: bold;
     }
 
 </style>
