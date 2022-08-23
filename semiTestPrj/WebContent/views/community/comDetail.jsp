@@ -50,6 +50,7 @@
         padding-right: 40px;
         margin-top: 10px;
     }
+
     
     #call {
         float: right;
@@ -75,8 +76,7 @@
         width: 100%;
         height: fit-content;
         min-height: 500px;
-        padding: 35px;
-        padding-left: -100px
+        padding: 30px;
         padding-bottom: 100px;
 
     }
@@ -110,7 +110,9 @@
   		height: fit-content;
   	}
 
-  
+    #image {
+        background-size: fit-content;
+    }
    
 </style>
 </head>
@@ -166,26 +168,16 @@
             💬 이용제재/불법거래 신고 → https://vvd.bz/WZ9 <br><br>
         </div>
         
-		
+	
 
- 			<%-- <%if(vo.getFileName() != null){ %>
-	            <div name="content" id="content">
-	                <div id="image">
-	                    <!-- <img src="/semiTestPrj/resources/upload/<%=vo.getFileName() %>"> -->
-	                </div>
-	                
-	                    <%=vo.getContent()%>
-	            </div>
-            <%} else {%> --%>
-            	<div name="content" id="content">
-	                
-	                    <%=vo.getContent()%>
-	                
-            	</div>
-            <%-- <%} %> --%> 
+        <div name="content" id="content">
+            <div id="image"><img src="${att.getFilePath()}"></div>
+            <%=vo.getContent()%>
+        </div>
+
 
         <div class="detail-footer">
-            <span id="comment">댓글 (댓글 개수)</span>
+            <span id="comment" style="font-size: 20px;">댓글</span>
             <span id="call"> <button class="btn btn-light">신고</button></span><hr>
 
 

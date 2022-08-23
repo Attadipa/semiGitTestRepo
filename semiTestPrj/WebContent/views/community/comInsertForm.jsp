@@ -45,8 +45,10 @@
         background: black !important;
     }
     .category-select, #title {
-        height: 35px;
+        height: 40px;
     }
+
+   
 
     .category{
     position: relative;
@@ -77,7 +79,11 @@
 
     #submit {
         float: right;
-        margin-top: -70px;
+        margin-top: -105px;
+    }
+
+    #title, #content {
+        border: 2px solid grey;
     }
 </style>
 <body>
@@ -87,55 +93,22 @@
 	<div id="outer">
 
 
-        <h1>글쓰기(커뮤니티 글 작성하기)</h1>
+        <h1>글쓰기</h1>
 
         <hr>
 
-        <html>
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-	<!-- 클래식 에디터 -->
-	<script src="https://cdn.ckeditor.com/ckeditor5/29.1.0/classic/ckeditor.js"></script>
-	<title>Home</title>
-	
-	<!-- 넓이 높이 조절 -->
-	<style>
-	.ck.ck-editor {
-    	max-width: 1000px;
-	}
-	.ck-editor__editable {
-	    min-height: 800px;
-	}
-	</style>
-</head>
-<body>
-    <div id="classic">
-        <p>This is some sample content.</p>
-    </div>
-    <script>
-        ClassicEditor
-            .create( document.querySelector( '#classic' ))
-            .catch( error => {
-                console.error( error );
-            } );
-    </script>
-</body>
-</html>
-
-		<!-- <form id="enroll-form" action="<%=contextPath%>/community/insert" method="post" enctype="multipart/form-data">
+		<form id="enroll-form" action="<%=contextPath%>/community/insert" method="post" enctype="multipart/form-data">
 	       		<input type="submit" id="submit" class="btn btn-success" value="등록"> 
             <div id="section">
                 <div class="category">
-                    <select name="category" class="category-select"> -->
+                    <select name="category" class="category-select">
                         <!-- <option value="0">자유게시판</option>
                         <option value="1">자유게시판</option>
                         <option value="2">칭찬해요</option>
                         <option value="3">주의해요</option>
                         <option value="4">수다방</option> -->
                         
-                        <!-- <% for(TypeVo v : list){ %>
+                        <% for(TypeVo v : list){ %>
 	                    <option value="<%=v.getTypeNo()%>"><%=v.getTypeName()%></option>
                    		<%} %>
                     </select>
@@ -150,10 +123,10 @@
 
         </form>
         
-        <input type="button" id="list" class="btn btn-success" value="목록" onclick="history.go(-1)"> -->
+        <input type="button" id="list" class="btn btn-success" value="목록" onclick="history.go(-1)">
             <!--  form 태그 안에 만든 button은 제출 버튼이 된다. (즉, submit 역할이 된다)
             이 문제를 수정해주려면 input type = "button"으로 해주면 된다.
-            --> 
+            -->
     </div>
 
     <%@include file="/views/common/footer.jsp" %>

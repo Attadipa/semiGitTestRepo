@@ -91,7 +91,7 @@ public class CommunityService {
 		String random = UUID.randomUUID().toString();
 		random = random.substring(0, 8);
 
-		String changeName = "ANBD_" + now + "_" + random + ext;
+		String changeName = "KH_" + now + "_" + random + ext;
 
 		return changeName;
 
@@ -241,6 +241,24 @@ public class CommunityService {
 		}
 
 		return result;
+	}
+
+	public AttachmentComVo selectAtt(String num) {
+		
+		Connection conn = null;
+		AttachmentComVo att = null;
+		
+		try {
+			conn = getConnection();
+			att = dao.selectAtt(conn, num);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+		}
+		
+		return att;
 	}
 
 }
