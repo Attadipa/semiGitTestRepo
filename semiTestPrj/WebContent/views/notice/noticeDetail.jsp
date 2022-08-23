@@ -71,7 +71,8 @@
     #content {
         border: 2px solid grey;
         width: 100%;
-        height: 100%;
+        height: fit-content;
+        min-height: 500px;
         padding: 35px;
         padding-bottom: 100px;
 
@@ -102,6 +103,10 @@
         margin-top: -5px;
     }
 
+    pre {
+        height: max-content;
+    }
+
   
 
   
@@ -122,7 +127,7 @@
                 <div>
                     <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/edit?num=<%=vo.getNo()%>'">수정</button>
                     <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/delete?num=<%=vo.getNo()%>'">삭제</button>
-                    <button class="btn btn-light" onclick="history.go(-1)">글목록</button>
+                    <button class="btn btn-light" onclick="location.href='/semiTestPrj/notice/list?p=1'">글목록</button>
                 </div>
                 <%} else {%>
                 <div>
@@ -138,7 +143,7 @@
                 </tr>
                 <tr>
                     <th>작성자</th>
-                    <td><%=vo.getWriter() %> <button class="btn btn-light">1:1 채팅</button></td>
+                    <td><%=vo.getWriter() %> <button class="btn btn-success">1:1 채팅</button></td>
                     <th>작성일</th>
                     <td><%=vo.getEnrollDate()%></td>
                     <th>조회수</th>

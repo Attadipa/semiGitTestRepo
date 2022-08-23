@@ -14,6 +14,26 @@ import com.kh.notice.vo.NoticeVo;
 public class NoticeService {
 	
 	private final NoticeDao dao = new NoticeDao();
+	
+	public int getCount() {
+		
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = getConnection();
+			
+			result = dao.getCount(conn);	
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(conn);
+		}
+		
+		return result;
+		
+	}
 
 	//공지사항 리스트 조회하기
 	public List<NoticeVo> selectList(PageVo pageVo) {
@@ -209,25 +229,7 @@ public class NoticeService {
 
 
 
-	public int getCount() {
-		
-		Connection conn = null;
-		int result = 0;
-		
-		try {
-			conn = getConnection();
-			
-			result = dao.getCount(conn);	
-			
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			close(conn);
-		}
-		
-		return result;
-		
-	}
+	
 
 
 
