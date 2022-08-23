@@ -34,7 +34,7 @@
 	  
 	
 	/*본문 */
-	.container {
+	.containers {
 	    width: 500px;
 	    margin: 0 auto;
 	    margin-top: 50px;
@@ -184,7 +184,7 @@
       <% if (memberMid != null) {%>
       
       
-      <div class = "container">
+      <div class = "containers">
       	<div class = "found-success">
 	      <h4>  회원님의 아이디는 </h4>  
 	      <div class ="found-id"><%=memberMid%></div>

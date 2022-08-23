@@ -25,7 +25,7 @@
 	  
 	
 	/*본문 */
-	.container {
+	.containers {
 	    width: 500px;
 	    margin: 0 auto;
 	    margin-top: 50px;
@@ -220,7 +220,7 @@
 
 	
 	
-<div class = "container">
+<div class = "containers">
 	<form name="pwfindscreen" method = "POST">
 			<div class = "search-title">
 				<h3>등록한 정보로 인증</h3>

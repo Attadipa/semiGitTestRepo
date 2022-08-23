@@ -21,7 +21,7 @@
 	    padding-top: 6em;
 	  }
 	  
-	.container {
+	.containers {
 	    width: 500px;
 	    margin: 0 auto;
 	    margin-top: 50px;
@@ -189,7 +189,7 @@
 	    margin: 0 auto;
 	}
 	
-	.container>h3{
+	.containers>h3{
 		text-align : center;
 	}
 </style>  
@@ -198,7 +198,7 @@
 		<!-- header영역 -->
 	<jsp:include page="/views/common/header.jsp"/>
 
-    <div class="container">
+    <div class="containers" align="center">
     <h3>로그인</h3>
         <section class="form-write">
 			<form action="/semiTestPrj/member/login" method="post">
@@ -207,7 +207,6 @@
                      <div class="text-id">
                        
                     </div> 
-                    <label></label>
                     <input type="password" id="pwd" name ="memberPwd" placeholder="비밀번호">
                    <div class="text-id">
                         

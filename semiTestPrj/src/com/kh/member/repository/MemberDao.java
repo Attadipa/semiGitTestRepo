@@ -77,6 +77,7 @@ public class MemberDao {
 				String memberZipcode = rs.getString("MEMBER_ZIPCODE");
 				Timestamp memberEnrollDate = rs.getTimestamp("MEMBER_ENROLL_DATE");
 				Timestamp memberModifyDate = rs.getTimestamp("MEMBER_MODIFY_DATE");
+				String memberGrade = rs.getString("MEMBER_GRADE");
 				
 				
 				loginMember = new MemberVo();
@@ -89,6 +90,7 @@ public class MemberDao {
 				loginMember.setMemberZipcode(memberZipcode);
 				loginMember.setMemberEnrollDate(memberEnrollDate);
 				loginMember.setMemberModifyDate(memberModifyDate);
+				loginMember.setMemberGrade(memberGrade);
 				
 			}
 		}catch(Exception e){
