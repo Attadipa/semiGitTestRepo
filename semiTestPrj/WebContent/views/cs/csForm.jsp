@@ -14,8 +14,7 @@
 <style>
 
     #cs-freq {
-        margin-left: 40px;
-        margin-top: 70px;
+        margin : 0 auto;
         width: 1500px;
         height: 600px;
 

@@ -78,6 +78,7 @@ public class AdminDao {
 				vo = new MemberVo();
 				vo.setMemberNo(num);
 				vo.setMemberMid(mId);
+				vo.setMemberName(name);
 				vo.setMemberPwd(pwd);
 				vo.setMemberPhone(phone);
 				vo.setMemberEmail(email);
@@ -93,6 +94,72 @@ public class AdminDao {
 		}
 		
 		return vo;
+	}
+
+	public int edit(Connection conn, MemberVo vo) {
+		
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE MEMBER SET MEMBER_MID=?, MEMBER_NAME=?, MEMBER_PWD=?, MEMBER_PHONE=?, MEMBER_EMAIL=?, MEMBER_ADDRESS=?, MEMBER_ZIPCODE=?, MEMBER_GRADE=?, MEMBER_MODIFY_DATE=SYSDATE WHERE MEMBER_NO=?";
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, vo.getMemberMid());
+			pstmt.setString(2, vo.getMemberName());
+			pstmt.setString(3, vo.getMemberPwd());
+			pstmt.setString(4, vo.getMemberPhone());
+			pstmt.setString(5, vo.getMemberEmail());
+			pstmt.setString(6, vo.getMemberAddress());
+			pstmt.setString(7, vo.getMemberZipcode());
+			pstmt.setString(8, vo.getMemberGrade());
+			pstmt.setString(9, vo.getMemberNo());
+			
+			result = pstmt.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int deleteMember(Connection conn, String num) {
+		
+		String sql = "UPDATE MEMBER SET STATUS = 'Y' WHERE MEMBER_NO = ?";
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+
+	public int returnMember(Connection conn, String num) {
+
+		String sql = "UPDATE MEMBER SET STATUS = 'N' WHERE MEMBER_NO = ?";
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 
 }

@@ -7,8 +7,7 @@
 <title>Insert title here</title>
 <style>
 	#cs-header {
-        background-image: linear-gradient(to right, green, white);
-        color: white;
+        color: black;
         width: 1500px;
         height: 250px;
     }
@@ -24,7 +23,7 @@
         font-size: 22px;
         font-weight: bold;
         width: 150px;
-        margin-left: 300px;
+        margin-left: 350px;
         
     }
 
@@ -41,7 +40,7 @@
     }
 
     #cs-page {
-        margin-left: 100px;
+        margin: 0 auto;
 		width: 1500px;
     }
 </style>
@@ -59,5 +58,6 @@
             </form>
         </div>
     </div>
+    <hr>
 </body>
 </html>
