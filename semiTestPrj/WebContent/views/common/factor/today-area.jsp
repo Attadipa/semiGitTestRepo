@@ -56,55 +56,56 @@
                 <li class="today-content-text-area">게시글 작성자</li>
                 <li class="today-content-text-area">게시 날짜</li>
             </ul>
-            <ul>
-                <li>게시글 사진</li>
-                <li class="today-content-text-area">게시글 제목</li>
-                <li class="today-content-text-area">게시글 작성자</li>
-                <li class="today-content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li>게시글 사진</li>
-                <li class="today-content-text-area">게시글 제목</li>
-                <li class="today-content-text-area">게시글 작성자</li>
-                <li class="today-content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li>게시글 사진</li>
-                <li class="today-content-text-area">게시글 제목</li>
-                <li class="today-content-text-area">게시글 작성자</li>
-                <li class="today-content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li>게시글 사진</li>
-                <li class="today-content-text-area">게시글 제목</li>
-                <li class="today-content-text-area">게시글 작성자</li>
-                <li class="today-content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li>게시글 사진</li>
-                <li class="today-content-text-area">게시글 제목</li>
-                <li class="today-content-text-area">게시글 작성자</li>
-                <li class="today-content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li>게시글 사진</li>
-                <li class="today-content-text-area">게시글 제목</li>
-                <li class="today-content-text-area">게시글 작성자</li>
-                <li class="today-content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li>게시글 사진</li>
-                <li class="today-content-text-area">게시글 제목</li>
-                <li class="today-content-text-area">게시글 작성자</li>
-                <li class="today-content-text-area">게시 날짜</li>
-            </ul>
-            <ul>
-                <li>게시글 사진</li>
-                <li class="today-content-text-area">게시글 제목</li>
-                <li class="today-content-text-area">게시글 작성자</li>
-                <li class="today-content-text-area">게시 날짜</li>
-            </ul>
-        </div>
+       </div>
         
+        
+        <script type="text/javascript">
+        	$(function(){
+        		$.ajax({
+        			url : "/semiTestPrj/trade/today"
+        			, method : "GET"
+        			, success : function(y){
+        				console.log("통신성공");
+        				console.log(y);
+        				
+        				const result = JSON.parse(y);
+        				console.log(result);
+
+
+        				
+        				// $('#today-content-area').innerHTML = 
+        				// 	<ul>
+		                //         <li>게시글 사진</li>
+		                //         <li class="today-content-text-area">result[i].keys</li>
+		                //         <li class="today-content-text-area">게시글 작성자</li>
+		                //         <li class="today-content-text-area">게시 날짜</li>
+		                //     </ul> ;
+        			}
+        			, error : function(e){
+        				console.log("통신실패");
+        				console.log(e);
+        			}
+        		});
+        	})
+        </script>
     </body>
     </html>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

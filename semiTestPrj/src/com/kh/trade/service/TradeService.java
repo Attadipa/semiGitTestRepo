@@ -193,6 +193,36 @@ public class TradeService {
 		return changeName;
 	}
 
+	public List<AttachmentVo> selectAtt(List<TradeVo> tvo) {
+		List<AttachmentVo> result = null;
+		Connection conn = null;
+		
+		try{
+			conn = getConnection();
+			//dao 호출
+			result = dao.selectAtt(conn, tvo);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+		}
+
+		return result;
+	}
+
+	public List<TradeVo> today() {
+		Connection conn = null;
+		List<TradeVo> voList = null;
+		
+		
+		conn = getConnection();
+		voList = dao.today(conn);
+		
+		close(conn);
+		
+		return voList;
+	}
+
 	
 
 }

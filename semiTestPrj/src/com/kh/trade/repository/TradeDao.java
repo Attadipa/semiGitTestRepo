@@ -320,11 +320,80 @@ public class TradeDao {
 		return result;
 	}
 
+	public List<AttachmentVo> selectAtt(Connection conn, List<TradeVo> tvo) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<AttachmentVo> voList = new ArrayList<AttachmentVo>();
+		
+		//sql 준비
+		String sql = "SELECT FILE_PATH, CHANGE_NAME FROM ATTACHMENT WHERE REF_TNO = ?";
+		
+		try {
+			for(int i = 0; i < tvo.size(); i++) {
+				//sql 객체에 담기 -> 물음표 채욱
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, tvo.get(i).getTradeNo());
+				//sql 실행 및 결과 저장
+				rs = pstmt.executeQuery();
+				
+				while(rs.next()) {
+					AttachmentVo vo = new AttachmentVo();
+					vo.setFilePath(rs.getString("FILE_PATH"));
+					vo.setChangeName(rs.getString("CHANGE_NAME"));
+					
+					voList.add(vo);
+				}
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		//결과 리턴
+		return voList;
+	
+	}
 
+	public List<TradeVo> today(Connection conn) {
+		ResultSet rs = null;
+		List<TradeVo> list = new ArrayList<TradeVo>();
+		PreparedStatement pstmt = null;
+		
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM (SELECT T.TRADE_NO, M.MEMBER_MID WRITER,T.TITLE, TO_CHAR(T.ENROLL_DATE, 'YY/MM/DD HH:MI') ENROLL_DATE FROM TRADE T JOIN MEMBER M ON T.WRITER = M.MEMBER_NO ORDER BY CNT DESC) T ) WHERE RNUM BETWEEN 1 AND 6";
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				
+				TradeVo vo = new TradeVo();
+				
+				vo.setTradeNo(rs.getString("TRADE_NO"));
+				vo.setTitle(rs.getString("TITLE"));
+				vo.setWriter(rs.getString("WRITER"));
+				vo.setEnrollDate(rs.getString("ENROLL_DATE"));
+				
+				list.add(vo);
+				
+			}
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return list;
 
-
+	}
 
 }
-
 
 

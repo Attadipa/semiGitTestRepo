@@ -111,6 +111,9 @@
                 <c:if test="${empty loginMember}">
    		            <a href="${contextPath}/member/login">로그인</a>
                 </c:if>
+                <c:if test="${loginMember.getMemberGrade() eq 'ADMIN'}">
+   		            <a href="${contextPath}/admin/search">관리자페이지</a>
+                </c:if>
                 <c:if test="${not empty loginMember}">
 	                <a href="${contextPath}/member/wishlist?p=1">관심상품</a>
 	                <a href="${contextPath}/member/mypage">마이페이지</a>
