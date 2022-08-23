@@ -8,7 +8,7 @@
     String memberPhone = request.getParameter("MEMBER_PHONE");
      
 	MemberDao dao = new MemberDao();
- 	String memberPwd = dao.fifindPw(conn, memberMid, memberPhone);
+ 	String memberPwd = dao.findPw(conn, memberMid, memberPhone);
  
 %>
 <!DOCTYPE html>
@@ -35,7 +35,7 @@
 	  
 	
 	/*본문 */
-	.container {
+	.containers {
 	    width: 500px;
 	    margin: 0 auto;
 	    margin-top: 50px;
@@ -191,7 +191,7 @@
       
       <%if (memberPwd != null) {%>
       
-      <div class = "container">
+      <div class = "containers">
       	<div class = "found-success">
 	      <h4>회원님의 비밀번호는 </h4>  
 	      <div class ="found-id"> <%=memberPwd%></div>

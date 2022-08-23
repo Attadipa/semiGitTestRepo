@@ -1,5 +1,6 @@
 <%@page import="org.apache.tomcat.util.http.fileupload.RequestContext"%>
 <%-- <%@page import="com.kh.member.MemberVo"%> --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
@@ -438,7 +439,10 @@
 						<label>회원등급</label>
 					</div>
 					<div class="frm-label">
-						<input type="text" name="memberGrade" value="${loginMember.getMemberGrade()}" readonly>
+
+						<input style="text-align :center;" type="text" name="memberGrade" 
+						value="<c:choose>
+           <c:when test="${loginMember.memberGrade eq '1'}">관리자</c:when><c:when test="${loginMember.memberGrade eq '2'}">프리미엄</c:when><c:when test="${loginMember.memberGrade eq '3'}">일반</c:when></c:choose>" readonly/>
 					</div>
 
 					<div class="frm-submit">

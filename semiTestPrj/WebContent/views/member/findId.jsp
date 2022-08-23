@@ -24,7 +24,7 @@
 	  
 	
 	/*본문 */
-	.container {
+	.containers {
 	    width: 500px;
 	    margin: 0 auto;
 	    margin-top: 50px;
@@ -219,7 +219,7 @@
 	
 	
 	
-<div class = "container">
+<div class = "containers">
 	<form name="idfindscreen" method = "POST">
 			<div class = "search-title">
 				<h3>휴대폰 본인확인</h3>

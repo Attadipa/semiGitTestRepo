@@ -27,7 +27,7 @@ public class MemberMypageController extends HttpServlet{
 		}
 	}
 	
-	//회원정보 변경
+	//회원정보 변경(마이페이지)
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
