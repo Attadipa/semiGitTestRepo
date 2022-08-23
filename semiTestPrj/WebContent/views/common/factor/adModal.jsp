@@ -14,7 +14,7 @@
 </head>
 <body>
 	<!-- The Modal -->
-	<div class="modal adModal" id="myModal">
+	<div class="modal adModal" id="adModal">
 		<div class="modal-dialog">
    			<div class="modal-content">
 

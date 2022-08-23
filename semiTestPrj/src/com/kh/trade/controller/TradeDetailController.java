@@ -35,7 +35,6 @@ public class TradeDetailController extends HttpServlet{
 						req.setAttribute("tvo", tvo);
 						 if(avo != null) {
 							 avo.setFilePath((avo.getFilePath().substring(14, 27)+avo.getFilePath().substring(38)+"\\"+avo.getChangeName()).replace("\\", "/"));
-							 System.out.println(avo.getFilePath());
 							 req.setAttribute("avo", avo);
 						 }
 						req.getRequestDispatcher("/views/trade/tradeDetail.jsp").forward(req, resp);

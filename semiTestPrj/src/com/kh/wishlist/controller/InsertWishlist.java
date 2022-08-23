@@ -23,6 +23,8 @@ public class InsertWishlist extends HttpServlet{
 		String mn = req.getParameter("memberNo");
 		String title = req.getParameter("title");
 		
+		System.out.println(title);
+		
 		WishVo vo = new WishVo();
 		vo.setPostNo(tn);
 		vo.setMemberNo(mn);
@@ -32,7 +34,6 @@ public class InsertWishlist extends HttpServlet{
 		
 		
 		if(result==1) {
-			resp.setCharacterEncoding("UTF-8");
 			resp.getWriter().print("장바구니에 추가되었습니다.");
 		}
 		
