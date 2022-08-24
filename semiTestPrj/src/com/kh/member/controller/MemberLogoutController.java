@@ -11,6 +11,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = "/member/logout")
 public class MemberLogoutController extends HttpServlet{
 
+	/*
+	 * 로그아웃
+	 */
+	//로그아웃 화면
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		

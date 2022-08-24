@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입완료</title>
+<title>회원가입 완료</title>
 
 <link rel="stylesheet" href="../member/css/complete.css">
 

@@ -18,13 +18,13 @@ function idSearch1() {
 		 }
 
 	 frm.method = "post";
-	 frm.action = "findIdResult.jsp"; //넘어간화면
+	 frm.action = "/semiTestPrj/member/findId"; //넘어간화면
 	 frm.submit();  
 	 }
 
 
 //비밀번호찾기
- function pwSearch(){
+ function pwdSearch(){
 
   var frm=document.pwfindscreen;
 
@@ -39,7 +39,7 @@ function idSearch1() {
 		 }
 	
   frm.method="post";
-  frm.action="findPwResult.jsp"; //넘어간화면
+  frm.action="/semiTestPrj/member/findPwd"; //넘어간화면
   frm.submit(); //등록이 될수 있는 조건이면, 정보를 보냄
   }
 
@@ -75,14 +75,14 @@ function idSearch1() {
 function login() {
 		if(btnLogin != null){
 	btnLogin.onclick = function(){
-		location.href = 'loginForm.jsp';
+		location.href = '/semiTestPrj/views/member/loginForm.jsp';
 	}
 	}
 }
   function joinIn() {
 		if(btnjoin != null){
 	btnjoin.onclick = function(){
-		location.href = '/semiTestPrj/index.jsp';
+		location.href = '/semiTestPrj/views/member/joinForm.jsp';
 	}
 	}
 }

@@ -1,15 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	/* String memberPwd = (String)request.getAttribute("memberPwd");  */
-	MemberVo vo = (MemberVo)request.getAttribute("vo");
+	String memberPwd = (String)request.getAttribute("memberPwd");
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-    <link rel="stylesheet" href="../member/css/findinfo.css">
+<title>비밀번호 찾기</title>
+    <link rel="stylesheet" href="/semiTestPrj/views/member/css/findinfo.css">
 	   
 	<script src="/semiTestPrj/views/member/js/findinfo.js"></script>
 
@@ -130,7 +129,7 @@
 		text-align : center;
 	}
 	
-	h4 {
+	#h4-findresult {
 		text-align : center;
 		line-height : 100px;
 		margin-left : 30px;
@@ -177,25 +176,27 @@
 <body>
 		<!-- header영역 -->
 	<%@include file="/views/common/header.jsp" %>
-
-	
+<!-- 
+	<div class = "find-name">
+				<label>이름</label>
+				<input type="text" name="memberName" class = "btn-name" placeholder = "등록한 이름"> -->
 	
   <form action="/semiTestPrj/member/findPwd" name="idSearch" method="post">
       
-      <%if (vo.getMemberPwd() != null) {%>
+      <%if (memberPwd != null) {%>
       
       <div class = "containers">
       	<div class = "found-success">
-	      <h4>회원님의 비밀번호는 </h4>  
-	      <div class ="found-id"> ${vo.getMemberPwd() }</div>
-	      <h4>  입니다 </h4>
+	      <h6 id ="h4-findresult">회원님의 비밀번호는 </h6>  
+	      <div class ="found-id"> ${memberPwd}</div>
+	      <h6 id ="h4-findresult">  입니다 </h6>
 	     </div>
 	     <div class = "found-login">
  		    <input type="button" id="btnLogin" value="로그인" onClick = 'login();'/>
        	</div>
        </div>
       <%} else {%>
-        <div class = "container">
+        <div class = "containers">
       	<div class = "found-fail">
 	      <h4>  등록된 정보가 없습니다 </h4>  
 	     </div>

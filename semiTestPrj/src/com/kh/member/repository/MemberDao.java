@@ -46,6 +46,8 @@ public class MemberDao {
 		
 }//회원가입
 	
+	
+	
 	//로그인
 	public MemberVo login(Connection conn, MemberVo vo) {
 		//Connection준비
@@ -108,6 +110,7 @@ public class MemberDao {
 }//로그인
 	
 	
+	
 	//회원 정보 수정(마이페이지)
 	public int edit(Connection conn, MemberVo vo) throws Exception {
 		//Connection 준비
@@ -145,6 +148,7 @@ public class MemberDao {
 		return result;
 		
 }//회원 정보 수정
+	
 	
 	
 	//회원 정보 조회 (회원번호)
@@ -205,12 +209,18 @@ public class MemberDao {
 		
 }//회원 정보 조회 (회원번호)
 	
+	
+	
 	//아이디 찾기 (이름 + 폰번호)
 	public String findId(Connection conn, String memberName, String memberPhone) {
 		//connection 준비
 
 		//SQL 준비
-		String sql = "SELECT MEMBER_MID FROM MEMBER WHERE MEMBER_NAME = ? AND MEMBER_PHONE = ? ";
+		String sql = "SELECT MEMBER_MID FROM MEMBER WHERE MEMBER_NAME = ? AND MEMBER_PHONE = ?";
+		
+		System.out.println("=====");
+		System.out.println(memberName);
+		System.out.println(memberPhone);
 		
 		String memberMid = null;
 		PreparedStatement pstmt = null;
@@ -240,6 +250,8 @@ public class MemberDao {
 
 }//아이디 찾기 (이름 + 폰번호)
 	
+	
+	
 	//비밀번호 찾기 (아이디 + 폰번호)
 	public String findPwd(Connection conn, String memberMid, String memberPhone) {
 		//connection 준비
@@ -259,7 +271,7 @@ public class MemberDao {
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
-				memberPwd = rs.getString("MEMBER_MID");
+				memberPwd = rs.getString("MEMBER_PWD");
 			}
 				
 		} catch (Exception e) {
@@ -274,6 +286,8 @@ public class MemberDao {
 		return memberPwd;
 
 }//비밀번호 찾기 (아이디 + 폰번호)
+	
+	
 	
 	
 	//비밀번호 변경
@@ -304,6 +318,8 @@ public class MemberDao {
 		//실행결과 리턴
 		return result;
 	}
+	
+	
 	
 	//회원 등급 불러오기
 	public MemberVo selectGrade(Connection conn, String memberGrade) {
@@ -361,6 +377,8 @@ public class MemberDao {
 		
 }//회원 정보 조회 (회원번호)
 
+	
+	
 	//아이디 중복체크
 	public int idCheck(Connection conn, String memberMid) {
 		
