@@ -130,7 +130,7 @@
         margin-left: 23%;
     }
     
-    #search-condition {
+    #search-condition{
         height: 27px;
         border: 1px solid darkgray;
         width:  350px;
@@ -163,46 +163,49 @@
     
     <div id="outer">
         
-    
+        <h1>공지사항</h1><br><br>
         
-        <h1>공지사항</h1>
-        
+        <form action="/semiTestPrj/notice/deleteAll" method="post">
+            <table>
+                <thead>
+                    <tr>
+                        <% if(loginMember != null  && "user04".equals(loginMember.getMemberMid())) {%>
+                        <th></th>
+                        <%} %>
+                        <th>글번호</th>
+                        <th>제목</th>
+                        <th>작성자</th>
+                        <th>조회수</th>
+                        <th>작성일</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <%for(int i = 0 ; i < voList.size(); i++){%>
+                        <tr>
+                            <% if(loginMember != null  && "user04".equals(loginMember.getMemberMid())) {%>
+                            <td><input type="checkbox" name="postNo" value="<%=voList.get(i).getNo()%>"></td>
+                            <%} %>
+                            <td class="list"><%=voList.get(i).getNo()%></td>
+                            <td class="list"><%=voList.get(i).getTitle()%></td>
+                            <td class="list"><%=voList.get(i).getWriter()%></td>
+                            <td class="list"><%=voList.get(i).getCnt()%></td>
+                            <td class="list"><%=voList.get(i).getEnrollDate()%></td>
+                        </tr>
+                    <%}%>
+                </tbody>
+                <br clear="both">
+            </table>
 
-        <br><br>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>글번호</th>
-                    <th>제목</th>
-                    <th>작성자</th>
-                    <th>조회수</th>
-                    <th>작성일</th>
-                </tr>
-            </thead>
-            <tbody>
-	            <%for(int i = 0 ; i < voList.size(); i++){%>
-	                <tr>
-	                    <td><%=voList.get(i).getNo()%></td>
-	                    <td><%=voList.get(i).getTitle()%></td>
-	                    <td><%=voList.get(i).getWriter()%></td>
-	                    <td><%=voList.get(i).getCnt()%></td>
-	                    <td><%=voList.get(i).getEnrollDate()%></td>
-	                </tr>
-	            <%}%>
-                
-            </tbody>
-
-            <br clear="both">
-        </table>
-
-        <br>
-        
-        <!-- 수정 예정 jstl로 -->
-		<% if(loginMember != null && "asdfg".equals(loginMember.getMemberMid())) {%>
-        <button name="writeBtn" id="writeBtn" class="btn btn-success" onclick="location.href='/semiTestPrj/notice/insert'">✍글쓰기</button>
-		<%} %> 
-		
+            <br>
+            
+            <!-- 수정 예정 jstl로 -->
+            <% if(loginMember != null  && "user04".equals(loginMember.getMemberMid())) {%>
+                <button name="writeBtn" type="button" id="writeBtn" class="btn btn-success" onclick="location.href='/semiTestPrj/notice/insert'">✍글쓰기</button>
+                <button name="writeBtn" type="submit"  id="writeBtn" class="btn btn-success" onclick="location.href='/semiTestPrj/notice/deleteAll'">❌삭제</button>
+            <%} else if (loginMember != null && !"user04".equals(loginMember.getMemberMid())){%> 
+                <button name="writeBtn" type="button" id="writeBtn" class="btn btn-success" onclick="location.href='/semiTestPrj/notice/insert'">✍글쓰기</button>
+            <%}%>
+        </form>
 		
         <div id="page-outer">
 	            <div id="next-page">
@@ -225,29 +228,22 @@
 
             <br><hr><br>
 
-           
-            
-            <form action="">
-                <div class="bottom">
-                    <span class="search">
-                        <select name="search-select" class="search-select">
-                            <option value="title">제목</option>
-                            <option value="content">내용</option>
-                            <option value="writer">작성자</option>
-                            <option value="comment">댓글내용</option>
-                            <option value="comment-writer">댓글작성자</option>
-                        </select>
-                    </span>
-                    <span>
-                        <input type="text" id="search-condition" placeholder=" 검색어를 입력해주세요.">
-                        <button id="btn-condition" onclick="location.href=''">검색</button>
-                    </span>
-                </div>
-            </form>
-            
+            <div class="bottom">
+                <span class="search">
+                    <select name="search-select" class="search-select">
+                        <option value="title">제목</option>
+                        <option value="content">내용</option>
+                        <option value="writer">작성자</option>
+                        <option value="comment">댓글내용</option>
+                        <option value="comment-writer">댓글작성자</option>
+                    </select>
+                </span>
+                <span>
+                    <input type="text" id="search-condition" placeholder=" 검색어를 입력해주세요.">
+                    <button id="btn-condition" onclick="location.href=''">검색</button>
+                </span>
+            </div>
         </div>
-        
-
         
     </div>
     
@@ -257,9 +253,9 @@
     <script>
     //공지사항 리스트에서 해당 게시물 클릭시(tr) -> 공지사항 상세보기
         $(function(){
-			$('tbody>tr').click(function(){
+			$('tbody tr').children('.list').click(function(){
 				//글 번호 가져오기 (this -> tr태그)
-				const num = $(this).children().eq(0).text();
+				const num = $(this).parent().children().eq(0).text();
 				console.log(num);
 				//해당 번호로 요청 보내기
 				location.href='/semiTestPrj/notice/detail?num=' + num;

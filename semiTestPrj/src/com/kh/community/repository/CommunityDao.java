@@ -411,4 +411,29 @@ public class CommunityDao {
 		return att;
 	}
 
+	public int deleteAll(Connection conn, String[] postNo) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = "DELETE COMMUNITY WHERE NO = ?";
+		
+		try {
+			
+			for(String k : postNo) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, k);
+				
+				result = pstmt.executeUpdate();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }

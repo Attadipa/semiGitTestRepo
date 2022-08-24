@@ -158,40 +158,32 @@
 <body>
 
     <%@include file="/views/common/header.jsp" %>
+
+
     
     <div id="outer">
         
     
         
-       <h1>커뮤니티</h1>
+        <h1>커뮤니티</h1>
         
-        
-       <form action=""  method="get">
-            <div class="category">
-                <select name="type" class="category-select" >
-                   <!-- <option value="0" >전체</option>
-                    <option value="1" >자유게시판</option>
-                    <option value="2" >칭찬해요</option>
-                    <option value="3" >주의해요</option>
-                    <option value="4" >수다방</option> -->
-                    
-                    
-					
-                    <% for(TypeVo v : list){ %>
-                    <option value="<%=v.getTypeNo()%>" <%if(v.getTypeNo().equals(type)){out.print("selected");} %>><%=v.getTypeName()%></option>
-	               <%-- <option value="<%=v.getTypeNo()%>"><%=v.getTypeName()%></option> --%>
-                    <%} %> 
-                </select>
-            </div>
-        </form>
+        <div class="category">
+            <select name="type" class="category-select" >
+                <% for(TypeVo v : list){ %>
+                <option value="<%=v.getTypeNo()%>" <%if(v.getTypeNo().equals(type)){out.print("selected");} %>><%=v.getTypeName()%></option>
+                <%} %> 
+            </select>
+        </div>
         <br><br>
-     
+        
+        <form action="/semiTestPrj/community/deleteAll" method="post">
         <table>
             <thead>
                 <tr>
-                <!-- 추후 타입 삭제 예정 -->
+                    <% if(loginMember != null  && "user04".equals(loginMember.getMemberMid())) {%>
+                    <th></th>
+                    <%} %>
                     <th>글번호</th>
-                    <th>타입</th>
                     <th>제목</th>
                     <th>작성자</th>
                     <th>조회수</th>
@@ -201,27 +193,37 @@
             <tbody>
 	            <%for(int i = 0 ; i < voList.size(); i++){%>
 	                <tr>
-	                    <td><%=voList.get(i).getNo()%></td>
-	                    <td><%=voList.get(i).getType()%></td>
-	                    <td><%=voList.get(i).getTitle()%></td>
-	                    <td><%=voList.get(i).getWriter()%></td>
-	                    <td><%=voList.get(i).getCnt()%></td>
-	                    <td><%=voList.get(i).getEnrollDate()%></td>
+	               		<% if(loginMember != null  && "user04".equals(loginMember.getMemberMid())) {%>
+                        <td><input type="checkbox" name="postNo" value="<%=voList.get(i).getNo()%>"></td>
+                        <%} %>
+	                    <td class="list"><%=voList.get(i).getNo()%></td>
+                        <td class="list"><%=voList.get(i).getTitle()%></td>
+                        <td class="list"><%=voList.get(i).getWriter()%></td>
+                        <td class="list"><%=voList.get(i).getCnt()%></td>
+                        <td class="list"><%=voList.get(i).getEnrollDate()%></td>
 	                </tr>
 	            <%}%>
-                
             </tbody>
-
             <br clear="both">
         </table>
 
+
+
+        <script>
+
+        </script>
+    	
+
+
+
         <br>
-        
-		<% if(loginMember != null && "asdfg".equals(loginMember.getMemberMid())) {%>
-        <button name="writeBtn" id="writeBtn" class="btn btn-success" onclick="location.href='/semiTestPrj/community/insert'">글쓰기</button>
-		<%} %>
-		
-		
+		<% if(loginMember != null  && "user04".equals(loginMember.getMemberMid())) {%>
+            <button name="writeBtn" type="button" id="writeBtn" class="btn btn-success" onclick="location.href='/semiTestPrj/community/insert'">✍글쓰기</button>
+            <button name="writeBtn" type="submit"  id="writeBtn" class="btn btn-success" onclick="location.href='/semiTestPrj/community/deleteAll'">❌삭제</button>
+        <%} else if (loginMember != null && !"user04".equals(loginMember.getMemberMid())){%> 
+            <button name="writeBtn" type="button" id="writeBtn" class="btn btn-success" onclick="location.href='/semiTestPrj/community/insert'">✍글쓰기</button>
+        <%}%>
+		</form>
 		
 		<% if (type == null) {%>
 		 <div id="page-outer">
@@ -296,18 +298,52 @@
     
     <!-- 서블릿 만든 후 수정예정 -->
     <script>
-        $(function(){
-			$('tbody>tr').click(function(){
-				//행 클릭되었을 때, 동작할 내용
-				
+    
+    if(loginMember != null  && "user04".equals(loginMember.getMemberMid())){
+    	
+    	$(function(){
+ 			$('tbody tr').children('.list').click(function(){
+ 				//글 번호 가져오기 (this -> tr태그)
+ 				const num = $(this).parent().children().eq(1).text();
+ 				console.log(num);
+ 				//해당 번호로 요청 보내기
+ 				location.href='/semiTestPrj/community/detail?num=' + num;
+ 				
+ 			});
+ 		})
+    	
+    
+    } else {
+    	$(function(){
+			$('tbody tr').children('.list').click(function(){
 				//글 번호 가져오기 (this -> tr태그)
-				const num = $(this).children().eq(0).text();
+				const num = $(this).parent().children().eq(0).text();
 				console.log(num);
 				//해당 번호로 요청 보내기
 				location.href='/semiTestPrj/community/detail?num=' + num;
 				
 			});
 		})
+    }
+
+
+    	
+    
+
+ 
+
+    
+    // $(function(){
+ 	// 		$('tbody tr').children('.list').click(function(){
+ 	// 			//글 번호 가져오기 (this -> tr태그)
+ 	// 			const num = $(this).parent().children().eq(1).text();
+ 	// 			console.log(num);
+ 	// 			//해당 번호로 요청 보내기
+ 	// 			location.href='/semiTestPrj/community/detail?num=' + num;
+ 				
+ 	// 		});
+ 	// 	})
+	    
     </script>
     
     <script>
@@ -319,12 +355,16 @@
             location.href="/semiTestPrj/community/list?p=" + <%=currentPage%>+ "&type=" + typeNum;
 
             if(typeNum == 0){
-                // location.href='/semiTestPrj/community/list?p=1';
                 location.href='/semiTestPrj/community/list?p=1';
             }
         
         })
     </script> 
    
+
+    <% if(loginMember != null  && "user04".equals(loginMember.getMemberMid())) {%>
+        <input type="text" value="true" id="isAdmin" type="hidden">
+    <%} %>
+
 </body>
 </html>
