@@ -31,17 +31,17 @@
 	<%@ include file="/views/common/header.jsp"%>
 
 	<br>
-	
+
 	<div class="row">
-		<div class="col-4" style="padding-top: 30px; width: 15%;">
+		<div class="col-4" style="padding-top: 30px; width: 15%; position: fixed;">
 		  <div class="list-group" id="list-tab" role="tablist">
-			<a class="list-group-item list-group-item-action active" id="admin-member-list" data-bs-toggle="list" href="#admin-member" role="tab" aria-controls="admin-member">회원관리</a>
-			<a class="list-group-item list-group-item-action" id="admin-cs-list" data-bs-toggle="list" href="#admin-cs" role="tab" aria-controls="admin-cs">CS관리</a>
-			<a class="list-group-item list-group-item-action" id="admin-event-list" data-bs-toggle="list" href="#admin-event" role="tab" aria-controls="admin-event">이벤트관리</a>
-			<a class="list-group-item list-group-item-action" id="admin-graphs-list" data-bs-toggle="list" href="#admin-graph" role="tab" aria-controls="admin-graph">통계</a>
+			<a class="list-group-item list-group-item-action list-group-item-success active" id="admin-member-list" data-bs-toggle="list" href="#admin-member" role="tab" aria-controls="admin-member">회원관리</a>
+			<a class="list-group-item list-group-item-action list-group-item-success" id="admin-cs-list" data-bs-toggle="list" href="#admin-cs" role="tab" aria-controls="admin-cs">CS관리</a>
+			<a class="list-group-item list-group-item-action list-group-item-success" id="admin-event-list" data-bs-toggle="list" href="#admin-event" role="tab" aria-controls="admin-event">이벤트관리</a>
+			<a class="list-group-item list-group-item-action list-group-item-success" id="admin-graphs-list" data-bs-toggle="list" href="#admin-graph" role="tab" aria-controls="admin-graph">통계</a>
 		  </div>
 		</div>
-		<div class="col-8">
+		<div class="col-8" style="margin: 0 auto;">
 		  <div class="tab-content" id="nav-tabContent">
 			<div class="tab-pane fade show active" id="admin-member" role="tabpanel" aria-labelledby="admin-member-list">
 				<br>
@@ -84,8 +84,7 @@
 			</div>
 			<div class="tab-pane fade" id="admin-event" role="tabpanel" aria-labelledby="admin-event-list">
 				<br>
-				<h3 id="bold-font">메인배너 관리</h3>
-				<%@ include file="/views/admin/eventBanner.jsp" %>
+				<%@ include file="/views/admin/adminEvent.jsp" %>
 			</div>
 			<div class="tab-pane fade" id="admin-graph" role="tabpanel" aria-labelledby="admin-graph-list">
 				<br>
@@ -108,9 +107,9 @@
         				<div id="memberStatus"></div>
       				</div>
       				<div class="modal-footer">
-        				<button id="adminDelete" class="btn btn-danger" data-bs-dismiss="modal">회원추방</button>
+        				<button id="adminDelete" class="btn btn-success" data-bs-dismiss="modal">회원추방</button>
         				<button class="btn btn-success" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#exampleModalToggle2" id="adminEdit">정보수정</button>
-        				<button id="adminReturn" class="btn btn-primary">회원복구</button>
+        				<button id="adminReturn" class="btn btn-success">회원복구</button>
       				</div>
     			</div>
   			</div>
@@ -212,7 +211,7 @@
 						url : "/semiTestPrj/admin/edit?num=" + num,
 						method : "GET",
 						success : function(x){
-							console.log("통신성공 !");
+							console.log("회원 정보수정창 출력 성공 !");
 							
 							const editVo = JSON.parse(x);
 							
