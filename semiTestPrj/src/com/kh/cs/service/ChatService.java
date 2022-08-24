@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.kh.cs.repository.ChatDao;
 import com.kh.cs.vo.ChatVo;
+import com.kh.member.vo.MemberVo;
 
 public class ChatService {
 	
@@ -45,6 +46,23 @@ public class ChatService {
 		}
 		
 		return result;
+	}
+
+	public List<ChatVo> showList() {
+		
+		Connection conn = null;
+		List<ChatVo> list = null;
+		
+		try {
+			conn = getConnection();
+			list = dao.showList(conn);			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+		}
+		
+		return list;
 	}
 	
 	

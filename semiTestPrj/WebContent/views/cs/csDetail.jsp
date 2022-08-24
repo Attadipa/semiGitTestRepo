@@ -58,9 +58,10 @@
         <div>
             <a href="javascript:history.back()" class="btn btn-sm btn-success">뒤로가기</a>
 
-            <!-- 현재 로그인한 사용자가 관리자일 경우 -->
-            <a href="${contextPath}/cs/edit?num=${vo.no}" class="btn btn-sm btn-success">수정하기</a>
-            <a href="${contextPath}/cs/delete?num=${vo.no}" class="btn btn-sm btn-success">삭제하기</a>
+            <c:if test="${loginMember.memberGrade eq 'A'}">
+	            <a href="${contextPath}/cs/edit?num=${vo.no}" class="btn btn-sm btn-success">수정하기</a>
+	            <a href="${contextPath}/cs/delete?num=${vo.no}" class="btn btn-sm btn-success">삭제하기</a>
+            </c:if>
         </div>
        	<br><br>
 

@@ -18,6 +18,7 @@ public class ChatVo {
 	
 	private String no;
 	private String memberNo;
+	private String memberName;
 	private String grade;
 	private String content;
 	private String chatDate;
@@ -39,6 +40,14 @@ public class ChatVo {
 		this.memberNo = memberNo;
 	}
 
+	public String getMemberName() {
+		return memberName;
+	}
+	
+	public void setMemberName(String memberName) {
+		this.memberName = memberName;
+	}
+	
 	public String getGrade() {
 		return grade;
 	}
@@ -69,5 +78,6 @@ public class ChatVo {
 		return "ChatVo [no=" + no + ", memberNo=" + memberNo + ", grade=" + grade + ", content=" + content
 				+ ", chatDate=" + chatDate + "]";
 	}
+
 
 }
