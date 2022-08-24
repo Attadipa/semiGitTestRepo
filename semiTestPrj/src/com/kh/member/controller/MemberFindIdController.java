@@ -17,6 +17,7 @@ public class MemberFindIdController extends HttpServlet{
 	/*
 	 * 아이디 찾기
 	 */
+	
 	//아이디 찾기 화면
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
