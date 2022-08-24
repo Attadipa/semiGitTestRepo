@@ -115,6 +115,7 @@ public class NoticeDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, num);
+			System.out.println("num ::: " + num);
 			
 			result = pstmt.executeUpdate();
 			
@@ -260,6 +261,31 @@ public class NoticeDao {
 		//실행결과 리턴
 		return count;
 			
+	}
+
+	public int deleteAll(Connection conn, String[] postNo) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		String sql = "DELETE NOTICE WHERE NO = ?";
+		
+		try {
+			
+			for(String k : postNo) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, k);
+				
+				result = pstmt.executeUpdate();
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 

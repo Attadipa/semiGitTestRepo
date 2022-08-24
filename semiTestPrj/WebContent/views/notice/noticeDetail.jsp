@@ -144,7 +144,7 @@
                 </tr>
                 <tr>
                     <th>작성자</th>
-                    <td><%=vo.getWriter() %> <button class="btn btn-success">1:1 채팅</button></td>
+                    <td><%=vo.getWriter() %> <button class="btn btn-light">1:1 채팅</button></td>
                     <th>작성일</th>
                     <td><%=vo.getEnrollDate()%></td>
                     <th>조회수</th>
@@ -181,16 +181,17 @@
             <!-- 댓글 작성시 반복문 -->
             <div class="comment">
                 <div id="user-comments"> 
-                   <!-- <table>
+                
+                   <table>
                         <td>
-                            <tr>(작성자) <br><br></tr>
+                            <tr>${cvo.getTitle()}<br><br></tr>
                             <tr>감사합니다. 좋은 거래였습니다.<br></tr>
                             <tr>2022/08/08 11:44 <br><br>
                             <tr><button onclick="reply()">답글쓰기</button><br><br></tr>
                             <div id="reply-write"></div>
                             <hr>
                         </td>
-                   </table> -->
+                   </table> 
                 </div>
 
                 <div id="comment-write">
@@ -249,32 +250,25 @@
         }
        
 
-        $('#addComment').click(function(){
+       <%--  $('#addComment').click(function(){
             $.ajax({
                 url : "/semiTestPrj/comment/insert"
                 , method : "GET"
                 , data : {
-                	   , postNo :
-                	   , memberNo :
-                	   , 
-                	
-                	
-                	
-                        postNo : ${tvo.getTradeNo()}
-                        , memberNo : ${loginMember.getMemberNo()}
-                        , title : $('.product-info').children().eq(0).text()
+                	   , postNo :<%=vo.getNo()%>
+                	   , memberNo :<%=loginMember.getMemberNo()%>
+                	   , content :<%=vo.getContent()%>
                     } 
                 , success : function(x){
                     console.log("통신성공");
                     alert(x);
-                    $('.wish').prop("disabled", true);
                 }
                 , error : function(e){
                     console.log("통신실패");
                     console.log(e);
                 }
             });
-        }); 
+        });  --%>
     </script>
 
     

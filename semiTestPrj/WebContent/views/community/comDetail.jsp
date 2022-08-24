@@ -232,7 +232,7 @@
     <%@include file="/views/common/footer.jsp" %>
 
     <script>
-        function reply(){
+       /*  function reply(){
             const reply = document.getElementById('reply-write');
             
             reply.innerHTML
@@ -246,7 +246,7 @@
             reply.innerHTML
                 ='<hr><div style=" border: 1px solid black; width: 95%; margin: 0px auto; padding-top: 10px;  margin-bottom: 10px; padding-left: 40px; padding-bottom: 15px;"><div>(작성자)</div><br><div><textarea rows="5" cols="100" style="resize:none;" name="comment" id="comment" required></textarea></div><br><span>사진 | 이모지</span><button class="btn btn-success" style="margin-left: 80%;">등록</button></div>'
                    
-        }
+        } */
 
        
         function clip(){

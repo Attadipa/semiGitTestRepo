@@ -261,4 +261,32 @@ public class CommunityService {
 		return att;
 	}
 
+	public int deleteAll(String[] postNo) {
+
+		Connection conn = null;
+		int result = 0;
+		
+		try {
+			conn = getConnection();
+			
+			result = dao.deleteAll(conn, postNo);
+			
+			if(result == 1) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+		} catch (Exception e) {
+			rollback(conn);
+			e.printStackTrace();
+			
+		} finally {
+			close(conn);
+		}
+		
+		return result;
+	
+	
+	}
+
 }

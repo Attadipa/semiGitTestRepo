@@ -68,29 +68,21 @@
     
     <div id="outer">
 
-
-
         <h1>글쓰기</h1>
 
         <form action="/semiTestPrj/notice/insert" method="post">
-	       		 <input type="submit" id="submit" class="btn btn-success" value="등록"><hr>
-            
+	       		<input type="submit" id="submit" class="btn btn-success" value="등록"><hr>
             <div id="section">
-            	
-            	
-            	<!-- 수정 예정  -->
 	            <input type="hidden" name="writerNo" value="<%=loginMember.getMemberNo()%>">
-	            <!-- <input type="hidden" name="writerNo" value="2"> -->
                 <input type="text" size="120" name="title" id="title" placeholder=" 제목을 입력해주세요." required onkeyup="title_check();">
                 <br>
                 <br>
                 <textarea rows="15" cols="130" style="resize:none;" name="content" id="content" placeholder=" 내용을 입력하세요."  onkeyup="content_check();" required></textarea>
             </div>
-            
         </form>
-                <input type="text" placeholder="(0/ 1000)" id="textLengthCheck">
-        		<input type="button" id="list" class="btn btn-success" value="목록" onclick="history.go(-1)">
 
+        <input type="text" placeholder="(0/ 1000)" id="textLengthCheck">
+        <input type="button" id="list" class="btn btn-success" value="목록" onclick="history.go(-1)">
     </div>
 
     <%@include file="/views/common/footer.jsp" %>
