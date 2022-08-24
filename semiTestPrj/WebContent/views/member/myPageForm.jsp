@@ -440,7 +440,7 @@
 
 						<input style="text-align :center;" type="text" name="memberGrade" 
 						value="<c:choose>
-<c:when test="${loginMember.memberGrade eq '1'}">관리자</c:when><c:when test="${loginMember.memberGrade eq '2'}">프리미엄</c:when><c:when test="${loginMember.memberGrade eq '3'}">일반</c:when></c:choose>" readonly/>
+<c:when test="${loginMember.memberGrade eq 'A'}">관리자</c:when><c:when test="${loginMember.memberGrade eq 'P'}">프리미엄</c:when><c:when test="${loginMember.memberGrade eq 'N'}">일반</c:when></c:choose>" readonly/>
 					</div>
 
 					<div class="frm-submit">
