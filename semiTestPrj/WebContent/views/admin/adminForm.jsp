@@ -158,9 +158,9 @@
 									<td>등급</td>
 									<td>
 										<select id="editGrade" name="memberGrade">
-											<option value="2">일반회원</option>
-											<option value="3">프리미엄</option>
-											<option value="1">관리자</option>
+											<option value="N">일반회원</option>
+											<option value="P">프리미엄</option>
+											<option value="A">관리자</option>
 										</select>
 									</td>
 								</tr>
