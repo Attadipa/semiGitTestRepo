@@ -361,7 +361,7 @@ public class TradeDao {
 		List<TradeVo> list = new ArrayList<TradeVo>();
 		PreparedStatement pstmt = null;
 		
-		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM (SELECT T.TRADE_NO, M.MEMBER_MID WRITER,T.TITLE, TO_CHAR(T.ENROLL_DATE, 'YY/MM/DD HH:MI') ENROLL_DATE FROM TRADE T JOIN MEMBER M ON T.WRITER = M.MEMBER_NO ORDER BY CNT DESC) T ) WHERE RNUM BETWEEN 1 AND 6";
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM (SELECT T.TRADE_NO, M.MEMBER_MID WRITER,T.TITLE, TO_CHAR(T.ENROLL_DATE, 'YY/MM/DD HH:MI') ENROLL_DATE FROM TRADE T JOIN MEMBER M ON T.WRITER = M.MEMBER_NO ORDER BY CNT DESC) T ) WHERE RNUM BETWEEN 1 AND 9";
 		
 		try {
 			
@@ -392,6 +392,29 @@ public class TradeDao {
 		
 		return list;
 
+	}
+
+	public int delete(Connection conn, String num) {
+		int result = 0;
+
+		//conn준비
+		//sql준비
+		String sql = "DELETE TRADE WHERE TRADE_NO = ?";
+		//sql객체에 담기 -> 물음표 채우기
+		PreparedStatement pstmt = null;
+		try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, num);
+				
+				result = pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		//결과 리턴
+		return result;
 	}
 
 }

@@ -223,6 +223,24 @@ public class TradeService {
 		return voList;
 	}
 
+	public int delete(String num) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		//DAO 호출
+		result = dao.delete(conn, num);
+		
+		if(result  == 1) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
 	
 
 }
