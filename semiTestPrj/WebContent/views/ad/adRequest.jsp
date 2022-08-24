@@ -5,68 +5,88 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
 <style>
     #container{
         margin: 0 auto;
-        width: 600px;
+        width: 1000px;
     }
-    h1{
-        display: inline;
-    }
-    #back-button{
-        float: right;
-        width: 100px;
-        height: 30px;
-        font-size: 17px;
-        margin-top: 10px;
-    }
+
     table{
         width: 100%;
         text-align: center;
     }
-    table, tr, td{
-        border: 1px solid black;
-        border-collapse: collapse;
+    .trade-title{
+        cursor: pointer;
     }
-    #tr1{
-        font-size: 17px;
-        font-weight: bold;
+    .page-item.active .page-link {
+        color: #fff !important;
+        background: #f00 !important;
     }
+    #page-btns-container{
+        display: flex;
+        justify-content: center;
+    }
+    #page-btns-container .btn{
+        margin: 0 2px 0 2px;
+    }
+
 
 </style>
 </head>
 <body>
+    <%@ include file="/views/common/header.jsp" %>
     <div id="container">
+        <br>
         <h1>광고신청</h1>
-        <button id="back-button" onclick="history.back">뒤로가기</button>
         <hr>
         <br>
-        <table id="ad-list-container">
-            <tr id="tr1">
-                <td><img src="" alt="썸네일"></td>
-                <td>글번호</td>
-                <td>글제목</td>
-                <td></td>
-            </tr>
-            <tr>
-                <td><img src="" alt="썸네일"></td>
-                <td>23</td>
-                <td>대형건담 180cm</td>
-                <td><button>광고신청</button></td>
-            </tr>
-            <tr>
-                <td><img src="" alt="썸네일"></td>
-                <td>23</td>
-                <td>대형건담 180cm</td>
-                <td><button>광고신청</button></td>
-            </tr>
-            <tr>
-                <td><img src="" alt="썸네일"></td>
-                <td>23</td>
-                <td>대형건담 180cm</td>
-                <td><button>광고신청</button></td>
-            </tr>
-        </table>
+        	<table class="table table-hover table-sm">
+	            <thead class="table-success">
+	                <tr>
+	                    <th>글번호</th>
+	                    <th>제목</th>
+	                    <th>게시날짜</th>
+                        <th></th>
+	                </tr>
+	            </thead>
+	
+	            <!-- 예시 -->
+	            <tbody>
+					<c:forEach items="${voList}" var="vo">
+	                	<tr>
+	                    	<td>${vo.tradeNo}</td>
+		                    <td onclick="location.href='/semiTestPrj/trade/detail?num=${vo.tradeNo }'" class="trade-title">${vo.getTitle()}</td>
+		                    <td>${vo.enrollDate}</td>
+                            <td><button class="btn btn-danger" onclick="location.href='/semiTestPrj/ad/insert?num=${vo.tradeNo}'">광고신청</button></td>
+	                	</tr>
+					</c:forEach>
+	        	</table>
+	
+	        <br>
+
+            <div id="page-btns-container">
+                <c:if test="${pv.currentPage!=1}">
+                    <a class="btn btn-outline-success page-btn" href="/semiTestPrj/ad/request?p=1">&lt;&lt;</a>
+                    <a class="btn btn-outline-success page-btn" href="/semiTestPrj/ad/request?p=${pv.currentPage-1}">&lt;</a>
+                </c:if>
+    
+                <c:forEach begin="${pv.startPage }" end="${pv.endPage }" step="1" varStatus="vs">
+                    <c:if test="${vs.index == pv.currentPage }">
+                        <a class="btn btn-success">${vs.index}</a>
+                    </c:if>
+                    <c:if test="${vs.index != pv.currentPage }">
+                        <a class="btn btn-outline-success" href="/semiTestPrj/ad/request?p=${vs.index}">${vs.index}</a>
+                    </c:if>
+                </c:forEach>
+    
+                <c:if test="${pv.currentPage!=pv.maxPage}">
+                    <a class="btn btn-outline-success page-btn" href="/semiTestPrj/ad/request?p=${pv.currentPage+1}">&gt;</a>
+                    <a class="btn btn-outline-success page-btn" href="/semiTestPrj/ad/request?p=${pv.maxPage}">&gt;&gt;</a>
+                </c:if>
+            </div>
+
+        
     </div>
 </body>
 </html>

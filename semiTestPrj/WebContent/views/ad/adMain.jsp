@@ -5,8 +5,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <style>
     #container{
         width: 550px;
@@ -40,35 +38,35 @@
     #ad-guide{
         width: 100%;
     }
-    #ad-request:active{
-        background-color: rgb(255, 147, 147);
+    #ad-request:active,#ad-request:hover{
+        background-color: rgb(126, 126, 126);
+        transition: 0.3s;
         color: white;
     }
-    #ad-manager:active{
-        background-color: rgb(185, 255, 145);
+    #ad-manager:active,#ad-manager:hover{
+        background-color: rgb(126, 126, 126);
+        transition: 0.3s;
         color: white;
     }
-    #ad-guide:active{
-        background-color: rgb(255, 238, 52);
+    #ad-guide:active,#ad-guide:hover{
+        transition: 0.3s;
+        background-color: rgb(126, 126, 126);
         color: white;
     }
 
 </style>
 </head>
 <body>
-
+	<%@ include file="/views/common/header.jsp" %>
     <div id="container">
-        <br>
-        <h1>판매자센터</h1>
-        <hr>
         <br>
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img src="/semiTestPrj/views/ad/resources/tesla01.jpg" class="d-block w-100" alt="...">
+                <img src="/semiTestPrj/views/ad/resources/ad_notice_01.PNG" class="d-block w-100" alt="...">
               </div>
               <div class="carousel-item">
-                <img src="/semiTestPrj/views/ad/resources/tesla02.jpg" class="d-block w-100" alt="...">
+                <img src="/semiTestPrj/views/ad/resources/ad_notice_02.PNG" class="d-block w-100" alt="...">
               </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -81,9 +79,8 @@
             </button>
         </div>
         <div id="ad-button-container">
-            <button id="ad-request" onclick="location.href='/semiTestPrj/ad/request'">광고신청</button>
+            <button id="ad-request" onclick="location.href='/semiTestPrj/ad/request?p=1'">광고신청</button>
             <button id="ad-manager" onclick="location.href='/semiTestPrj/ad/manager?p=1'">광고관리</button>
-            <button id="ad-guide" onclick="location.href=''">광고가이드</button>
         </div>
         
     </div>
