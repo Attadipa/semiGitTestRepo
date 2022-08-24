@@ -1,28 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fm" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<%-- 제이쿼리 --%>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<%-- 부트스트랩 --%>
-<!-- Latest compiled and minified CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
 <style>
     #container{
         margin: 0 auto;
         width: 1000px;
-    }
-    thead > tr{
-        font-weight: bold;
     }
     #page-area{
 		width: 80%;
@@ -33,27 +20,38 @@
     tbody > tr{
         cursor: pointer;
     }
+    #page-btns-container{
+        display: flex;
+        justify-content: center;
+    }
+    #page-btns-container .btn{
+        margin: 0 2px 0 2px;
+    }
+
 
 
 </style>
 </head>
 <body>
+    <%@ include file="/views/common/header.jsp" %>
     <div id="container">
         <br>
         <h1>광고관리</h1>
+        <hr>
+        <br>
         <table class="table table-hover table-sm">
             <thead class="table-success">
                 <tr>
-                    <td>광고번호</td>
-                    <td>글번호</td>
-                    <td>제목</td>
-                    <td>가격</td>
-                    <td>기간</td>
-                    <td>신청일시</td>
-                    <td>키워드1</td>
-                    <td>키워드2</td>
-                    <td>키워드3</td>
-                    <td>광고상태</td>
+                    <th>광고번호</th>
+                    <th>글번호</th>
+                    <th>제목</th>
+                    <th>가격</th>
+                    <th>기간</th>
+                    <th>신청일시</th>
+                    <th>키워드1</th>
+                    <th>키워드2</th>
+                    <th>키워드3</th>
+                    <th>광고상태</th>
                 </tr>
             </thead>
             <tbody>
@@ -68,34 +66,33 @@
 	                    <td>${vo.keyword1 }</td>
 	                    <td>${vo.keyword2 }</td>
 	                    <td>${vo.keyword3 }</td>
-	                    <td>${vo.adStatus }</td>
+	                    <td><h5><span class="badge rounded-pill bg-danger">${vo.adStatus }</span></h5></td>
 	                </tr>
                 </c:forEach>
             </tbody>
           </table>
 
-          <div id="page-area">
-			
-			<c:if test="${pv.currentPage!=1}">
-				<a class="btn btn-sm btn-success" href="/semiTestPrj/ad/manager?p=${pv.currentPage-1 }"> &lt; </a>
-			</c:if> 
+          <div id="page-btns-container">
+            <c:if test="${pv.currentPage!=1}">
+                <a class="btn btn-outline-success page-btn" href="/semiTestPrj/ad/manager?p=1">&lt;&lt;</a>
+                <a class="btn btn-outline-success page-btn" href="/semiTestPrj/ad/manager?p=${pv.currentPage-1}">&lt;</a>
+            </c:if>
 
-			<c:forEach begin="${pv.startPage }" end="${pv.endPage }" step="1" varStatus="vs">
-				<c:if test="${vs.index == pv.currentPage }">
-					<a class="btn btn-sm btn-success">${vs.index }</a>
-				</c:if>
-				<c:if test="${vs.index != pv.currentPage }">
-					<a class="btn btn-sm btn-success" href="/semiTestPrj/ad/manager?p=${vs.index }">${vs.index }</a>
-				</c:if>
-			</c:forEach>
-			
-			<c:if test="${pv.currentPage!=pv.maxPage}">
-				<a class="btn btn-sm btn-success" href="/semiTestPrj/ad/manager?p=${pv.currentPage+1 }"> &gt; </a>
-			</c:if> 
+            <c:forEach begin="${pv.startPage }" end="${pv.endPage }" step="1" varStatus="vs">
+                <c:if test="${vs.index == pv.currentPage }">
+                    <a class="btn btn-success">${vs.index}</a>
+                </c:if>
+                <c:if test="${vs.index != pv.currentPage }">
+                    <a class="btn btn-outline-success" href="/semiTestPrj/ad/manager?p=${vs.index}">${vs.index}</a>
+                </c:if>
+            </c:forEach>
 
-			
-		</div>
+            <c:if test="${pv.currentPage!=pv.maxPage}">
+                <a class="btn btn-outline-success page-btn" href="/semiTestPrj/ad/manager?p=${pv.currentPage+1}">&gt;</a>
+                <a class="btn btn-outline-success page-btn" href="/semiTestPrj/ad/manager?p=${pv.maxPage}">&gt;&gt;</a>
+            </c:if>
+        </div>
+
     </div>
-    
 </body>
 </html>
