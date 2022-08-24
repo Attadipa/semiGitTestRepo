@@ -32,13 +32,23 @@
     }
 
     #chat-me {
-      position: inline;
+      position: block;
       float: right;
       width: 50%;
       border: 1px solid white;
       border-radius: 20px;
       padding: 6px;
       background-color: rgb(163, 255, 163);
+    }
+    
+    #date-me {
+      position: inline;
+      float: right;
+      text-align: right;
+      width: 50%;
+      padding: 6px;
+      font-size: 10px;
+	  vertical-align: bottom;
     }
 
     #chat-oppo {
@@ -48,7 +58,16 @@
       border: 1px solid white;
       border-radius: 20px;
       padding: 6px;
-      background-color: rgb(172, 255, 251);
+      background-color: rgb(219, 255, 118);
+    }
+    
+    #date-oppo {
+      position: inline;
+      float: left;
+      width: 50%;
+      padding: 6px;
+      font-size: 10px;
+	  vertical-align: bottom;
     }
 
     #chat-new-line {
@@ -60,6 +79,12 @@
     	width: auto;
     	height: auto;
     }
+    
+    #memberList-zone :hover {
+    	background-color: black;
+    	color: white;
+    }
+    
 </style>
 </head>
 <body>
@@ -76,13 +101,17 @@
             		<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         		</div>
         		<div class="modal-body" id="create-zone">
+        			<c:if test="${loginMember.memberGrade eq 'A'}">
+	        			<table class="table" id="memberList-zone" border="1">   
+	        			</table>
+        			</c:if>
         			<div id="chatting-zone">
 		            </div>
         		</div>
         		<div class="modal-footer">
         			<table>
         				<tr>
-        					<td><textarea id="messageContent" minlength="10" maxlength="100" style="width: 400px; vertical-align: middle; resize: none;" name="message"></textarea></td>
+        					<td><textarea id="messageContent" maxlength="100" style="width: 400px; vertical-align: middle; resize: none;" name="message"></textarea></td>
         					<td><input type ="button" id="sendMessage" class="btn btn-info" style="height:55px; vertical-align:middle;" value="전송"></td>
         				</tr>
         			</table>
@@ -92,74 +121,141 @@
   	</div>
   
   <script>
-  		$('#sendMessage').click(function(){
-  			const content = $('#messageContent').val();
-  			<c:if test="${not empty loginMember.memberNo}">
-				const num = ${loginMember.memberNo};
-				const grade = ${loginMember.memberGrade};
-			</c:if>
-  			
-  			if(content.length >= 10) {
-	  			$.ajax({
-	  				url : "/semiTestPrj/cs/chat",
-	  				data : {"content" : content, "num" : num, "grade" : grade},
-	  				method : "POST",
-	  				success : function(x){
-	  					console.log("통신성공 !");
-	  					
-	  					let tagArea = document.getElementById('chatting-zone');
-	  					let newTag = document.createElement('div');
-	  				 	newTag.setAttribute("id", "chat-me");
-	  				  
-	  				  	newTag.innerHTML = content;
-	  				  	
-	  					let newTag2 = document.createElement('div');
-	  				 	newTag2.setAttribute("id", "chat-new-line");
-	  				 	
-	  				 	let newBr = document.createElement('br');
-	  				  
-	  				  	tagArea.appendChild(newTag);
-	  				  	tagArea.appendChild(newTag2);
-	  				  	tagArea.appendChild(newBr);
-	  				},
-	  				error : function(request, status, error) {
-	  					console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-	  				}
-	  			});
-  			}else{
-  				alert('문의는 10글자 이상 100글자 이하로 전송해주세요!');
-  			}
-  		});
   		
   		$('#chat-modal').click(function(){
-  			<c:if test="${not empty loginMember.memberNo}">
-  				const num = ${loginMember.memberNo};
-  				const grade = ${loginMember.memberGrade};
-  			</c:if>
+ 			let num = ${loginMember.memberNo};
+ 			let grade = '${loginMember.memberGrade}';
   			
-  			if(grade == "1"){
+  			if(grade == 'A'){
   				$.ajax({
   					url : "/semiTestPrj/cs/member",
   					method : "GET",
   					success : function(x){
-  						console.log("통신성공 !");
-  						
-  						
-  					}
+  						console.log("AJAX : 관리자 채팅용 회원 리스트 띄우기 성공 !");
+		  	  			$('.modal-footer').hide();
+  	  					
+  	  					let list = JSON.parse(x);
+  	  					
+  	  					let listArea = document.getElementById('memberList-zone');
+  	  					console.log(list);
+  	  					
+  	  					for(let i in list){
+  	  						console.log(list[i].memberName)
+	  	  					let newTr = document.createElement('tr');
+  	  						newTr.setAttribute("class", "showChatTr");
+	  	  					newTr.setAttribute("role", "button");
+	  	  					listArea.appendChild(newTr);
+	  	  					
+	  	  					let newNo = document.createElement('td');
+	  	  					newNo.setAttribute("id", "numWho");
+	  	  					newNo.style.display = 'none';
+	  	  					let newName = document.createElement('td');
+	  	  					newName.style.width = '75px';
+	  	  					let newContent = document.createElement('td');
+	  	  					newNo.innerHTML = list[i].memberNo;
+	  	  					newName.innerHTML = list[i].memberName;
+	  	  					newContent.innerHTML = list[i].content;
+	  	  					
+		  	  				newTr.appendChild(newNo);
+		  	  				newTr.appendChild(newName);  	  						
+		  	  				newTr.appendChild(newContent);
+		  	  				
+  	  					}
+  	  					
+	  	  				$('.showChatTr').click(function(){
+	  			  			let num = $(this).children().eq(0).html();
+	  			  			console.log(num);
+	  			  			
+	  			  			showChat(num);
+	  			  			
+		  			  		$('#sendMessage').click(function(){
+		  			  			let content = $('#messageContent').val();
+		  						let grade = '${loginMember.memberGrade}';
+		  						var today = new Date();
+		  						
+		  						var year = today.getFullYear().toString().substring(2);
+		  						var month = ('0' + (today.getMonth() + 1)).slice(-2);
+		  						var day = ('0' + today.getDate()).slice(-2);
+		  						var todayFormat = year + '/' + month  + '/' + day;
+		  						
+		  						var hours = ('0' + today.getHours()).slice(-2); 
+		  						var minutes = ('0' + today.getMinutes()).slice(-2);
+		  						var timeFormat = hours + ':' + minutes;
+		  			  			
+		  			  			if(content.length >= 10) {
+		  				  			$.ajax({
+		  				  				url : "/semiTestPrj/cs/chat",
+		  				  				data : {"content" : content, "num" : num, "grade" : grade},
+		  				  				method : "POST",
+		  				  				success : function(x){
+		  				  					console.log("채팅 입력 성공 !");
+		  				  					
+		  				  					let tagArea = document.getElementById('chatting-zone');
+		  				  					let newTag = document.createElement('div');
+		  				  				 	newTag.setAttribute("id", "chat-me");
+		  				  				 	let newDate = document.createElement('div');
+		  					  				newDate.setAttribute("id", "date-me");
+		  				  				  
+		  				  				  	newTag.innerHTML = content;
+		  				  				  	newDate.innerHTML = todayFormat + " " + timeFormat;
+		  				  				  	
+		  				  					let newTag2 = document.createElement('div');
+		  				  				 	newTag2.setAttribute("id", "chat-new-line");
+		  				  				 	
+		  				  				 	let newBr = document.createElement('br');
+		  				  				  
+		  				  				  	tagArea.appendChild(newTag);
+		  				  				  	tagArea.appendChild(newDate);
+		  				  				  	tagArea.appendChild(newTag2);
+		  				  				  	tagArea.appendChild(newBr);
+	
+		  									$('#messageContent').val('');
+		  				  				},
+		  				  				error : function(request, status, error) {
+		  				  					console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		  				  				}
+		  				  			});
+		  			  			}else{
+		  			  				alert('문의는 10글자 이상 100글자 이하로 전송해주세요!');
+		  			  			}
+		  			  		});
+	  			  			
+	  			  		})
+  					},
+  					error : function(request, status, error) {
+  	  					console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+  	  				}
   				})
+  				
+  			}else{
+  				showChat(num);
   			}
   			
+  			
+  			
+  		})
+  		
+  		
+  		
+  		
+		function showChat(memNo){
+  			const grade = '${loginMember.memberGrade}';
+  			
+  			$('#create-zone').scrollTop($('#create-zone')[0].scrollHeight);
+  			$('#memberList-zone').hide();
+  			$('.modal-footer').show();
+  			
   			$.ajax({
-  				url : "/semiTestPrj/cs/chat?num=" + num,
+  				url : "/semiTestPrj/cs/chat?num=" + memNo,
   				method : "GET",
   				success : function(x){
-  					console.log("통신성공 !");
+  					console.log("AJAX : 채팅창 띄우기 성공 !");
   					
-  					const list = JSON.parse(x);
+  					let list = JSON.parse(x);
   					
   					let tagArea = document.getElementById('chatting-zone');
   					
-  					if(grade != '1'){
+  					if(grade != 'A'){
   						let newTag = document.createElement('div');
 	  				 	newTag.setAttribute("id", "chat-oppo");
 	  				  
@@ -175,12 +271,15 @@
 	  				  	tagArea.appendChild(newBr);
   					}
   					
-  					for(const i in list){
-  						if((list[i].grade != '1') && (list[i].grade == grade)){
+  					for(let i in list){
+  						if(list[i].grade == grade){
   							let newTag = document.createElement('div');
   		  				 	newTag.setAttribute("id", "chat-me");
+  		  				 	let newDate = document.createElement('div');
+  		  				 	newDate.setAttribute("id", "date-me");
   		  				  
   		  				  	newTag.innerHTML = list[i].content;
+  		  				 	newDate.innerHTML = list[i].chatDate;
   		  				  	
   		  					let newTag2 = document.createElement('div');
 		  				 	newTag2.setAttribute("id", "chat-new-line");
@@ -188,13 +287,17 @@
 		  				 	let newBr = document.createElement('br');
 		  				  
 		  				  	tagArea.appendChild(newTag);
+		  				  	tagArea.appendChild(newDate);
 		  				  	tagArea.appendChild(newTag2);
 		  				  	tagArea.appendChild(newBr);
-  						} else if((list[i].grade == '1') && (list[i].grade != grade)) {
+  						} else if(list[i].grade != grade) {
   							let newTag = document.createElement('div');
   		  				 	newTag.setAttribute("id", "chat-oppo");
+  		  					let newDate = document.createElement('div');
+		  				 	newDate.setAttribute("id", "date-oppo");
   		  				  
   		  				  	newTag.innerHTML = list[i].content;
+  		  					newDate.innerHTML = list[i].chatDate;
   		  				  	
   		  					let newTag2 = document.createElement('div');
 		  				 	newTag2.setAttribute("id", "chat-new-line");
@@ -202,8 +305,11 @@
 		  				 	let newBr = document.createElement('br');
 		  				  
 		  				  	tagArea.appendChild(newTag);
+		  				  	tagArea.appendChild(newDate);
 		  				  	tagArea.appendChild(newTag2);
 		  				  	tagArea.appendChild(newBr);
+  						} else {
+  							$('#chatting-zone').html("ERROR");
   						}
   						
   					}
@@ -212,18 +318,79 @@
   					console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
   				}
   			})
-  			
-  			
-  		})
+ 				
+ 			}
   		
-  		const myModalEl = document.getElementById('oneByOne')
-		myModalEl.addEventListener('hidden.bs.modal', function (event) {
-			$('#chatting-zone').remove();
-			const newTag3 = document.createElement('div');
-			newTag3.setAttribute("id", "chatting-zone");
-			let tagArea2 = document.getElementById('create-zone');
-			tagArea2.appendChild(newTag3);
-		})
+  		if('${loginMember.memberGrade}' != 'A') {
+	  		$('#sendMessage').click(function(){
+	  			let content = $('#messageContent').val();
+				let grade = '${loginMember.memberGrade}';
+				let num = ${loginMember.memberNo};	
+				var today = new Date();
+				
+				var year = today.getFullYear().toString().substring(2);
+				var month = ('0' + (today.getMonth() + 1)).slice(-2);
+				var day = ('0' + today.getDate()).slice(-2);
+				var todayFormat = year + '/' + month  + '/' + day;
+				
+				var hours = ('0' + today.getHours()).slice(-2); 
+				var minutes = ('0' + today.getMinutes()).slice(-2);
+				var timeFormat = hours + ':' + minutes;
+	  			
+	  			if(content.length >= 10) {
+		  			$.ajax({
+		  				url : "/semiTestPrj/cs/chat",
+		  				data : {"content" : content, "num" : num, "grade" : grade},
+		  				method : "POST",
+		  				success : function(x){
+		  					console.log("채팅 입력 성공 !");
+		  					
+		  					let tagArea = document.getElementById('chatting-zone');
+		  					let newTag = document.createElement('div');
+		  				 	newTag.setAttribute("id", "chat-me");
+		  				 	let newDate = document.createElement('div');
+			  				newDate.setAttribute("id", "date-me");
+		  				  
+		  				  	newTag.innerHTML = content;
+		  				  	newDate.innerHTML = todayFormat + " " + timeFormat;
+		  				  	
+		  					let newTag2 = document.createElement('div');
+		  				 	newTag2.setAttribute("id", "chat-new-line");
+		  				 	
+		  				 	let newBr = document.createElement('br');
+		  				  
+		  				  	tagArea.appendChild(newTag);
+		  				  	tagArea.appendChild(newDate);
+		  				  	tagArea.appendChild(newTag2);
+		  				  	tagArea.appendChild(newBr);
+	
+							$('#messageContent').val('');
+		  				},
+		  				error : function(request, status, error) {
+		  					console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+		  				}
+		  			});
+	  			}else{
+	  				alert('문의는 10글자 이상 100글자 이하로 전송해주세요!');
+	  			}
+	  		});
+  		}
+  		
+  		
+	  		const myModalEl = document.getElementById('oneByOne')
+			myModalEl.addEventListener('hidden.bs.modal', function (event) {
+				$('#memberList-zone').remove();
+				$('#chatting-zone').remove();
+				let newTable = document.createElement('table');
+				newTable.setAttribute("id", "memberList-zone");
+				newTable.setAttribute("class", "table");
+				newTable.setAttribute("border", "1");
+				let newTag3 = document.createElement('div');
+				newTag3.setAttribute("id", "chatting-zone");
+				let tagArea2 = document.getElementById('create-zone');
+				tagArea2.appendChild(newTable);
+				tagArea2.appendChild(newTag3);
+			})
   </script>
 </body>
 </html>

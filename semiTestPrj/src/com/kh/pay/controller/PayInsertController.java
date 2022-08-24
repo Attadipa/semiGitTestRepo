@@ -67,14 +67,16 @@ public class PayInsertController extends HttpServlet{
 		System.out.println("keyword2 : "+keyword2);
 		System.out.println("keyword3 : "+keyword3);
 		
-		if(deliveryAddr != null || deliveryAddr != "") {
+		if(!(deliveryAddr==null || deliveryAddr.equals(""))) {
+			System.out.println("delvery진입");
 			DeliveryVo deliveryVo = new DeliveryVo();
 			deliveryVo.setDeliveryAddr(deliveryAddr);
 			deliveryVo.setRequestContent(requestContent);
 			int result2 = new DeliveryService().insertDelivery(deliveryVo);
 			System.out.println("result2 : "+result2);
 		}
-		if(period != null || period != "") {
+		if(!(period==null || period.equals(""))) {
+			System.out.println("광고결제진입");
 			AdVo adVo = new AdVo();
 			adVo.setPeriod(period);
 			adVo.setKeyword1(keyword1);

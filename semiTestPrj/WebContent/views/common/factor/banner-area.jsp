@@ -61,18 +61,14 @@
 			<li class="slideitem">
 				<a>
 					<div class="textbox">
-						<h3>첫번째 슬라이드</h3>
-						<p>첫번째 슬라이드 입니다.</p>
 					</div>
-					<img src="/semiTestPrj/views/common/factor/img/slide.jpg">
+					<img src="/semiTestPrj/views/common/factor/img/중고 거래 플랫폼.png">
 				</a>
 			</li>
 			<li class="slideitem">
 				<a>
 					
 					<div class="textbox">
-						<h3></h3>
-						<p></p>
 					</div>
 					<img src="/semiTestPrj/views/common/factor/img/musinsa.JPG">
 				</a>
@@ -81,10 +77,8 @@
 				<a>
 					
 					<div class="textbox">
-						<h3>세번째 슬라이드</h3>
-						<p>세번째 슬라이드 입니다.</p>
 					</div>
-					<img src="/semiTestPrj/views/common/factor/img/slide.jpg">
+					<img src="/semiTestPrj/views/common/factor/img/익스트림.png">
 				</a>
 			</li class="slideitem">
 

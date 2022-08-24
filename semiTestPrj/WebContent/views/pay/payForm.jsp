@@ -357,17 +357,14 @@
      <script>
         //결제정보 및 광고관련정보
         let payCategoryVal = ${payCategory};
-        let payAmountVal = "";
-        let periodVal = "7";
-
-        let keyword1Val = $('#keyword1').val();
-        let keyword2Val = $('#keyword2').val();
-        let keyword3Val = $('#keyword3').val();
+        let payAmountVal;
+        let periodVal;
 
         if(payCategoryVal!=3){
             payAmountVal = '${tradeVo.price}';
         }else{
             payAmountVal = "30000";
+            periodVal = "7"
         }
         function addPayAmount(days){
             const payAmountContainer = document.querySelector("#pay-amount-container");
@@ -393,9 +390,20 @@
             IMP.init('imp16407085'); // <-- 본인 가맹점 식별코드 삽입
 
            	function startPay(){
-                //배송지 선택
-                deliveryAddrVal = $('#delivery-address').val()+$('#delivery-address-detail').val()
+                //키워드 선택
+                let keyword1Val = $('#keyword1').val();
+                let keyword2Val = $('#keyword2').val();
+                let keyword3Val = $('#keyword3').val();
 
+                //배송지 선택
+                
+                let deliveryAddrVal;
+                if($('#delivery-address').val()==null){
+                    deliveryAddrVal = $('#delivery-address').val()+$('#delivery-address-detail').val();
+                }
+                console.log($('#delivery-address').val());
+                console.log($('#delivery-address-detail').val());
+                console.log(deliveryAddrVal);
                 //배송요청 사항 선택
                 let requestContentVal = $('#request-content').val();
                 if(requestContentVal=='직접입력'){
@@ -426,6 +434,7 @@
                         name : '주문명:결제테스트', //필수 파라미터
                         amount : payAmountVal
 
+
                     }, function(rsp) { // callback 로직
                         if(rsp.success){
                             alert("결제성공");
@@ -453,16 +462,16 @@
                                 success : function(x){
                                     console.log("통신성공");
                                     if(x==1){
-                                        location.replace("/semiTestPrj/views/pay/payResult.jsp");    
+                                        location.replace("/semiTestPrj/views/pay/payResult?res=s.jsp");    
                                     }else{
-                                        location.replace("/semiTestPrj/views/pay/payResult.jsp");    
+                                        location.replace("/semiTestPrj/views/pay/payResult?res=f.jsp");    
                                     }
                                     
                                 },
                                 error : function(e){
                                     console.log("통신실패");
                                     console.log(e);
-                                    location.replace("/semiTestPrj/views/error/errorPage.jsp");
+                                    // location.replace("/semiTestPrj/views/error/errorPage.jsp");
                                 }
                             })
                             

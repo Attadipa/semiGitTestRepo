@@ -196,7 +196,7 @@
                 <div id="comment-write">
                     <div>(작성자)</div><br>
                     <div><textarea rows="5" cols="105" style="resize:none;" name="comment" id="comment" required></textarea></div><br>
-                    <button class="btn btn-success">등록</button><br>
+                    <button class="btn btn-success" id="addComment" onclick="location.href='/semiTestPrj/comment/insert'">등록</button><br>
                 </div>
             </div>
 
@@ -249,11 +249,17 @@
         }
        
 
-        $('.wish').click(function(){
+        $('#addComment').click(function(){
             $.ajax({
-                url : "/semiTestPrj/wishlist/insert"
+                url : "/semiTestPrj/comment/insert"
                 , method : "GET"
                 , data : {
+                	   , postNo :
+                	   , memberNo :
+                	   , 
+                	
+                	
+                	
                         postNo : ${tvo.getTradeNo()}
                         , memberNo : ${loginMember.getMemberNo()}
                         , title : $('.product-info').children().eq(0).text()
@@ -268,7 +274,7 @@
                     console.log(e);
                 }
             });
-        });
+        }); 
     </script>
 
     
