@@ -99,8 +99,6 @@ public class WishlistDao {
 				vo.setPostNo(rs.getString("POST_NO"));
 				vo.setEnrollDate(rs.getString("ENROLL_DATE"));
 				
-				System.out.println(vo.getTitle());
-				
 				list.add(vo);
 				
 			}
@@ -114,6 +112,34 @@ public class WishlistDao {
 		}
 		
 		return list;
+	}
+
+	public int delete(Connection conn, String[] postNo) {
+		int result = 0;
+
+		//conn준비
+		//sql준비
+		String sql = "DELETE WISHLIST WHERE POST_NO = ?";
+		//sql객체에 담기 -> 물음표 채우기
+		PreparedStatement pstmt = null;
+		try {
+			
+			for(String b : postNo) {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, b);
+				
+				//sql 실행 및 결과 저장
+				result = pstmt.executeUpdate();
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		//결과 리턴
+		return result;
 	}
 
 }

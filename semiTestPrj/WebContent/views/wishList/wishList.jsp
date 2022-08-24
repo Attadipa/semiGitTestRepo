@@ -106,6 +106,8 @@
         color: black !important;
     }
     tbody tr:hover{background-color: darkgrey; cursor: pointer;}
+    
+    .btn-wish-delete{margin: 10px 0 0 95%;}
 
 </style>
 </head>
@@ -123,27 +125,32 @@
 
         <br><br>
 
-        <form action="">
+        <form action="${contextPath}/wish/delete" method="post">
         	<table>
 	            <thead>
 	                <tr>
 	                    <th>글번호</th>
+	                    <th>선택</th>
 	                    <th>글제목</th>
 	                    <th>추가날짜</th>
 	                </tr>
 	            </thead>
 	
 	            <!-- 예시 -->
+	            
 	            <tbody>
 					<c:forEach items="${voList}" var="l">
 	                	<tr>
-	                		<td>${l.getPostNo()}</td>
-		                    <td>${l.getTitle()}</td>
-		                    <td>${l.getEnrollDate()}</td>
+	                		<td><input type="checkbox" name="postNo" value="${l.getPostNo()}"></td>
+	                		<td class="info-area">${l.getPostNo()}</td>
+		                    <td class="info-area">${l.getTitle()}</td>
+		                    <td class="info-area">${l.getEnrollDate()}</td>
 	                	</tr>
 					</c:forEach>
 	            	<br clear="both">
-	        	</table>
+        	</table>
+        	
+        	<button class="btn btn-sm btn-danger btn-wish-delete" type="submit">삭제</button>
 	
 	        <br>
 	
@@ -182,11 +189,11 @@
 	
 	<script>
 		$(function(){
-			$('tbody tr').click(function(){
+			$('tbody tr').children('.info-area').click(function(){
 				//행 클릭 되었을 때, 동작 할 내용
 				
 				//글 번호 가져오기
-				const num = $(this).children().eq(0).text();
+				const num = $(this).parent().children().eq(1).text();
 				//해당 번호 이용해서 요청 보내기
 				location.href= "${contextPath}/trade/detail?num=" + num;
 			});
