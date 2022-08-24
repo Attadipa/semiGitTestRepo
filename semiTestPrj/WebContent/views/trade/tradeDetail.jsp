@@ -48,8 +48,6 @@
         height: 400px;
     }
 
-
-
     #detail-outer div{
         /* border: 1px solid red; */
         box-sizing: border-box;
@@ -58,9 +56,6 @@
         font-size: 30px;
     }
 
-   
-   	
-    
     .btns input, button{
         width: 100px !important;
     }
@@ -121,7 +116,7 @@
                         </div>
                         <div id="etc-btns">
                             <button type="button" class="btn btn-outline-success btn-sm" onclick="clip(); return false;">URL 복사</button>
-                            <input class="btn btn-outline-danger btn-sm" type="button" value="신고하기">
+                            <input data-bs-toggle="modal" data-bs-target="#banModal" class="btn btn-outline-danger btn-sm" type="button" value="신고하기">
                         </div>
                     </div>
                 </div>
@@ -132,7 +127,8 @@
                         ${tvo.getExplain()}
                     </div>
                     <div class="btns">
-                    	<c:if test="${loginMember.getMemberMid() ne tvo.getWriter()}">
+                    	<c:if test="${not empty loginMember}">
+                    		<c:if test="${loginMember.getMemberMid() ne tvo.getWriter()}">
 	                        <input type="button" class="btn btn-secondary wish" id="insert-wish" value="찜하기">
 	                        <input type="button" class="btn btn-warning chat" value="채팅"> 
 	                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
@@ -181,11 +177,15 @@
 									    </div>
 									  </div>
 									</div>
+	                    	</c:if>
+	                    	<c:if test="${loginMember.getMemberMid() eq tvo.getWriter()}">
+	                    		<input type="button" class="btn btn-secondary reqAd" value="광고신청">
+		                        <input type="button" class="btn btn-warning edit-trade" value="수정하기"> 
+		                        <input type="button" class="btn btn-danger del-trade" value="삭제하기">
+	                    	</c:if>
                     	</c:if>
-                    	<c:if test="${loginMember.getMemberMid() eq tvo.getWriter()}">
-                    		<input type="button" class="btn btn-secondary reqAd" value="광고신청">
-	                        <input type="button" class="btn btn-warning fix" value="수정하기"> 
-	                        <input type="button" class="btn btn-danger del-trade" value="삭제하기">
+                    	<c:if test="${empty loginMember}">
+                    		<input style="width: 300px !important;" type="button" class="btn btn-outline-success trade-login" value="로그인하고 아나바다 이용하기" >
                     	</c:if>
                     </div>
                 </div>
@@ -211,11 +211,43 @@
         	location.href="/semiTestPrj/trade/delete?num=${tvo.getTradeNo()}";	
         })
         	
-        
         $('.reqAd').click(function(){
         	location.href="/semiTestPrj/ad/insert?num=${tvo.getTradeNo()}";
         })
         
+        $('.edit-trade').click(function(){
+        	location.href="/semiTestPrj/trade/edit?num=${tvo.getTradeNo()}";
+        })
+        
+        $('.trade-login').click(function(){
+        	location.href="/semiTestPrj/member/login";
+        })
+        
+        //위시리스트에 이미 추가되어있는지 체크해주는 ajax
+        $(function(){
+        		$.ajax({
+        			url : "/semiTestPrj/wish/check"
+        			, method : "GET"
+        			, data: {postNo : '${tvo.getTradeNo()}', memberNo : '${loginMember.getMemberNo()}'}
+        			, success : function(x){
+        				const result = JSON.parse(x);        				
+        				
+        				console.log(result);
+        				if(result == 1){
+        					$('.wish').prop("disabled", true);
+        				} else{
+        					$('.wish').prop("disabled", false);
+        				}
+
+        			}
+        			, error : function(e){
+        				console.log("통신실패");
+        				console.log(e);
+        			}
+        		});
+        	})
+        
+        //찜하기를 누르면 버튼을 비활성화 시켜주는 ajax
         $('#insert-wish').click(function(){
         	$.ajax({
     			url : "/semiTestPrj/wishlist/insert"
@@ -226,7 +258,6 @@
         				, title : '${tvo.getTitle()}'
     				} 
     			, success : function(x){
-    				console.log("통신성공");
     	        	alert(x);
     	        	$('.wish').prop("disabled", true);
     			}
@@ -237,16 +268,45 @@
     		});
         });
         
-        /* 로그인이 안되었을때, 찜하기가 안눌리게 하는 코드 */
-        <%-- $(function(){
-        	<%if(loginMember == null){%>
-        		$('#insert-wish').prop("disabled", true);
-        	<%}%>
-        }) --%>
     </script>
 
     <%@include file="/views/common/footer.jsp" %>
 
+  <!-- 신고하기 모달 -->
+	<div class="modal" id="banModal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">신고하기</h4>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	        해당 판매자를 신고하시겠습니까?
+	        <select>
+	        	<option value="사기">사기</option>
+	        	<option value="도용">도용</option>
+	        	<option value="거짓 판매">거짓 판매</option>
+	        	<option value="비매너">비매너</option>
+	        </select>
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" id="banClick" class="btn btn-danger" data-bs-dismiss="modal">신고</button>
+	      </div>
+	
+	    </div>
+	  </div>
+	</div>
+  	<script type="text/javascript">
+  		$('#banClick').click(function(){
+  			alert("신고 접수가 완료되었습니다.");
+  		});
+  	</script>
   
 
 </body>

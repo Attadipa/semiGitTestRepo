@@ -241,6 +241,24 @@ public class TradeService {
 		return result;
 	}
 
+	public int edit(TradeVo tvo) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		//DAO 호출
+		result = dao.edit(conn, tvo);
+		
+		if(result  == 1) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
 	
 
 }

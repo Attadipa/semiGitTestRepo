@@ -63,11 +63,11 @@ public class WishlistService {
 		return voList;
 	}
 
-	public int delete(String[] postNo) {
+	public int delete(String[] postNo, String mn) {
 		Connection conn = getConnection();
 		int result = 0;
 		
-		result = dao.delete(conn, postNo);
+		result = dao.delete(conn, postNo, mn);
 		if(result == 1) {
 			commit(conn);
 		}else {
@@ -78,4 +78,33 @@ public class WishlistService {
 		return result;
 	}
 
+	public List<WishVo> check(String mn, String pn) {
+		Connection conn = null;
+		List<WishVo> voList = null;
+		
+		
+		conn = getConnection();
+		voList = dao.list(conn, mn, pn);
+		
+		close(conn);
+		
+		return voList;
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -17,8 +17,12 @@ public class deleteWishController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		String[] postNo = req.getParameterValues("postNo");
+		String mn = req.getParameter("memberNo");
+		for(String b : postNo) {
+			System.out.println(b);
+		}
 		
-		int result = new WishlistService().delete(postNo);
+		int result = new WishlistService().delete(postNo, mn);
 		
 		if(result==1) {
 			req.getSession().setAttribute("alertMsg", "관심상품을 삭제했습니다.");

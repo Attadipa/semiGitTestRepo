@@ -10,6 +10,8 @@
 			top: 20%;
 			bottom: 50%;
 		}
+		.adModal-footer>div{padding-left: 150px;}
+		.adModal-footer a{text-decoration: none;}
 	</style>
 </head>
 <body>
@@ -31,7 +33,7 @@
 					<br>
 					<p>
 						최대 20% 쿠폰팩
-						8/24(수) 11시 까지만!
+						8/26(금) 11시 까지만!
 					</p>
 				</div>
 				
@@ -40,6 +42,9 @@
 					<strong>
 						<a href="https://www.musinsa.com">무신사로 달려가기</a>
 					</strong>
+					<div>
+						<a href="${contextPath}/member/login">광고 그만 볼래요.</a>
+					</div>
 				</div>
 
 	    	</div>
@@ -52,7 +57,7 @@
 		$(function onAd(){
 			modal.css('display','block');
 			
-		}setInterval(onAd,10000);)
+		})
 		
 		function closeModal(){
 			modal.css('display','none');

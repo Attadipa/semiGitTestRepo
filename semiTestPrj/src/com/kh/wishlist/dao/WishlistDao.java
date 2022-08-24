@@ -114,12 +114,12 @@ public class WishlistDao {
 		return list;
 	}
 
-	public int delete(Connection conn, String[] postNo) {
+	public int delete(Connection conn, String[] postNo, String mn) {
 		int result = 0;
 
 		//conn준비
 		//sql준비
-		String sql = "DELETE WISHLIST WHERE POST_NO = ?";
+		String sql = "DELETE WISHLIST WHERE POST_NO = ? AND MEMBER_NO = ?";
 		//sql객체에 담기 -> 물음표 채우기
 		PreparedStatement pstmt = null;
 		try {
@@ -128,6 +128,7 @@ public class WishlistDao {
 				pstmt = conn.prepareStatement(sql);
 				
 				pstmt.setString(1, b);
+				pstmt.setString(2, mn);
 				
 				//sql 실행 및 결과 저장
 				result = pstmt.executeUpdate();
@@ -140,6 +141,45 @@ public class WishlistDao {
 		}
 		//결과 리턴
 		return result;
+	}
+
+	public List<WishVo> list(Connection conn, String mn, String pn) {
+		PreparedStatement pstmt = null;
+		List<WishVo> list = new ArrayList<WishVo>();
+		ResultSet rs = null;
+		
+		//sql 준비
+		String sql = "SELECT * FROM WISHLIST WHERE MEMBER_NO = ? AND POST_NO = ?";
+		
+	
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, mn);
+			pstmt.setString(2, pn);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				
+				WishVo vo = new WishVo();
+				
+				vo.setWishNo(rs.getString("WISH_NO"));
+				
+				list.add(vo);
+				
+			}
+			
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return list;
 	}
 
 }

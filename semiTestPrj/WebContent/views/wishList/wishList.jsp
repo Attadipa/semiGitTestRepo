@@ -149,7 +149,7 @@
 					</c:forEach>
 	            	<br clear="both">
         	</table>
-        	
+        	<input type="hidden" value="${loginMember.getMemberNo()}" name="memberNo">
         	<button class="btn btn-sm btn-danger btn-wish-delete" type="submit">삭제</button>
 	
 	        <br>

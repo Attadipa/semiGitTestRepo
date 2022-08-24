@@ -119,12 +119,12 @@
        </div>
         
         <script type="text/javascript">
+        	/* 메인 페이지에 띄워줄 조회수가 큰 항목대로 거래글 데이터를 가져와주는 ajax */
         	$(function(){
         		$.ajax({
         			url : "/semiTestPrj/trade/today/tvo"
         			, method : "GET"
         			, success : function(y){
-        				console.log("통신성공");
         				const result = JSON.parse(y);        				
         				
         				for(let i=0;i<9;i++){
@@ -144,7 +144,6 @@
         			url : "/semiTestPrj/trade/today/avo"
         			, method : "GET"
         			, success : function(y){
-        				console.log("통신성공");
         				const result2 = JSON.parse(y);
         				
         				for(let i=0;i<9;i++){
