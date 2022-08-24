@@ -14,6 +14,9 @@ import com.kh.member.vo.MemberVo;
 @WebServlet(urlPatterns = "/member/mypage")
 public class MemberMypageController extends HttpServlet{
 
+	/*
+	 * 마이페이지
+	 */
 	//마이페이지 화면 보여주기
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

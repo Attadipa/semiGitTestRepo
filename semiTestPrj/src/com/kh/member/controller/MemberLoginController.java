@@ -14,6 +14,9 @@ import com.kh.member.vo.MemberVo;
 @WebServlet(urlPatterns = "/member/login")
 public class MemberLoginController extends HttpServlet{
 	
+	/*
+	 * 로그인
+	 */
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		

@@ -14,6 +14,9 @@ import com.kh.member.vo.MemberVo;
 @WebServlet(urlPatterns = "/member/join")
 public class MemberJoinController extends HttpServlet{
 
+	/*
+	 * 회원가입
+	 */
 	//회원가입 화면
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -26,16 +29,7 @@ public class MemberJoinController extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		req.setCharacterEncoding("UTF-8");
-		
-//		String mid = req.getParameter("frm_id");
-//		String pwd = req.getParameter("frm_password");
-//		String name = req.getParameter("frm_name");
-//		String email = req.getParameter("frm_email");
-//		String phone = req.getParameter("frm_phone");
-//		String zipcode = req.getParameter("zipcode");
-//		String address = req.getParameter("address");
-//		String[] phoneFirst = req.getParameterValues("phoneFirst");
-		
+
 		String memberMid = req.getParameter("frmId");
 		String memberPwd = req.getParameter("frmPassword");
 		String memberName = req.getParameter("frmName");

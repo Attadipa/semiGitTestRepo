@@ -11,6 +11,7 @@ public class MemberService {
 	
 	private final MemberDao dao = new MemberDao();
 
+	
 	//회원가입
 	public int join(MemberVo vo) {
 		
@@ -56,6 +57,7 @@ public class MemberService {
 	}//회원 가입
 	
 	
+	
 	//로그인
 	public MemberVo login(MemberVo vo) {
 		
@@ -77,6 +79,7 @@ public class MemberService {
 		return loginMember;
 		
 	}//로그인
+	
 	
 	
 	//회원 정보 수정(마이페이지)
@@ -118,6 +121,7 @@ public class MemberService {
 	}//회원 정보 수정
 	
 
+	
 	//회원정보 조회 (회원번호)
 	private MemberVo selectOneByNo(String memberNo) {
 	
@@ -137,6 +141,7 @@ public class MemberService {
 		return vo;
 		
 	}//회원정보 조회 (회원번호)
+	
 	
 	
 	//비밀번호 변경
@@ -178,6 +183,7 @@ public class MemberService {
 	}//비밀번호 변경
 	
 	
+	
 	//아이디 찾기 (이름 + 폰번호)
 	public String findId(String memberName, String memberPhone) {
 		
@@ -199,6 +205,7 @@ public class MemberService {
 	}//아이디 찾기 (이름 + 폰번호
 	
 	
+	
 	//비밀번호 찾기 (아이디 + 폰번호)
 	public String findPwd(String memberMid, String memberPhone) {
 			
@@ -215,7 +222,9 @@ public class MemberService {
 		}
 		
 		return memberPwd;
+		
 	}//비밀번호 찾기 (아이디 + 폰번호)
+	
 	
 	
 	//회원등급 조회
@@ -239,6 +248,7 @@ public class MemberService {
 	}//회원등급 조회
 
 
+	//아이디 중복체크
 	public int idCheck(String memberMid) {
 				
 		Connection conn = null;
@@ -262,7 +272,8 @@ public class MemberService {
 		}
 		
 		return result;
-	}
+		
+	}//아이디 중복체크
 
 
 

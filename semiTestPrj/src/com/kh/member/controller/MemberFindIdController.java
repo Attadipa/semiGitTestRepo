@@ -14,6 +14,9 @@ import com.kh.member.vo.MemberVo;
 @WebServlet(urlPatterns = "/member/findId")
 public class MemberFindIdController extends HttpServlet{
 	
+	/*
+	 * 아이디 찾기
+	 */
 	//아이디 찾기 화면
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -42,10 +45,10 @@ public class MemberFindIdController extends HttpServlet{
 		
 		//결과에 따라 화면 선택
 		if(memberMid != null) {
-			//아이디 찾기 성공 //세션에 로그인 유저 정보 담기
-			req.getSession().setAttribute("memberMid", memberMid);
+			//아이디 찾기 성공 //유저 정보 담기
+			req.setAttribute("memberMid", memberMid);
 			req.getSession().setAttribute("alertMsg", "아이디 찾기 완료!");
-			resp.sendRedirect("/semiTestPrj/views/member/login.jsp");
+			req.getRequestDispatcher("/views/member/findIdResult.jsp").forward(req, resp);
 		}else {
 			//아이디 찾기 실패
 			req.setAttribute("errorMsg", "아이디 찾기 실패!");

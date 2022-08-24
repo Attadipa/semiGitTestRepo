@@ -220,7 +220,7 @@
 	
 	
 <div class = "containers">
-	<form name="idfindscreen" method = "POST">
+	<form name="idfindscreen" method = "post">
 			<div class = "search-title">
 				<h3>휴대폰 본인확인</h3>
 			</div>
@@ -266,7 +266,7 @@
 			 }
 	
 		 frm.method = "post";
-		 frm.action = "findIdResult.jsp"; //넘어간화면
+		 frm.action = "/semiTestPrj/member/findId"; //넘어간화면
 		 frm.submit();  
 		 }
 	 

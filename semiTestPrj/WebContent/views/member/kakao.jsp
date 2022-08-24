@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>카카오 로그인</title>
 </head>
 <body>
 <div id="kakaoLogin" align="center">

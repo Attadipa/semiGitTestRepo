@@ -3,15 +3,15 @@
 
 <%
 	String memberMid = (String)request.getAttribute("memberMid");
- %>
+%>
 
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>아이디 찾기</title>
 
-	<link rel="stylesheet" href="../member/css/findinfo.css">
+	<link rel="stylesheet" href="/semiTestPrj/views/member/css/findinfo.css">
 
 <script src="/semiTestPrj/views/member/js/findinfo.js"></script>
 
@@ -127,7 +127,7 @@
 		height : 100px;
 		text-align : center;
 	}
-	h4 {
+	#h4-findresult{
 		text-align : center;
 		line-height : 100px;
 		margin-left : 30px;
@@ -176,23 +176,24 @@
 
   <form action="/semiTestPrj/member/findId" name="idSearch" method="post">
 
-      <% if (vo.getMemberMid() != null) {%>    
+      <% if (memberMid != null) {%>    
       <div class = "containers">
       	<div class = "found-success">
-	      <h4>  회원님의 아이디는 </h4>  
-	      <div class ="found-id">${vo.getMemberMid() }</div>
-	      <h4>  입니다 </h4>
+	      <h6 id ="h4-findresult">  회원님의 아이디는 </h6>  
+	      <div class ="found-id">${memberMid}</div>
+	      <h6 id ="h4-findresult">  입니다 </h6>
 	     </div>
 	     <div class = "found-login">
  		    <input type="button" id="btnLogin" value="로그인" onclick = "login();"/>
        	</div>
        </div>
       <%} else {%>
-        <div class = "container">
+        <div class = "containers">
       	<div class = "found-fail">
 	      <h4>  등록된 정보가 없습니다 </h4>  
 	     </div>
 	     <div class = "found-login">
+	     	<br><br>
  		    <input type="button" id="btnback" value="다시 찾기" onclick="history.back()"/>
  		    <input type="button" id="btnjoin" value="회원가입" onclick="joinIn()"/>
        	</div>

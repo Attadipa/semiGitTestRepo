@@ -12,7 +12,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>회원정보 수정</title>
+<title>마이페이지</title>
 
 
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -335,10 +335,10 @@
 	<div class="cs_func_page_header">
 		<h1 style="font-size: 2em;">마이페이지</h1>
 		<div class="cs_category">
-			<a href="/semiTestPrj/views/member/myPageForm.jsp">기본정보</a>
-			<a href="/">거래내역</a> <!-- 본인이 거래한 내역 -->
+			<a href="/semiTestPrj/member/mypage">기본정보</a>
 			<a href="/semiTestPrj/views/member/changePwd.jsp">비밀번호</a>
-			<a href="/">커뮤니티</a> <!-- 본인이 쓴 커뮤니티 -->
+			<a href="/semiTestPrj/trade/myList?p=1">거래내역</a>
+			<a href="/semiTestPrj/views/error/errorPage.jsp">쿠폰함</a>
 		</div>
 	</div>
 	

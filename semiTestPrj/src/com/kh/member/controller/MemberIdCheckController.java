@@ -13,6 +13,9 @@ import com.kh.member.service.MemberService;
 @WebServlet(urlPatterns = "/member/idCheck")
 public class MemberIdCheckController extends HttpServlet{
 
+	/*
+	 * 아이디 중복검사 ----- 구현 실패....
+	 */
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		

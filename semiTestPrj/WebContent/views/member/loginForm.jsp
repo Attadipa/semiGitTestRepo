@@ -219,7 +219,7 @@
                     <a style="text-decoration: none; color: black;" href="/semiTestPrj/views/member/findId.jsp">아이디찾기</a>
                 </div>
                 <div class="login-pw">
-                    <a style="text-decoration: none; color: black;" href="/semiTestPrj/views/member/findPw.jsp">비밀번호찾기</a>
+                    <a style="text-decoration: none; color: black;" href="/semiTestPrj/views/member/findPwd.jsp">비밀번호찾기</a>
                 </div>
                 <div class="login-join">
                     <a style="text-decoration: none; color: black;" href="/semiTestPrj/views/member/joinForm.jsp">회원가입</a>
@@ -248,7 +248,7 @@
            <!-- footer영역 -->
    	<%@include file="/views/common/footer.jsp" %>
     </div>
-     <script>logInOut()</script>
+     <script>/* logInOut() */</script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src = "https://developers.kakao.com/sdk/js/kakao.min.js"></script>
 <script type='text/javascript'>

@@ -4,11 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>비밀번호 찾기</title>
     
 <script src="/semiTestPrj/views/member/js/findinfo.js"></script>
 
-<link rel="stylesheet" href="../member/css/findinfo.css">
+<link rel="stylesheet" href="/semiTestPrj/views/member/css/findinfo.css">
 
     
 <style type="text/css">
@@ -239,7 +239,7 @@
 			<br>
 	</section>
 	<div class ="btnSearch">
-		<input type="button" name="enter" value="찾기"  onclick="pwSearch()">
+		<input type="button" name="enter" value="찾기"  onclick="pwdSearch()">
 		<input type="button" name="cancle" value="취소" onclick="history.back()">
  	</div>
  </form>
@@ -254,12 +254,11 @@
         
  <script>
 	//비밀번호찾기
-	 function pwSearch(){
+	 function pwdSearch(){
+	  	var frm = document.pwfindscreen;
 	
-	  var frm=document.pwfindscreen;
-	
-	  if(frm.memberMid.value.length<3){
-	   alert("아이디를 올바르게 입력해주세요");
+	  	if(frm.memberMid.value.length<3){
+	   		alert("아이디를 올바르게 입력해주세요");
 	   return;
 	  }
 	
@@ -268,8 +267,8 @@
 				  return;
 			 }
 		
-	  frm.method="post";
-	  frm.action="findPwResult.jsp"; //넘어간화면
+	  frm.method = "post";
+	  frm.action = "/semiTestPrj/member/findPwd"; //넘어간화면
 	  frm.submit(); //등록이 될수 있는 조건이면, 정보를 보냄
 	  }
  </script>
