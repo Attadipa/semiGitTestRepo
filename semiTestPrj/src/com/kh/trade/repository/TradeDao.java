@@ -417,6 +417,36 @@ public class TradeDao {
 		return result;
 	}
 
+	public int edit(Connection conn, TradeVo tvo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String sql = "UPDATE TRADE SET TITLE = ? , REF_CATEGORY_NO = ?, CONDITION = ?, EXCHANGE = ?, SHIP = ?, PRICE = ?, EXPLAIN = ?, COUNT = ? WHERE TRADE_NO = ?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, tvo.getTitle());
+			pstmt.setString(2, tvo.getRefCategoryNo());
+			pstmt.setString(3, tvo.getCondition());
+			pstmt.setString(4, tvo.getExchange());
+			pstmt.setString(5, tvo.getShip());
+			pstmt.setString(6, tvo.getPrice());
+			pstmt.setString(7, tvo.getExplain());
+			pstmt.setString(8, tvo.getCount());
+			pstmt.setString(9, tvo.getTradeNo());
+			
+			result = pstmt.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		} finally {
+			close(pstmt);
+		}
+
+		return result;
+	}
+
 }
 
 

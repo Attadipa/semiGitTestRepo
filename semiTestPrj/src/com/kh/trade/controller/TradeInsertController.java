@@ -109,11 +109,10 @@ public class TradeInsertController extends HttpServlet {
 		}
 
 		int result = new TradeService().insert(tvo, avo);
-//		System.out.println(result);
 		
 		if(result == 1) {
 			//작성 성공-> 리스트 보여주기
-			req.setAttribute("alertMsg", "글이 작성되었습니다");
+			req.getSession().setAttribute("alertMsg", "글이 작성되었습니다");
 			resp.sendRedirect("/semiTestPrj/trade/myList?p=1");
 		} else {
 			//작성 실패 -> 에러페이지

@@ -70,7 +70,7 @@
             
             .sidebar-list:hover{
                 background-color: black;
-                color: white;
+                color: white !important;
                 transition: 0.2s;
                 cursor: pointer;
             }
@@ -101,10 +101,13 @@
             }
             #shopping-list li>a{
                 text-decoration: none;
+                display: block;
                 color: black;
+                width: 100%;
+                height: 100%;
             }
             #shopping-list li:hover>a{
-                color: white;
+                color: white !important;
                 transition : 0.2s;
             }
             

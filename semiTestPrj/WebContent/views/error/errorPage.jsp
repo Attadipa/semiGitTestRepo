@@ -19,6 +19,7 @@
 <body>
 
 	<h1 class="errorMsg"><%= errorMsg %></h1>	
+	<input type="button" value="뒤로가기" onclick="history.go(-1)">
 
 </body>
 </html>

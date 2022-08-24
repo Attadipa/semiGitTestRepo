@@ -71,29 +71,31 @@ public class SearchController extends HttpServlet{
 			pageVo.setPageLimit(pageLimit);
 			pageVo.setStartPage(startPage);
 			
-			
-
 			List<TradeVo> searchList = new SearchService().searchToKeywords(keywords, pageVo);
+			
+			System.out.println(searchList.size());
 			
 			List<AttachmentVo> avo = new TradeService().selectAtt(searchList);
 			
-			if(avo != null) {
+			if(avo.size() != 0) {
 				for(int i=0; i<avo.size();i++) {
 					if(avo.get(i).getFilePath() != null) {
 						avo.get(i).setFilePath((avo.get(i).getFilePath().substring(14, 27)+avo.get(i).getFilePath().substring(38)+"\\"+avo.get(i).getChangeName()).replace("\\", "/"));
 						req.setAttribute("avo", avo);
-						System.out.println(avo.get(i).getFilePath());
 					} else {
 						avo.get(i).setFilePath("");
 						req.setAttribute("avo", avo);
-						System.out.println(avo.get(i).getFilePath());
 					}
 				}
 			}
-			
-			req.setAttribute("pageVo", pageVo);
-			req.setAttribute("searchList", searchList);
-			req.getRequestDispatcher("/views/search/searchList.jsp").forward(req, resp);
+			if(searchList.size() != 0) {
+				req.setAttribute("pageVo", pageVo);
+				req.setAttribute("searchList", searchList);
+				req.getRequestDispatcher("/views/search/searchList.jsp").forward(req, resp);
+			} else {
+				req.setAttribute("searchErrorMsg", keyword + " 에 대한 검색 결과가 없습니다 : )");
+				req.getRequestDispatcher("/views/search/searchList.jsp").forward(req, resp);
+			}
 			
 		} else {
 			// 키워드 입력이나 옵션 선택안하면
