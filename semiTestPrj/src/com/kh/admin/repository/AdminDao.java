@@ -1,5 +1,7 @@
 package com.kh.admin.repository;
 
+import static com.kh.common.JDBCTemplate.close;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,7 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.kh.common.JDBCTemplate.*;
+import com.kh.admin.vo.EventVo;
+import com.kh.attachment.vo.AttachmentVo;
 import com.kh.member.vo.MemberVo;
 
 public class AdminDao {
@@ -160,6 +163,131 @@ public class AdminDao {
 		}
 		
 		return result;
+	}
+
+	public int insertBoard(Connection conn, EventVo evo) {
+		
+		String sql = "INSERT INTO EVENT (NO, TITLE, CONTENT, WRITER) VALUES (SEQ_EVENT_NO.NEXTVAL, ?, ?, ?)";
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, evo.getTitle());
+			pstmt.setString(2, evo.getContent());
+			pstmt.setString(3, evo.getWriter());
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	
+	
+
+	
+	public int insertAttachment(Connection conn, AttachmentVo avo) {
+			//conn 준비
+	
+			//SQL 준비
+			String sql = "INSERT INTO ATTACHMENT ( NO ,REF_TNO ,ORIGIN_NAME ,CHANGE_NAME ,FILE_PATH ) VALUES ( SEQ_ATTACHMENT_NO.NEXTVAL , SEQ_EVENT_NO.CURRVAL , ? , ? , ? ) ";
+			
+			PreparedStatement pstmt = null;
+			int result = 0;
+			
+			try {
+				//SQL을 객체에 담기 및 완성하기
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, avo.getOriginName());
+				pstmt.setString(2, avo.getChangeName());
+				pstmt.setString(3, avo.getFilePath());
+				
+				//SQL 실행 및 결과 저장
+				result = pstmt.executeUpdate();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			}
+			
+			//결과 리턴
+			return result;
+	}
+
+	public List<EventVo> showList(Connection conn) {
+		
+		String sql = "SELECT E.NO, M.MEMBER_NAME, TITLE FROM EVENT E JOIN MEMBER M ON E.WRITER = M.MEMBER_NO";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<EventVo> list = new ArrayList<EventVo>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rs = pstmt.executeQuery();
+			
+			while(rs.next()) {
+				String no = rs.getString("NO");
+				String title = rs.getString("TITLE");
+				String name = rs.getString("MEMBER_NAME");
+				
+				EventVo vo = new EventVo();
+				vo.setNo(no);
+				vo.setTitle(title);
+				vo.setWriter(name);
+				
+				list.add(vo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		return list;
+	}
+
+	public int getCount(Connection conn) {
+
+		//Connection 준비
+		
+		//SQL 준비
+		String sql = "SELECT COUNT(NO) AS COUNT FROM BOARD WHERE STATUS = 'N' AND TYPE = 1";
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		int count = 0;
+		
+		try {
+			//SQL을 객체에 담기 및 SQL 완성
+			pstmt = conn.prepareStatement(sql);
+			
+			//SQL 실행 및 결과 저장
+			rs = pstmt.executeQuery();
+			
+			//실행결과 -> 자바 데이터
+			if(rs.next()) {
+				count = rs.getInt("COUNT");
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+			close(rs);
+		}
+		
+		
+		//실행결과 리턴
+		return count;
 	}
 
 }

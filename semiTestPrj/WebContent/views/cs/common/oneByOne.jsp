@@ -137,10 +137,8 @@
   	  					let list = JSON.parse(x);
   	  					
   	  					let listArea = document.getElementById('memberList-zone');
-  	  					console.log(list);
   	  					
   	  					for(let i in list){
-  	  						console.log(list[i].memberName)
 	  	  					let newTr = document.createElement('tr');
   	  						newTr.setAttribute("class", "showChatTr");
 	  	  					newTr.setAttribute("role", "button");
