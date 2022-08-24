@@ -35,20 +35,13 @@
 		</c:if>
 	
 		<div id="today-content-area">
-			<%-- <c:forEach items="${searchList}" var="sl"> --%>
-			<c:set value="${searchList}" var="sl"/>
-			<c:forEach var="i" begin="0" step="1" end="${fn:length(sl)-1}">
+			<c:forEach items="${searchList}" var="sl">
 	    	    <ul>
-	    	    	<c:if test="${not empty avo.get(i)}">
-	        	    	<li id="trade-img-area" style="background-image: url('${avo.get(i).getFilePath()}');"></li>
-	    	    	</c:if>
-	    	    	<c:if test="${empty avo.get(i)}">
-	        	    	<li id="trade-img-area">사진 없음</li>
-	    	    	</c:if>
-	            	<li class="today-content-text-area title-area">${sl.get(i).getTitle()}</li>
-	            	<li class="today-content-text-area writer-area">${sl.get(i).getWriter()}</li>
-	            	<li class="today-content-text-area date-area">${sl.get(i).getEnrollDate()}</li>
-	            	<li class="today-content-text-area no-area">${sl.get(i).getTradeNo()}</li>
+	        	    <li>게시글 사진</li>
+	            	<li class="today-content-text-area title-area">${sl.getTitle()}</li>
+	            	<li class="today-content-text-area writer-area">${sl.getWriter()}</li>
+	            	<li class="today-content-text-area date-area">${sl.getEnrollDate()}</li>
+	            	<li class="today-content-text-area no-area">${sl.getTradeNo()}</li>
 	        	</ul>
 	        </c:forEach>
 	    </div>

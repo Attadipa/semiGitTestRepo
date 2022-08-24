@@ -24,6 +24,12 @@
 <c:set value="<%= contextPath %>" var="contextPath"></c:set>
 
 <style>
+    /* .header{
+        border: 1px dashed red;
+    } */
+    /* 참고용 (추 후 삭제 예정) */
+    
+    
     body{
         padding-top: 150px;
     }
@@ -82,26 +88,18 @@
         padding-right: 100px;
     }
     #search{
-        height: 40px;
+        height: 30px;
         width: 700px;
     }
-    #search>form {
-        height: 40px !important;
-        min-height: 0!important;
-        width: 700px!important;
-        display: flex !important;
-    }
     #logo-anbd{
-        padding-left: 100px!important;
+        padding-left: 100px;
     }
     #logo-anbd img{
-        height: 60px!important;
+        height: 60px;
     }
-    .btn-search{display: block !important;}
 
-    #form-select{width: 120px !important; height: 100% !important;}
-    .form-control{width: 500px !important; height:40px !important;}
-    .btn-search{widhth:40px important; margin: 0 !important;}
+    #form-select{width: 120px !important;}
+    .form-control{width: 500px !important;}
 </style>
 </head>
 <body>
@@ -113,7 +111,7 @@
                 <c:if test="${empty loginMember}">
    		            <a href="${contextPath}/member/login">로그인</a>
                 </c:if>
-                <c:if test="${loginMember.getMemberGrade() eq 'A'}">
+                <c:if test="${loginMember.getMemberGrade() eq 'ADMIN'}">
    		            <a href="${contextPath}/admin/search">관리자페이지</a>
                 </c:if>
                 <c:if test="${not empty loginMember}">
@@ -128,18 +126,18 @@
                 <a id="logo-anbd" href="/semiTestPrj">
                     <img src="/semiTestPrj/views/common/resources/anbdpng.png" alt="아나바다로고">
                 </a>
-                <div id="search">
-	                <form action="<%= contextPath %>/search" method="get">
-	                	<input type="hidden" name="p" value="1">
+                <form id="search" action="<%= contextPath %>/search" method="get">
+                	<input type="hidden" name="p" value="1">
+                    <div class="input-group mb-3" id="search-div">
                         <select id="form-select" class="form-select" name="keyword-option">
                             <option value="TITLE">글제목</option>
                             <option value="WRITER">작성자</option>
                             <option value="EXPLAIN">내용</option>
                         </select>
                         <input type="text" class="form-control" name="keyword" placeholder="포켓몬빵은 어때요?">
-                        <button class="btn btn-success btn-search" type="submit">검색</button>
-	                </form>
-                </div>
+                        <button class="btn btn-success" type="submit">검색</button>
+                    </div>
+                </form>
                 <div id="header-inner2-category">
                     <a href="${contextPath}/trade/insert">SALE</a>
                     <a href="">SHOP</a>
@@ -154,6 +152,12 @@
 		    <!-- 광고영역 -->
 	    	<%@ include file="/views/common/factor/adModal.jsp" %>
     	</c:if>
+    	<%-- <c:if test="${not empty loginMember}">
+    		<c:if test="${loginMember.getMemberGrade() eq "NORMAL"}">
+			    <!-- 광고영역 -->
+		    	<%@ include file="/views/common/factor/adModal.jsp" %>
+    		</c:if>
+    	</c:if> --%> <!-- 로그인 멤버의 등급이 NORMAL 일 때 광고창 출력 (일단 주석처리->memberdao에서 memberGrade 받아오면 그때 처리) -->
 
 
     <script>

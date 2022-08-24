@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.attachment.vo.AttachmentVo;
 import com.kh.common.PageVo;
 import com.kh.search.service.SearchService;
 import com.kh.trade.service.TradeService;
@@ -55,20 +54,6 @@ public class SearchToCategory extends HttpServlet{
 		pageVo.setStartPage(startPage);
 		
 		List<TradeVo> searchList = new SearchService().searchToCategory(category, pageVo);
-		
-		List<AttachmentVo> avo = new TradeService().selectAtt(searchList);
-		
-		if(avo != null) {
-			for(int i=0; i<avo.size();i++) {
-				if(avo.get(i).getFilePath() != null) {
-					avo.get(i).setFilePath((avo.get(i).getFilePath().substring(14, 27)+avo.get(i).getFilePath().substring(38)+"\\"+avo.get(i).getChangeName()).replace("\\", "/"));
-					req.setAttribute("avo", avo);
-				} else {
-					avo.get(i).setFilePath("");
-					req.setAttribute("avo", avo);
-				}
-			}
-		}
 		
 		if(searchList != null) {
 			req.setAttribute("pageVo", pageVo);

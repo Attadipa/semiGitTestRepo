@@ -34,8 +34,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        padding: 10px;
-        padding-left: 20px;
+        padding: 5px;
         border-left: none !important;
     }
     #product-info div{
@@ -65,8 +64,7 @@
         width: 100px !important;
     }
     .btns{width: 100% ; display: flex; justify-content: center;}
-    .btns input{margin: 0 5px 0 5px;}
-    .btns button{margin: 0 5px 0 5px;}
+    .btns input, button{margin: 0 5px 0 5px;}
     
    	#product-img{
         width: 300px;
@@ -74,7 +72,7 @@
         background-size: 300px 300px;
    	}
    	
-   	.buy-modal-footer{display:flex;flex-direction: row !important;justify-content: center;}
+   	.buy-modal-footer{display:flex;flex-direction: row !important;justify-content: flex-start;}
    	.buy-modal-footer{margin:3px;}
    	.buy-modal-footer button{margin:3px;}
    	
@@ -138,27 +136,22 @@
 	                        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal">
 							  구매하기
 							</button>
-						      <style>
-									.buy-title{text-align: center;}
-									.buy-body{text-align: center;}						      	
-						      </style>
-								
 								<!-- The Modal -->
 									<div class="modal" id="myModal">
 									  <div class="modal-dialog">
 									    <div class="modal-content">
 									
 									      <!-- Modal Header -->
-									      <div class="modal-header buy-title">
-									        <h4 class="modal-title buy-title">구매하기</h4>
+									      <div class="modal-header">
+									        <h4 class="modal-title">구매하기</h4>
 									        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
 									      </div>
 									
 									      <!-- Modal body -->
-									      <div class="modal-body buy-body">
+									      <div class="modal-body">
 									        구매하실 방법을 선택해 주세요 :)
 									      </div>
-									      
+									
 									      <!-- 결제 영역 모달창 부분 -->
 										      <div class="buy-modal-footer">
 											      <form action="/semiTestPrj/pay/form" method="post">
@@ -185,7 +178,7 @@
                     	<c:if test="${loginMember.getMemberMid() eq tvo.getWriter()}">
                     		<input type="button" class="btn btn-secondary reqAd" value="광고신청">
 	                        <input type="button" class="btn btn-warning fix" value="수정하기"> 
-	                        <input type="button" class="btn btn-danger del-trade" value="삭제하기">
+	                        <input type="button" class="btn btn-danger del" value="삭제하기">
                     	</c:if>
                     </div>
                 </div>
@@ -206,14 +199,8 @@
 
         alert("URL이 복사되었습니다.");
    		}
-        
-        $('.del-trade').click(function(){
-        	location.href="/semiTestPrj/trade/delete?num=${tvo.getTradeNo()}";	
-        })
-        	
-        
         $('.reqAd').click(function(){
-        	location.href="/semiTestPrj/ad/insert?num=${tvo.getTradeNo()}";
+        	location.href="/semiTestPrj/ad/insert?num="+${tvo.getTradeNo()};
         })
         
         $('#insert-wish').click(function(){
@@ -221,9 +208,9 @@
     			url : "/semiTestPrj/wishlist/insert"
     			, method : "GET"
     			, data : {
-    					postNo : '${tvo.getTradeNo()}'
-        				, memberNo : '${loginMember.getMemberNo()}'
-        				, title : '${tvo.getTitle()}'
+    					postNo : ${tvo.getTradeNo()}
+        				, memberNo : ${loginMember.getMemberNo()}
+        				, title : ${tvo.getTitle()}
     				} 
     			, success : function(x){
     				console.log("통신성공");
@@ -237,12 +224,6 @@
     		});
         });
         
-        /* 로그인이 안되었을때, 찜하기가 안눌리게 하는 코드 */
-        <%-- $(function(){
-        	<%if(loginMember == null){%>
-        		$('#insert-wish').prop("disabled", true);
-        	<%}%>
-        }) --%>
     </script>
 
     <%@include file="/views/common/footer.jsp" %>

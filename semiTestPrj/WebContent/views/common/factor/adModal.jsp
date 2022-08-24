@@ -49,16 +49,13 @@
 	<script>
 
 		const modal = $('.adModal');
-		$(function onAd(){
+		$(function(){
 			modal.css('display','block');
-			
-		}setInterval(onAd,10000);)
+		})
 		
 		function closeModal(){
 			modal.css('display','none');
 		}
-		
-		
 		
 	</script>
 	

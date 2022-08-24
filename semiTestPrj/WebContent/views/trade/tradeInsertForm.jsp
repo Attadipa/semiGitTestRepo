@@ -12,7 +12,7 @@
     }
 
     h6 {
-        margin-right: 90%;
+        margin-left: 90%;
     }
 
     #image {
@@ -37,7 +37,7 @@
     }
 
     #category {
-        margin-left: 150px
+        margin-left: 125px
     }
 
     .condition+input, .exchange+input, .price+input, .count+input,  .ship+input {
@@ -57,7 +57,7 @@
         width: 120px;
         height: 60px;
         float: left;
-        margin-left: 30px;
+        margin-left: 50px;
         text-align: center;
     }
     
@@ -84,6 +84,9 @@
         <h1>상품등록</h1>
         <br><br>
 
+        <h2>기본정보</h2>
+        <br>
+
         <h6>필수항목*</h6>
         <hr><br><br>
 
@@ -94,14 +97,17 @@
             <!-- 사진게시판 이후 수정 예정 -->
             <!-- 이미지 -->
             <h5 class="image">
-                상품이미지 : 
+                상품이미지<br>
                 <input id="imageLengthCkeck" type="file" name="f" placeholder="(0/ 4)"></input>
+                <br><br>
             </h5>
+            <!-- 수정예정 -->
+            <input type="button" id="image" onclick="imagePlus();"></input>
             <br><br><hr><br>
     
             <!-- 제목 -->
             <h5 class="title">제목*</h5>
-            <input type="text" placeholder="글제목을 입력해주세요." id="product-title" name="title" required>
+            <input type="text" placeholder="상품 제목을 입력해주세요." id="product-title" name="title" required>
             <input type="text" placeholder="(0/ 20)" id="textLengthCheck">
             <br><br><hr><br>
     
@@ -120,6 +126,7 @@
             <!-- 지역 -->
             <h5 class="location">거래지역*</h5>
             <div id="location">
+                <input type="button" class="btn btn-light" id="my-location" value="내 위치">
                 <input type="button" class="btn btn-light" id="search-address" value="주소 검색">
                 <input type="button" class="btn btn-light" id ="none" value="지역설정안함">
             </div>

@@ -63,19 +63,4 @@ public class WishlistService {
 		return voList;
 	}
 
-	public int delete(String[] postNo) {
-		Connection conn = getConnection();
-		int result = 0;
-		
-		result = dao.delete(conn, postNo);
-		if(result == 1) {
-			commit(conn);
-		}else {
-			rollback(conn);
-		} 
-		close(conn);
-		
-		return result;
-	}
-
 }
