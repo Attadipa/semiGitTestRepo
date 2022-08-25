@@ -16,6 +16,7 @@
 
 
 <style>
+
 		* {
 		margin: 0;
 		padding: 0;
@@ -300,6 +301,39 @@
 		border: 1px solid;
 	}
 </style>
+
+<script type="text/javascript">
+
+	$(document).ready(function() {
+    	$("#checkBtn").on("click", function() {
+       		idCheckFuntion();
+    	});
+	});
+
+	function idCheckFuntion(){
+		var frmId = $('#frmId').val();
+		
+		$.ajax({
+			type : 'post',
+			url : '/member/idCheck',
+			//파리미터 변수 이름 : 값
+			data: {frmId : frmId},
+			success : function(result){
+				if(result == 1) {
+					$('#checkMessage').html('사용할 수 있는 아이디입니다.');
+					$('#checkType').attr('class', 'modal-content panel-success');
+
+				}else{
+					$('#checkMessage').html('사용할 수 없는 아이디입니다.');
+					$('#checkType').attr('class', 'modal-content panel-warning');
+					
+				}
+				$('#checkModal').modal("show");
+			}
+		});
+	}
+	
+</script>
 </head>
 
 <body class="body">
@@ -314,17 +348,18 @@
 					
 					
 	<h3>아이디 중복 확인</h3>
-		<form method="get" action="semiTestPrj/member/idCheck" name="frm">
+		<form method="post" action="/semiTestPrj/member/idCheck" name="frm">
 			<table>
 				<tr>
 					<td><label for="id">아이디</label></td>
 					<td><input type="text" name="frmId" id="id" value="${frmId }"></td>
-					<td><input type="submit" value="중복 체크"></td>
+					<td><button class="btn btn-primary"  type="button" id="checkBtn">중복체크</button></td>
 				</tr>
 				<tr>
 					<td colspan="3"><c:choose>
 							<c:when test="${result == 1 }">${frmId }는 사용중인 아이디입니다.</c:when>
 							<c:when test="${result == -1 }">${frmId }가 사용가능한 아이디입니다. &nbsp;<input type="button" value="사용" onclick="idOk()"></c:when>
+							
 							<c:otherwise></c:otherwise>
 						</c:choose></td>
 				</tr>
@@ -352,9 +387,9 @@
 			return false;
 		}
 		// 아이디 중복 체크를 위한 페이지는 새로운 창에 출력한다.(idcheckForm.jsp)
-		var url = "/member/idCheck?frmId=" + document.joinForm.FrmId.value;
+		/* var url = "/semiTestPrj/member/idCheck?frmId=" + document.joinForm.FrmId.value;
 		window.open(url, "_blank_1", "toolbar=no, menubar=no, scrollbars=yes, resizable=no, width=450, height=200");
-	}
+	} */
 	
 	function idOk(){
 		opener.joinform.frmId.value = document.frm.frmId.value;
