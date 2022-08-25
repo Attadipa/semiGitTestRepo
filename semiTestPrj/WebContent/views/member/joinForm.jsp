@@ -79,31 +79,31 @@
 	}
 	
 	.frm-input-id>input:first-child {
-		width: 500px;
+		width: 400px;
 		height: 50px;
 		text-indent: 15px;
 	}
 	
-	 .frm-input-id>input:first-child:hover {
+	.frm-input-id>input:first-child:hover {
 		box-shadow: 0px 0px 2px 0px #202224;
 	}
-	/*
+	
 	.frm-input-id>input:last-child {
 		width: 100px;
 		height: 50px;
 		border: white;
 		background-color: black;
 		color: white;
-	} */
+	}
 	
 	/* 아이디 중복확인 */
-	/* .frm-input-id>input:last-child:hover {
+	.frm-input-id>input:last-child:hover {
 		background-color: white;
 		color: #2D9568;
 		border: 1px solid;
 		cursor: pointer;
 	}
-	 */
+	
 	/* 비밀번호 */
 	.frm-input-password {
 		text-align: center;
@@ -313,7 +313,7 @@
 				<div class="frm-input-id">
 					<input type="text" name="frmId" id="regId"
 						placeholder="영문자와 한글,숫자만을 입력(15자 이내)" maxlength="15" value="${param.frmId}">
-					<!-- <input type="button" name="frmCheck" id="idCheck" value="중복확인" onclick="return idCheck()"> -->
+					<input type="button" name="frmCheck" id="idCheck" value="중복확인" onclick="return idCheck()">
 				</div>
 				<div class="frm-label">
 					<label>비밀번호</label> 
@@ -377,14 +377,14 @@
 						<option selected><%= i+1%>년
 						</option>
 						<% } %>
-					</select>  <select>
-						<% for(int i = 0; i < 12; i++) {%>
-						<option><%= i+1%>월
-						</option>
-						<% } %>
-					</select>  <select>
+					</select> <select>
 						<% for(int i = 0; i < 31; i++) {%>
 						<option><%= i+1%>일
+						</option>
+						<% } %>
+					</select> <select>
+						<% for(int i = 0; i < 12; i++) {%>
+						<option><%= i+1%>월
 						</option>
 						<% } %>
 					</select>
@@ -406,10 +406,6 @@
 
 	<script>
 		
-	/*
-	*	아이디 중복체크
-	*/
-	
 	</script>
 	
 	<script>
