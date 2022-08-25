@@ -17,7 +17,7 @@ public class AdDao {
 
 	public int insertAd(Connection conn, AdVo adVo) {
 		String sql = "INSERT INTO AD (AD_NO, MEMBER_NO, TRADE_NO, PERIOD, KEYWORD1, KEYWORD2, KEYWORD3, ENROLL_DATE, DELETE_YN)\r\n"
-				   + "VALUES (SEQ_AD_NO.NEXTVAL, 1, 1, 7, '신발','나이키','운동화', DEFAULT, DEFAULT);";
+				   + "VALUES (SEQ_AD_NO.NEXTVAL, ?, ?, ?, ?, ?, ?, DEFAULT, DEFAULT)";
 		PreparedStatement pstmt = null;
 		int result = 0;
 		
@@ -33,7 +33,6 @@ public class AdDao {
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
@@ -77,7 +76,7 @@ public class AdDao {
 		int count = 0;
 		
 		try {
-			pstmt=conn.prepareStatement(sql);	
+			pstmt=conn.prepareStatement(sql);
 			
 			pstmt.setInt(1, Integer.parseInt(memberNo));
 			
@@ -98,7 +97,7 @@ public class AdDao {
 	}
 	
 	public List<AdVo> selectList(Connection conn, String memberNo, PageVo pageVo) {
-		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM , T.* FROM (  SELECT A.AD_NO, A.TRADE_NO, T.TITLE, T.PRICE, A.PERIOD AS PERIOD, TO_CHAR(A.ENROLL_DATE,'YY/MM/DD HH24:MI:SS') AS ENROLL_DATE, A.KEYWORD1, A.KEYWORD2, A.KEYWORD3, S.AD_STATUS FROM AD A JOIN TRADE T ON A.TRADE_NO = T.TRADE_NO JOIN AD_STATUS S ON A.AD_STATUS_NO = S.AD_STATUS_NO WHERE DELETE_YN = 'N' ORDER BY AD_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM , T.* FROM (  SELECT A.AD_NO, A.TRADE_NO, T.TITLE, T.PRICE, A.PERIOD AS PERIOD, TO_CHAR(A.ENROLL_DATE,'YY/MM/DD HH24:MI:SS') AS ENROLL_DATE, A.KEYWORD1, A.KEYWORD2, A.KEYWORD3, S.AD_STATUS FROM AD A JOIN TRADE T ON A.TRADE_NO = T.TRADE_NO JOIN AD_STATUS S ON A.AD_STATUS_NO = S.AD_STATUS_NO WHERE DELETE_YN = 'N' AND A.MEMBER_NO = ? ORDER BY AD_NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
 		ArrayList<AdVo> list = new ArrayList<AdVo>();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -109,8 +108,9 @@ public class AdDao {
 			int start = (pageVo.getCurrentPage()-1)*pageVo.getBoardLimit() + 1;
 			int end = start + pageVo.getBoardLimit() - 1;
 
-			pstmt.setInt(1, start);
-			pstmt.setInt(2, end);
+			pstmt.setInt(1, Integer.parseInt(memberNo));
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
 			
 			rs = pstmt.executeQuery();
 			
@@ -197,6 +197,28 @@ public class AdDao {
 		}
 		
 		return list;
+	}
+
+	public int deleteAd(Connection conn, String tradeNo) {
+		String sql = "UPDATE AD SET DELETE_YN = 'Y' WHERE TRADE_NO = ? AND DELETE_YN='N'";
+		PreparedStatement pstmt = null;
+		int result = 0;
+		int count = 0;
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, Integer.parseInt(tradeNo));
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 

@@ -211,7 +211,7 @@
             <hr>
                 <table id="title-container">
                     <tr>
-                        <td rowspan="4"><img src="/semiTestPrj/views/ad/resources/gundam1.jpg" alt="게시글 썸네일"></td>
+                        <td rowspan="4"><img src="/semiTestPrj/views/ad/resources/anbd.png" alt="게시글 썸네일"></td>
                         <td id="price">${tradeVo.price}원</td>
                     </tr>
                     <tr>
@@ -226,7 +226,7 @@
                     <input type="text" name="delivery-address"  id="delivery-address" placeholder="배송주소를 입력해주세요">
                     <input type="text" name="delivery-address-detail"  id="delivery-address-detail" placeholder="상세주소를 입력해주세요">
                     <select name="request-content" id="request-content">
-                        <option value="배송시 요청사항">배송시 요청사항</option>
+                        <option value="문앞">배송시 요청사항</option>
                         <option value="문앞">문앞</option>
                         <option value="직접 받고 부재 시 문앞">직접 받고 부재 시 문앞</option>
                         <option value="경비실">경비실</option>
@@ -356,7 +356,7 @@
 
      <script>
         //결제정보 및 광고관련정보
-        let payCategoryVal = ${payCategory};
+        let payCategoryVal = '${payCategory}';
         let payAmountVal;
         let periodVal;
 
@@ -398,16 +398,17 @@
                 //배송지 선택
                 
                 let deliveryAddrVal;
-                if($('#delivery-address').val()==null){
-                    deliveryAddrVal = $('#delivery-address').val()+$('#delivery-address-detail').val();
+                if($('#delivery-address').val()!=null){
+                    deliveryAddrVal = $('#delivery-address').val()+" "+$('#delivery-address-detail').val();
                 }
-                console.log($('#delivery-address').val());
-                console.log($('#delivery-address-detail').val());
-                console.log(deliveryAddrVal);
+
                 //배송요청 사항 선택
                 let requestContentVal = $('#request-content').val();
                 if(requestContentVal=='직접입력'){
                     requestContentVal = $('#request-content-direct').val();
+                    if(requestContentVal==null || requestContentVal==''){
+                        requestContentVal = '문앞';
+                    }
                 }
 
                 //결제수단 선택
@@ -424,7 +425,7 @@
 
                 //서비스 이용약관 동의
                 if($('#agree-check').is(":checked")==false){
-                    alert("서비스 이용약관에 동의해주십시오")
+                    alert("서비스 이용약관에 동의해주십시오");
                 } else {
 
                     IMP.request_pay({
@@ -434,20 +435,14 @@
                         name : '주문명:결제테스트', //필수 파라미터
                         amount : payAmountVal
 
-
                     }, function(rsp) { // callback 로직
                         if(rsp.success){
-                            alert("결제성공");
-                            console.log(rsp);
-                            
-                        }else{
-                            alert("결제취소됨");
                             console.log(rsp);
                             $.ajax({
                                 url : "/semiTestPrj/pay/insert",
                                 method : "POST",
-                                // dataType : "text",
                                 data : {
+                                        payCategory : payCategoryVal,
                                         payAmount : payAmountVal,
                                         memberNo : memberNoVal,
                                         payMethodNo : payMethodNoVal,
@@ -462,19 +457,25 @@
                                 success : function(x){
                                     console.log("통신성공");
                                     if(x==1){
-                                        location.replace("/semiTestPrj/views/pay/payResult?res=s.jsp");    
+                                        alert('결제성공');
+                                        window.location='/semiTestPrj/index.jsp';
+                                        
                                     }else{
-                                        location.replace("/semiTestPrj/views/pay/payResult?res=f.jsp");    
+                                        alert('결제실패');
+                                        window.location='/semiTestPrj/index.jsp';  
                                     }
                                     
                                 },
                                 error : function(e){
                                     console.log("통신실패");
+                                    alert('통신실패');
                                     console.log(e);
-                                    // location.replace("/semiTestPrj/views/error/errorPage.jsp");
+                                    
                                 }
                             })
-                            
+                        }else{
+                            alert("결제취소됨");
+                            console.log(rsp);
                         }
                     });
                 }   

@@ -17,15 +17,15 @@
 		margin: auto;
 		padding-top: 30px;
 	}
-    tbody > tr{
-        cursor: pointer;
-    }
     #page-btns-container{
         display: flex;
         justify-content: center;
     }
     #page-btns-container .btn{
         margin: 0 2px 0 2px;
+    }
+    tbody > tr{
+        cursor: pointer;
     }
 
 
@@ -52,21 +52,23 @@
                     <th>키워드2</th>
                     <th>키워드3</th>
                     <th>광고상태</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
                 <c:forEach items="${adList }" var="vo">
-	                <tr onclick="location.href='/semiTestPrj/trade/detail?num=${vo.tradeNo }'">
-	                    <td>${vo.adNo }</td>
-	                    <td>${vo.tradeNo }</td>
-	                    <td>${vo.title }</td>
-	                    <td>${vo.price }원</td>
-	                    <td>${vo.period }일</td>
-	                    <td>${vo.enrollDate }</td>
-	                    <td>${vo.keyword1 }</td>
-	                    <td>${vo.keyword2 }</td>
-	                    <td>${vo.keyword3 }</td>
+	                <tr class='tr'>
+	                    <td onclick="getDetail('${vo.tradeNo }')">${vo.adNo }</td>
+	                    <td onclick="getDetail('${vo.tradeNo }')">${vo.tradeNo }</td>
+	                    <td onclick="getDetail('${vo.tradeNo }')">${vo.title }</td>
+	                    <td onclick="getDetail('${vo.tradeNo }')">${vo.price }원</td>
+	                    <td onclick="getDetail('${vo.tradeNo }')">${vo.period }일</td>
+	                    <td onclick="getDetail('${vo.tradeNo }')">${vo.enrollDate }</td>
+	                    <td onclick="getDetail('${vo.tradeNo }')">${vo.keyword1 }</td>
+	                    <td onclick="getDetail('${vo.tradeNo }')">${vo.keyword2 }</td>
+	                    <td onclick="getDetail('${vo.tradeNo }')">${vo.keyword3 }</td>
 	                    <td><h5><span class="badge rounded-pill bg-danger">${vo.adStatus }</span></h5></td>
+                        <td id="refund-btn"><button class="btn btn-outline-success btn-sm" onclick="refund('${vo.tradeNo }')">환불받기</button></td>
 	                </tr>
                 </c:forEach>
             </tbody>
@@ -74,8 +76,8 @@
 
           <div id="page-btns-container">
             <c:if test="${pv.currentPage!=1}">
-                <a class="btn btn-outline-success page-btn" href="/semiTestPrj/ad/manager?p=1">&lt;&lt;</a>
-                <a class="btn btn-outline-success page-btn" href="/semiTestPrj/ad/manager?p=${pv.currentPage-1}">&lt;</a>
+                <a class="btn btn-outline-success" href="/semiTestPrj/ad/manager?p=1">&lt;&lt;</a>
+                <a class="btn btn-outline-success" href="/semiTestPrj/ad/manager?p=${pv.currentPage-1}">&lt;</a>
             </c:if>
 
             <c:forEach begin="${pv.startPage }" end="${pv.endPage }" step="1" varStatus="vs">
@@ -88,10 +90,24 @@
             </c:forEach>
 
             <c:if test="${pv.currentPage!=pv.maxPage}">
-                <a class="btn btn-outline-success page-btn" href="/semiTestPrj/ad/manager?p=${pv.currentPage+1}">&gt;</a>
-                <a class="btn btn-outline-success page-btn" href="/semiTestPrj/ad/manager?p=${pv.maxPage}">&gt;&gt;</a>
+                <a class="btn btn-outline-success" href="/semiTestPrj/ad/manager?p=${pv.currentPage+1}">&gt;</a>
+                <a class="btn btn-outline-success" href="/semiTestPrj/ad/manager?p=${pv.maxPage}">&gt;&gt;</a>
             </c:if>
         </div>
+
+        <script>
+            function refund(no){
+                let refund = confirm('정말로 환불받으시겠습니까?');
+                if(refund==true){
+                    window.location="/semiTestPrj/ad/delete?no="+no;
+                }
+            }
+            function getDetail(tradeNo){
+                    location.href='/semiTestPrj/trade/detail?num='+tradeNo;
+            }
+        </script>
+
+        
 
     </div>
 </body>

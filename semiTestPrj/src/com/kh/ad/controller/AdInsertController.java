@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.ad.service.AdService;
 import com.kh.trade.service.TradeService;
 import com.kh.trade.vo.TradeVo;
 
@@ -20,7 +19,6 @@ public class AdInsertController extends HttpServlet{
 		String tradeNo = req.getParameter("num");
 		TradeVo tradeVo = new TradeService().selectOne(tradeNo);
 		int payCategory = 3;
-		
 		
 		if(tradeVo!=null) {
 			req.setAttribute("tradeVo", tradeVo);

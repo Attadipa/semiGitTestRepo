@@ -22,7 +22,10 @@ public class AdRequestController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		String memberNo = ((MemberVo)req.getSession().getAttribute("loginMember")).getMemberNo();
+		MemberVo loginMember = (MemberVo)req.getSession().getAttribute("loginMember");
+		
+		String memberNo = loginMember.getMemberNo();
+		
 		String p = req.getParameter("p");
 		
 		//페이징 처리

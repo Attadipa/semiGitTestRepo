@@ -20,6 +20,7 @@ public class AdManagerController extends HttpServlet{
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		MemberVo loginMember = (MemberVo)req.getSession().getAttribute("loginMember");
+		
 		String memberNo = loginMember.getMemberNo();
 		
 		int listCount; 		//현재 총 게시글 갯수
