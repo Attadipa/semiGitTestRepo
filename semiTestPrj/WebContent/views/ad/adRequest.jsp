@@ -67,8 +67,8 @@
 
             <div id="page-btns-container">
                 <c:if test="${pv.currentPage!=1}">
-                    <a class="btn btn-outline-success page-btn" href="/semiTestPrj/ad/request?p=1">&lt;&lt;</a>
-                    <a class="btn btn-outline-success page-btn" href="/semiTestPrj/ad/request?p=${pv.currentPage-1}">&lt;</a>
+                    <a class="btn btn-outline-success" href="/semiTestPrj/ad/request?p=1">&lt;&lt;</a>
+                    <a class="btn btn-outline-success" href="/semiTestPrj/ad/request?p=${pv.currentPage-1}">&lt;</a>
                 </c:if>
     
                 <c:forEach begin="${pv.startPage }" end="${pv.endPage }" step="1" varStatus="vs">
@@ -81,8 +81,8 @@
                 </c:forEach>
     
                 <c:if test="${pv.currentPage!=pv.maxPage}">
-                    <a class="btn btn-outline-success page-btn" href="/semiTestPrj/ad/request?p=${pv.currentPage+1}">&gt;</a>
-                    <a class="btn btn-outline-success page-btn" href="/semiTestPrj/ad/request?p=${pv.maxPage}">&gt;&gt;</a>
+                    <a class="btn btn-outline-success" href="/semiTestPrj/ad/request?p=${pv.currentPage+1}">&gt;</a>
+                    <a class="btn btn-outline-success" href="/semiTestPrj/ad/request?p=${pv.maxPage}">&gt;&gt;</a>
                 </c:if>
             </div>
 

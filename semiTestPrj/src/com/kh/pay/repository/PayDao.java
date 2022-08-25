@@ -1,5 +1,7 @@
 package com.kh.pay.repository;
 
+import static com.kh.common.JDBCTemplate.close;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -28,6 +30,29 @@ public class PayDao {
 		}
 		return result;
 		
+	}
+
+	public int deletePay(Connection conn, String memberNo, String tradeNo) {
+		String sql = "UPDATE PAY SET DELETE_YN = 'Y' WHERE TRADE_NO = ? AND MEMBER_NO = ? AND DELETE_YN='N'";
+		PreparedStatement pstmt = null;
+		int result = 0;
+		int count = 0;
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, Integer.parseInt(tradeNo));
+			pstmt.setInt(2, Integer.parseInt(memberNo));
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 

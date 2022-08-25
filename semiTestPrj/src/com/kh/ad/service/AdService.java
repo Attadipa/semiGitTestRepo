@@ -11,7 +11,7 @@ import java.util.List;
 import com.kh.ad.repository.AdDao;
 import com.kh.ad.vo.AdVo;
 import com.kh.common.PageVo;
-import com.kh.trade.repository.TradeDao;
+import com.kh.pay.repository.PayDao;
 import com.kh.trade.vo.TradeVo;
 
 public class AdService {
@@ -68,6 +68,29 @@ public class AdService {
 		close(conn);
 		
 		return list;
+	}
+
+	public int deleteAdPlusPay(String memberNo, String tradeNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = 0;
+		int result1 = adDao.deleteAd(conn,tradeNo);
+		System.out.println("result1 "+result1);
+		int result2 = new PayDao().deletePay(conn,memberNo,tradeNo);
+		System.out.println("result2 "+result2);
+		if(result1==1 && result2==1) {
+			result=1;
+			commit(conn);
+		}
+		else {
+			result=-1;
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
 	}
 
 }

@@ -4,7 +4,7 @@ public class DeliveryVo {
 	private String deliveryNo;
 	private String deliveryAddr;
 	private String requestContent;
-	private String payNo;
+	private String tradeNo;
 	private String enrollDate;
 	private String deleteYn;
 	
@@ -14,13 +14,13 @@ public class DeliveryVo {
 	}
 
 
-	public DeliveryVo(String deliveryNo, String deliveryAddr, String requestContent, String payNo, String enrollDate,
+	public DeliveryVo(String deliveryNo, String deliveryAddr, String requestContent, String tradeNo, String enrollDate,
 			String deleteYn) {
 		super();
 		this.deliveryNo = deliveryNo;
 		this.deliveryAddr = deliveryAddr;
 		this.requestContent = requestContent;
-		this.payNo = payNo;
+		this.tradeNo = tradeNo;
 		this.enrollDate = enrollDate;
 		this.deleteYn = deleteYn;
 	}
@@ -56,13 +56,13 @@ public class DeliveryVo {
 	}
 
 
-	public String getPayNo() {
-		return payNo;
+	public String getTradeNo() {
+		return tradeNo;
 	}
 
 
-	public void setPayNo(String payNo) {
-		this.payNo = payNo;
+	public void setTradeNo(String tradeNo) {
+		this.tradeNo = tradeNo;
 	}
 
 
@@ -85,12 +85,6 @@ public class DeliveryVo {
 		this.deleteYn = deleteYn;
 	}
 
-
-	@Override
-	public String toString() {
-		return "DeliveryVo [deliveryNo=" + deliveryNo + ", deliveryAddr=" + deliveryAddr + ", requestContent="
-				+ requestContent + ", payNo=" + payNo + ", enrollDate=" + enrollDate + ", deleteYn=" + deleteYn + "]";
-	}
 
 }
 		
