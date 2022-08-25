@@ -13,7 +13,7 @@ import com.kh.trade.service.TradeService;
 import com.kh.trade.vo.TradeVo;
 
 @WebServlet(urlPatterns = "/trade/edit")
-public class tradeEditController extends HttpServlet{
+public class TradeEditController extends HttpServlet{
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

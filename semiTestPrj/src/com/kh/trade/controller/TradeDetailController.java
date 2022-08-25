@@ -24,13 +24,9 @@ public class TradeDetailController extends HttpServlet{
 				int result = new TradeService().increaseTrade(num);
 				
 				if(result==1) {
-					//DB에 가서 특정 공지사항 정보 조회
 					 TradeVo tvo = new TradeService().selectOne(num);
 					 AttachmentVo avo = new TradeService().selectAtt(num);
 					
-					 
-					//정보를 req에 담아서 다음타자에게 포워딩
-					 
 					if(tvo != null) {
 						req.setAttribute("tvo", tvo);
 						 if(avo != null) {
