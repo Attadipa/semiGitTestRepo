@@ -1,14 +1,18 @@
 package com.kh.admin.service;
 
+import static com.kh.common.JDBCTemplate.close;
+import static com.kh.common.JDBCTemplate.commit;
+import static com.kh.common.JDBCTemplate.getConnection;
+import static com.kh.common.JDBCTemplate.rollback;
+
 import java.sql.Connection;
 import java.util.List;
 import java.util.UUID;
 
-import static com.kh.common.JDBCTemplate.*;
 import com.kh.admin.repository.AdminDao;
 import com.kh.admin.vo.EventVo;
 import com.kh.attachment.vo.AttachmentVo;
-import com.kh.cs.vo.ChatVo;
+import com.kh.common.PageVo;
 import com.kh.member.vo.MemberVo;
 
 public class AdminService {
@@ -162,14 +166,14 @@ public class AdminService {
 		return result1 * result2;
 	}
 
-	public List<EventVo> showList() {
+	public List<EventVo> showList(PageVo pageVo) {
 		
 		Connection conn = null;
 		List<EventVo> list = null;
 		
 		try {
 			conn = getConnection();
-			list = dao.showList(conn);			
+			list = dao.showList(conn, pageVo);			
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -192,6 +196,77 @@ public class AdminService {
 		}finally {
 			close(conn);
 		}
+		
+		return result;
+	}
+
+	public EventVo selectEvent(String num) {
+		
+		EventVo evo = null;
+		Connection conn = null;
+		
+		try {
+			conn = getConnection();
+			
+			evo = dao.selectEvent(conn, num);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+		}
+		
+		return evo;
+	}
+
+	public AttachmentVo selectAtmt(String num) {
+		AttachmentVo result = null;
+		Connection conn = null;
+		
+		try{
+			conn = getConnection();
+			//dao 호출
+			result = dao.selectAtmt(conn, num);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+		}
+
+		return result;
+	}
+
+	public int editEvent(EventVo evo) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		//DAO 호출
+		result = dao.editEvent(conn, evo);
+		
+		if(result  == 1) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+	}
+
+	public int delete(String num) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		//DAO 호출
+		result = dao.delete(conn, num);
+		
+		if(result  == 1) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
 		
 		return result;
 	}

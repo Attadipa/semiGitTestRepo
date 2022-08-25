@@ -38,7 +38,6 @@
 			<a class="list-group-item list-group-item-action list-group-item-success active" id="admin-member-list" data-bs-toggle="list" href="#admin-member" role="tab" aria-controls="admin-member">회원관리</a>
 			<a class="list-group-item list-group-item-action list-group-item-success" id="admin-cs-list" data-bs-toggle="list" href="#admin-cs" role="tab" aria-controls="admin-cs">CS관리</a>
 			<a class="list-group-item list-group-item-action list-group-item-success" id="admin-event-list" data-bs-toggle="list" href="#admin-event" role="tab" aria-controls="admin-event">이벤트관리</a>
-			<a class="list-group-item list-group-item-action list-group-item-success" id="admin-graphs-list" data-bs-toggle="list" href="#admin-graph" role="tab" aria-controls="admin-graph">통계</a>
 		  </div>
 		</div>
 		<div class="col-8" style="margin: 0 auto;">
@@ -85,10 +84,6 @@
 			<div class="tab-pane fade" id="admin-event" role="tabpanel" aria-labelledby="admin-event-list">
 				<br>
 				<%@ include file="/views/admin/adminEvent.jsp" %>
-			</div>
-			<div class="tab-pane fade" id="admin-graph" role="tabpanel" aria-labelledby="admin-graph-list">
-				<br>
-				<h3 id="bold-font">통계</h3>
 			</div>
 		  </div>
 		</div>
@@ -234,10 +229,20 @@
 		})
 		
 		
-		
-		
-		
 	</script>
+	<% 
+	String strReferer = request.getHeader("referer");
+	
+	if(strReferer == null){
+	%>
+	<script>
+		alert("정상적인 경로를 통해 접근하세요 !");
+		history.back();
+	</script>	
+	<%
+		}
+	%>
+	
 
 </body>
 </html>

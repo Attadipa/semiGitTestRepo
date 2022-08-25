@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.kh.admin.vo.EventVo;
 import com.kh.attachment.vo.AttachmentVo;
+import com.kh.common.PageVo;
 import com.kh.member.vo.MemberVo;
 
 public class AdminDao {
@@ -195,7 +196,7 @@ public class AdminDao {
 			//conn 준비
 	
 			//SQL 준비
-			String sql = "INSERT INTO ATTACHMENT ( NO ,REF_TNO ,ORIGIN_NAME ,CHANGE_NAME ,FILE_PATH ) VALUES ( SEQ_ATTACHMENT_NO.NEXTVAL , SEQ_EVENT_NO.CURRVAL , ? , ? , ? ) ";
+			String sql = "INSERT INTO ETTACHMENT ( NO ,REF_ENO ,ORIGIN_NAME ,CHANGE_NAME ,FILE_PATH ) VALUES ( SEQ_ETTACHMENT_NO.NEXTVAL , SEQ_EVENT_NO.CURRVAL , ? , ? , ? ) ";
 			
 			PreparedStatement pstmt = null;
 			int result = 0;
@@ -221,9 +222,9 @@ public class AdminDao {
 			return result;
 	}
 
-	public List<EventVo> showList(Connection conn) {
+	public List<EventVo> showList(Connection conn, PageVo pageVo) {
 		
-		String sql = "SELECT E.NO, M.MEMBER_NAME, TITLE FROM EVENT E JOIN MEMBER M ON E.WRITER = M.MEMBER_NO";
+		String sql = "SELECT * FROM ( SELECT ROWNUM RNUM, T.* FROM ( SELECT E.NO ,   E.TITLE ,   E.CONTENT , E.UPLOAD_DATE , M.MEMBER_NAME AS WRITER FROM EVENT E JOIN MEMBER M ON E.WRITER = M.MEMBER_NO ORDER BY E.NO DESC ) T ) WHERE RNUM BETWEEN ? AND ?";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -232,12 +233,18 @@ public class AdminDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
+			int start = (pageVo.getCurrentPage()-1)*pageVo.getBoardLimit()+1;
+			int end = start + pageVo.getBoardLimit() - 1;
+			
+			pstmt.setInt(1, start);
+			pstmt.setInt(2, end);
+			
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()) {
 				String no = rs.getString("NO");
 				String title = rs.getString("TITLE");
-				String name = rs.getString("MEMBER_NAME");
+				String name = rs.getString("WRITER");
 				
 				EventVo vo = new EventVo();
 				vo.setNo(no);
@@ -261,7 +268,7 @@ public class AdminDao {
 		//Connection 준비
 		
 		//SQL 준비
-		String sql = "SELECT COUNT(NO) AS COUNT FROM BOARD WHERE STATUS = 'N' AND TYPE = 1";
+		String sql = "SELECT COUNT(NO) AS COUNT FROM EVENT";
 		
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -290,4 +297,114 @@ public class AdminDao {
 		return count;
 	}
 
+	public EventVo selectEvent(Connection conn, String num) {
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		EventVo evo = null;
+		
+		String sql = "SELECT M.MEMBER_NAME WRITER, E.TITLE, E.CONTENT FROM EVENT E JOIN MEMBER M ON E.WRITER = M.MEMBER_NO WHERE E.NO = ?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				String no = num;
+				String title = rs.getString("TITLE");
+				String content = rs.getString("CONTENT");
+				String writer = rs.getString("WRITER");
+				
+				evo = new EventVo();
+				evo.setNo(no);
+				evo.setTitle(title);
+				evo.setContent(content);
+				evo.setWriter(writer);
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return evo;
+	}
+
+	public AttachmentVo selectAtmt(Connection conn, String num) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		AttachmentVo avo = null;
+		
+		//sql 준비
+		String sql = "SELECT FILE_PATH, CHANGE_NAME FROM ETTACHMENT WHERE REF_ENO = ?";
+		
+		try {
+			//sql 객체에 담기 -> 물음표 채욱
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, num);
+			//sql 실행 및 결과 저장
+			rs = pstmt.executeQuery();
+
+			if(rs.next()) {
+				avo = new AttachmentVo();
+				avo.setFilePath(rs.getString("FILE_PATH"));
+				avo.setChangeName(rs.getString("CHANGE_NAME"));
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		//결과 리턴
+		return avo;
+	}
+
+	public int editEvent(Connection conn, EventVo evo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+
+		String sql = "UPDATE EVENT SET TITLE = ? , CONTENT = ?, WRITER = ? WHERE NO = ?";
+
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, evo.getTitle());
+			pstmt.setString(2, evo.getContent());
+			pstmt.setString(3, evo.getWriter());
+			pstmt.setString(4, evo.getNo());
+			
+			result = pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int delete(Connection conn, String num) {
+		
+		int result = 0;
+		String sql = "UPDATE EVENT SET STATUS = 'Y' WHERE NO = ?";
+		//sql객체에 담기 -> 물음표 채우기
+		PreparedStatement pstmt = null;
+		try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, num);
+				
+				result = pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		//결과 리턴
+		return result;
+	}	
 }

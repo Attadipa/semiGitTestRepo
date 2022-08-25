@@ -33,7 +33,7 @@ public class EventInsertController extends HttpServlet {
 		
 		String title = req.getParameter("title");
 		String content = req.getParameter("content");
-		String name = req.getParameter("memberName");
+		String no = req.getParameter("memberNo");
 		Part file = req.getPart("file");
 		
 		
@@ -41,7 +41,7 @@ public class EventInsertController extends HttpServlet {
 		EventVo evo = new EventVo();
 		evo.setTitle(title);
 		evo.setContent(content);
-		evo.setWriter(name);
+		evo.setWriter(no);
 		
 		AttachmentVo avo = null;
 		String savePath = "";
