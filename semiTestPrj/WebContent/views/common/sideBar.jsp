@@ -22,7 +22,7 @@
             #sidebar{
                 margin-left: -150px;
                 width: 150px;
-                height: 250px;
+                height: 300px;
                 box-sizing: border-box;
                 transition: 1s;
                 background-color: white;
@@ -135,6 +135,7 @@
             <div class="sidebar-list"><a href="${contextPath}/notice/list?p=1">공지사항</a></div>
             <div class="sidebar-list"><a href="${contextPath}/community/list?p=1">커뮤니티</a></div>
             <div class="sidebar-list"><a href="${contextPath}/ad/main">판매자센터</a></div>
+            <div class="sidebar-list"><a href="${contextPath}/event/member">이벤트</a></div>
             <div class="sidebar-list"><a href="${contextPath}/cs/search">고객센터</a></div>
             <ul id="shopping-list">
                 <li class="search-category"><a href="${contextPath}/search/category?c=1&p=1">패션</a></li>
@@ -155,7 +156,6 @@
                 sidebar.classList.toggle('change-sidebar');
             }
 
-            /* 쇼핑하기에 마우스 올리면 옆에 세부 카테고리가 나오는 으로 했으나 오류가있어서 일단 toggle로 처리한 js ㅎㅎ */
             const shopping = document.getElementById('shopping');
             const shoppingList = document.getElementById('shopping-list');
             shopping.addEventListener('click',function(){
@@ -164,13 +164,6 @@
             shoppingList.addEventListener('mouseleave',function(){
                 shoppingList.removeAttribute('class');
             })
-            // shopping.addEventListener('mouseover',function(){
-            //     shoppingList.classList.add('show-list');
-            // })
-            // shopping.addEventListener('mouseout',function(){
-            //     shoppingList.removeAttribute('class');
-            // })
-            
             
         </script>
             
