@@ -122,9 +122,11 @@
   
   <script>
   		
+		
   		$('#chat-modal').click(function(){
  			let num = ${loginMember.memberNo};
  			let grade = '${loginMember.memberGrade}';
+ 			
   			
   			if(grade == 'A'){
   				$.ajax({
@@ -186,7 +188,7 @@
 		  				  				data : {"content" : content, "num" : num, "grade" : grade},
 		  				  				method : "POST",
 		  				  				success : function(x){
-		  				  					console.log("채팅 입력 성공 !");
+		  				  					console.log("관리자 채팅 입력 성공 !");
 		  				  					
 		  				  					let tagArea = document.getElementById('chatting-zone');
 		  				  					let newTag = document.createElement('div');
@@ -341,7 +343,7 @@
 		  				data : {"content" : content, "num" : num, "grade" : grade},
 		  				method : "POST",
 		  				success : function(x){
-		  					console.log("채팅 입력 성공 !");
+		  					console.log("회원채팅 입력 성공 !");
 		  					
 		  					let tagArea = document.getElementById('chatting-zone');
 		  					let newTag = document.createElement('div');
