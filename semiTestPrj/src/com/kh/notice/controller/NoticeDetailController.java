@@ -21,6 +21,7 @@ public class NoticeDetailController extends HttpServlet {
 		
 		// 우선, num번 게시글의 조회수 증가시키기
 		String num = req.getParameter("num");
+		System.out.println(num);
 		
 		int result = new NoticeService().increseNotice(num);
 		

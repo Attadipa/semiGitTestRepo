@@ -149,8 +149,10 @@
 
     tbody tr:hover{
         background-color: whitesmoke;
+        cursor: pointer;
     }
-    
+
+  
 
 
 </style>
@@ -200,10 +202,10 @@
             
             <!-- 수정 예정 jstl로 -->
             <% if(loginMember != null  && "user04".equals(loginMember.getMemberMid())) {%>
-                <button name="writeBtn" type="button" id="writeBtn" class="btn btn-success" onclick="location.href='/semiTestPrj/notice/insert'">✍글쓰기</button>
-                <button name="writeBtn" type="submit"  id="writeBtn" class="btn btn-success" onclick="location.href='/semiTestPrj/notice/deleteAll'">❌삭제</button>
+                <button name="writeBtn" type="button" id="writeBtn" class="btn btn-outline-success btn-sm" onclick="location.href='/semiTestPrj/notice/insert'">✍글쓰기</button>
+                <button name="writeBtn" type="submit"  id="writeBtn" class="btn btn-outline-success btn-sm" onclick="location.href='/semiTestPrj/notice/deleteAll'">❌삭제</button>
             <%} else if (loginMember != null && !"user04".equals(loginMember.getMemberMid())){%> 
-                <button name="writeBtn" type="button" id="writeBtn" class="btn btn-success" onclick="location.href='/semiTestPrj/notice/insert'">✍글쓰기</button>
+                <button name="writeBtn" type="button" id="writeBtn" class="btn btn-outline-success btn-sm" onclick="location.href='/semiTestPrj/notice/insert'">✍글쓰기</button>
             <%}%>
         </form>
 		
@@ -251,19 +253,34 @@
     
    
     <script>
-    //공지사항 리스트에서 해당 게시물 클릭시(tr) -> 공지사항 상세보기
+
+    if(${not empty loginMember.memberNo && loginMember.memberNo eq '4'}){
+        
         $(function(){
-			$('tbody tr').children('.list').click(function(){
-				//글 번호 가져오기 (this -> tr태그)
-				const num = $(this).parent().children().eq(0).text();
-				console.log(num);
-				//해당 번호로 요청 보내기
-				location.href='/semiTestPrj/notice/detail?num=' + num;
-				
-			});
-		})
+                $('tbody tr').children('.list').click(function(){
+                    //글 번호 가져오기 (this -> tr태그)
+                    let num = $(this).parent().children().eq(1).text();
+                    console.log(num);
+                    //해당 번호로 요청 보내기
+                    location.href='/semiTestPrj/notice/detail?num=' + num;
+                    
+                });
+            })
     
-    </script>
+    } else {
+        $(function(){
+            $('tbody tr').children('.list').click(function(){
+                //글 번호 가져오기 (this -> tr태그)
+                let num = $(this).parent().children().eq(0).text();
+                console.log(num);
+                //해당 번호로 요청 보내기
+                location.href='/semiTestPrj/notice/detail?num=' + num;
+                
+            });
+        })
+    }
+            
+        </script>
 
 </body>
 </html>
