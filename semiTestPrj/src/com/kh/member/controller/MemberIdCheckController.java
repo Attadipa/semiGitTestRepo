@@ -29,16 +29,16 @@ public class MemberIdCheckController extends HttpServlet{
 		
 		//서비스 호출
 		int result = new MemberService().idCheck(memberMid);
-//		
-//		//실행 결과에 따라 화면 선택
-//		if(result == 1) {
-//			//성공
-//			req.getSession().setAttribute("alertMsg", "사용 가능한 아이디 입니다.");
-//			resp.sendRedirect("/semiTestPrj/member/join");
-//		}else {
-//			//실패
-//			req.setAttribute("alertMsg", "중복된 아이디 입니다");
-//		}
+		
+		//실행 결과에 따라 화면 선택
+		if(result == 1) {
+			//성공
+			req.getSession().setAttribute("alertMsg", "사용 가능한 아이디 입니다.");
+			resp.sendRedirect("/semiTestPrj/member/join");
+		}else {
+			//실패
+			req.setAttribute("alertMsg", "중복된 아이디 입니다");
+		}
 		
 		req.setAttribute("frmId", memberMid);
 		req.setAttribute("result", result);

@@ -387,8 +387,8 @@ public class MemberDao {
 		int result = -1; //오류발생
 		
 		//SQL 준비
-		String sql = "SELECT MEMBER_PWD FROM MEMBER WHERE MEMBER_MID=?";
-		System.out.println("ID중복체크 DAO 오류");
+		String sql = "SELECT MEMBER_MID FROM MEMBER WHERE MEMBER_MID = ?";
+		System.out.println("ID중복체크");
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberMid);
@@ -403,12 +403,14 @@ public class MemberDao {
 			}else {
 				//존재하지 않을경우(사용가능)
 				result = 0;
+				System.out.println("사용 가능한 아이디 입니다.");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}finally {
 			close(rs);
 			close(pstmt);
+			close(conn);
 		}
 		
 		return result;

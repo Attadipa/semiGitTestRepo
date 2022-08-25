@@ -258,12 +258,7 @@ public class MemberService {
 			conn = getConnection();
 			//DAO 호출 (SQL 실행)
 			result = dao.idCheck(conn, memberMid);
-			
-			if(result == 1) {
-				
-			}else {
-				
-			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			

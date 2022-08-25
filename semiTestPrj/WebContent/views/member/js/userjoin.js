@@ -5,7 +5,7 @@
  var member = function() {
      
  var btnFindZip = getId('btnFindZip');
-/* var idCheck = getId('idCheck');*/
+var idCheck = getId('idCheck');
  var memberInfo = getId('frmMember');
  
      if(btnFindZip != null) {
@@ -22,22 +22,22 @@
      
      }
      
-     /*if(idCheck != null) {
+     if(idCheck != null) {
              
-             idCheck.onclick = function() {
-             if(document.memberInfo.frmId.value == "") {
-                 alert("아이디를 입력하세요.");
-                 return;
+            idCheck.onclick = function() {
+            if(document.memberInfo.frmId.value == "") {
+                alert("아이디를 입력하세요.");
+                return;
              }
          
              var memberInfo = document.memberInfo;
              var userId =  memberInfo.frmId.value;
              console.log(userId);
              memberInfo.action = "/semiTestPrj/member/idCheck";
-             memberInfo.method="POST";
+             memberInfo.method="post";
              memberInfo.submit();
          }
-     }*/
+     }
  }
  
  /* 전화번호 하이픈 자동 추가하기 */
