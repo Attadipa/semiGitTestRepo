@@ -59,6 +59,8 @@ public class PayService {
 		
 		return result;
 	}
+	
+	
 
 	public int insertPayPlusAd(PayVo payVo, AdVo adVo) {
 		Connection conn = getConnection();

@@ -68,6 +68,7 @@ public class PayInsertController extends HttpServlet{
 			
 			result = new PayService().insertPayPlusDel(payVo,deliveryVo);
 			
+			
 		} else if(payCategory==3){
 			
 			//광고결제시 추가
@@ -81,7 +82,6 @@ public class PayInsertController extends HttpServlet{
 			System.out.println("keyword2 : "+keyword2);
 			System.out.println("keyword3 : "+keyword3);
 			
-			System.out.println("광고결제진입");
 			AdVo adVo = new AdVo();
 			adVo.setMemberNo(memberNo);
 			adVo.setTradeNo(tradeNo);
@@ -91,7 +91,6 @@ public class PayInsertController extends HttpServlet{
 			adVo.setKeyword1(keyword3);
 			
 			result = new PayService().insertPayPlusAd(payVo,adVo);
-			
 		}
 
 		resp.setCharacterEncoding("UTF-8");

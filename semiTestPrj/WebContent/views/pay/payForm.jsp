@@ -198,20 +198,20 @@
         box-sizing: border-box;
     }
 
-
 </style>
 </head>
 <body>
+
+
     <div id="container">
         <form action="/semiTestPrj/pay/insert" method="post">
         	<c:if test="${payCategory==1}"><h2>직거래,안전결제로 구매합니다</h2></c:if>
         	<c:if test="${payCategory==2}"><h2>택배거래,안전결제로 구매합니다</h2></c:if>
         	<c:if test="${payCategory==3}"><h2>광고결제</h2></c:if>
-            
             <hr>
                 <table id="title-container">
                     <tr>
-                        <td rowspan="4"><img src="/semiTestPrj/views/ad/resources/anbd.png" alt="게시글 썸네일"></td>
+                        <td rowspan="4"><img src="${avo.getFilePath()}" alt=""></td>
                         <td id="price">${tradeVo.price}원</td>
                     </tr>
                     <tr>
@@ -320,6 +320,8 @@
         //기본정보(멤버번호, 매물번호)
         let memberNoVal = '${loginMember.memberNo}';
         let tradeNoVal = '${tradeVo.tradeNo}';
+
+        console.log("${avo.getFilePath()}");
     </script>
 
     
@@ -464,13 +466,10 @@
                                         alert('결제실패');
                                         window.location='/semiTestPrj/index.jsp';  
                                     }
-                                    
                                 },
                                 error : function(e){
                                     console.log("통신실패");
                                     alert('통신실패');
-                                    console.log(e);
-                                    
                                 }
                             })
                         }else{
