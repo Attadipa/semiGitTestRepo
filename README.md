@@ -62,6 +62,8 @@
 ##   4. ERD 설계
 ![image](https://user-images.githubusercontent.com/98254235/204851991-39855c90-16f5-4e91-8905-13cc919c51f3.png)
 
+<br><br><br><br>
+
 ##   5. USECASE
 ![image](https://user-images.githubusercontent.com/98254235/204852323-ec06791e-356d-48e0-b011-a0d5b8f2a9c6.png)
 
